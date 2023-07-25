@@ -48,11 +48,8 @@ class FunctionalSheet extends StatelessWidget {
                             onPressed: () {
                               try {
                                 context.pop();
-                              } catch (e) {
-                                if (kDebugMode) {
-                                  print(e);
-                                }
-                              }
+                              // ignore: empty_catches
+                              } catch (e) {}
                             },
                             child:  Text(cancelButtonTitle),
                           ),
@@ -69,11 +66,8 @@ class FunctionalSheet extends StatelessWidget {
                       try {
                         context.pop();
                         onPressButton();
-                      } catch (e) {
-                        if (kDebugMode) {
-                          print(e);
-                        }
-                      }
+                      // ignore: empty_catches
+                      } catch (e) {}
                     },
                     child: Text(buttonName.toUpperCase()),
                   ),

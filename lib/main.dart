@@ -7,6 +7,7 @@ import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/go_router/error_screen.dart';
 import 'package:flutter_boilerplate/routes.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 // ignore: depend_on_referenced_packages
@@ -14,9 +15,11 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   // use usePathUrlStrategy to remove # from url path
   usePathUrlStrategy();
-  WidgetsFlutterBinding.ensureInitialized();
+  // loading .env file
+  await dotenv.load(fileName: ".env");
   User user = await UserRepository.fetchUserData();
   runApp(
       ChangeNotifierProvider<UserRepository>(

@@ -5,6 +5,8 @@ import 'package:flutter_boilerplate/view/screens/login_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
+
+// define for transition animation
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context,
   required GoRouterState state,

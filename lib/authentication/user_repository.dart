@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
+import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 class UserRepository extends ChangeNotifier {
@@ -16,43 +16,46 @@ class UserRepository extends ChangeNotifier {
   UserRepository({
     this.currentUser,
   });
-
+  
+  
   bool get isLoggedIn => currentUser?.id != null;
 
   Future updateUserData(User? userData) async {
-  try{
-    if(userData==null) {
-      const storage = FlutterSecureStorage();
-      await storage.delete(key: StorageConstant.userStorage);
-      currentUser = null;
-    } else{
-      String user = jsonEncode(userData.toJson());
-      const storage = FlutterSecureStorage();
-      await storage.write(key: StorageConstant.userStorage, value: user);
-      currentUser = await fetchUserData();
-    }
+    try{
+      if(userData==null) {
+        await LocalStorage.remove(key: StorageConstant.userStorage);
+        currentUser = null;
+      } else{
+        String user = jsonEncode(userData.toJson());
+        await LocalStorage.update(key: StorageConstant.userStorage, data: user,useEncrypt: true);
+        currentUser = await fetchUserData();
+      }
 
-    notifyListeners();
-  } catch(e) {
-    if (kDebugMode) {
-      print(e.toString());
-    }
-  }}
+      notifyListeners();
+    } catch(e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }}
 
   static Future<User> fetchUserData() async {
-  try {
-    const storage = FlutterSecureStorage();
-    var user = await storage.read(key: StorageConstant.userStorage, );
-    return User.fromJson(
-        jsonDecode( user ?? "{}"));
-  } catch(e) {
-    return User();
-  }
+    try {
+      String? storedData = await LocalStorage.fetch(key: StorageConstant.userStorage,useEncrypt: true);
+      if(storedData!=null) {
+        return User.fromJson(
+            jsonDecode( storedData));
+      } else {
+        return User();
+      }
+    } catch(e) {
+      return User();
+    }
   }
 
   Future signOutUser(BuildContext context) async {
     CustomBottomSheet.open(context,
         child: FunctionalSheet(
+          key: const Key("sign_out"),
             message: "Do you want to Sign Out?",
             buttonName: "Sign Out",
             onPressButton: () async {
@@ -69,7 +72,6 @@ class UserRepository extends ChangeNotifier {
       }
       Router.neglect(context, () => context.goNamed(SplashScreen.name));
     });
-    notifyListeners();
   }
 
 }
