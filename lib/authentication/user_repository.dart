@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
-import 'package:flutter_boilerplate/app_manager/helper/encrypt.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
@@ -28,7 +27,7 @@ class UserRepository extends ChangeNotifier {
         currentUser = null;
       } else{
         String user = jsonEncode(userData.toJson());
-        await LocalStorage.update(key: StorageConstant.userStorage, data: Encrypt.encryption(user));
+        await LocalStorage.update(key: StorageConstant.userStorage, data: user,useEncrypt: true);
         currentUser = await fetchUserData();
       }
 
@@ -41,11 +40,10 @@ class UserRepository extends ChangeNotifier {
 
   static Future<User> fetchUserData() async {
     try {
-      String? storedData = await LocalStorage.fetch(key: StorageConstant.userStorage);
+      String? storedData = await LocalStorage.fetch(key: StorageConstant.userStorage,useEncrypt: true);
       if(storedData!=null) {
-        var user = Encrypt.decryption(storedData);
         return User.fromJson(
-            jsonDecode( user));
+            jsonDecode( storedData));
       } else {
         return User();
       }

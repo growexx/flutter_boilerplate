@@ -1,3 +1,4 @@
+import 'package:flutter_boilerplate/app_manager/helper/encrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
@@ -16,18 +17,25 @@ class LocalStorage {
   static Future<String?> fetch({
     required String key,
     SharedPreferences? pref,
+    bool useEncrypt = false,
   }) async {
       final prefs = pref ?? await SharedPreferences.getInstance();
-      return prefs.getString(key);
+      final storedData = prefs.getString(key);
+      if(useEncrypt && storedData!=null) {
+          return Encrypt.decryption(storedData);
+      } else{
+        return storedData;
+      }
   }
 
   static Future update({
     required String key,
     SharedPreferences? pref,
+    bool useEncrypt = false,
     required String data,
   }) async {
         final prefs = pref ?? await SharedPreferences.getInstance();
-        await prefs.setString(key, data);
+        await prefs.setString(key, useEncrypt==true? Encrypt.encryption(data):data);
   }
 
 
