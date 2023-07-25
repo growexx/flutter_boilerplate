@@ -55,6 +55,7 @@ class UserRepository extends ChangeNotifier {
   Future signOutUser(BuildContext context) async {
     CustomBottomSheet.open(context,
         child: FunctionalSheet(
+          key: const Key("sign_out"),
             message: "Do you want to Sign Out?",
             buttonName: "Sign Out",
             onPressButton: () async {

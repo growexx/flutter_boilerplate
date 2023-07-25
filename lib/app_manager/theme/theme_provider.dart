@@ -110,7 +110,7 @@ class ThemeProvider {
 
 
   static final DividerThemeData _dividerThemeData = DividerThemeData(
-      color: AppColor.grey,
+      color: AppColor.grey1,
       thickness: 1
   );
 

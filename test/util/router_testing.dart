@@ -4,7 +4,7 @@ import 'package:flutter_boilerplate/routes.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter routerTesting({
-  required String initialLocation,
+  String? initialLocation,
   List<RouteBase>? routesData,
 }) {
   return  GoRouter(
