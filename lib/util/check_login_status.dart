@@ -6,10 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 Future checkLoginStatus(BuildContext context,) async{
-   await Future.delayed(const Duration(seconds: 1), () {
+   await Future.delayed(const Duration(seconds: 1), () async{
+     bool isLoggedIn = Provider.of<UserRepository>(context,listen: false).isLoggedIn;
     Router.neglect(context, () =>
         context.goNamed(
-            Provider.of<UserRepository>(context,listen: false).isLoggedIn?
+            isLoggedIn?
             DashboardScreen.name:LoginScreen.name)
     );
   });
