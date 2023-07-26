@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'bind_with_common_orivder.dart';
+import 'bind_with_common_proivder.dart';
 import 'router_testing.dart';
 
 Widget testingMaterial({
@@ -11,7 +10,7 @@ Widget testingMaterial({
   return  bindWithCommonProvider(
     child: MaterialApp.router(
         routerConfig: routerTesting(
-            initialLocation: initialLocation,
+          initialLocation: initialLocation,
           routesData: routesData,
         )
     ),

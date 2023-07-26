@@ -24,33 +24,38 @@ class _LoginScreenState extends State<LoginScreen> {
     return  Scaffold(
       body: Column(
         children: [
-           Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const ThemeModeSelector(),
-                LocaleSelectorWidget(
-                  onLocaleChange: () {
-                    setState(() {
+           SizedBox(
+             width: double.infinity,
+             child: Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Wrap(
+                alignment: WrapAlignment.spaceAround,
+                children: [
+                  const ThemeModeSelector(),
+                  LocaleSelectorWidget(
+                    onLocaleChange: () {
+                      setState(() {
 
-                    });
-                  },
-                )
-              ],
+                      });
+                    },
+                  )
+                ],
           ),
+             ),
            ),
           Expanded(
             child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text("login_screen").tr(),
-                  const SizedBox(height: 20,),
-                  TextButton(onPressed: (){
-                    NavigationHelper.pushNamed(context,DashboardScreen.name);
-                  }, child: const Text("go_to_dashboard",).tr())
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text("login_screen").tr(),
+                    const SizedBox(height: 20,),
+                    TextButton(onPressed: (){
+                      NavigationHelper.pushNamed(context,DashboardScreen.name);
+                    }, child: const Text("go_to_dashboard",).tr())
+                  ],
+                ),
               ),
             ),
           ),

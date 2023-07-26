@@ -13,17 +13,30 @@ class LocaleSelectorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale getSelectedLocale() {
+      try {
+        return context.locale;
+      } catch(e) {
+        return LocaleHelper.fallbackLocale;
+      }
+    }
     return SizedBox(
       width: 150,
       child: CustomDropDown<Locale>(
-        value: context.locale,
+        value: getSelectedLocale(),
+          hint: "Select Locale",
           items: LocaleHelper.supportedLocales
               .map((e) => DropdownMenuItem<Locale>(
               value: e,
+              key:  ValueKey(e.languageCode),
               child: Text(e.languageCode.toString()))).toList(),
           onChanged: (Locale? val) async{
             if(val!=null) {
-              await context.setLocale(val).then((value) => onLocaleChange());
+              try {
+                await context.setLocale(val).then((value) => onLocaleChange());
+              } catch(e) {
+                onLocaleChange();
+              }
             }
           },
       ),
