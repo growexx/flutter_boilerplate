@@ -38,6 +38,7 @@ fdart pub global activate flutter_gen
 
 * SplashScreen
 * ThemeModeSelector and Dark Theme
+* LocaleSelector and LocaleProvider
 * Login
 * Dashboard
 * Go Router
@@ -57,10 +58,14 @@ Splash Screen is the first page user see when application opens up, in this code
 ### ThemeModeSelector and Dark Theme:
 The project contains the drk and light mode ThemeProvider is used to control the theme of the project you can select `systme`, `light` or `dark` mode, You can control it by using ThemeModeSelector Widget that controls the ThemeProvider
 
+### LocaleSelector and LocalProvider:
+The project using `easy_localization` for locale management, It contains a LocaleHelper file to manage the all the locales and fallback locale and LocalSelectorWidget help you select the locale.
+
 ### Libraries & Tools Used
 
 * [http](https://pub.dev/packages/http)
 * [delayed_widget](https://pub.dev/packages/delayed_widget)
+* [easy_localization](https://pub.dev/packages/easy_localization)
 * [encrypt](https://pub.dev/packages/encrypt)
 * [flutter_dotenv](https://pub.dev/packages/flutter_dotenv)
 * [flutter_gen](https://pub.dev/packages/flutter_gen)
@@ -119,6 +124,7 @@ app_manager/
 |- constant
 |- extension
 |- helper
+|- locale
 |- service
 |- theme
 ```

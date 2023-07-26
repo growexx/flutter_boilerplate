@@ -7,14 +7,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../util/common_initial_activity.dart';
 import '../util/router_testing.dart';
 
 
 
-void main() {
+void main() async{
   TestWidgetsFlutterBinding.ensureInitialized();
   late UserRepository model;
-
+  await commonInitialActivity();
   setUpAll(() async{
     model = UserRepository();
     SharedPreferences.setMockInitialValues({});

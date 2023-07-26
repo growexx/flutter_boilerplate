@@ -19,10 +19,24 @@ class $AssetsPngGen {
   List<AssetGenImage> get values => [error];
 }
 
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en-US.json
+  String get enUS => 'assets/translations/en-US.json';
+
+  /// File path: assets/translations/hi-IN.json
+  String get hiIN => 'assets/translations/hi-IN.json';
+
+  /// List of all assets
+  List<String> get values => [enUS, hiIN];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsPngGen png = $AssetsPngGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

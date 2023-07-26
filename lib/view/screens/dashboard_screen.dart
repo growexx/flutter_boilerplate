@@ -2,6 +2,7 @@
 
 
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -13,9 +14,9 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
-        child: Text("Dashboard Screen"),
+        child: const Text("dashboard_screen").tr(),
       ),
     );
   }
