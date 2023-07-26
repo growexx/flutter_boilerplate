@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/theme/widget/theme_mode_selector.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -12,8 +13,15 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text("Login Screen"),
+      body: Column(
+        children: [
+          ThemeModeSelector(),
+          Expanded(
+            child: Center(
+              child: Text("Login Screen"),
+            ),
+          ),
+        ],
       ),
     );
   }

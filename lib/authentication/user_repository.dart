@@ -27,7 +27,7 @@ class UserRepository extends ChangeNotifier {
         currentUser = null;
       } else{
         String user = jsonEncode(userData.toJson());
-        await LocalStorage.update(key: StorageConstant.userStorage, data: user,useEncrypt: true);
+        await LocalStorage.setString(key: StorageConstant.userStorage, data: user,useEncrypt: true);
         currentUser = await fetchUserData();
       }
 
@@ -40,7 +40,7 @@ class UserRepository extends ChangeNotifier {
 
   static Future<User> fetchUserData() async {
     try {
-      String? storedData = await LocalStorage.fetch(key: StorageConstant.userStorage,useEncrypt: true);
+      String? storedData = await LocalStorage.getString(key: StorageConstant.userStorage,useEncrypt: true);
       if(storedData!=null) {
         return User.fromJson(
             jsonDecode( storedData));
