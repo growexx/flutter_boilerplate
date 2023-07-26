@@ -36,11 +36,11 @@ fdart pub global activate flutter_gen
 
 ## Boilerplate Features:
 
-* Splash
+* SplashScreen
+* ThemeModeSelector and Dark Theme
 * Login
 * Dashboard
 * Go Router
-* Theme
 * Provider (State Management)
 * Encryption
 * Validation
@@ -50,6 +50,12 @@ fdart pub global activate flutter_gen
 * Dark Theme Support 
 * Multilingual Support
 
+
+### SplashScreen:
+Splash Screen is the first page user see when application opens up, in this code a animated logo and app title added on the splash screen, you can add as much animation and do changes according to the UI.
+
+### ThemeModeSelector and Dark Theme:
+The project contains the drk and light mode ThemeProvider is used to control the theme of the project you can select `systme`, `light` or `dark` mode, You can control it by using ThemeModeSelector Widget that controls the ThemeProvider
 
 ### Libraries & Tools Used
 

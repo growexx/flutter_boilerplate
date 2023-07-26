@@ -14,7 +14,7 @@ class LocalStorage {
   }
 
 
-  static Future<String?> fetch({
+  static Future<String?> getString({
     required String key,
     SharedPreferences? pref,
     bool useEncrypt = false,
@@ -28,7 +28,7 @@ class LocalStorage {
       }
   }
 
-  static Future update({
+  static Future setString({
     required String key,
     SharedPreferences? pref,
     bool useEncrypt = false,

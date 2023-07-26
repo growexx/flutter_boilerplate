@@ -1,6 +1,5 @@
-import 'package:flutter_boilerplate/app_manager/theme/components_theme/button_theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/theme/theme_components/button_theme.dart';
 import 'package:go_router/go_router.dart';
 
 class FunctionalSheet extends StatelessWidget {

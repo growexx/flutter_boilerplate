@@ -20,11 +20,22 @@ void main() async{
   usePathUrlStrategy();
   // loading .env file
   await dotenv.load(fileName: ".env");
+  // fetching user details
   User user = await UserRepository.fetchUserData();
-  runApp(
+  // fetching stored theme model
+  ThemeMode themeMode = await ThemeProvider.retrieveStoredTheme();
+  
+  runApp(MultiProvider(
+    providers: [
       ChangeNotifierProvider<UserRepository>(
-      create: (_) => UserRepository(currentUser: user),
-      child: const MyApp())
+        create: (_) => UserRepository(currentUser: user),),
+      ChangeNotifierProvider<ThemeProvider>(
+        create: (_) => ThemeProvider(themeMode: themeMode),),
+    ],
+    child: ChangeNotifierProvider<UserRepository>(
+        create: (_) => UserRepository(currentUser: user),
+        child: const MyApp()),
+  )
   );
 }
 
@@ -33,11 +44,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
       theme: ThemeProvider.lightTheme,
       darkTheme: ThemeProvider.darkTheme,
+      themeMode: themeProvider.themeMode,
       title: AppConstant.appName,
       builder: (context, widget) {
         return Container(

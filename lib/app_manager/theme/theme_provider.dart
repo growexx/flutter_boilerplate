@@ -1,12 +1,41 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
+import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
+import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
-import 'package:flutter_boilerplate/app_manager/theme/components_theme/button_theme.dart';
-import 'package:flutter_boilerplate/app_manager/theme/components_theme/text_field_theme.dart';
-import 'package:flutter_boilerplate/app_manager/theme/components_theme/text_theme.dart';
+import 'package:flutter_boilerplate/app_manager/theme/theme_components/button_theme.dart';
+import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_field_theme.dart';
+import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_theme.dart';
 
-class ThemeProvider {
+class ThemeProvider extends ChangeNotifier {
+
+
+
+  ThemeMode themeMode;
+  ThemeProvider({
+    this.themeMode=ThemeMode.system,
+  });
+
+  set setThemeMode(ThemeMode val) {
+    themeMode=val;
+    _storeTheme(val);
+    notifyListeners();
+  }
+
+  void _storeTheme(ThemeMode value) async{
+    await LocalStorage.setString(key: StorageConstant.themeMode, data: value.name);
+  }
+
+  static Future<ThemeMode> retrieveStoredTheme() async{
+    String? storedTheme = await LocalStorage.getString(key: StorageConstant.themeMode);
+    if(storedTheme!=null) {
+      return ThemeMode.values.byName(storedTheme);
+    } else {
+      return ThemeMode.system;
+    }
+  }
+
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: _fontFamily,
@@ -26,6 +55,7 @@ class ThemeProvider {
     tabBarTheme: _tabBarTheme,
     dividerTheme: _dividerThemeData,
     scrollbarTheme: _scrollbarTheme,
+      brightness: Brightness.light
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -45,6 +75,7 @@ class ThemeProvider {
     tabBarTheme: _tabBarTheme,
     dividerTheme: _dividerThemeData,
     scrollbarTheme: _scrollbarTheme,
+    brightness: Brightness.dark
   );
 
 
