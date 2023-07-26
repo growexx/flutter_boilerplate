@@ -13,15 +13,21 @@ class ThemeModeSelector extends StatelessWidget {
     final theme = Theme.of(context);
     return Wrap(
       children: [
-        IconButton(onPressed: (){
+        IconButton(
+            key: const Key("system"),
+            onPressed: (){
           themeProvider.setThemeMode = ThemeMode.system;
         }, icon: Icon(Icons.settings_system_daydream,
         color: themeProvider.themeMode==ThemeMode.system? theme.primaryColor:null)),
-        IconButton(onPressed: (){
+        IconButton(
+            key: const Key("light"),
+            onPressed: (){
           themeProvider.setThemeMode = ThemeMode.light;
         }, icon: Icon(Icons.light,
             color: themeProvider.themeMode==ThemeMode.light? theme.primaryColor:null)),
-        IconButton(onPressed: (){
+        IconButton(
+            key: const Key("dark"),
+            onPressed: (){
           themeProvider.setThemeMode = ThemeMode.dark;
         }, icon: Icon(Icons.dark_mode,
             color: themeProvider.themeMode==ThemeMode.dark? theme.primaryColor:null)),
