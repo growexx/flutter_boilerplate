@@ -1,5 +1,6 @@
 
 import 'package:delayed_widget/delayed_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/util/check_login_status.dart';
@@ -45,7 +46,7 @@ class SplashScreen extends StatelessWidget {
                             delayDuration: AppConstant.animationDuration,
                             child: Text(AppConstant.appName,
                               textAlign: TextAlign.center,
-                              style: theme.textTheme.titleLarge,),
+                              style: theme.textTheme.titleLarge,).tr(),
                           ),
                         ),
                       ],

@@ -19,8 +19,7 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
         FadeTransition(
           opacity:
           CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-          child: SelectionArea(
-              child: child),
+          child: child,
         ),
   );
 }

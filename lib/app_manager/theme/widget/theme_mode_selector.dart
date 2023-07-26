@@ -17,7 +17,7 @@ class ThemeModeSelector extends StatelessWidget {
             key: const Key("system"),
             onPressed: (){
           themeProvider.setThemeMode = ThemeMode.system;
-        }, icon: Icon(Icons.settings_system_daydream,
+        }, icon: Icon(Icons.monitor,
         color: themeProvider.themeMode==ThemeMode.system? theme.primaryColor:null)),
         IconButton(
             key: const Key("light"),

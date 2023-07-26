@@ -10,8 +10,6 @@ import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_them
 
 class ThemeProvider extends ChangeNotifier {
 
-
-
   ThemeMode themeMode;
   ThemeProvider({
     this.themeMode=ThemeMode.system,

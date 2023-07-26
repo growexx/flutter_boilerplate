@@ -5,7 +5,7 @@ import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 class CustomTextFieldTheme {
   static final InputDecorationTheme primary = InputDecorationTheme(
       isDense: true,
-      contentPadding: const EdgeInsets.fromLTRB(0, 12, 12, 12),
+      contentPadding: const EdgeInsets.all(12),
       labelStyle: const TextStyle(
           fontFamily: AppConstant.fontFamily,
           color: Colors.black,

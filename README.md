@@ -61,6 +61,7 @@ The project contains the drk and light mode ThemeProvider is used to control the
 
 * [http](https://pub.dev/packages/http)
 * [delayed_widget](https://pub.dev/packages/delayed_widget)
+* [easy_localization](https://pub.dev/packages/easy_localization)
 * [encrypt](https://pub.dev/packages/encrypt)
 * [flutter_dotenv](https://pub.dev/packages/flutter_dotenv)
 * [flutter_gen](https://pub.dev/packages/flutter_gen)
