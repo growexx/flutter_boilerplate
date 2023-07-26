@@ -95,6 +95,8 @@ class ThemeProvider extends ChangeNotifier {
   );
 
   static const TextTheme _textTheme = CustomTextTheme.primary;
+  static final TextTheme _textThemeLight = CustomTextTheme.primaryLight;
+  static final TextTheme _textThemeDark = CustomTextTheme.primaryDark;
 
   static final InputDecorationTheme _inputDecorationTheme = CustomTextFieldTheme.primary;
 
