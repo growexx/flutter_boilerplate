@@ -1,10 +1,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/extension/is_valid_email.dart';
+import 'package:flutter_boilerplate/app_manager/extension/valid_name.dart';
 import 'package:flutter_boilerplate/app_manager/extension/valid_password.dart';
 
 class ValidationHelper {
   static const String requiredFieldText = "This is a mandatory field";
+
+  static String? nameValidation(String? val) {
+    if (val == null || val.trim().isEmpty) {
+      return requiredFieldText;
+    } else if (!val.isValidName()) {
+      return "Please enter valid name.";
+    } else {
+      return null;
+    }
+  }
 
   static String? passwordValidation(String? val) {
     if (val == null || val.trim().isEmpty) {

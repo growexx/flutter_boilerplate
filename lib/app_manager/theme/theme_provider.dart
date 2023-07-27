@@ -46,8 +46,8 @@ class ThemeProvider extends ChangeNotifier {
       secondary: AppColor.secondary,
       error: AppColor.error
     ),
-    textButtonTheme: _textButtonTheme,
-    inputDecorationTheme: _inputDecorationTheme,
+    textButtonTheme: _textButtonThemeLight,
+    inputDecorationTheme: _inputDecorationThemeLight,
     listTileTheme: _listTileThemeData,
     expansionTileTheme: _expansionTileThemeData,
     tabBarTheme: _tabBarTheme,
@@ -66,8 +66,8 @@ class ThemeProvider extends ChangeNotifier {
       secondary: AppColor.secondary,
         error: AppColor.error,
     ),
-    textButtonTheme: _textButtonTheme,
-    inputDecorationTheme: _inputDecorationTheme,
+    textButtonTheme: _textButtonThemeDark,
+    inputDecorationTheme: _inputDecorationThemeDark,
     listTileTheme: _listTileThemeData,
     expansionTileTheme: _expansionTileThemeData,
     tabBarTheme: _tabBarTheme,
@@ -75,7 +75,6 @@ class ThemeProvider extends ChangeNotifier {
     scrollbarTheme: _scrollbarTheme,
     brightness: Brightness.dark
   );
-
 
   static const String _fontFamily = AppConstant.fontFamily;
   static final Color _scaffoldBackgroundColor = AppColor.scaffoldBackgroundColor;
@@ -97,9 +96,11 @@ class ThemeProvider extends ChangeNotifier {
   static final TextTheme _textThemeLight = CustomTextTheme.primaryLight;
   static final TextTheme _textThemeDark = CustomTextTheme.primaryDark;
 
-  static final InputDecorationTheme _inputDecorationTheme = CustomTextFieldTheme.primary;
+  static final InputDecorationTheme _inputDecorationThemeLight = CustomTextFieldTheme.primaryLight;
+  static final InputDecorationTheme _inputDecorationThemeDark = CustomTextFieldTheme.primaryDark;
 
-  static final TextButtonThemeData _textButtonTheme = CustomTextButtonTheme.primary;
+  static final TextButtonThemeData _textButtonThemeLight = CustomTextButtonTheme.primaryLight;
+  static final TextButtonThemeData _textButtonThemeDark = CustomTextButtonTheme.primaryDark;
 
   static final ListTileThemeData _listTileThemeData = ListTileThemeData(
     dense: true,

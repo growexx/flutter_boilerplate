@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/locale/widget/locale_selector_widget.dart';
 import 'package:flutter_boilerplate/app_manager/theme/widget/theme_mode_selector.dart';
 import 'package:flutter_boilerplate/view/widgets/login_widget.dart';
+import 'package:flutter_boilerplate/view/widgets/signup_widget.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const String name = "login";
+class SignUpScreen extends StatefulWidget {
+  static const String name = "signup";
   static const String path = "/$name";
 
-  const LoginScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           const Expanded(
             child: Center(
               child: SingleChildScrollView(
-                child: LoginWidget(),
+                child: SignUpWidget(),
               ),
             ),
           ),

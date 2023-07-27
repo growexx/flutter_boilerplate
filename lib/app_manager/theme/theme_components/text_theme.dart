@@ -1,12 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 
 class CustomTextTheme {
-  static const TextTheme primary = TextTheme(
-  );
-
   static final TextTheme primaryLight = TextTheme(
     headlineSmall: TextStyle(
       fontFamily: AppConstant.fontFamily,

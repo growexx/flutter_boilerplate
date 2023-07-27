@@ -3,24 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
+import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 
 class CustomTextButtonTheme {
 
 
 
-  static final TextButtonThemeData primaryLight =TextButtonThemeData(
-      style: TextButton.styleFrom(
-          minimumSize: const Size(0,40),
-          backgroundColor: AppColor.primary,
-          foregroundColor: Colors.white,
-          shape: _outlinedBorder,
-          textStyle: const TextStyle(
-            fontFamily: AppConstant.fontFamily,
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-          ),
-          padding: const EdgeInsets.all(10)
-      )
+  static final CheckboxThemeData primaryLight =CheckboxThemeData(
+
+
   );
   static final TextButtonThemeData primaryDark =TextButtonThemeData(
       style: TextButton.styleFrom(

@@ -3,7 +3,7 @@ import 'package:flutter_boilerplate/app_manager/extension/color_extention.dart';
 
 class AppColor {
   static Color primary = "#5277E8".toColor();
-  static Color secondary = "#101826".toColor();
+  static Color secondary = "#000000".toColor();
 
   static Color scaffoldBackgroundColor = grey3;
 
@@ -20,5 +20,7 @@ class AppColor {
   static Color greyDark = "#686F7C".toColor();
 
   static Color hintColor = Colors.black.withOpacity(0.25);
+  static Color hintColorForDarkTheme = Colors.white.withOpacity(0.40);
+
   static Color error = "#D65D5D".toColor();
 }
