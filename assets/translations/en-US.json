@@ -16,5 +16,10 @@
   "forgot_password": "Forgot Password?",
   "already_have_an_account": "Already have an account?",
   "don't_have_an_account": "Don't have an account?",
-  "sign_up": "Sign Up"
+  "sign_up": "Sign Up",
+  "otp_get_started": "Let's get started",
+  "otp_description": "Never a better time than no to start.",
+  "registration": "Registration",
+  "add_your_phone_number": "Add your phone number. we'll send you a verification code so we know you're real",
+  "send": "Send"
 }

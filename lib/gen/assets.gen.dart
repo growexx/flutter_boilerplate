@@ -14,6 +14,13 @@ class $AssetsPngGen {
 
   /// File path: assets/png/error.png
   AssetGenImage get error => const AssetGenImage('assets/png/error.png');
+  AssetGenImage get facebook => const AssetGenImage('assets/png/ic_facebook.png');
+  AssetGenImage get instagram => const AssetGenImage('assets/png/ic_instagram.png');
+  AssetGenImage get google => const AssetGenImage('assets/png/ic_google.png');
+  AssetGenImage get twitter => const AssetGenImage('assets/png/ic_twitter.png');
+  AssetGenImage get otp => const AssetGenImage('assets/png/ic_otp_image.png');
+  AssetGenImage get otp2 => const AssetGenImage('assets/png/ic_otp2.png');
+  AssetGenImage get otp3 => const AssetGenImage('assets/png/ic_otp3.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [error];

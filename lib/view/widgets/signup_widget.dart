@@ -4,6 +4,8 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/login_screen.dart';
+import 'package:flutter_boilerplate/viewmodel/signup_view_model.dart';
+import 'package:provider/provider.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({super.key});
@@ -18,6 +20,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    SignUpViewModel signupViewModel =
+        Provider.of<SignUpViewModel>(context, listen: false);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -34,6 +38,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: signupViewModel.firstNameC,
                     key: const Key("tff_first_name"),
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
@@ -46,6 +51,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: signupViewModel.lastNameC,
                     key: const Key("tff_last_name"),
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
@@ -58,6 +64,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: signupViewModel.emailC,
                     key: const Key("tff_email_address"),
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
@@ -70,6 +77,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: signupViewModel.passwordC,
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
                       hintText: "Password",
@@ -83,6 +91,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: signupViewModel.confirmPasswordC,
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
                       hintText: "Confirm Password",

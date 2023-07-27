@@ -1,13 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 
 class CustomTextButtonTheme {
-
-
-
   static final TextButtonThemeData primaryLight =TextButtonThemeData(
       style: TextButton.styleFrom(
           minimumSize: const Size(0,40),

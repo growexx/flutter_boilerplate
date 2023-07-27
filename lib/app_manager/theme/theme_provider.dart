@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/button_theme.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/checkbox_theme.dart';
+import 'package:flutter_boilerplate/app_manager/theme/theme_components/icon_theme.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_field_theme.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_theme.dart';
 
@@ -54,7 +55,8 @@ class ThemeProvider extends ChangeNotifier {
       dividerTheme: _dividerThemeData,
       scrollbarTheme: _scrollbarTheme,
       brightness: Brightness.light,
-      checkboxTheme: _checkBoxThemeLight);
+      checkboxTheme: _checkBoxThemeLight,
+      iconTheme: _iconThemeLight);
 
   static ThemeData darkTheme = ThemeData(
       fontFamily: _fontFamily,
@@ -74,7 +76,8 @@ class ThemeProvider extends ChangeNotifier {
       dividerTheme: _dividerThemeData,
       scrollbarTheme: _scrollbarTheme,
       brightness: Brightness.dark,
-      checkboxTheme: _checkBoxThemeDark);
+      checkboxTheme: _checkBoxThemeDark,
+      iconTheme: _iconThemeDark);
 
   static const String _fontFamily = AppConstant.fontFamily;
   static final Color _scaffoldBackgroundColor =
@@ -106,6 +109,9 @@ class ThemeProvider extends ChangeNotifier {
       CustomCheckBoxTheme.primaryLight;
   static final CheckboxThemeData _checkBoxThemeDark =
       CustomCheckBoxTheme.primaryDark;
+
+  static final IconThemeData _iconThemeLight = CustomIconTheme.primaryLight;
+  static final IconThemeData _iconThemeDark = CustomIconTheme.primaryDark;
 
   static final ListTileThemeData _listTileThemeData = ListTileThemeData(
     dense: true,

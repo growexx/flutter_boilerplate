@@ -2,8 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
+import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup_screen.dart';
+import 'package:flutter_boilerplate/viewmodel/login_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -19,6 +22,9 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    LoginViewModel loginViewModel =
+        Provider.of<LoginViewModel>(context, listen: false);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -34,13 +40,13 @@ class _LoginWidgetState extends State<LoginWidget> {
         const SizedBox(height: 20),
         Wrap(
           children: [
-            Image.asset('assets/png/ic_facebook.png', height: 35, width: 35),
+            Assets.png.facebook.image(width: 35, height: 35),
             const SizedBox(width: 20),
-            Image.asset('assets/png/ic_google.png', height: 35, width: 35),
+            Assets.png.instagram.image(width: 35, height: 35),
             const SizedBox(width: 20),
-            Image.asset('assets/png/ic_instagram.png', height: 35, width: 35),
+            Assets.png.google.image(width: 35, height: 35),
             const SizedBox(width: 20),
-            Image.asset('assets/png/ic_twitter.png', height: 35, width: 35)
+            Assets.png.twitter.image(width: 35, height: 35),
           ],
         ),
         const SizedBox(height: 20),
@@ -54,6 +60,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: loginViewModel.passwordC,
                     style: theme.textTheme.bodyMedium,
                     key: const Key("tff_email_address"),
                     decoration: const InputDecoration(
@@ -67,6 +74,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    controller: loginViewModel.passwordC,
                     style: theme.textTheme.bodyMedium,
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
