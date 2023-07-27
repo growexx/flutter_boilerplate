@@ -1,9 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
+import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
+import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 
 // define for transition animation
@@ -34,11 +37,17 @@ List<RouteBase> routes = [
         child: const SplashScreen()),
   ),
   GoRoute(
-    name: LoginScreen.name,
-    path: LoginScreen.path,
+    name: SigninScreen.name,
+    path: SigninScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state,
-        child: const LoginScreen()),
+        child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider<GoogleSigninViewModel>(
+                create: (_)=> GoogleSigninViewModel(),),
+              ChangeNotifierProvider<SigninViewModel>(
+                create: (_)=> SigninViewModel(),),
+            ],child: const SigninScreen())),
   ),
   GoRoute(
     name: DashboardScreen.name,

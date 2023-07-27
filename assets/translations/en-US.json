@@ -4,5 +4,5 @@
   "app_name": "Flutter BoilerPlate",
   "login_screen": "Login Screen",
   "dashboard_screen": "Dashboard Screen",
-  "go_to_dashboard": "Go To Dashboard"
+  "sign_in": "Signin"
 }

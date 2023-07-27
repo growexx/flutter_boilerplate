@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '201284781559',
     projectId: 'flutter-boilerplate-919f8',
     storageBucket: 'flutter-boilerplate-919f8.appspot.com',
+    androidClientId: '201284781559-iluesrrnkedsevnrft1be4bv7f35pm0d.apps.googleusercontent.com',
     iosClientId: '201284781559-5i7up014ek22tkq5dcd7norj395rsu8a.apps.googleusercontent.com',
     iosBundleId: 'com.growexx.flutterBoilerplate',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '201284781559',
     projectId: 'flutter-boilerplate-919f8',
     storageBucket: 'flutter-boilerplate-919f8.appspot.com',
+    androidClientId: '201284781559-iluesrrnkedsevnrft1be4bv7f35pm0d.apps.googleusercontent.com',
     iosClientId: '201284781559-2hv3epo0gnggkple19jf6qp2928jvl21.apps.googleusercontent.com',
     iosBundleId: 'com.growexx.flutterBoilerplate.RunnerTests',
   );
