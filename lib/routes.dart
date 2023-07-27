@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/login_screen.dart';
 import 'package:flutter_boilerplate/view/screens/otp_screen.dart';
+import 'package:flutter_boilerplate/view/screens/otp_verification_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:flutter_boilerplate/viewmodel/login_view_model.dart';
+import 'package:flutter_boilerplate/viewmodel/otp_verification_view_model.dart';
 import 'package:flutter_boilerplate/viewmodel/otp_view_model.dart';
 import 'package:flutter_boilerplate/viewmodel/signup_view_model.dart';
 import 'package:go_router/go_router.dart';
@@ -84,6 +86,21 @@ List<RouteBase> routes = [
                 ),
               ],
               child: const OTPScreen(),
+            ),
+          )),
+  GoRoute(
+      name: OTPVerificationScreen.name,
+      path: OTPVerificationScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<OTPVerificationViewModel>(
+                  create: (_) => OTPVerificationViewModel(),
+                ),
+              ],
+              child: const OTPVerificationScreen(),
             ),
           )),
 ];

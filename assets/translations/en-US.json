@@ -21,5 +21,10 @@
   "otp_description": "Never a better time than no to start.",
   "registration": "Registration",
   "add_your_phone_number": "Add your phone number. we'll send you a verification code so we know you're real",
-  "send": "Send"
+  "send": "Send",
+  "verification": "Verification",
+  "enter_otp": "Enter your OTP code number",
+  "verify": "Verify",
+  "did_not_receive_code": "Didn't you receive any code?",
+  "resend_new_code": "Resend New Code"
 }
