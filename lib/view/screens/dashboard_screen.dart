@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
+import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -37,11 +38,30 @@ class DashboardScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(onPressed: (){
-                  userRepository.signOutUser(context);
-                }, child: const Text("Sign out")),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Selector<UserRepository,User?>(
+                        shouldRebuild: (prev, nex) => true,
+                        selector: (buildContext, vm) => vm.currentUser,
+                        builder: (context,User? currentUser, child) {
+                        return Wrap(
+                          spacing: 5,
+                          children: [
+                            const Text("Welcome"),
+                            Text(currentUser?.firstName??""),
+                          ],
+                        );
+                      }
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(onPressed: (){
+                      userRepository.signOutUser(context);
+                    }, child: const Text("Sign out")),
+                  ),
+                ],
               ),
             ),
             Expanded(

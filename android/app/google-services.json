@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "201284781559-iluesrrnkedsevnrft1be4bv7f35pm0d.apps.googleusercontent.com",
+          "client_id": "201284781559-6telbgcj81evhnoo8483mvme6l5sjbss.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.growexx.flutter_boilerplate",
@@ -22,7 +22,7 @@
           }
         },
         {
-          "client_id": "201284781559-g0h3jdub1vimi0gaocb54hpc0mqvjs5c.apps.googleusercontent.com",
+          "client_id": "201284781559-9hd9la84sgp74l6domec98vgsij679ha.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "201284781559-g0h3jdub1vimi0gaocb54hpc0mqvjs5c.apps.googleusercontent.com",
+              "client_id": "201284781559-9hd9la84sgp74l6domec98vgsij679ha.apps.googleusercontent.com",
               "client_type": 3
             },
             {

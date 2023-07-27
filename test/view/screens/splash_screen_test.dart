@@ -36,9 +36,6 @@ void main() async{
       await tester.tap(dropDownButton,warnIfMissed: false);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byType(TextButton));
-      await tester.pumpAndSettle();
-
     });
 
 
@@ -50,8 +47,6 @@ void main() async{
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byType(TextButton));
-      await tester.pumpAndSettle();
 
     },variant: TargetPlatformVariant.desktop());
 

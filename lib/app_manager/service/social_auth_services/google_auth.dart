@@ -1,14 +1,17 @@
 
 
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleAuth {
 
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-    clientId: dotenv.env[Environment.clientId]
+   final GoogleSignIn _googleSignIn = GoogleSignIn(
+   clientId: (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)?
+   null:dotenv.env[Environment.clientId],
   );
 
   GoogleSignIn get instance => _googleSignIn;

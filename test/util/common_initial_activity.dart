@@ -4,6 +4,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_boilerplate/app_manager/locale/locale_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: depend_on_referenced_packages
@@ -18,6 +19,9 @@ import 'package:flutter/widgets.dart';
 
 Future<void> commonInitialActivity() async{
     TestWidgetsFlutterBinding.ensureInitialized();
+    setUpAll(() async {
+        await dotenv.load();
+    });
     SharedPreferences.setMockInitialValues({});
     EasyLocalization.logger.enableLevels = <LevelMessages>[
         LevelMessages.error,
