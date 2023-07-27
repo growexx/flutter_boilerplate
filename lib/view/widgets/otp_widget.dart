@@ -33,7 +33,7 @@ class _OTPWidgetState extends State<OTPWidget> {
               width: 200,
               height: 200,
               decoration: BoxDecoration(
-                color: theme.primaryColor,
+                color: theme.primaryColor.withOpacity(0.3),
                 shape: BoxShape.circle,
               ),
               child: Assets.png.otp2.image(),

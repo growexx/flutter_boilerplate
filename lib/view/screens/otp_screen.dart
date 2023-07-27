@@ -30,7 +30,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 child: Icon(
                   color:theme.iconTheme.color,
                   Icons.arrow_back,
-                  size: 32,
+                  size: 30,
                 ),
               ),
             ),

@@ -26,125 +26,138 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     OTPVerificationViewModel otpVerificationViewModel =
         Provider.of<OTPVerificationViewModel>(context, listen: false);
 
-    return Material(
-      child: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 32),
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  color:theme.iconTheme.color,
+                  Icons.arrow_back,
+                  size: 30,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          Expanded(
+            child: Center(
+              child: SingleChildScrollView(
+                child: _otpVerificationWidget(theme),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _otpVerificationWidget(ThemeData theme){
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 32),
+      child: Column(
+        children: [
+          Container(
+            width: 200,
+            height: 200,
+            decoration: BoxDecoration(
+              color: theme.primaryColor.withOpacity(0.3),
+              shape: BoxShape.circle,
+            ),
+            child: Assets.png.otp3.image(),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          Text(
+            'Verification',
+            style: theme.textTheme.headlineMedium,
+          ).tr(),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            "enter_otp",
+            style: theme.textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ).tr(),
+          const SizedBox(
+            height: 28,
+          ),
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 32,
-                      color: theme.iconTheme.color,
-                    ),
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _textFieldOTP(first: true, last: false),
+                    _textFieldOTP(first: false, last: false),
+                    _textFieldOTP(first: false, last: false),
+                    _textFieldOTP(first: false, last: true),
+                  ],
                 ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple.shade50,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Assets.png.otp3.image(),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                Text(
-                  'Verification',
-                  style: theme.textTheme.headlineMedium,
-                ).tr(),
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "enter_otp",
-                  style: theme.textTheme.bodyMedium,
-                  textAlign: TextAlign.center,
-                ).tr(),
-                const SizedBox(
-                  height: 28,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _textFieldOTP(first: true, last: false),
-                          _textFieldOTP(first: false, last: false),
-                          _textFieldOTP(first: false, last: false),
-                          _textFieldOTP(first: false, last: true),
-                        ],
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        NavigationHelper.pushNamed(
+                            context, LoginScreen.name);
+                      }
+                    },
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: TextButton(
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              NavigationHelper.pushNamed(
-                                  context, LoginScreen.name);
-                            }
-                          },
-                          style: TextButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          child: const Text("verify").tr(),
-                        ),
-                      )
-                    ],
+                    ),
+                    child: const Text("verify").tr(),
                   ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Text(
-                  "did_not_receive_code",
-                  style: theme.textTheme.bodyMedium,
-                  textAlign: TextAlign.center,
-                ).tr(),
-                const SizedBox(
-                  height: 18,
-                ),
-                InkWell(
-                  onTap: () {
-                    //work in progress
-                    /*const snackBar = SnackBar(
-                      content: Text('Code sent again.'),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);*/
-                  },
-                  child: Text(
-                    "resend_new_code",
-                    style: theme.textTheme.headlineSmall,
-                    textAlign: TextAlign.center,
-                  ).tr(),
-                ),
+                )
               ],
             ),
           ),
-        ),
+          const SizedBox(
+            height: 18,
+          ),
+          Text(
+            "did_not_receive_code",
+            style: theme.textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ).tr(),
+          const SizedBox(
+            height: 18,
+          ),
+          InkWell(
+            onTap: () {
+              //work in progress
+              /*const snackBar = SnackBar(
+                content: Text('Code sent again.'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);*/
+            },
+            child: Text(
+              "resend_new_code",
+              style: theme.textTheme.headlineSmall,
+              textAlign: TextAlign.center,
+            ).tr(),
+          ),
+        ],
       ),
     );
   }
