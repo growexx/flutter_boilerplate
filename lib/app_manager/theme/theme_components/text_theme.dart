@@ -45,13 +45,13 @@ class CustomTextTheme {
       fontFamily: AppConstant.fontFamily,
       fontSize: 20,
       fontWeight: FontWeight.w500,
-      color: Colors.black.withOpacity(0.85),
+      color: Colors.white.withOpacity(0.85),
     ),
     headlineMedium: TextStyle(
       fontFamily: AppConstant.fontFamily,
       fontSize: 30,
       fontWeight: FontWeight.w500,
-      color: Colors.black.withOpacity(0.85),
+      color: Colors.white.withOpacity(0.85),
     ),
     titleSmall: TextStyle(
       fontFamily: AppConstant.fontFamily,
@@ -63,13 +63,13 @@ class CustomTextTheme {
       fontFamily: AppConstant.fontFamily,
       fontSize: 14,
       fontWeight: FontWeight.w400,
-      color: Colors.black.withOpacity(0.85),
+      color: Colors.white.withOpacity(0.85),
     ),
     bodyMedium: TextStyle(
       fontFamily: AppConstant.fontFamily,
       fontSize: 14,
       fontWeight: FontWeight.w500,
-      color: Colors.black.withOpacity(0.85),
+      color: Colors.white.withOpacity(0.85),
     ),
   );
 }

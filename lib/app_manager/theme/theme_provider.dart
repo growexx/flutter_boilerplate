@@ -40,7 +40,7 @@ class ThemeProvider extends ChangeNotifier {
     scaffoldBackgroundColor: _scaffoldBackgroundColor,
     appBarTheme: _appBarTheme,
     primaryColor: _primaryColor,
-    textTheme: _textTheme,
+    textTheme: _textThemeLight,
     colorScheme: ColorScheme.light(
       primary: AppColor.primary,
       secondary: AppColor.secondary,
@@ -60,7 +60,7 @@ class ThemeProvider extends ChangeNotifier {
     fontFamily: _fontFamily,
     appBarTheme: _appBarTheme,
     primaryColor: _primaryColor,
-    textTheme: _textTheme,
+    textTheme: _textThemeDark,
     colorScheme: ColorScheme.dark(
       primary: AppColor.primary,
       secondary: AppColor.secondary,
@@ -94,7 +94,6 @@ class ThemeProvider extends ChangeNotifier {
       )
   );
 
-  static const TextTheme _textTheme = CustomTextTheme.primary;
   static final TextTheme _textThemeLight = CustomTextTheme.primaryLight;
   static final TextTheme _textThemeDark = CustomTextTheme.primaryDark;
 
