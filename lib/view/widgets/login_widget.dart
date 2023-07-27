@@ -54,6 +54,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    style: theme.textTheme.bodyMedium,
                     key: const Key("tff_email_address"),
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
@@ -66,6 +67,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
                 child: TextFormField(
+                    style: theme.textTheme.bodyMedium,
                     decoration: const InputDecoration(
                       prefix: Padding(padding: EdgeInsets.only(left: 13)),
                       hintText: "Password",
@@ -92,7 +94,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   SizedBox(
                     width: 30,
                     child: Checkbox(
-                      checkColor: Colors.white,
+                      fillColor: theme.checkboxTheme.fillColor,
                       value: isChecked,
                       onChanged: (bool? value) {
                         setState(() {
@@ -137,8 +139,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                 .tr(),
             const SizedBox(width: 10),
             InkWell(
-                onTap: ()=>NavigationHelper.pushNamed(context, SignUpScreen.name),
-                child: Text("sign_up", style: theme.textTheme.bodyMedium,).tr()),
+                onTap: () =>
+                    NavigationHelper.pushNamed(context, SignUpScreen.name),
+                child: Text(
+                  "sign_up",
+                  style: theme.textTheme.bodyMedium,
+                ).tr()),
           ],
         )
       ],

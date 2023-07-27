@@ -4,6 +4,7 @@ import 'package:flutter_boilerplate/app_manager/extension/color_extention.dart';
 class AppColor {
   static Color primary = "#5277E8".toColor();
   static Color secondary = "#000000".toColor();
+  static Color white = "FFFFFF".toColor();
 
   static Color scaffoldBackgroundColor = grey3;
 
