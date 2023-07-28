@@ -32,9 +32,9 @@ void main() async {
       await tester.enterText(find.byKey(const Key("tf_confirm_new_password")), 'Test@1234');
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
-      //Sign up button Tap
-      final Finder signUpButton = find.byKey(const Key("tb_change_password"));
-      await tester.tap(signUpButton, warnIfMissed: false);
+      //Change Password button Tap
+      final Finder changePasswordButton = find.byKey(const Key("tb_change_password"));
+      await tester.tap(changePasswordButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
       //expect(find.text("This is a mandatory field"),findsNWidgets(2));

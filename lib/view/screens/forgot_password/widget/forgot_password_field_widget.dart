@@ -38,16 +38,19 @@ class _ForgotPasswordFieldWidgetState extends State<ForgotPasswordFieldWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
+                      key:const Key("title_forgot_password"),
                       "forgot_password",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
                     const SizedBox(height: 20),
                     Text(
+                      key:const Key("t_forgot_password_description"),
                       "forgot_password_description",
                       style: theme.textTheme.bodyMedium,
                     ).tr(),
                     const SizedBox(height: 20),
                     TextFormField(
+                      key:const Key("tf_email_address"),
                       controller: widget.viewModel.emailAddressC,
                       decoration:
                           const InputDecoration(hintText: "Enter Email"),
@@ -60,6 +63,7 @@ class _ForgotPasswordFieldWidgetState extends State<ForgotPasswordFieldWidget> {
                       height: 20,
                     ),
                     TextButton(
+                      key:const Key("tb_reset_link"),
                       onPressed: () {
                         onPressReset(ctx);
                       },
@@ -75,6 +79,7 @@ class _ForgotPasswordFieldWidgetState extends State<ForgotPasswordFieldWidget> {
                       height: 20,
                     ),
                     InkWell(
+                      key:const Key("iw_back_to_login"),
                       onTap: () {
                         NavigationHelper.pushNamed(context, SignInScreen.name);
                       },
