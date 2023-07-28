@@ -9,7 +9,7 @@ import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,15 +62,24 @@ class SigninFieldWidget extends StatelessWidget {
                       }, child: const Text("sign_in",).tr()),
                       const SizedBox(height: 20,),
                       TextButton(onPressed: (){
-                        googleSigninViewModel.signin().then((User? user){
+                        googleSigninViewModel.signinWithGoogle().then((User? user){
                           if(user!=null) {
-                            userRepository.updateUserData(user).then((value) =>
-                                Router.neglect(context, () =>
-                                    context.goNamed(DashboardScreen.name)
-                                ));
+                            updateUserData(context,user);
                           }
                         });
                       }, child: const Text("Google Signin",)),
+                      const SizedBox(height: 20,),
+                      TextButton(onPressed: (){
+                        onPressSignin(ctx);
+                      }, child: const Text("sign_in",).tr()),
+                      const SizedBox(height: 20,),
+                      TextButton(onPressed: (){
+                        googleSigninViewModel.signinWithApple().then((User? user){
+                          if(user!=null) {
+                            updateUserData(context,user);
+                          }
+                        });
+                      }, child: const Text("Apple Signin",)),
                     ],
                   );
                 }
@@ -80,6 +89,12 @@ class SigninFieldWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> updateUserData(BuildContext context, User user) async {
+    userRepository.updateUserData(user).then((value) =>
+        Router.neglect(context, () =>
+            context.goNamed(DashboardScreen.name)
+        ));
   }
 
   Future<void> onPressSignin(BuildContext ctx) async {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';

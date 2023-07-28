@@ -5,8 +5,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 
-class LoginWebPageFillerWidget extends StatelessWidget {
-  const LoginWebPageFillerWidget({super.key});
+class SigninWebPageFillerWidget extends StatelessWidget {
+  const SigninWebPageFillerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
