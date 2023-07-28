@@ -13,6 +13,7 @@ import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class SignInFieldWidget extends StatefulWidget {
   final SignInViewModel viewModel;
@@ -30,9 +31,6 @@ class SignInFieldWidget extends StatefulWidget {
 }
 
 class _SignInFieldWidgetState extends State<SignInFieldWidget> {
-  var isChecked = false;
-  final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -139,11 +137,10 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                 width: 30,
                                 child: Checkbox(
                                   fillColor: theme.checkboxTheme.fillColor,
-                                  value: isChecked,
+                                  value: context.read<SignInViewModel>().getRememberMe,
                                   onChanged: (bool? value) {
-                                    setState(() {
-                                      isChecked = value!;
-                                    });
+                                    widget.viewModel.setRememberMe = value!;
+                                    context.read<SignInViewModel>().setRememberMe = value;
                                   },
                                 ),
                               ),
@@ -155,14 +152,19 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                           ),
                           const SizedBox(width: 5),
                           InkWell(
-                              onTap: (){
-                                NavigationHelper.pushNamed(context, ForgotPasswordScreen.name);
+                              onTap: () {
+                                NavigationHelper.pushNamed(
+                                    context, ForgotPasswordScreen.name);
                               },
-                              child: Text("forgot_password", style: theme.textTheme.bodySmall).tr())
+                              child: Text("forgot_password",
+                                      style: theme.textTheme.bodySmall)
+                                  .tr())
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Wrap(
                       children: [
                         Text("don't_have_an_account",

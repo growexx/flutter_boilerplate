@@ -28,7 +28,6 @@ class _SignInScreenState extends State<SignInScreen> {
     final googleSignInViewModel = Provider.of<GoogleSigninViewModel>(context,listen: false);
     final userRepository = Provider.of<UserRepository>(context,listen: false);
 
-
     Widget fieldPart = SignInFieldWidget(
       viewModel: viewModel,
       googleSignInViewModel: googleSignInViewModel,

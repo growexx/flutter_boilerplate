@@ -12,4 +12,14 @@ class SignUpViewModel extends ChangeNotifier {
   final TextEditingController emailC = TextEditingController();
   final TextEditingController passwordC = TextEditingController();
   final TextEditingController confirmPasswordC = TextEditingController();
+
+  Future<bool> signUp({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+  }) async {
+    /// Implement Api Call Here
+    return true;
+  }
 }
