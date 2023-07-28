@@ -8,9 +8,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
+import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 class DashboardScreen extends StatelessWidget {
 
@@ -67,6 +69,16 @@ class DashboardScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: const Text("dashboard_screen").tr(),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: TextButton(onPressed: (){
+                         Router.neglect(context, () =>
+                          context.goNamed(
+                             PaymentScreen.name)
+                          );
+                    }, child: const Text("Payment"))
               ),
             ),
           ],
