@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/change_password_screen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/forgot_password_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
-import 'package:flutter_boilerplate/view/screens/otp_screen.dart';
-import 'package:flutter_boilerplate/view/screens/otp_verification_screen.dart';
-import 'package:flutter_boilerplate/view/screens/signup_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
-import 'package:flutter_boilerplate/viewmodel/change_password_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/forgot_password_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/login_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/otp_verification_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/otp_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/signup_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_verification_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
+import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
+import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
+import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
+import 'package:flutter_boilerplate/view_model/forgot_password_view_model.dart';
+import 'package:flutter_boilerplate/view_model/otp_verification_view_model.dart';
+import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -40,21 +41,6 @@ List<RouteBase> routes = [
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: const SplashScreen()),
   ),
-  GoRoute(
-      name: LoginScreen.name,
-      path: LoginScreen.path,
-      pageBuilder: (context, state) => buildPageWithDefaultTransition(
-            context: context,
-            state: state,
-            child: MultiProvider(
-              providers: [
-                ChangeNotifierProvider<LoginViewModel>(
-                  create: (_) => LoginViewModel(),
-                ),
-              ],
-              child: const LoginScreen(),
-            ),
-          )),
   GoRoute(
     name: DashboardScreen.name,
     path: DashboardScreen.path,
@@ -137,4 +123,19 @@ List<RouteBase> routes = [
               child: const ForgotPasswordScreen(),
             ),
           )),
+  GoRoute(
+    name: SignInScreen.name,
+    path: SignInScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: MultiProvider(providers: [
+          ChangeNotifierProvider<GoogleSigninViewModel>(
+            create: (_) => GoogleSigninViewModel(),
+          ),
+          ChangeNotifierProvider<SignInViewModel>(
+            create: (_) => SignInViewModel(),
+          ),
+        ], child: const SignInScreen())),
+  ),
 ];

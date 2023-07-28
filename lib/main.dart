@@ -14,6 +14,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
 void main() async{
@@ -24,6 +26,10 @@ void main() async{
   await EasyLocalization.ensureInitialized();
   // loading .env file
   await dotenv.load(fileName: ".env");
+  //Initiating FireBase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // fetching user details
   User user = await UserRepository.fetchUserData();
   // fetching stored theme model

@@ -1,15 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
-import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
-import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
-import 'package:flutter_boilerplate/view/screens/signup_screen.dart';
-import 'package:flutter_boilerplate/viewmodel/change_password_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/login_view_model.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
+import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ChangePasswordWidget extends StatefulWidget {
@@ -96,10 +90,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
               if (formKey.currentState!.validate()) {
                 if (changePasswordViewModel.newPasswordC.text.trim() ==
                     changePasswordViewModel.confirmNewPasswordC.text.trim()) {
-                  showToast("Password and Confirm Password didn't match");
+                 /* Fluttertoast.showToast(
+                      msg: "Password and Confirm Password didn't match");*/
                 } else {
                   //here we can add api call code for change password
-                  NavigationHelper.pushNamed(context,LoginScreen.name);
+                  NavigationHelper.pushNamed(context, SignInScreen.name);
                 }
               }
             },

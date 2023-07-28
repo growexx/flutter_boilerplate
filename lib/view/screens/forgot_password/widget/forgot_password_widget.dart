@@ -1,16 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
-import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
-import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
-import 'package:flutter_boilerplate/view/screens/signup_screen.dart';
-import 'package:flutter_boilerplate/viewmodel/change_password_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/forgot_password_view_model.dart';
-import 'package:flutter_boilerplate/viewmodel/login_view_model.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
+import 'package:flutter_boilerplate/view_model/forgot_password_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordWidget extends StatefulWidget {
@@ -40,7 +33,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         const SizedBox(height: 20),
         Text(
           "forgot_password_description",
-          style: theme.textTheme.headlineSmall,
+          style: theme.textTheme.bodyMedium,
         ).tr(),
         Form(
           key: formKey,
@@ -71,7 +64,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 //here we can add api call code for change password
-                NavigationHelper.pushNamed(context, LoginScreen.name);
+                NavigationHelper.pushNamed(context, SignInScreen.name);
               }
             },
             style: TextButton.styleFrom(
@@ -86,7 +79,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         const SizedBox(height: 20),
         InkWell(
           onTap: () {
-            NavigationHelper.pushNamed(context, LoginScreen.name);
+            NavigationHelper.pushNamed(context, SignInScreen.name);
           },
           child: Text(
             "back_to_login",

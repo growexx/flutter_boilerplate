@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
-import 'package:flutter_boilerplate/viewmodel/otp_verification_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
+import 'package:flutter_boilerplate/view_model/otp_verification_view_model.dart';
 import 'package:provider/provider.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
@@ -117,7 +117,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         NavigationHelper.pushNamed(
-                            context, LoginScreen.name);
+                            context, SignInScreen.name);
                       }
                     },
                     style: TextButton.styleFrom(

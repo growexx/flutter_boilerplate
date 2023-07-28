@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
-import 'package:flutter_boilerplate/viewmodel/signup_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
+import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
 import 'package:provider/provider.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -109,7 +109,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           child: TextButton(
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                NavigationHelper.pushNamed(context, LoginScreen.name);
+                NavigationHelper.pushNamed(context, SignInScreen.name);
               }
             },
             style: TextButton.styleFrom(
@@ -129,7 +129,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(width: 10),
             InkWell(
               onTap: () =>
-                  NavigationHelper.pushNamed(context, LoginScreen.name),
+                  NavigationHelper.pushNamed(context, SignInScreen.name),
               child: Text(
                 "sign_in",
                 style: theme.textTheme.bodyMedium,

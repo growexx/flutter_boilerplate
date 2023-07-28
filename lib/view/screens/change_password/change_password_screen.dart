@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/widgets/change_password_widget.dart';
+import 'package:flutter_boilerplate/view/screens/change_password/widget/change_password_widget.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   static const String name = "change_password";

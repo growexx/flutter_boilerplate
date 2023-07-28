@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/widgets/forgot_password_widget.dart';
+import 'package:flutter_boilerplate/view/screens/forgot_password/widget/forgot_password_widget.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   static const String name = "forgot_password";

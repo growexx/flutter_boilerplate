@@ -39,6 +39,7 @@ fdart pub global activate flutter_gen
 * SplashScreen
 * ThemeModeSelector and Dark Theme
 * LocaleSelector and LocaleProvider
+* Google SignIn
 * Login
 * Dashboard
 * Go Router
@@ -61,15 +62,20 @@ The project contains the drk and light mode ThemeProvider is used to control the
 ### LocaleSelector and LocalProvider:
 The project using `easy_localization` for locale management, It contains a LocaleHelper file to manage the all the locales and fallback locale and LocalSelectorWidget help you select the locale.
 
+### GoogleSign:
+Google signin is available for web android and ios.
+
 ### Libraries & Tools Used
 
 * [http](https://pub.dev/packages/http)
 * [delayed_widget](https://pub.dev/packages/delayed_widget)
 * [easy_localization](https://pub.dev/packages/easy_localization)
 * [encrypt](https://pub.dev/packages/encrypt)
+* [firebase_core](https://pub.dev/packages/firebase_core)
 * [flutter_dotenv](https://pub.dev/packages/flutter_dotenv)
 * [flutter_gen](https://pub.dev/packages/flutter_gen)
 * [go_router](https://pub.dev/packages/go_router)
+* [google_sign_in](https://pub.dev/packages/google_sign_in)
 * [Provider](https://pub.dev/packages/provider) (State Management)
 * [shared_preferences](https://pub.dev/packages/shared_preferences)
 
@@ -185,7 +191,7 @@ This file contains all the routes for your application.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/otp_verification_screen.dart';
-import 'package:flutter_boilerplate/viewmodel/otp_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_verification_screen.dart';
+import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:provider/provider.dart';
 
 class OTPWidget extends StatefulWidget {

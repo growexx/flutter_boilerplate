@@ -5,8 +5,9 @@ import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bo
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
+import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
-import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
+import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class UserRepository extends ChangeNotifier {
@@ -66,12 +67,17 @@ class UserRepository extends ChangeNotifier {
 
 
   Future directLogOut(BuildContext context) async {
-    await updateUserData(null).then((value) {
-      while (context.canPop()) {
-        context.pop();
-      }
-      Router.neglect(context, () => context.goNamed(SplashScreen.name));
-    });
+    try {
+      await GoogleAuth().signOut();
+      await updateUserData(null).then((value) {
+        while (context.canPop()) {
+          context.pop();
+        }
+        Router.neglect(context, () => context.goNamed(SplashScreen.name));
+      });
+    } catch(e) {
+      rethrow;
+    }
   }
 
 }
