@@ -44,37 +44,37 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       child: Column(
                         children: [
                           TextFormField(
-                              controller: widget.viewModel.firstNameC,
-                              key: const Key("tff_first_name"),
-                              decoration: const InputDecoration(
-                                prefix:
-                                    Padding(padding: EdgeInsets.only(left: 13)),
-                                hintText: "First Name",
-                              ),
-                              validator: (value) =>
-                                  ValidationHelper.nameValidation(value)),
+                            key: const Key("tff_first_name"),
+                            controller: widget.viewModel.firstNameC,
+                            decoration:
+                            const InputDecoration(hintText: "First Name"),
+                            validator: ValidationHelper.nameValidation,
+                            onFieldSubmitted: (val) {
+                              onPressSignUp(ctx);
+                            },
+                          ),
                           const SizedBox(height: 20),
                           TextFormField(
                               controller: widget.viewModel.lastNameC,
                               key: const Key("tff_last_name"),
                               decoration: const InputDecoration(
-                                prefix:
-                                    Padding(padding: EdgeInsets.only(left: 13)),
                                 hintText: "Last Name",
                               ),
-                              validator: (value) =>
-                                  ValidationHelper.nameValidation(value)),
+                              validator: ValidationHelper.nameValidation,
+                              onFieldSubmitted: (val) {
+                                onPressSignUp(ctx);
+                              }),
                           const SizedBox(height: 20),
                           TextFormField(
                               controller: widget.viewModel.emailC,
                               key: const Key("tff_email_address"),
                               decoration: const InputDecoration(
-                                prefix:
-                                    Padding(padding: EdgeInsets.only(left: 13)),
                                 hintText: "Email",
                               ),
-                              validator: (value) =>
-                                  ValidationHelper.emailValidation(value)),
+                              validator: ValidationHelper.emailValidation,
+                              onFieldSubmitted: (val) {
+                                onPressSignUp(ctx);
+                              }),
                           const SizedBox(height: 20),
                           PasswordField(
                             key: const Key("tff_password"),
@@ -88,7 +88,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           const SizedBox(height: 20),
                           PasswordField(
                             key: const Key("tff_cnf_password"),
-                            controller: widget.viewModel.passwordC,
+                            controller: widget.viewModel.confirmPasswordC,
                             hintText: "Confirm Password",
                             validator: ValidationHelper.passwordValidation,
                             onFieldSubmitted: (val) {
@@ -99,20 +99,17 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: TextButton(
-                        onPressed: () {
-                          onPressSignUp(ctx);
-                        },
-                        style: TextButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                    TextButton(
+                      onPressed: () {
+                        onPressSignUp(ctx);
+                      },
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        child: const Text("sign_up").tr(),
                       ),
+                      child: const Text("sign_up").tr(),
                     ),
                     const SizedBox(height: 20),
                     Wrap(

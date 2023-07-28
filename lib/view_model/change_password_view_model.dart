@@ -11,4 +11,12 @@ class ChangePasswordViewModel extends ChangeNotifier {
   final TextEditingController oldPasswordC = TextEditingController();
   final TextEditingController newPasswordC = TextEditingController();
   final TextEditingController confirmNewPasswordC = TextEditingController();
+
+  Future<bool> changePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    /// Implement Api Call Here
+    return true;
+  }
 }

@@ -9,4 +9,9 @@ class ForgotPasswordViewModel extends ChangeNotifier {
   }
 
   final TextEditingController emailAddressC = TextEditingController();
+
+  Future<bool> forgotPassword({required String email}) async {
+    /// Implement Api Call Here
+    return true;
+  }
 }

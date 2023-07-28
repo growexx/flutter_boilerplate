@@ -135,13 +135,16 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             children: [
                               SizedBox(
                                 width: 30,
-                                child: Checkbox(
-                                  fillColor: theme.checkboxTheme.fillColor,
-                                  value: context.read<SignInViewModel>().getRememberMe,
-                                  onChanged: (bool? value) {
-                                    widget.viewModel.setRememberMe = value!;
-                                    context.read<SignInViewModel>().setRememberMe = value;
-                                  },
+                                child: Selector<SignInViewModel, bool>(
+                                  selector: (_, listener) =>
+                                      listener.isRememberMeChecked,
+                                  builder: (context, isRememberCheck, child) =>
+                                      Checkbox(
+                                    fillColor: theme.checkboxTheme.fillColor,
+                                    value: isRememberCheck,
+                                    onChanged: (bool? value) =>
+                                        widget.viewModel.setRememberMe = value!,
+                                  ),
                                 ),
                               ),
                               Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class SignUpWebPageFillerWidget extends StatelessWidget {
-  const SignUpWebPageFillerWidget({super.key});
+class ChangePasswordWebPageFillerWidget extends StatelessWidget {
+  const ChangePasswordWebPageFillerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
