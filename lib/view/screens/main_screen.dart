@@ -4,6 +4,9 @@ import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
 import '../../app_manager/helper/navigation/navigation_helper.dart';
 import 'dashboard_screen.dart';
+import 'navigation/bottom_tab_navigation.dart';
+import 'navigation/drawer_navigation.dart';
+import 'navigation/top_tab_navigation.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,13 +19,20 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  bool isTabBarView = true;
+  bool isTabBarView = false;
+  bool isDrawerNav = true;
   final List<Widget> _screens = [
     DashboardScreen(),
-    UserDetailsScreen(
-      username: 'John Doe',
-      email: 'johndoe@example.com',
-      profileImageUrl: 'https://example.com/profile_image.png',
+    // UserDetailsScreen(
+    //   username: 'John Doe',
+    //   email: 'johndoe@example.com',
+    //   profileImageUrl: 'https://example.com/profile_image.png',
+    // ),
+    Center(
+      child: Text(
+        'Profile Screen',
+        style: TextStyle(fontSize: 24),
+      ),
     ),
     Center(
       child: Text(
@@ -43,97 +53,31 @@ class _MainScreenState extends State<MainScreen> {
     return DefaultTabController(
       length: 4, // Number of tabs
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Sample Header").tr(),
-          bottom: TabBar(
-            indicatorSize: TabBarIndicatorSize.tab,
-            tabs: [
-              Tab(
-                child: Icon(Icons.dashboard),
-              ),
-              Tab(icon: Icon(Icons.person)),
-              Tab(icon: Icon(Icons.settings)),
-              Tab(icon: Icon(Icons.chat)),
-            ],
-          ),
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+            MaterialButton(
+              onPressed: () {
+                NavigationHelper.pushNamed(context, DrawerNavigation.name);
+              },
+              child: Text('drawer_navigation').tr(),
+            ),
+            MaterialButton(
+              onPressed: () {
+                NavigationHelper.pushNamed(context, TopTabNavigation.name);
+              },
+              child: Text('top_tab_navigation').tr(),
+            ),
+            MaterialButton(
+              onPressed: () {
+                NavigationHelper.pushNamed(context, BottomTabNavigation.name);
+              },
+              child: Text('bottom_tab_navigation').tr(),
+            )
+                  ],
                 ),
-                child: Text(
-                  'Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('User profile'),
-                onTap: () {
-                  // Navigate to the home screen or perform any action
-                  // NavigationHelper.pushNamed(context, UserDetailsScreen.name);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-                onTap: () {
-                  // Navigate to the settings screen or perform any action
-                },
-              ),
-              Divider(),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Logout'),
-                onTap: () {
-                  Navigator.pushReplacementNamed(context, '/login');
-                },
-              ),
-            ],
-          ),
-        ),
-        body: isTabBarView
-            ? TabBarView(children: _screens)
-            : _screens[_currentIndex],
-        bottomNavigationBar: isTabBarView
-            ? null
-            : BottomNavigationBar(
-                backgroundColor: Colors.blue,
-                selectedItemColor: Colors.blue,
-                unselectedItemColor: Colors.black,
-                currentIndex: _currentIndex,
-                onTap: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.dashboard),
-                    label: 'Dashboard',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: 'User Profile',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: 'Settings',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.chat),
-                    label: 'Chats',
-                  ),
-                ],
-              ),
-      ),
+          )),
     );
   }
 }

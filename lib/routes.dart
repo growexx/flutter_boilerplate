@@ -6,6 +6,10 @@ import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import 'view/screens/navigation/bottom_tab_navigation.dart';
+import 'view/screens/navigation/drawer_navigation.dart';
+import 'view/screens/navigation/top_tab_navigation.dart';
+
 // define for transition animation
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context,
@@ -47,6 +51,24 @@ List<RouteBase> routes = [
     path: MainScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: const MainScreen()),
+  ),
+  GoRoute(
+    name: BottomTabNavigation.name,
+    path: BottomTabNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const BottomTabNavigation()),
+  ),
+  GoRoute(
+    name: DrawerNavigation.name,
+    path: DrawerNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const DrawerNavigation()),
+  ),
+  GoRoute(
+    name: TopTabNavigation.name,
+    path: TopTabNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const TopTabNavigation()),
   ),
   GoRoute(
     name: UserDetailsScreen.name,

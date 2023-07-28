@@ -4,6 +4,8 @@ class UserDetailsScreen extends StatefulWidget {
   static const String name = "user-details";
   static const String path = "/$name";
 
+  
+
   final String username;
   final String email;
   final String profileImageUrl;
@@ -35,7 +37,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('User Details'),
-        automaticallyImplyLeading: false,
         actions: [
           _isEditing
               ? IconButton(
