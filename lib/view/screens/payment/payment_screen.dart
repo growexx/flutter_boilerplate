@@ -28,7 +28,7 @@ class PaymentScreen extends StatelessWidget {
  }
 
 Widget _buildApplePayButton() {
-  if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS)
+  if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
     return ApplePayButton(
       paymentConfiguration: PaymentConfiguration.fromJsonString(defaultApplePay),
       paymentItems: _paymentItems,
