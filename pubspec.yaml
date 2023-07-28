@@ -53,6 +53,8 @@ dependencies:
 
   shared_preferences: ^2.2.0
 
+  pay: ^1.1.0
+
 dev_dependencies:
   build_runner:
   flutter_gen_runner:
