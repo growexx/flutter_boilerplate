@@ -74,9 +74,8 @@ class DashboardScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: TextButton(onPressed: (){
-                         Router.neglect(context, () =>
-                          context.goNamed(
-                             PaymentScreen.name)
+                         context.goNamed(
+                             PaymentScreen.name
                           );
                     }, child: const Text("Payment"))
               ),

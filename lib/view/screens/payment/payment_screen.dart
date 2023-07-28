@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/payment_config.dart';
 import 'package:pay/pay.dart';
+import 'dart:io';
 
 const _paymentItems = [
   PaymentItem(
@@ -19,23 +20,30 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Center(
-        child: ApplePayButton(
-        paymentConfiguration: PaymentConfiguration.fromJsonString(defaultApplePay),
-        paymentItems: _paymentItems,
-        style: ApplePayButtonStyle.black,
-        type: ApplePayButtonType.buy,
-        margin: const EdgeInsets.only(top: 25.0),
-        onPaymentResult: onApplePayResult,
-        loadingIndicator: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
+  return Scaffold(
+    body: Center(
+      child: _buildApplePayButton(),
+    ),
+  );
+ }
+
+Widget _buildApplePayButton() {
+  if (Platform.isIOS) {
+    return ApplePayButton(
+      paymentConfiguration: PaymentConfiguration.fromJsonString(defaultApplePay),
+      paymentItems: _paymentItems,
+      style: ApplePayButtonStyle.black,
+      type: ApplePayButtonType.buy,
+      margin: const EdgeInsets.only(top: 25.0),
+      onPaymentResult: onApplePayResult,
+      loadingIndicator: const Center(
+        child: CircularProgressIndicator(),
       ),
     );
+  } else {
+    return Container();
   }
+ }
 }
 void onApplePayResult(paymentResult) {
-  // Send the resulting Apple Pay token to your server / PSP
 }
