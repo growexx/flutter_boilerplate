@@ -26,5 +26,6 @@
   "enter_otp": "Enter your OTP code number",
   "verify": "Verify",
   "did_not_receive_code": "Didn't you receive any code?",
-  "resend_new_code": "Resend New Code"
+  "resend_new_code": "Resend New Code",
+  "change_password": "Change Password"
 }

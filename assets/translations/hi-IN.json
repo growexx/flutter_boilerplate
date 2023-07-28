@@ -26,5 +26,6 @@
   "enter_otp": "अपना ओटीपी कोड नंबर दर्ज करें",
   "verify": "सत्यापित करें",
   "did_not_receive_code": "क्या आपको कोई कोड नहीं मिला?",
-  "resend_new_code": "नया कोड पुनः भेजें"
+  "resend_new_code": "नया कोड पुनः भेजें",
+  "change_password": "पासवर्ड बदलें"
 }
