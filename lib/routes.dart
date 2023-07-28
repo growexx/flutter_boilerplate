@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login_screen.dart';
-import 'package:flutter_boilerplate/view/screens/main_screen.dart';
+import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
-import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
+import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import 'view/screens/main_screen.dart';
 import 'view/screens/navigation/bottom_tab_navigation.dart';
 import 'view/screens/navigation/drawer_navigation.dart';
 import 'view/screens/navigation/top_tab_navigation.dart';
+import 'view/screens/user_details_screen.dart';
 
 // define for transition animation
 CustomTransitionPage buildPageWithDefaultTransition<T>({
@@ -35,10 +38,17 @@ List<RouteBase> routes = [
         context: context, state: state, child: const SplashScreen()),
   ),
   GoRoute(
-    name: LoginScreen.name,
-    path: LoginScreen.path,
+    name: SigninScreen.name,
+    path: SigninScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: const LoginScreen()),
+        context: context, state: state,
+        child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider<GoogleSigninViewModel>(
+                create: (_)=> GoogleSigninViewModel(),),
+              ChangeNotifierProvider<SigninViewModel>(
+                create: (_)=> SigninViewModel(),),
+            ],child: const SigninScreen())),
   ),
   GoRoute(
     name: DashboardScreen.name,

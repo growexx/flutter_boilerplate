@@ -25,31 +25,34 @@ class SplashScreen extends StatelessWidget {
                   constraints: const BoxConstraints(
                       maxWidth: 400
                   ),
-                  child:  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Add your projects logo
-                        DelayedWidget(
-                          animationDuration: AppConstant.animationDuration,
-                          child: const FlutterLogo(
-                            size: 100,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: DelayedWidget(
-                            animation: DelayedAnimations.SLIDE_FROM_LEFT,
+                  child:  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // Add your projects logo
+                          DelayedWidget(
                             animationDuration: AppConstant.animationDuration,
-                            delayDuration: AppConstant.animationDuration,
-                            child: Text(AppConstant.appName,
-                              textAlign: TextAlign.center,
-                              style: theme.textTheme.titleLarge,).tr(),
+                            child: const FlutterLogo(
+                              size: 100,
+                            ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: DelayedWidget(
+                              animation: DelayedAnimations.SLIDE_FROM_LEFT,
+                              animationDuration: AppConstant.animationDuration,
+                              delayDuration: AppConstant.animationDuration,
+                              child: Text(AppConstant.appName,
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.titleLarge,).tr(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   )),
             ),
