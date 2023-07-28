@@ -3,8 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
 
-
-
   static Future<bool> remove({
     required String key,
     SharedPreferences? pref,
