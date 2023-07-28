@@ -41,14 +41,16 @@ List<RouteBase> routes = [
     name: SigninScreen.name,
     path: SigninScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state,
-        child: MultiProvider(
-            providers: [
-              ChangeNotifierProvider<GoogleSigninViewModel>(
-                create: (_)=> GoogleSigninViewModel(),),
-              ChangeNotifierProvider<SigninViewModel>(
-                create: (_)=> SigninViewModel(),),
-            ],child: const SigninScreen())),
+        context: context,
+        state: state,
+        child: MultiProvider(providers: [
+          ChangeNotifierProvider<GoogleSigninViewModel>(
+            create: (_) => GoogleSigninViewModel(),
+          ),
+          ChangeNotifierProvider<SigninViewModel>(
+            create: (_) => SigninViewModel(),
+          ),
+        ], child: const SigninScreen())),
   ),
   GoRoute(
     name: DashboardScreen.name,
@@ -78,18 +80,12 @@ List<RouteBase> routes = [
     name: TopTabNavigation.name,
     path: TopTabNavigation.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: const TopTabNavigation()),
+        context: context, state: state, child: TopTabNavigation()),
   ),
   GoRoute(
     name: UserDetailsScreen.name,
     path: UserDetailsScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context,
-        state: state,
-        child: UserDetailsScreen(
-          email: 'email',
-          profileImageUrl: 'profileImageUrl',
-          username: 'username',
-        )),
+        context: context, state: state, child: UserDetailsScreen()),
   ),
 ];

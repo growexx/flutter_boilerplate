@@ -20,9 +20,7 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
   final List<Widget> _screens = [
     DashboardScreen(),
     UserDetailsScreen(
-      username: 'John Doe',
-      email: 'johndoe@example.com',
-      profileImageUrl: 'https://example.com/profile_image.png',
+      showButton: false,
     ),
     Center(
       child: Text(

@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
@@ -11,44 +13,44 @@ import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class UserRepository extends ChangeNotifier {
-
   User? currentUser;
 
   UserRepository({
     this.currentUser,
   });
-  
-  
+
   bool get isLoggedIn => currentUser?.id != null;
 
   Future updateUserData(User? userData) async {
-    try{
-      if(userData==null) {
+    try {
+      if (userData == null) {
         await LocalStorage.remove(key: StorageConstant.userStorage);
         currentUser = null;
-      } else{
+      } else {
         String user = jsonEncode(userData.toJson());
-        await LocalStorage.setString(key: StorageConstant.userStorage, data: user,useEncrypt: true);
+        await LocalStorage.setString(
+            key: StorageConstant.userStorage, data: user, useEncrypt: true);
         currentUser = await fetchUserData();
+        log("current User is ${currentUser!.toJson()}");
       }
-
       notifyListeners();
-    } catch(e) {
+    } catch (e) {
       if (kDebugMode) {
         print(e.toString());
       }
-    }}
+    }
+  }
 
   static Future<User> fetchUserData() async {
     try {
-      String? storedData = await LocalStorage.getString(key: StorageConstant.userStorage,useEncrypt: true);
-      if(storedData!=null) {
-        return User.fromJson(
-            jsonDecode( storedData));
+      String? storedData = await LocalStorage.getString(
+          key: StorageConstant.userStorage, useEncrypt: true);
+      if (storedData != null) {
+        return User.fromJson(jsonDecode(storedData));
       } else {
         return User();
       }
-    } catch(e) {
+    } catch (e) {
       return User();
     }
   }
@@ -56,15 +58,13 @@ class UserRepository extends ChangeNotifier {
   Future signOutUser(BuildContext context) async {
     CustomBottomSheet.open(context,
         child: FunctionalSheet(
-          key: const Key("sign_out"),
+            key: const Key("sign_out"),
             message: "Do you want to Sign Out?",
             buttonName: "Sign Out",
             onPressButton: () async {
               directLogOut(context);
             }));
   }
-
-
 
   Future directLogOut(BuildContext context) async {
     try {
@@ -75,9 +75,8 @@ class UserRepository extends ChangeNotifier {
         }
         Router.neglect(context, () => context.goNamed(SplashScreen.name));
       });
-    } catch(e) {
+    } catch (e) {
       rethrow;
     }
   }
-
 }

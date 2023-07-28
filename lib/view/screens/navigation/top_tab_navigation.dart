@@ -5,23 +5,14 @@ import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 import '../../../app_manager/helper/navigation/navigation_helper.dart';
 import '../dashboard_screen.dart';
 
-class TopTabNavigation extends StatefulWidget {
-  const TopTabNavigation({super.key});
+class TopTabNavigation extends StatelessWidget {
+  TopTabNavigation({super.key});
   static const String name = "top_tab_navigation";
   static const String path = "/$name";
-
-  @override
-  State<TopTabNavigation> createState() => _TopTabNavigationState();
-}
-
-class _TopTabNavigationState extends State<TopTabNavigation> {
-  int _currentIndex = 0;
   final List<Widget> _screens = [
     DashboardScreen(),
     UserDetailsScreen(
-      username: 'John Doe',
-      email: 'johndoe@example.com',
-      profileImageUrl: 'https://example.com/profile_image.png',
+      showButton: false,
     ),
     Center(
       child: Text(
