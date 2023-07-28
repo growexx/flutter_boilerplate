@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/payment_config.dart';
 import 'package:pay/pay.dart';
-import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 const _paymentItems = [
   PaymentItem(
@@ -28,7 +28,7 @@ class PaymentScreen extends StatelessWidget {
  }
 
 Widget _buildApplePayButton() {
-  if (Platform.isIOS) {
+  if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS)
     return ApplePayButton(
       paymentConfiguration: PaymentConfiguration.fromJsonString(defaultApplePay),
       paymentItems: _paymentItems,
