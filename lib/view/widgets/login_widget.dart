@@ -4,6 +4,7 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup_screen.dart';
 import 'package:flutter_boilerplate/viewmodel/login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -118,7 +119,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ],
               ),
               const SizedBox(width: 5),
-              Text("forgot_password", style: theme.textTheme.bodySmall).tr()
+              InkWell(
+                  onTap: (){
+                    NavigationHelper.pushNamed(context, ForgotPasswordScreen.name);
+                  },
+                  child: Text("forgot_password", style: theme.textTheme.bodySmall).tr())
             ],
           ),
         ),

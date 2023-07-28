@@ -27,5 +27,8 @@
   "verify": "Verify",
   "did_not_receive_code": "Didn't you receive any code?",
   "resend_new_code": "Resend New Code",
-  "change_password": "Change Password"
+  "change_password": "Change Password",
+  "forgot_password_description": "Please enter the email address you'd like your password reset information sent to",
+  "request_reset_link": "Request reset link",
+  "back_to_login": "Back To Login"
 }

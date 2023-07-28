@@ -27,5 +27,7 @@
   "verify": "सत्यापित करें",
   "did_not_receive_code": "क्या आपको कोई कोड नहीं मिला?",
   "resend_new_code": "नया कोड पुनः भेजें",
-  "change_password": "पासवर्ड बदलें"
+  "change_password": "पासवर्ड बदलें",
+  "forgot_password_description": "कृपया वह ईमेल पता दर्ज करें जिस पर आप अपना पासवर्ड रीसेट जानकारी भेजना चाहते हैं",
+  "back_to_login": "लॉगिन पर वापस जाएं"
 }
