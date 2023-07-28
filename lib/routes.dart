@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
@@ -55,5 +56,12 @@ List<RouteBase> routes = [
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state,
         child: const DashboardScreen()),
+  ),
+    GoRoute(
+    name: PaymentScreen.name,
+    path: PaymentScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state,
+        child: const PaymentScreen()),
   ),
 ];
