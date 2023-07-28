@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 

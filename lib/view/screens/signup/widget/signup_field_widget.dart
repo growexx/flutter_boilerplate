@@ -36,6 +36,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
+                      key:const Key("sign_up"),
                       "sign_up",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
@@ -44,7 +45,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       child: Column(
                         children: [
                           TextFormField(
-                            key: const Key("tff_first_name"),
+                            key: const Key("tf_first_name"),
                             controller: widget.viewModel.firstNameC,
                             decoration:
                             const InputDecoration(hintText: "First Name"),
@@ -56,7 +57,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           const SizedBox(height: 20),
                           TextFormField(
                               controller: widget.viewModel.lastNameC,
-                              key: const Key("tff_last_name"),
+                              key: const Key("tf_last_name"),
                               decoration: const InputDecoration(
                                 hintText: "Last Name",
                               ),
@@ -67,7 +68,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           const SizedBox(height: 20),
                           TextFormField(
                               controller: widget.viewModel.emailC,
-                              key: const Key("tff_email_address"),
+                              key: const Key("tf_email_address"),
                               decoration: const InputDecoration(
                                 hintText: "Email",
                               ),
@@ -77,7 +78,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                               }),
                           const SizedBox(height: 20),
                           PasswordField(
-                            key: const Key("tff_password"),
+                            key: const Key("tf_password"),
                             controller: widget.viewModel.passwordC,
                             hintText: "Enter Password",
                             validator: ValidationHelper.passwordValidation,
@@ -87,7 +88,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           ),
                           const SizedBox(height: 20),
                           PasswordField(
-                            key: const Key("tff_cnf_password"),
+                            key: const Key("tf_confirm_password"),
                             controller: widget.viewModel.confirmPasswordC,
                             hintText: "Confirm Password",
                             validator: ValidationHelper.passwordValidation,
@@ -109,12 +110,16 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Text("sign_up").tr(),
+                      child: const Text(
+                          key:Key("tb_sign_up"),
+                          "sign_up").tr(),
                     ),
                     const SizedBox(height: 20),
                     Wrap(
                       children: [
-                        Text("already_have_an_account",
+                        Text(
+                            key:const Key("t_sign_up_description"),
+                            "already_have_an_account",
                                 style: theme.textTheme.bodyMedium)
                             .tr(),
                         const SizedBox(width: 10),
@@ -122,6 +127,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           onTap: () => NavigationHelper.pushNamed(
                               context, SignInScreen.name),
                           child: Text(
+                            key:const Key("t_sign_in"),
                             "sign_in",
                             style: theme.textTheme.bodyMedium,
                           ).tr(),

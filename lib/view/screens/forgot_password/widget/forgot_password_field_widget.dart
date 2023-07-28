@@ -80,7 +80,7 @@ class _ForgotPasswordFieldWidgetState extends State<ForgotPasswordFieldWidget> {
                       },
                       child: Text(
                         "back_to_login",
-                        style: theme.textTheme.bodySmall,
+                        style: theme.textTheme.bodyMedium,
                       ).tr(),
                     ),
                   ],

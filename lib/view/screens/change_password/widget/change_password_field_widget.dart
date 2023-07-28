@@ -7,7 +7,6 @@ import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
-import 'package:provider/provider.dart';
 
 class ChangePasswordFieldWidget extends StatefulWidget {
   final ChangePasswordViewModel viewModel;
@@ -25,83 +24,89 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    ChangePasswordViewModel changePasswordViewModel =
-        Provider.of<ChangePasswordViewModel>(context, listen: false);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Center(
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Form(
-                  child: Column(
-                    children: [
-                      Text(
-                        "change_password",
-                        style: theme.textTheme.headlineMedium,
-                      ).tr(),
-                      const SizedBox(height: 20),
-                      PasswordField(
-                        key: const Key("tff_old_password"),
-                        controller: widget.viewModel.oldPasswordC,
-                        hintText: "Old Password",
-                        validator: ValidationHelper.passwordValidation,
-                        onFieldSubmitted: (val) {
-                          onPressChangePassword(context);
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      PasswordField(
-                        key: const Key("tff_new_password"),
-                        controller: widget.viewModel.newPasswordC,
-                        hintText: "New Password",
-                        validator: ValidationHelper.passwordValidation,
-                        onFieldSubmitted: (val) {
-                          onPressChangePassword(context);
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      PasswordField(
-                        key: const Key("tff_confirm_new_password"),
-                        controller: widget.viewModel.confirmNewPasswordC,
-                        hintText: "Confirm New Password",
-                        validator: ValidationHelper.passwordValidation,
-                        onFieldSubmitted: (val) {
-                          onPressChangePassword(context);
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      TextButton(
-                        onPressed: () {
-                          if (changePasswordViewModel.newPasswordC.text.trim() ==
-                              changePasswordViewModel.confirmNewPasswordC.text.trim()) {
-                            /* Fluttertoast.showToast(
+    return Center(
+      child: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+              child: Builder(builder: (ctx) {
+                return Column(
+                  children: [
+                    Text(
+                      key:const Key("title_change_password"),
+                      "change_password",
+                      style: theme.textTheme.headlineMedium,
+                    ).tr(),
+                    const SizedBox(
+                        key:Key("size_one"),
+                        height: 20),
+                    PasswordField(
+                      key: const Key("tf_old_password"),
+                      controller: widget.viewModel.oldPasswordC,
+                      hintText: "Old Password",
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressChangePassword(context);
+                      },
+                    ),
+                    const SizedBox(
+                        key:Key("size_two"),
+                        height: 20),
+                    PasswordField(
+                      key: const Key("tf_new_password"),
+                      controller: widget.viewModel.newPasswordC,
+                      hintText: "New Password",
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressChangePassword(context);
+                      },
+                    ),
+                    const SizedBox(
+                        key:Key("size_three"),
+                        height: 20),
+                    PasswordField(
+                      key: const Key("tf_confirm_new_password"),
+                      controller: widget.viewModel.confirmNewPasswordC,
+                      hintText: "Confirm New Password",
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressChangePassword(context);
+                      },
+                    ),
+                    const SizedBox(
+                        key:Key("size_four"),
+                        height: 20),
+                    TextButton(
+                      key:const Key("tb_change_password"),
+                      onPressed: () {
+                        if (widget.viewModel.newPasswordC.text.trim() ==
+                            widget.viewModel.confirmNewPasswordC.text.trim()) {
+/* Fluttertoast.showToast(
                       msg: "Password and Confirm Password didn't match");*/
-                          } else {
-                            //here we can add api call code for change password
-                            NavigationHelper.pushNamed(context, SignInScreen.name);
-                          }
-                        },
-                        style: TextButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        } else {
+//here we can add api call code for change password
+                          NavigationHelper.pushNamed(
+                              context, SignInScreen.name);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        child: const Text("change_password").tr(),
                       ),
-                    ],
-                  ),
-                ),
-              ),
+                      child: const Text("change_password").tr(),
+                    ),
+                  ],
+                );
+              }),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 

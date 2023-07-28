@@ -6,9 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../util/common_initial_activity.dart';
 import '../../util/testing_material_app.dart';
 
-
-
-
 void main() async{
   await commonInitialActivity();
   group("Splash Screen Test", () {

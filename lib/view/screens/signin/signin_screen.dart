@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/app_manager/locale/widget/locale_selector_widget.dart';

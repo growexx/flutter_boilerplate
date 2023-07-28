@@ -18,6 +18,7 @@ class $AssetsPngGen {
   AssetGenImage get instagram => const AssetGenImage('assets/png/ic_instagram.png');
   AssetGenImage get google => const AssetGenImage('assets/png/ic_google.png');
   AssetGenImage get twitter => const AssetGenImage('assets/png/ic_twitter.png');
+  AssetGenImage get apple => const AssetGenImage('assets/png/ic_apple.png');
   AssetGenImage get otp => const AssetGenImage('assets/png/ic_otp_image.png');
   AssetGenImage get otp2 => const AssetGenImage('assets/png/ic_otp2.png');
   AssetGenImage get otp3 => const AssetGenImage('assets/png/ic_otp3.png');

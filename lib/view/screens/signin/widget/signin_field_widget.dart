@@ -47,21 +47,29 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
+                      key:const Key("sign_in"),
                       "sign_in",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
                     const SizedBox(
                       height: 10,
                     ),
-                    Text("login_using_social_networks",
+                    Text(
+                        key:const Key("sign_in_description"),
+                        "login_using_social_networks",
                             style: theme.textTheme.bodyMedium)
                         .tr(),
                     const SizedBox(height: 20),
                     Wrap(
+                      key:const Key("social_container"),
                       children: [
-                        Assets.png.facebook.image(width: 35, height: 35),
+                        Assets.png.facebook.image(
+                            key:const Key("facebook"),
+                            width: 35, height: 35),
                         const SizedBox(width: 20),
-                        Assets.png.instagram.image(width: 35, height: 35),
+                        Assets.png.instagram.image(
+                            key:const Key("instagram"),
+                            width: 35, height: 35),
                         const SizedBox(width: 20),
                         InkWell(
                             onTap: () {
@@ -79,15 +87,24 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               });
                             },
                             child:
-                                Assets.png.google.image(width: 35, height: 35)),
+                                Assets.png.google.image(
+                                    key:const Key("google"),
+                                    width: 35, height: 35)),
                         const SizedBox(width: 20),
-                        Assets.png.twitter.image(width: 35, height: 35),
+                        Assets.png.twitter.image(
+                            key:const Key("twitter"),
+                            width: 35, height: 35),
+                        const SizedBox(width: 20),
+                        Assets.png.apple.image(
+                            key:const Key("apple"),
+                            width: 38, height: 38),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Text("or_capital", style: theme.textTheme.bodyMedium).tr(),
                     const SizedBox(height: 10),
                     TextFormField(
+                      key:const Key("tf_email"),
                       controller: widget.viewModel.emailC,
                       decoration:
                           const InputDecoration(hintText: "Enter Email"),
@@ -100,6 +117,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 20,
                     ),
                     PasswordField(
+                      key:const Key("tf_password"),
                       controller: widget.viewModel.passwordC,
                       hintText: "Enter Password",
                       validator: ValidationHelper.passwordValidation,
@@ -111,6 +129,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 20,
                     ),
                     TextButton(
+                      key:const Key("tb_sign_in"),
                       onPressed: () {
                         onPressSignIn(ctx);
                       },
@@ -125,50 +144,57 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 30,
-                                child: Selector<SignInViewModel, bool>(
-                                  selector: (_, listener) =>
-                                      listener.isRememberMeChecked,
-                                  builder: (context, isRememberCheck, child) =>
-                                      Checkbox(
-                                    fillColor: theme.checkboxTheme.fillColor,
-                                    value: isRememberCheck,
-                                    onChanged: (bool? value) =>
-                                        widget.viewModel.setRememberMe = value!,
-                                  ),
+                    Row(
+                      key:const Key("row_sing_in_utils"),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Wrap(
+                          key:const Key("remember_me"),
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 20,
+                              child: Selector<SignInViewModel, bool>(
+                                selector: (_, listener) =>
+                                    listener.isRememberMeChecked,
+                                builder: (context, isRememberCheck, child) =>
+                                    Checkbox(
+                                      key:const Key("cb_remember_me"),
+                                  fillColor: theme.checkboxTheme.fillColor,
+                                  value: isRememberCheck,
+                                  onChanged: (bool? value) =>
+                                      widget.viewModel.setRememberMe = value!,
                                 ),
                               ),
-                              Text(
-                                "remember_me",
-                                style: theme.textTheme.bodySmall,
-                              ).tr()
-                            ],
-                          ),
-                          const SizedBox(width: 5),
-                          InkWell(
-                              onTap: () {
-                                NavigationHelper.pushNamed(
-                                    context, ForgotPasswordScreen.name);
-                              },
-                              child: Text("forgot_password",
-                                      style: theme.textTheme.bodySmall)
-                                  .tr())
-                        ],
-                      ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              key:const Key("t_remember_me"),
+                              "remember_me",
+                              style: theme.textTheme.bodySmall,
+                            ).tr()
+                          ],
+                        ),
+                        InkWell(
+                            key:const Key("forgot_password"),
+                            onTap: () {
+                              NavigationHelper.pushNamed(
+                                  context, ForgotPasswordScreen.name);
+                            },
+                            child: Text(
+                                key:const Key("t_forgot_password"),
+                                "forgot_password",
+                                    style: theme.textTheme.bodySmall)
+                                .tr())
+                      ],
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     Wrap(
+                      key:const Key("t_sign_up_description"),
                       children: [
                         Text("don't_have_an_account",
                                 style: theme.textTheme.bodyMedium)
@@ -178,6 +204,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             onTap: () => NavigationHelper.pushNamed(
                                 context, SignUpScreen.name),
                             child: Text(
+                              key:const Key("t_sign_up"),
                               "sign_up",
                               style: theme.textTheme.bodyMedium,
                             ).tr()),
