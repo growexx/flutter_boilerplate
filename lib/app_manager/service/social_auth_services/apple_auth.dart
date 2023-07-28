@@ -15,11 +15,11 @@ class AppleAuth {
           AppleIDAuthorizationScopes.fullName,
         ],
         webAuthenticationOptions:
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)?
+        (defaultTargetPlatform == TargetPlatform.iOS)?
         null:
         WebAuthenticationOptions(
             clientId: dotenv.env[Environment.appleClientId]!,
-            redirectUri: Uri.parse("https://flutter-boilerplate-919f8.firebaseapp.com/__/auth/handler"))
+            redirectUri: Uri.parse("https://www.growexx.com/"))
       );
       return credential;
     } catch (error) {
