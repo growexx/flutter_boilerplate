@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
+import 'package:flutter_test/flutter_test.dart';
+import '../../util/common_initial_activity.dart';
+import '../../util/testing_material_app.dart';
+
+void main() async {
+  await commonInitialActivity();
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  group("OTP Screen Test", () {
+    testWidgets('otp verification screen', (WidgetTester tester) async {
+      Widget widget = testingMaterial(initialLocation: OTPScreen.path);
+      await tester.pumpWidget(widget);
+
+      expect(find.byKey(const Key("registration")), findsOneWidget);
+      expect(find.byKey(const Key("add_your_phone_number")), findsOneWidget);
+      expect(find.byKey(const Key("phone")), findsOneWidget);
+      expect(find.byKey(const Key("send")), findsOneWidget);
+
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byKey(const Key("phone")), '9408776491');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+
+      //OTP button Tap
+      final Finder sendButton = find.byKey(const Key("send"));
+      await tester.tap(sendButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+    });
+  });
+}

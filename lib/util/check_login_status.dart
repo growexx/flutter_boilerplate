@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +11,7 @@ Future checkLoginStatus(BuildContext context,) async{
     Router.neglect(context, () =>
         context.goNamed(
             isLoggedIn?
-            DashboardScreen.name:ForgotPasswordScreen.name)
+            DashboardScreen.name:OTPScreen.name)
     );
   });
 }

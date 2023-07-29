@@ -37,8 +37,6 @@ void main() async {
       await tester.tap(changePasswordButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
-      //expect(find.text("This is a mandatory field"),findsNWidgets(2));
-
     });
   });
 }
