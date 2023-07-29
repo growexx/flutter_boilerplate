@@ -61,16 +61,19 @@ class _OTPScreenState extends State<OTPScreen> {
             ),
           ),
           Expanded(
-            child: Consumer(
+            child: Consumer<OTPViewModel>(
               builder: (BuildContext context, value, Widget? child) {
                 return ResponsiveHelperWidget(
-                  mobile: viewModel.isPhoneNumberEntered
-                      ? fillPhoneNumberWidget
-                      : otpVerificationWidget,
+                  mobile: value.isPhoneNumberEntered
+                      ? otpVerificationWidget
+                      : fillPhoneNumberWidget,
                   desktop: Row(
                     children: [
                       const Expanded(child: OTPWebPageFillerWidget()),
-                      Expanded(child: fillPhoneNumberWidget),
+                      Expanded(
+                          child: value.isPhoneNumberEntered
+                              ? otpVerificationWidget
+                              : fillPhoneNumberWidget),
                     ],
                   ),
                 );

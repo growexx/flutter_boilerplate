@@ -50,6 +50,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 24,
                     ),
                     Text(
+                      key:const Key("verification"),
                       'Verification',
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
@@ -57,6 +58,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 10,
                     ),
                     Text(
+                      key:const Key("enter_otp"),
                       "enter_otp",
                       style: theme.textTheme.bodyMedium,
                       textAlign: TextAlign.center,
@@ -73,6 +75,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       child: Column(
                         children: [
                           Row(
+                            key:const Key("otp_text_field_container"),
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -88,6 +91,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                           SizedBox(
                             width: double.infinity,
                             child: TextButton(
+                              key:const Key("verify"),
                               onPressed: () {
                                   NavigationHelper.pushNamed(
                                       context, SignInScreen.name);
@@ -108,6 +112,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 18,
                     ),
                     Text(
+                      key:const Key("did_not_receive_code"),
                       "did_not_receive_code",
                       style: theme.textTheme.bodyMedium,
                       textAlign: TextAlign.center,
@@ -116,6 +121,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 18,
                     ),
                     InkWell(
+                      key:const Key("resend_new_code"),
                       onTap: () {
                         //work in progress
                         /*const snackBar = SnackBar(
@@ -145,6 +151,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
       child: AspectRatio(
         aspectRatio: 0.7,
         child: TextField(
+          key:const Key("otp_text_field"),
           autofocus: true,
           onChanged: (value) {
             if (value.length == 1 && last == false) {

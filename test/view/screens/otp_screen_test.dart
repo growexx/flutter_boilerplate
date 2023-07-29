@@ -29,6 +29,14 @@ void main() async {
       await tester.tap(sendButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key("verification")), findsOneWidget);
+      expect(find.byKey(const Key("enter_otp")), findsOneWidget);
+      expect(find.byKey(const Key("otp_text_field_container")), findsOneWidget);
+      expect(find.byKey(const Key("verify")), findsOneWidget);
+      expect(find.byKey(const Key("did_not_receive_code")), findsOneWidget);
+      expect(find.byKey(const Key("resend_new_code")), findsOneWidget);
+
     });
   });
 }

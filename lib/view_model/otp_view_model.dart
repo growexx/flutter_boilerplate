@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 class OTPViewModel extends ChangeNotifier {
   http.Client client = http.Client();
   var isPhoneNumberEntered = false;
+
   OTPViewModel() {
     //pending..
   }
@@ -15,4 +16,5 @@ class OTPViewModel extends ChangeNotifier {
     isPhoneNumberEntered = value;
     notifyListeners();
   }
+
 }
