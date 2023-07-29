@@ -13,7 +13,7 @@ void main() async {
       Widget widget = testingMaterial(initialLocation: OTPScreen.path);
       await tester.pumpWidget(widget);
 
-      expect(find.byKey(const Key("registration")), findsOneWidget);
+      expect(find.byKey(const Key("send_otp")), findsOneWidget);
       expect(find.byKey(const Key("add_your_phone_number")), findsOneWidget);
       expect(find.byKey(const Key("phone")), findsOneWidget);
       expect(find.byKey(const Key("send")), findsOneWidget);

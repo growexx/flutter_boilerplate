@@ -5,8 +5,10 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpFieldWidget extends StatefulWidget {
   final SignUpViewModel viewModel;
@@ -30,113 +32,110 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
           constraints: const BoxConstraints(maxWidth: 400),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Form(
-              child: Builder(builder: (ctx) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      key:const Key("sign_up"),
-                      "sign_up",
-                      style: theme.textTheme.headlineMedium,
-                    ).tr(),
-                    const SizedBox(height: 20),
-                    Form(
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            key: const Key("tf_first_name"),
-                            controller: widget.viewModel.firstNameC,
-                            decoration:
-                            const InputDecoration(hintText: "First Name"),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  key: const Key("sign_up"),
+                  "sign_up",
+                  style: theme.textTheme.headlineMedium,
+                ).tr(),
+                const SizedBox(height: 20),
+                Form(
+                  child: Builder(builder: (ctx) {
+                    return Column(
+                      children: [
+                        TextFormField(
+                          key: const Key("tf_first_name"),
+                          controller: widget.viewModel.firstNameC,
+                          decoration:
+                              const InputDecoration(hintText: "First Name"),
+                          validator: ValidationHelper.nameValidation,
+                          onFieldSubmitted: (val) {
+                            onPressSignUp(ctx);
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                            controller: widget.viewModel.lastNameC,
+                            key: const Key("tf_last_name"),
+                            decoration: const InputDecoration(
+                              hintText: "Last Name",
+                            ),
                             validator: ValidationHelper.nameValidation,
                             onFieldSubmitted: (val) {
                               onPressSignUp(ctx);
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                              controller: widget.viewModel.lastNameC,
-                              key: const Key("tf_last_name"),
-                              decoration: const InputDecoration(
-                                hintText: "Last Name",
-                              ),
-                              validator: ValidationHelper.nameValidation,
-                              onFieldSubmitted: (val) {
-                                onPressSignUp(ctx);
-                              }),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                              controller: widget.viewModel.emailC,
-                              key: const Key("tf_email_address"),
-                              decoration: const InputDecoration(
-                                hintText: "Email",
-                              ),
-                              validator: ValidationHelper.emailValidation,
-                              onFieldSubmitted: (val) {
-                                onPressSignUp(ctx);
-                              }),
-                          const SizedBox(height: 20),
-                          PasswordField(
-                            key: const Key("tf_password"),
-                            controller: widget.viewModel.passwordC,
-                            hintText: "Enter Password",
-                            validator: ValidationHelper.passwordValidation,
+                            }),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                            controller: widget.viewModel.emailC,
+                            key: const Key("tf_email_address"),
+                            decoration: const InputDecoration(
+                              hintText: "Email",
+                            ),
+                            validator: ValidationHelper.emailValidation,
                             onFieldSubmitted: (val) {
                               onPressSignUp(ctx);
-                            },
+                            }),
+                        const SizedBox(height: 20),
+                        PasswordField(
+                          key: const Key("tf_password"),
+                          controller: widget.viewModel.passwordC,
+                          hintText: "Enter Password",
+                          validator: ValidationHelper.passwordValidation,
+                          onFieldSubmitted: (val) {
+                            onPressSignUp(ctx);
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        PasswordField(
+                          key: const Key("tf_confirm_password"),
+                          controller: widget.viewModel.confirmPasswordC,
+                          hintText: "Confirm Password",
+                          validator: ValidationHelper.passwordValidation,
+                          onFieldSubmitted: (val) {
+                            onPressSignUp(ctx);
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextButton(
+                          onPressed: () {
+                            onPressSignUp(ctx);
+                          },
+                          style: TextButton.styleFrom(
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
-                          const SizedBox(height: 20),
-                          PasswordField(
-                            key: const Key("tf_confirm_password"),
-                            controller: widget.viewModel.confirmPasswordC,
-                            hintText: "Confirm Password",
-                            validator: ValidationHelper.passwordValidation,
-                            onFieldSubmitted: (val) {
-                              onPressSignUp(ctx);
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextButton(
-                      onPressed: () {
-                        onPressSignUp(ctx);
-                      },
-                      style: TextButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
+                          child: const Text(key: Key("tb_sign_up"), "sign_up")
+                              .tr(),
                         ),
-                      ),
-                      child: const Text(
-                          key:Key("tb_sign_up"),
-                          "sign_up").tr(),
-                    ),
-                    const SizedBox(height: 20),
-                    Wrap(
-                      children: [
-                        Text(
-                            key:const Key("t_sign_up_description"),
-                            "already_have_an_account",
-                                style: theme.textTheme.bodyMedium)
-                            .tr(),
-                        const SizedBox(width: 10),
-                        InkWell(
-                          onTap: () => NavigationHelper.pushNamed(
-                              context, SignInScreen.name),
-                          child: Text(
-                            key:const Key("t_sign_in"),
-                            "sign_in",
-                            style: theme.textTheme.bodyMedium,
-                          ).tr(),
-                        ),
+                        const SizedBox(height: 20),
+                        Wrap(
+                          children: [
+                            Text(
+                                    key: const Key("t_sign_up_description"),
+                                    "already_have_an_account",
+                                    style: theme.textTheme.bodyMedium)
+                                .tr(),
+                            const SizedBox(width: 10),
+                            InkWell(
+                              onTap: () => NavigationHelper.pushNamed(
+                                  context, SignInScreen.name),
+                              child: Text(
+                                key: const Key("t_sign_in"),
+                                "sign_in",
+                                style: theme.textTheme.bodyMedium,
+                              ).tr(),
+                            ),
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                );
-              }),
+                    );
+                  }),
+                )
+              ],
             ),
           ),
         ),
@@ -151,6 +150,13 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
           lastName: widget.viewModel.lastNameC.text.trim(),
           email: widget.viewModel.emailC.text.trim(),
           password: widget.viewModel.passwordC.text.trim());
+
+      if (widget.viewModel.passwordC.text.trim() ==
+          widget.viewModel.confirmPasswordC.text.trim()) {
+        Router.neglect(context, () => context.goNamed(SignInScreen.name));
+      } else {
+        showToast("Password & Confirm Password did not match");
+      }
     } else {
       showToast("Fill Required Fields");
     }

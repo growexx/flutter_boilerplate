@@ -12,9 +12,10 @@ class OTPViewModel extends ChangeNotifier {
   final TextEditingController phoneC = TextEditingController();
   final TextEditingController otpC = TextEditingController();
   
-  set setPhoneNumberEntered(bool value) {
+  set setPhoneNumberValidated(bool value) {
     isPhoneNumberEntered = value;
     notifyListeners();
   }
+
 
 }

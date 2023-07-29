@@ -5,7 +5,7 @@ class ChangePasswordViewModel extends ChangeNotifier {
   http.Client client = http.Client();
 
   ChangePasswordViewModel() {
-    //checkIfUserIsLoggedIn();
+    //
   }
 
   final TextEditingController oldPasswordC = TextEditingController();

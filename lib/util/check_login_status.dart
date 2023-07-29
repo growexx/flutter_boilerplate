@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
 import 'package:go_router/go_router.dart';

@@ -19,7 +19,7 @@
   "sign_up": "Sign Up",
   "otp_get_started": "Let's get started",
   "otp_description": "Never a better time than no to start.",
-  "registration": "Registration",
+  "send_otp": "Send OTP",
   "add_your_phone_number": "Add your phone number. we'll send you a verification code so we know you're real",
   "send": "Send",
   "verification": "Verification",
@@ -30,5 +30,6 @@
   "change_password": "Change Password",
   "forgot_password_description": "Please enter the email address you'd like your password reset information sent to",
   "request_reset_link": "Request reset link",
-  "back_to_login": "Back To Login"
+  "back_to_login": "Back To Login",
+  "pay_now": "Pay Now"
 }

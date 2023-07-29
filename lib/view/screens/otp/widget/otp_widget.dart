@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 
 class OTPWidget extends StatefulWidget {
@@ -13,17 +14,24 @@ class OTPWidget extends StatefulWidget {
   final GoogleSigninViewModel googleSignInViewModel;
   final UserRepository userRepository;
 
-  const OTPWidget(
-      {super.key,
-      required this.viewModel,
-      required this.googleSignInViewModel,
-      required this.userRepository});
+  const OTPWidget({super.key,
+    required this.viewModel,
+    required this.googleSignInViewModel,
+    required this.userRepository});
 
   @override
   State<OTPWidget> createState() => _OTPWidgetState();
 }
 
 class _OTPWidgetState extends State<OTPWidget> {
+  late PhoneNumber number;
+
+  @override
+  void initState() {
+    super.initState();
+    //number = getInitialNumber() as PhoneNumber;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -50,14 +58,15 @@ class _OTPWidgetState extends State<OTPWidget> {
                     height: 24,
                   ),
                   Text(
-                      key:const Key("registration"),
-                      'registration', style: theme.textTheme.headlineSmall)
+                      key: const Key("sent_otp"),
+                      'send_otp',
+                      style: theme.textTheme.headlineSmall)
                       .tr(),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    key:const Key("add_your_phone_number"),
+                    key: const Key("add_your_phone_number"),
                     "add_your_phone_number",
                     style: theme.textTheme.bodyMedium,
                     textAlign: TextAlign.center,
@@ -74,29 +83,34 @@ class _OTPWidgetState extends State<OTPWidget> {
                     child: Form(
                       child: Column(
                         children: [
-                          TextFormField(
-                            key:const Key("phone"),
+                          InternationalPhoneNumberInput(
+                            key: const Key("phone"),
                             validator: (val) =>
                                 ValidationHelper.mobileValidation(val),
-                            controller: widget.viewModel.phoneC,
-                            keyboardType: TextInputType.number,
-                            style: theme.textTheme.bodyMedium,
-                            decoration: InputDecoration(
-                              hintText: "Phone",
-                              prefix: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                child: Text(
-                                  '(+91)',
-                                  style: theme.textTheme.bodyMedium,
-                                ),
-                              ),
-                              suffixIcon: Icon(
-                                Icons.check_circle,
-                                color: theme.iconTheme.color,
-                                size: 30,
-                              ),
+                            onInputChanged: (PhoneNumber number) {
+                              //track number
+                            },
+                            onInputValidated: (bool value) {
+                              //validate value
+                            },
+                            selectorConfig: const SelectorConfig(
+                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                             ),
+                            inputDecoration:const InputDecoration(
+                              hintText: "Mobile Number",
+                            ),
+                            ignoreBlank: false,
+                            autoValidateMode: AutovalidateMode.disabled,
+                            selectorTextStyle: const TextStyle(
+                                color: Colors.black),
+                            textFieldController: widget.viewModel.phoneC,
+                            formatInput: true,
+                            keyboardType: const TextInputType.numberWithOptions(
+                                signed: true, decimal: true),
+                            inputBorder: const OutlineInputBorder(),
+                            onSaved: (PhoneNumber number) {
+                              //print('On Saved: $number');
+                            },
                           ),
                           const SizedBox(
                             height: 22,
@@ -104,9 +118,10 @@ class _OTPWidgetState extends State<OTPWidget> {
                           SizedBox(
                               width: double.infinity,
                               child: TextButton(
-                                key:const Key("send"),
+                                key: const Key("send"),
                                 onPressed: () {
-                                  widget.viewModel.setPhoneNumberEntered = true;
+                                  widget.viewModel.setPhoneNumberValidated =
+                                  true;
                                 },
                                 style: TextButton.styleFrom(
                                   minimumSize: const Size.fromHeight(50),
@@ -127,5 +142,13 @@ class _OTPWidgetState extends State<OTPWidget> {
         ),
       ),
     );
+  }
+
+  Future<PhoneNumber> getInitialNumber() async {
+    var phoneNumber = "+234 500 500 5005";
+    await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber).then((value){
+        number = value;
+    });
+    return number;
   }
 }
