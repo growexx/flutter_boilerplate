@@ -59,9 +59,17 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: TextButton(onPressed: (){
-                      userRepository.signOutUser(context);
-                    }, child: const Text("Sign out")),
+                    child: Wrap(
+                      children: [
+                        TextButton(onPressed: (){
+                          userRepository.changePassword(context);
+                        }, child: const Text("change_password").tr()),
+                        const SizedBox(width: 10),
+                        TextButton(onPressed: (){
+                          userRepository.signOutUser(context);
+                        }, child: const Text("sign_out").tr()),
+                      ],
+                    ),
                   ),
                 ],
               ),

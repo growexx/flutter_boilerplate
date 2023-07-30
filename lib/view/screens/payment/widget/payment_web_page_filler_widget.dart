@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_boilerplate/view/widgets/welcome.dart';
 
 class PaymentWebPageFillerWidget extends StatelessWidget {
   const PaymentWebPageFillerWidget({super.key});
@@ -6,6 +7,6 @@ class PaymentWebPageFillerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Change Design according to your UI
-    return const Center(child: Text("Let's Pay"));
+    return const WelcomeWidget();
   }
 }

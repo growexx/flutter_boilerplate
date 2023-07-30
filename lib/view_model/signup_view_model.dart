@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 class SignUpViewModel extends ChangeNotifier {
@@ -17,9 +20,10 @@ class SignUpViewModel extends ChangeNotifier {
     required String firstName,
     required String lastName,
     required String email,
-    required String password,
+    required String password, required BuildContext context,
   }) async {
-    /// Implement Api Call Here
+    /// Implement Api Call Here & navigate to Login screen
+    Router.neglect(context, () => context.goNamed(OTPScreen.name));
     return true;
   }
 }

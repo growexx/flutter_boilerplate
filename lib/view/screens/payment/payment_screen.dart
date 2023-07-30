@@ -4,7 +4,7 @@ import 'package:flutter_boilerplate/app_manager/locale/widget/locale_selector_wi
 import 'package:flutter_boilerplate/app_manager/theme/widget/theme_mode_selector.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/payment/widget/payment_field_widget.dart';
-import 'package:flutter_boilerplate/view/screens/payment/widget/signin_web_page_filler_widget.dart';
+import 'package:flutter_boilerplate/view/screens/payment/widget/payment_web_page_filler_widget.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_web_page_filler_widget.dart';
 import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/payment_view_model.dart';
@@ -61,8 +61,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               mobile: fieldPart,
               desktop: Row(
                 children: [
-                  const Expanded(child: PaymentWebPageFillerWidget()),
-                  Expanded(child: fieldPart),
+                  const Expanded(flex:3,child: PaymentWebPageFillerWidget()),
+                  Expanded(flex:1,child: fieldPart),
                 ],
               ),
             ),

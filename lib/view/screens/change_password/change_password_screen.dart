@@ -55,8 +55,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               mobile: fieldPart,
               desktop: Row(
                 children: [
-                  const Expanded(child: ChangePasswordWebPageFillerWidget()),
-                  Expanded(child: fieldPart),
+                  const Expanded(
+                      flex: 3, child: ChangePasswordWebPageFillerWidget()),
+                  Expanded(flex: 1, child: fieldPart),
                 ],
               ),
             ),

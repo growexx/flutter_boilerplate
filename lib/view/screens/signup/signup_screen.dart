@@ -54,8 +54,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mobile: fieldPart,
               desktop: Row(
                 children: [
-                  const Expanded(child: SignUpWebPageFillerWidget()),
-                  Expanded(child: fieldPart),
+                  const Expanded(flex:3,child: SignUpWebPageFillerWidget()),
+                  Expanded(flex:1,child: fieldPart),
                 ],
               ),
             ),

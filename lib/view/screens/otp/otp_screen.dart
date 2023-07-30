@@ -69,8 +69,9 @@ class _OTPScreenState extends State<OTPScreen> {
                       : fillPhoneNumberWidget,
                   desktop: Row(
                     children: [
-                      const Expanded(child: OTPWebPageFillerWidget()),
+                      const Expanded(flex:3,child: OTPWebPageFillerWidget()),
                       Expanded(
+                        flex:1,
                           child: value.isPhoneNumberEntered
                               ? otpVerificationWidget
                               : fillPhoneNumberWidget),
