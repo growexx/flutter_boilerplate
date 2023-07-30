@@ -60,8 +60,8 @@ class _SignInScreenState extends State<SignInScreen> {
               mobile: fieldPart,
               desktop: Row(
                 children: [
-                  const Expanded(child: LoginWebPageFillerWidget()),
-                  Expanded(child: fieldPart),
+                  const Expanded(flex: 2,child: LoginWebPageFillerWidget()),
+                  Expanded(flex:1,child: fieldPart),
                 ],
               ),
             ),

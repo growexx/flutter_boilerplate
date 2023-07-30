@@ -22,6 +22,7 @@ class $AssetsPngGen {
   AssetGenImage get otp => const AssetGenImage('assets/png/ic_otp_image.png');
   AssetGenImage get otp2 => const AssetGenImage('assets/png/ic_otp2.png');
   AssetGenImage get otp3 => const AssetGenImage('assets/png/ic_otp3.png');
+  AssetGenImage get bg_wallpaper => const AssetGenImage('assets/png/bg_wallpaper.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [error];
@@ -44,6 +45,7 @@ class Assets {
   Assets._();
 
   static const $AssetsPngGen png = $AssetsPngGen();
+  static const $AssetsPngGen jpg = $AssetsPngGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
