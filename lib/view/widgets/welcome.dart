@@ -15,7 +15,7 @@ class WelcomeWidget extends StatelessWidget {
       SizedBox(
         key:const Key("sb_wallpaper"),
         width: MediaQuery.of(context).size.width,
-        child: Assets.png.bg_wallpaper.image(fit: BoxFit.cover),
+        child: Assets.png.bgWallpaper.image(fit: BoxFit.cover),
       ),
       Padding(
         padding: const EdgeInsets.all(50),

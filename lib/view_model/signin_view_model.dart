@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInViewModel extends ChangeNotifier {
@@ -24,5 +25,9 @@ class SignInViewModel extends ChangeNotifier {
   set setRememberMe(bool value) {
     isRememberMeChecked = value;
     notifyListeners();
+  }
+
+  void signInWithOTP(BuildContext context) {
+    Router.neglect(context, () => context.goNamed(OTPScreen.name));
   }
 }

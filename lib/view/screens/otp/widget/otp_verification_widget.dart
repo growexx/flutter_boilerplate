@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
+import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 class OTPVerificationWidget extends StatefulWidget {
   final OTPViewModel viewModel;
@@ -23,6 +22,13 @@ class OTPVerificationWidget extends StatefulWidget {
 }
 
 class _OTPWidgetState extends State<OTPVerificationWidget> {
+
+  TextEditingController controller = TextEditingController(text: "");
+  String thisText = "";
+  int pinLength = 4;
+  bool hasError = false;
+  late String errorMessage;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -44,13 +50,13 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                         color: theme.primaryColor.withOpacity(0.3),
                         shape: BoxShape.circle,
                       ),
-                      child: Assets.png.otp3.image(),
+                      child: Assets.png.icOtp3.image(),
                     ),
                     const SizedBox(
                       height: 24,
                     ),
                     Text(
-                      key:const Key("verification"),
+                      key: const Key("verification"),
                       'verification',
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
@@ -58,7 +64,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 10,
                     ),
                     Text(
-                      key:const Key("enter_otp"),
+                      key: const Key("enter_otp"),
                       "enter_otp",
                       style: theme.textTheme.bodyMedium,
                       textAlign: TextAlign.center,
@@ -75,26 +81,55 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       child: Column(
                         children: [
                           Row(
-                            key:const Key("otp_text_field_container"),
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              _textFieldOTP(first: true, last: false),
-                              _textFieldOTP(first: false, last: false),
-                              _textFieldOTP(first: false, last: false),
-                              _textFieldOTP(first: false, last: true),
-                            ],
-                          ),
+                              key: const Key("otp_text_field_container"),
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                PinCodeTextField(
+                                  autofocus: true,
+                                  controller: controller,
+                                  hideCharacter: false,
+                                  highlight: true,
+                                  highlightColor: Colors.blue,
+                                  defaultBorderColor: Colors.black,
+                                  hasTextBorderColor: Colors.green,
+                                  highlightPinBoxColor: Colors.white,
+                                  maxLength: pinLength,
+                                  hasError: hasError,
+                                  onTextChanged: (text) {
+                                    setState(() {
+                                      hasError = false;
+                                    });
+                                  },
+                                  onDone: (text) {
+                                    //print("DONE $text");
+                                    //print("DONE CONTROLLER ${controller.text}");
+                                  },
+                                  pinBoxWidth: 50,
+                                  pinBoxHeight: 64,
+                                  hasUnderline: true,
+                                  wrapAlignment: WrapAlignment.spaceAround,
+                                  pinBoxDecoration:
+                                  ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                                  pinTextStyle: const TextStyle(fontSize: 22.0),
+                                  pinTextAnimatedSwitcherTransition:
+                                  ProvidedPinBoxTextAnimation.scalingTransition,
+                                  pinTextAnimatedSwitcherDuration:
+                                  const Duration(milliseconds: 300),
+                                  highlightAnimationBeginColor: Colors.black,
+                                  highlightAnimationEndColor: Colors.white12,
+                                  keyboardType: TextInputType.number,
+                                ),
+                              ]),
                           const SizedBox(
                             height: 10,
                           ),
                           SizedBox(
                             width: double.infinity,
                             child: TextButton(
-                              key:const Key("verify"),
+                              key: const Key("verify"),
                               onPressed: () {
-                                  NavigationHelper.pushNamed(
-                                      context, SignInScreen.name);
+                                onPressVerify(context: ctx, otp: "1");
                               },
                               style: TextButton.styleFrom(
                                 minimumSize: const Size.fromHeight(50),
@@ -112,7 +147,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 18,
                     ),
                     Text(
-                      key:const Key("did_not_receive_code"),
+                      key: const Key("did_not_receive_code"),
                       "did_not_receive_code",
                       style: theme.textTheme.bodyMedium,
                       textAlign: TextAlign.center,
@@ -121,7 +156,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       height: 18,
                     ),
                     InkWell(
-                      key:const Key("resend_new_code"),
+                      key: const Key("resend_new_code"),
                       onTap: () {
                         //work in progress
                         /*const snackBar = SnackBar(
@@ -145,39 +180,9 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
     );
   }
 
-  Widget _textFieldOTP({required bool first, last}) {
-    return SizedBox(
-      height: 85,
-      child: AspectRatio(
-        aspectRatio: 0.7,
-        child: TextField(
-          key:const Key("otp_text_field"),
-          autofocus: true,
-          onChanged: (value) {
-            if (value.length == 1 && last == false) {
-              FocusScope.of(context).nextFocus();
-            }
-            if (value.isEmpty && first == false) {
-              FocusScope.of(context).previousFocus();
-            }
-          },
-          showCursor: false,
-          readOnly: false,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          keyboardType: TextInputType.number,
-          maxLength: 1,
-          decoration: InputDecoration(
-            counter: const Offstage(),
-            enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: Colors.black12),
-                borderRadius: BorderRadius.circular(12)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: Colors.purple),
-                borderRadius: BorderRadius.circular(12)),
-          ),
-        ),
-      ),
-    );
+  Future<bool> onPressVerify(
+      {required BuildContext context, required String otp}) async {
+    widget.viewModel.otpVerification(context, otp);
+    return true;
   }
 }

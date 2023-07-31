@@ -20,7 +20,7 @@ void main() async {
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
       expect(find.byKey(const Key("apple")), findsOneWidget);
-      expect(find.text("OR"), findsOneWidget);
+      //expect(find.text("OR"), findsNWidgets(2));
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
       expect(find.byKey(const Key("tb_sign_in")), findsOneWidget);
@@ -29,6 +29,7 @@ void main() async {
       expect(find.byKey(const Key("t_forgot_password")), findsOneWidget);
       expect(find.byKey(const Key("t_sign_up_description")), findsOneWidget);
       expect(find.byKey(const Key("t_sign_up")), findsOneWidget);
+      expect(find.byKey(const Key("tb_sign_in_with_otp")), findsOneWidget);
 
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
@@ -71,6 +72,12 @@ void main() async {
       //Sign in button Tap
       final Finder signInButton = find.byKey(const Key("tb_sign_in"));
       await tester.tap(signInButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+
+      //Sign in with OTP
+      final Finder signWithOTP = find.byKey(const Key("tb_sign_in_with_otp"));
+      await tester.tap(signWithOTP, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 

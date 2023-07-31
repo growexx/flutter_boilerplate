@@ -50,7 +50,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                       color: theme.primaryColor.withOpacity(0.3),
                       shape: BoxShape.circle,
                     ),
-                    child: Assets.png.otp2.image(),
+                    child: Assets.png.icOtp2.image(),
                   ),
                   const SizedBox(
                     height: 24,
@@ -125,7 +125,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                             height: 22,
                           ),
                           SizedBox(
-                              width: double.infinity,
+                              width: 100,
                               child: TextButton(
                                 key: const Key("send"),
                                 onPressed: () {

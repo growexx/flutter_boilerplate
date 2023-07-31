@@ -52,5 +52,6 @@
   "error_password_policy": "The entered password does not match the password policy.",
   "error_confirm_password": "The passwords you have entered do not match. Please try again.",
   "error_valid_email_address": "Please enter a valid email address.",
-  "error_valid_mobile_number": "Please enter a valid mobile number."
+  "error_valid_mobile_number": "Please enter a valid mobile number.",
+  "sign_in_with_otp": "Sign In with OTP"
 }

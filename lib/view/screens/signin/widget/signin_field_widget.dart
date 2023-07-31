@@ -63,11 +63,11 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     Wrap(
                       key:const Key("social_container"),
                       children: [
-                        Assets.png.facebook.image(
+                        Assets.png.icFacebook.image(
                             key:const Key("facebook"),
                             width: 35, height: 35),
                         const SizedBox(width: 20),
-                        Assets.png.instagram.image(
+                        Assets.png.icInstagram.image(
                             key:const Key("instagram"),
                             width: 35, height: 35),
                         const SizedBox(width: 20),
@@ -87,11 +87,11 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               });
                             },
                             child:
-                                Assets.png.google.image(
+                                Assets.png.icGoogle.image(
                                     key:const Key("google"),
                                     width: 35, height: 35)),
                         const SizedBox(width: 20),
-                        Assets.png.twitter.image(
+                        Assets.png.icTwitter.image(
                             key:const Key("twitter"),
                             width: 35, height: 35),
                         const SizedBox(width: 20),
@@ -110,7 +110,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               }
                             });
                           },
-                          child: Assets.png.apple.image(
+                          child: Assets.png.icApple.image(
                               key:const Key("apple"),
                               width: 38, height: 38),
                         ),
@@ -156,6 +156,20 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                         ),
                       ),
                       child: const Text("sign_in").tr(),
+                    ),
+                    const SizedBox(height: 20),
+                    TextButton(
+                      key:const Key("tb_sign_in_with_otp"),
+                      onPressed: () {
+                        onPressSignInWithOTP(ctx);
+                      },
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Text("sign_in_with_otp").tr(),
                     ),
                     const SizedBox(
                       height: 20,
@@ -229,7 +243,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               style: theme.textTheme.bodyMedium,
                             ).tr()),
                       ],
-                    )
+                    ),
                   ],
                 );
               }),
@@ -249,5 +263,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
     } else {
       showToast("Fill Required Fields");
     }
+  }
+  Future<void> onPressSignInWithOTP(BuildContext ctx) async {
+      widget.viewModel.signInWithOTP(ctx);
   }
 }
