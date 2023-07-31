@@ -2,5 +2,5 @@ projectKey=flutter_boilerplate
 serverUrl=https://quality.growexx.com
 serverVersion=8.9.6.50800
 dashboardUrl=https://quality.growexx.com/dashboard?id=flutter_boilerplate
-ceTaskId=AYmqNR5NiMvFMJNUSi5M
-ceTaskUrl=https://quality.growexx.com/api/ce/task?id=AYmqNR5NiMvFMJNUSi5M
+ceTaskId=AYmqPRCViMvFMJNUSi5O
+ceTaskUrl=https://quality.growexx.com/api/ce/task?id=AYmqPRCViMvFMJNUSi5O
