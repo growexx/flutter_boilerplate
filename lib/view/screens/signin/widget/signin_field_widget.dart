@@ -37,196 +37,203 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
 
     return Center(
       child: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: Form(
-            child: Builder(builder: (ctx) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    key:const Key("sign_in"),
-                    "sign_in",
-                    style: theme.textTheme.headlineMedium,
-                  ).tr(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                      key:const Key("sign_in_description"),
-                      "login_using_social_networks",
-                          style: theme.textTheme.bodyMedium)
-                      .tr(),
-                  const SizedBox(height: 20),
-                  Wrap(
-                    key:const Key("social_container"),
-                    children: [
-                      Assets.png.facebook.image(
-                          key:const Key("facebook"),
-                          width: 35, height: 35),
-                      const SizedBox(width: 20),
-                      Assets.png.instagram.image(
-                          key:const Key("instagram"),
-                          width: 35, height: 35),
-                      const SizedBox(width: 20),
-                      InkWell(
-                          onTap: () {
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: Form(
+              child: Builder(builder: (ctx) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      key:const Key("sign_in"),
+                      "sign_in",
+                      style: theme.textTheme.headlineMedium,
+                    ).tr(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                        key:const Key("sign_in_description"),
+                        "login_using_social_networks",
+                            style: theme.textTheme.bodyMedium)
+                        .tr(),
+                    const SizedBox(height: 20),
+                    Wrap(
+                      key:const Key("social_container"),
+                      children: [
+                        Assets.png.facebook.image(
+                            key:const Key("facebook"),
+                            width: 35, height: 35),
+                        const SizedBox(width: 20),
+                        Assets.png.instagram.image(
+                            key:const Key("instagram"),
+                            width: 35, height: 35),
+                        const SizedBox(width: 20),
+                        InkWell(
+                            onTap: () {
+                              widget.socialSignInViewModel
+                                  .signinWithGoogle()
+                                  .then((User? user) {
+                                if (user != null) {
+                                  widget.userRepository
+                                      .updateUserData(user)
+                                      .then((value) => Router.neglect(
+                                          context,
+                                          () => context
+                                              .goNamed(DashboardScreen.name)));
+                                }
+                              });
+                            },
+                            child:
+                                Assets.png.google.image(
+                                    key:const Key("google"),
+                                    width: 35, height: 35)),
+                        const SizedBox(width: 20),
+                        Assets.png.twitter.image(
+                            key:const Key("twitter"),
+                            width: 35, height: 35),
+                        const SizedBox(width: 20),
+                        InkWell(
+                          onTap: (){
                             widget.socialSignInViewModel
-                                .signinWithGoogle()
+                                .signinWithApple()
                                 .then((User? user) {
                               if (user != null) {
                                 widget.userRepository
                                     .updateUserData(user)
                                     .then((value) => Router.neglect(
-                                        context,
+                                    context,
                                         () => context
-                                            .goNamed(DashboardScreen.name)));
+                                        .goNamed(DashboardScreen.name)));
                               }
                             });
                           },
-                          child:
-                              Assets.png.google.image(
-                                  key:const Key("google"),
-                                  width: 35, height: 35)),
-                      const SizedBox(width: 20),
-                      Assets.png.twitter.image(
-                          key:const Key("twitter"),
-                          width: 35, height: 35),
-                      const SizedBox(width: 20),
-                      InkWell(
-                        onTap: (){
-                          widget.socialSignInViewModel
-                              .signinWithApple()
-                              .then((User? user) {
-                            if (user != null) {
-                              widget.userRepository
-                                  .updateUserData(user)
-                                  .then((value) => Router.neglect(
-                                  context,
-                                      () => context
-                                      .goNamed(DashboardScreen.name)));
-                            }
-                          });
-                        },
-                        child: Assets.png.apple.image(
-                            key:const Key("apple"),
-                            width: 38, height: 38),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Text("or_capital", style: theme.textTheme.bodyMedium).tr(),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    key:const Key("tf_email"),
-                    controller: widget.viewModel.emailC,
-                    decoration:
-                        const InputDecoration(hintText: "Enter Email"),
-                    validator: ValidationHelper.emailValidation,
-                    onFieldSubmitted: (val) {
-                      onPressSignIn(ctx);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  PasswordField(
-                    key:const Key("tf_password"),
-                    controller: widget.viewModel.passwordC,
-                    hintText: "Enter Password",
-                    validator: ValidationHelper.passwordValidation,
-                    onFieldSubmitted: (val) {
-                      onPressSignIn(ctx);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextButton(
-                    key:const Key("tb_sign_in"),
-                    onPressed: () {
-                      onPressSignIn(ctx);
-                    },
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
+                          child: Assets.png.apple.image(
+                              key:const Key("apple"),
+                              width: 38, height: 38),
+                        ),
+                      ],
                     ),
-                    child: const Text("sign_in").tr(),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    key:const Key("row_sing_in_utils"),
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Wrap(
-                        key:const Key("remember_me"),
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 12,
-                            child: Selector<SignInViewModel, bool>(
-                              selector: (_, listener) =>
-                              listener.isRememberMeChecked,
-                              builder: (context, isRememberCheck, child) =>
-                                  Checkbox(
-                                    key:const Key("cb_remember_me"),
-                                    fillColor: theme.checkboxTheme.fillColor,
-                                    value: isRememberCheck,
-                                    onChanged: (bool? value) =>
-                                    widget.viewModel.setRememberMe = value!,
-                                  ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            key:const Key("t_remember_me"),
-                            "remember_me",
-                            style: theme.textTheme.bodySmall,
-                          ).tr()
-                        ],
+                    const SizedBox(height: 20),
+                    Text("or_capital", style: theme.textTheme.bodyMedium).tr(),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      key:const Key("tf_email"),
+                      controller: widget.viewModel.emailC,
+                      decoration:
+                          const InputDecoration(hintText: "Enter Email"),
+                      validator: ValidationHelper.emailValidation,
+                      onFieldSubmitted: (val) {
+                        onPressSignIn(ctx);
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    PasswordField(
+                      key:const Key("tf_password"),
+                      controller: widget.viewModel.passwordC,
+                      hintText: "Enter Password",
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressSignIn(ctx);
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextButton(
+                      key:const Key("tb_sign_in"),
+                      onPressed: () {
+                        onPressSignIn(ctx);
+                      },
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
-                      InkWell(
-                          key:const Key("forgot_password"),
-                          onTap: () {
-                            NavigationHelper.pushNamed(
-                                context, ForgotPasswordScreen.name);
-                          },
-                          child: Text(
-                              key:const Key("t_forgot_password"),
-                              "forgot_password",
-                              style: theme.textTheme.bodySmall)
-                              .tr())
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Wrap(
-                    key:const Key("t_sign_up_description"),
-                    children: [
-                      Text("don't_have_an_account",
-                              style: theme.textTheme.bodyMedium)
-                          .tr(),
-                      const SizedBox(width: 10),
-                      InkWell(
-                          onTap: () => NavigationHelper.pushNamed(
-                              context, SignUpScreen.name),
-                          child: Text(
-                            key:const Key("t_sign_up"),
-                            "sign_up",
-                            style: theme.textTheme.bodyMedium,
-                          ).tr()),
-                    ],
-                  )
-                ],
-              );
-            }),
+                      child: const Text("sign_in").tr(),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      key:const Key("row_sing_in_utils"),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Wrap(
+                            key:const Key("remember_me"),
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 5,
+                            runSpacing: 5,
+                            children: [
+                              SizedBox(
+                                width: 12,
+                                child: Selector<SignInViewModel, bool>(
+                                  selector: (_, listener) =>
+                                  listener.isRememberMeChecked,
+                                  builder: (context, isRememberCheck, child) =>
+                                      Checkbox(
+                                        key:const Key("cb_remember_me"),
+                                        fillColor: theme.checkboxTheme.fillColor,
+                                        value: isRememberCheck,
+                                        onChanged: (bool? value) =>
+                                        widget.viewModel.setRememberMe = value!,
+                                      ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                key:const Key("t_remember_me"),
+                                "remember_me",
+                                style: theme.textTheme.bodySmall,
+                              ).tr()
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                            key:const Key("forgot_password"),
+                            onTap: () {
+                              NavigationHelper.pushNamed(
+                                  context, ForgotPasswordScreen.name);
+                            },
+                            child: Text(
+                                key:const Key("t_forgot_password"),
+                                "forgot_password",
+                                style: theme.textTheme.bodySmall)
+                                .tr())
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Wrap(
+                      key:const Key("t_sign_up_description"),
+                      children: [
+                        Text("don't_have_an_account",
+                                style: theme.textTheme.bodyMedium)
+                            .tr(),
+                        const SizedBox(width: 10),
+                        InkWell(
+                            onTap: () => NavigationHelper.pushNamed(
+                                context, SignUpScreen.name),
+                            child: Text(
+                              key:const Key("t_sign_up"),
+                              "sign_up",
+                              style: theme.textTheme.bodyMedium,
+                            ).tr()),
+                      ],
+                    )
+                  ],
+                );
+              }),
+            ),
           ),
         ),
       ),

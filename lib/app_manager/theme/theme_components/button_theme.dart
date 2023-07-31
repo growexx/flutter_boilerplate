@@ -3,36 +3,30 @@ import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 
 class CustomTextButtonTheme {
-  static final TextButtonThemeData primaryLight =TextButtonThemeData(
-      style: TextButton.styleFrom(
-          minimumSize: const Size(0,40),
-          backgroundColor: AppColor.primary,
-          foregroundColor: Colors.white,
-          shape: _outlinedBorder,
-          textStyle: const TextStyle(
-            fontFamily: AppConstant.fontFamily,
+  static final TextButtonThemeData primaryLight = _createTextButtonThemeData();
+  static final TextButtonThemeData primaryDark = _createTextButtonThemeData(
+      primaryColor: AppColor.primary.withOpacity(0.7)
+  );
+  
+  static TextButtonThemeData _createTextButtonThemeData({
+    Color? primaryColor
+}) {
+    Color primaryColorForTheme = primaryColor ?? AppColor.primary;
+    return TextButtonThemeData(
+        style: TextButton.styleFrom(
+            minimumSize: const Size(0,40),
+            backgroundColor: primaryColorForTheme,
+            foregroundColor: Colors.white,
+            shape: _outlinedBorder,
+            textStyle: const TextStyle(
+              fontFamily: AppConstant.fontFamily,
               fontWeight: FontWeight.w500,
               fontSize: 14,
-          ),
-          padding: const EdgeInsets.all(10)
-      )
-  );
-  static final TextButtonThemeData primaryDark =TextButtonThemeData(
-      style: TextButton.styleFrom(
-          minimumSize: const Size(0,40),
-          backgroundColor: AppColor.secondary,
-          foregroundColor: Colors.white,
-          shape: _outlinedBorder,
-          textStyle: const TextStyle(
-            fontFamily: AppConstant.fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-          ),
-          padding: const EdgeInsets.all(10)
-      )
-  );
-
-
+            ),
+            padding: const EdgeInsets.all(10)
+        )
+    );
+  }
 
   // static final TextButtonThemeData text =TextButtonThemeData(
   //     style: TextButton.styleFrom(

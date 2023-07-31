@@ -15,11 +15,10 @@ class WelcomeWidget extends StatelessWidget {
       SizedBox(
         key:const Key("sb_wallpaper"),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Assets.png.bg_wallpaper.image(fit: BoxFit.fill),
+        child: Assets.png.bg_wallpaper.image(fit: BoxFit.cover),
       ),
       Padding(
-        padding: const EdgeInsets.only(left: 50,right: 50, bottom: 80),
+        padding: const EdgeInsets.all(50),
         child: Align(
             key:const Key("align"),
             alignment: Alignment.bottomCenter,

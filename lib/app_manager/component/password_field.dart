@@ -8,7 +8,6 @@ class PasswordField<T> extends StatefulWidget {
   final String? hintText;
   final TextStyle? style;
   final Widget? prefixIcon;
-  final InputDecorationTheme? theme;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onFieldSubmitted;
 
@@ -19,7 +18,6 @@ class PasswordField<T> extends StatefulWidget {
         this.hintText,
         this.validator,
         this.style,
-        this.theme,
         this.prefixIcon,
         this.onFieldSubmitted});
 

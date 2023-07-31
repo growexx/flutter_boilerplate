@@ -27,46 +27,50 @@ class _SignInScreenState extends State<SignInScreen> {
     final googleSignInViewModel = Provider.of<SocialSignInViewModel>(context,listen: false);
     final userRepository = Provider.of<UserRepository>(context,listen: false);
 
-    Widget fieldPart = SignInFieldWidget(
-      viewModel: viewModel,
-      socialSignInViewModel: googleSignInViewModel,
-      userRepository: userRepository,
+    Widget controlBar = SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Wrap(
+          alignment: WrapAlignment.spaceAround,
+          children: [
+            const ThemeModeSelector(),
+            LocaleSelectorWidget(
+              onLocaleChange: () {
+                setState(() {
+
+                });
+              },
+            )
+          ],
+        ),
+      ),
+    );
+
+    Widget fieldPart = Column(
+      children: [
+        controlBar,
+        Expanded(
+          child: SignInFieldWidget(
+            viewModel: viewModel,
+            socialSignInViewModel: googleSignInViewModel,
+            userRepository: userRepository,
+          ),
+        ),
+      ],
     );
 
     return  Scaffold(
-      body: Column(
-        children: [
-           SizedBox(
-             width: double.infinity,
-             child: Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Wrap(
-                alignment: WrapAlignment.spaceAround,
-                children: [
-                  const ThemeModeSelector(),
-                  LocaleSelectorWidget(
-                    onLocaleChange: () {
-                      setState(() {
-
-                      });
-                    },
-                  )
-                ],
-          ),
-             ),
-           ),
-          Expanded(
-            child: ResponsiveHelperWidget(
-              mobile: fieldPart,
-              desktop: Row(
-                children: [
-                  const Expanded(flex: 3,child: SignInWebPageFillerWidget()),
-                  Expanded(flex:1,child: fieldPart),
-                ],
-              ),
-            ),
-          ),
-        ],
+      body: ResponsiveHelperWidget(
+        mobile: fieldPart,
+        desktop: Row(
+          children: [
+            const Expanded(flex: 3,child: SignInWebPageFillerWidget()),
+            SizedBox(
+                width: 440,
+                child: fieldPart),
+          ],
+        ),
       ),
     );
   }
