@@ -6,8 +6,8 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/otp/widget/otp_verification_widget.dart';
 import 'package:flutter_boilerplate/view/screens/otp/widget/otp_web_page_filler_widget.dart';
 import 'package:flutter_boilerplate/view/screens/otp/widget/otp_widget.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
+import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:provider/provider.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<OTPViewModel>(context, listen: false);
     final googleSignInViewModel =
-        Provider.of<GoogleSigninViewModel>(context, listen: false);
+        Provider.of<SocialSignInViewModel>(context, listen: false);
     final userRepository = Provider.of<UserRepository>(context, listen: false);
 
     Widget fillPhoneNumberWidget = OTPWidget(

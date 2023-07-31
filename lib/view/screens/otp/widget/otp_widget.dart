@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
+import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class OTPWidget extends StatefulWidget {
   final OTPViewModel viewModel;
-  final GoogleSigninViewModel googleSignInViewModel;
+  final SocialSignInViewModel googleSignInViewModel;
   final UserRepository userRepository;
 
   const OTPWidget({super.key,

@@ -10,20 +10,20 @@ import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
+import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignInFieldWidget extends StatefulWidget {
   final SignInViewModel viewModel;
-  final GoogleSigninViewModel googleSignInViewModel;
+  final SocialSignInViewModel socialSignInViewModel;
   final UserRepository userRepository;
 
   const SignInFieldWidget(
       {super.key,
       required this.viewModel,
-      required this.googleSignInViewModel,
+      required this.socialSignInViewModel,
       required this.userRepository});
 
   @override
@@ -71,8 +71,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       const SizedBox(width: 20),
                       InkWell(
                           onTap: () {
-                            widget.googleSignInViewModel
-                                .signin()
+                            widget.socialSignInViewModel
+                                .signinWithGoogle()
                                 .then((User? user) {
                               if (user != null) {
                                 widget.userRepository
@@ -93,9 +93,25 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                           key:const Key("twitter"),
                           width: 35, height: 35),
                       const SizedBox(width: 20),
-                      Assets.png.apple.image(
-                          key:const Key("apple"),
-                          width: 38, height: 38),
+                      InkWell(
+                        onTap: (){
+                          widget.socialSignInViewModel
+                              .signinWithApple()
+                              .then((User? user) {
+                            if (user != null) {
+                              widget.userRepository
+                                  .updateUserData(user)
+                                  .then((value) => Router.neglect(
+                                  context,
+                                      () => context
+                                      .goNamed(DashboardScreen.name)));
+                            }
+                          });
+                        },
+                        child: Assets.png.apple.image(
+                            key:const Key("apple"),
+                            width: 38, height: 38),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),

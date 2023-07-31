@@ -4,12 +4,12 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
+import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 
 class OTPVerificationWidget extends StatefulWidget {
   final OTPViewModel viewModel;
-  final GoogleSigninViewModel googleSignInViewModel;
+  final SocialSignInViewModel googleSignInViewModel;
   final UserRepository userRepository;
 
   const OTPVerificationWidget(

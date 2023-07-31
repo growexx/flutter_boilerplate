@@ -8,10 +8,7 @@ import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
@@ -78,8 +75,8 @@ List<RouteBase> routes = [
                 ChangeNotifierProvider<OTPViewModel>(
                   create: (_) => OTPViewModel(),
                 ),
-                ChangeNotifierProvider<GoogleSigninViewModel>(
-                  create: (_) => GoogleSigninViewModel(),
+                ChangeNotifierProvider<SocialSignInViewModel>(
+                  create: (_) => SocialSignInViewModel(),
                 ),
               ],
               child: const OTPScreen(),
@@ -122,8 +119,8 @@ List<RouteBase> routes = [
         context: context,
         state: state,
         child: MultiProvider(providers: [
-          ChangeNotifierProvider<GoogleSigninViewModel>(
-            create: (_) => GoogleSigninViewModel(),
+          ChangeNotifierProvider<SocialSignInViewModel>(
+            create: (_) => SocialSignInViewModel(),
           ),
           ChangeNotifierProvider<SignInViewModel>(
             create: (_) => SignInViewModel(),
