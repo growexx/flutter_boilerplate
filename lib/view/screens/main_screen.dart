@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
 import '../../app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import '../../app_manager/component/bottom_sheet/functional_sheet.dart';
@@ -22,36 +21,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-  bool isTabBarView = false;
-  bool isDrawerNav = true;
-  final List<Widget> _screens = [
-    DashboardScreen(),
-    // UserDetailsScreen(
-    //   username: 'John Doe',
-    //   email: 'johndoe@example.com',
-    //   profileImageUrl: 'https://example.com/profile_image.png',
-    // ),
-    Center(
-      child: Text(
-        'Profile Screen',
-        style: TextStyle(fontSize: 24),
-      ),
-    ),
-    Center(
-      child: Text(
-        'Settings Screen',
-        style: TextStyle(fontSize: 24),
-      ),
-    ),
-    Center(
-      child: Text(
-        'Chat Screen',
-        style: TextStyle(fontSize: 24),
-      ),
-    ),
-  ];
-
+  
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -76,19 +46,19 @@ class _MainScreenState extends State<MainScreen> {
                 onPressed: () {
                   NavigationHelper.pushNamed(context, DrawerNavigation.name);
                 },
-                child: Text('drawer_navigation').tr(),
+                child: const Text('drawer_navigation').tr(),
               ),
               MaterialButton(
                 onPressed: () {
                   NavigationHelper.pushNamed(context, TopTabNavigation.name);
                 },
-                child: Text('top_tab_navigation').tr(),
+                child: const Text('top_tab_navigation').tr(),
               ),
               MaterialButton(
                 onPressed: () {
                   NavigationHelper.pushNamed(context, BottomTabNavigation.name);
                 },
-                child: Text('bottom_tab_navigation').tr(),
+                child: const Text('bottom_tab_navigation').tr(),
               )
             ],
           ),

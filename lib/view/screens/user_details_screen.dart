@@ -7,7 +7,7 @@ class UserDetailsScreen extends StatefulWidget {
   static const String path = "/$name";
   bool showButton;
 
-  UserDetailsScreen({
+  UserDetailsScreen({super.key, 
     this.showButton = true,
   });
 
@@ -16,9 +16,9 @@ class UserDetailsScreen extends StatefulWidget {
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
-  bool _isEditing = false;
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  final bool _isEditing = false;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   UserRepository userRepository = UserRepository();
 
   @override
@@ -39,10 +39,10 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: widget.showButton,
-          title: Text('User Details'),
+          title: const Text('User Details'),
           actions: [
             IconButton(
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
               onPressed: () {
                 // Enable editing mode
                 setState(() {
@@ -53,7 +53,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -70,29 +70,29 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Name:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Name',
                   fillColor: Colors.white,
                   filled: true,
                 ),
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 'Email:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   fillColor: Colors.white,
                   filled: true,

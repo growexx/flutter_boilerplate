@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
-import '../../../app_manager/helper/navigation/navigation_helper.dart';
 import '../dashboard_screen.dart';
 
 class TopTabNavigation extends StatelessWidget {
@@ -10,17 +9,17 @@ class TopTabNavigation extends StatelessWidget {
   static const String name = "top_tab_navigation";
   static const String path = "/$name";
   final List<Widget> _screens = [
-    DashboardScreen(),
+    const DashboardScreen(),
     UserDetailsScreen(
       showButton: false,
     ),
-    Center(
+    const Center(
       child: Text(
         'Settings Screen',
         style: TextStyle(fontSize: 24),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Chat Screen',
         style: TextStyle(fontSize: 24),
@@ -34,8 +33,8 @@ class TopTabNavigation extends StatelessWidget {
       length: 4, // Number of tabs
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Sample Header").tr(),
-            bottom: TabBar(
+            title: const Text("Sample Header").tr(),
+            bottom: const TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               tabs: [
                 Tab(

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/main_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
@@ -22,14 +23,14 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Sample Header").tr(),
+          title: const Text("Sample Header").tr(),
           automaticallyImplyLeading: isDrawerNav,
         ),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
@@ -42,39 +43,39 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text('User profile'),
+                leading: const Icon(Icons.person),
+                title: const Text('User profile'),
                 onTap: () {
                   // Navigate to the home screen or perform any action
                   NavigationHelper.pushNamed(context, UserDetailsScreen.name);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
                 onTap: () {
                   // Navigate to the settings screen or perform any action
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Icon(Icons.screenshot_rounded),
-                title: Text('Main Screen'),
+                leading: const Icon(Icons.screenshot_rounded),
+                title: const Text('Main Screen'),
                 onTap: () {
                   NavigationHelper.pushNamed(context, MainScreen.name);
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Logout'),
+                leading: const Icon(Icons.logout),
+                title: const Text('Logout'),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/login');
+                  NavigationHelper.pushNamed(context, SigninScreen.name);
                 },
               ),
             ],
           ),
         ),
-        body: DashboardScreen());
+        body: const DashboardScreen());
   }
 }

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
-import '../../../app_manager/helper/navigation/navigation_helper.dart';
 import '../dashboard_screen.dart';
 
 class BottomTabNavigation extends StatefulWidget {
@@ -18,17 +17,17 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    DashboardScreen(),
+    const DashboardScreen(),
     UserDetailsScreen(
       showButton: false,
     ),
-    Center(
+    const Center(
       child: Text(
         'Settings Screen',
         style: TextStyle(fontSize: 24),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Chat Screen',
         style: TextStyle(fontSize: 24),
@@ -42,7 +41,7 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
       length: 4, // Number of tabs
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Sample Header").tr(),
+            title: const Text("Sample Header").tr(),
           ),
           body: _screens[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(
@@ -55,7 +54,7 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
                 _currentIndex = index;
               });
             },
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.dashboard),
                 label: 'Dashboard',
