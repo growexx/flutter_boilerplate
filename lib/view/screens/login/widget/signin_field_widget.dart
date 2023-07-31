@@ -88,6 +88,7 @@ class SigninFieldWidget extends StatelessWidget {
           email: viewModel.emailC.text,
           password: viewModel.passwordC.text
       );
+      ctx.goNamed(DashboardScreen.name);
     } else {
       showToast("Fill Required Fields");
     }
