@@ -35,5 +35,6 @@
   "sign_out": "साइन आउट",
   "security_pin": "सुरक्षा पिन",
   "security_pin_description": "अपना सुरक्षा पिन सेट करें",
-  "save": "अब सहेजें"
+  "save": "अब सहेजें",
+  "payment_screen": "भुगतान स्क्रीन"
 }

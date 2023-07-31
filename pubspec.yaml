@@ -55,6 +55,8 @@ dependencies:
   http: ^1.1.0
   intl_phone_number_input: ^0.7.3+1
 
+  pay: ^1.1.0
+
 dev_dependencies:
   build_runner:
   flutter_gen_runner:
