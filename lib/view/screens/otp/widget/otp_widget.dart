@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:provider/provider.dart';
 
 class OTPWidget extends StatefulWidget {
   final OTPViewModel viewModel;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../util/common_initial_activity.dart';

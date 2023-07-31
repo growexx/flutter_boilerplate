@@ -10,7 +10,6 @@ import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bo
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:pay/pay.dart';
 import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatelessWidget {

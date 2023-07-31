@@ -9,8 +9,11 @@ class WelcomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Stack(children: [
+    return Stack(
+        key:const Key("bg_stack"),
+        children: [
       SizedBox(
+        key:const Key("sb_wallpaper"),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Assets.png.bg_wallpaper.image(fit: BoxFit.fill),
@@ -18,25 +21,32 @@ class WelcomeWidget extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 50,right: 50, bottom: 80),
         child: Align(
+            key:const Key("align"),
             alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("welcome",
-                    style: theme.textTheme.headlineLarge).tr(),
-                const SizedBox(height: 30),
-                Text(
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    "flutter_description1",
-                    style: theme.textTheme.headlineSmall).tr(),
-                const SizedBox(height: 30),
-                Text(
-                    maxLines: 10,
-                    overflow: TextOverflow.ellipsis,
-                    "flutter_description2",
-                    style: theme.textTheme.headlineSmall).tr()
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                      key:const Key("welcome"),
+                      "welcome",
+                      style: theme.textTheme.headlineLarge).tr(),
+                  const SizedBox(height: 30),
+                  Text(
+                      key:const Key("description1"),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      "flutter_description1",
+                      style: theme.textTheme.headlineSmall).tr(),
+                  const SizedBox(height: 30),
+                  Text(
+                      key:const Key("description2"),
+                      maxLines: 10,
+                      overflow: TextOverflow.ellipsis,
+                      "flutter_description2",
+                      style: theme.textTheme.headlineSmall).tr()
+                ],
+              ),
             )),
       )
     ]);
