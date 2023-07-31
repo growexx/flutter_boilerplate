@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
-import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_field_theme.dart';
 
 class PasswordField<T> extends StatefulWidget {
   final TextEditingController? controller;
