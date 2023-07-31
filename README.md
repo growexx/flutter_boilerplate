@@ -62,8 +62,11 @@ The project contains the drk and light mode ThemeProvider is used to control the
 ### LocaleSelector and LocalProvider:
 The project using `easy_localization` for locale management, It contains a LocaleHelper file to manage the all the locales and fallback locale and LocalSelectorWidget help you select the locale.
 
-### GoogleSign:
+### GoogleSignin:
 Google signin is available for web android and ios.
+
+### AppleSignin:
+Apple signin is available for web android and ios.
 
 ### Libraries & Tools Used
 
@@ -78,6 +81,7 @@ Google signin is available for web android and ios.
 * [google_sign_in](https://pub.dev/packages/google_sign_in)
 * [Provider](https://pub.dev/packages/provider) (State Management)
 * [shared_preferences](https://pub.dev/packages/shared_preferences)
+* [sign_in_with_apple](https://pub.dev/packages/sign_in_with_apple)
 
 
 ### Folder Structure
