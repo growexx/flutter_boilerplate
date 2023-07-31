@@ -33,10 +33,22 @@ void main() async {
       expect(find.byKey(const Key("verification")), findsOneWidget);
       expect(find.byKey(const Key("enter_otp")), findsOneWidget);
       expect(find.byKey(const Key("otp_text_field_container")), findsOneWidget);
+
+      final Finder otpField = find.byKey(const Key("otp_text_field"));
+      expect(otpField, findsNWidgets(4));
+      await tester.enterText(otpField, '1');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+
       expect(find.byKey(const Key("verify")), findsOneWidget);
       expect(find.byKey(const Key("did_not_receive_code")), findsOneWidget);
-      expect(find.byKey(const Key("resend_new_code")), findsOneWidget);
 
+      final Finder reSendButton = find.byKey(const Key("resend_new_code"));
+      expect(reSendButton, findsOneWidget);
+
+      //Re-send button Tap
+      await tester.tap(reSendButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
     });
   });
 }

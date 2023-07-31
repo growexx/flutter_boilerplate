@@ -151,7 +151,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           SizedBox(
-                            width: 10,
+                            width: 12,
                             child: Selector<SignInViewModel, bool>(
                               selector: (_, listener) =>
                               listener.isRememberMeChecked,

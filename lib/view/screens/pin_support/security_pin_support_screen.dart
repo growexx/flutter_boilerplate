@@ -3,33 +3,30 @@ import 'package:flutter_boilerplate/app_manager/component/responsive/widget/resp
 import 'package:flutter_boilerplate/app_manager/locale/widget/locale_selector_widget.dart';
 import 'package:flutter_boilerplate/app_manager/theme/widget/theme_mode_selector.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:flutter_boilerplate/view/screens/signin/widget/signin_field_widget.dart';
-import 'package:flutter_boilerplate/view/screens/signin/widget/signin_web_page_filler_widget.dart';
-import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
-import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/pin_support/widget/security_pin_web_page_filler_widget.dart';
+import 'package:flutter_boilerplate/view/screens/pin_support/widget/set_pin_field_widget.dart';
+import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatefulWidget {
+class SecurityPinSupportScreen extends StatefulWidget {
 
-  static const String name = "signin";
+  static const String name = "security_pin";
   static const String path = "/$name";
 
-  const SignInScreen({super.key});
+  const SecurityPinSupportScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SecurityPinSupportScreen> createState() => _SecurityPinSupportScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SecurityPinSupportScreenState extends State<SecurityPinSupportScreen> {
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<SignInViewModel>(context,listen: false);
-    final googleSignInViewModel = Provider.of<GoogleSigninViewModel>(context,listen: false);
+    final viewModel = Provider.of<SecurityPinViewModel>(context,listen: false);
     final userRepository = Provider.of<UserRepository>(context,listen: false);
 
-    Widget fieldPart = SignInFieldWidget(
+    Widget fieldPart = SetSecurityPinWidget(
       viewModel: viewModel,
-      googleSignInViewModel: googleSignInViewModel,
       userRepository: userRepository,
     );
 
@@ -60,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
               mobile: fieldPart,
               desktop: Row(
                 children: [
-                  const Expanded(flex: 3,child: SignInWebPageFillerWidget()),
+                  const Expanded(flex: 3,child: SecurityPinWebPageFillerWidget()),
                   Expanded(flex:1,child: fieldPart),
                 ],
               ),

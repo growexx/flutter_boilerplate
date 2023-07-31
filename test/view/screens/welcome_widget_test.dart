@@ -8,7 +8,7 @@ void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group("Welcome Widget (Web Sample Widget) Test", () {
-    testWidgets('sign-in screen', (WidgetTester tester) async {
+    testWidgets('welcome widget', (WidgetTester tester) async {
       Widget widget = const MaterialApp(home:WelcomeWidget());
       await tester.pumpWidget(widget);
       expect(find.byKey(const Key("welcome")), findsOneWidget);

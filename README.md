@@ -191,7 +191,7 @@ This file contains all the routes for your application.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/signin_screen.dart';
+import 'package:flutter_boilerplate/view/screens/security_pin_support_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 

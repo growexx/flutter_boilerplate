@@ -3,11 +3,13 @@ import 'package:flutter_boilerplate/view/screens/change_password/change_password
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
+import 'package:flutter_boilerplate/view/screens/pin_support/security_pin_support_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
+import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
 import 'package:flutter_boilerplate/view_model/forgot_password_view_model.dart';
@@ -123,5 +125,17 @@ List<RouteBase> routes = [
             create: (_) => SignInViewModel(),
           ),
         ], child: const SignInScreen())),
+  ),
+  GoRoute(
+    name: SecurityPinSupportScreen.name,
+    path: SecurityPinSupportScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: MultiProvider(providers: [
+          ChangeNotifierProvider<SecurityPinViewModel>(
+            create: (_) => SecurityPinViewModel(),
+          ),
+        ], child: const SecurityPinSupportScreen())),
   )
 ];
