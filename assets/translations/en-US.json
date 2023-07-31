@@ -40,5 +40,17 @@
   "security_pin_description": "Set Your Security PIN",
   "save": "Save",
   "payment_screen": "Payment Screen",
-  "sign_in": "Signin"
+  "enter_first_name": "Enter First Name",
+  "enter_last_name": "Enter Last Name",
+  "confirm_password": "Confirm Password",
+  "confirm_new_password": "Confirm New Password",
+  "old_password": "Old Password",
+  "new_password": "New Password",
+  "mobile_number": "Mobile Number",
+  "mandatory_field": "This is a mandatory field.",
+  "error_valid_name": "Please enter valid name.",
+  "error_password_policy": "The entered password does not match the password policy.",
+  "error_confirm_password": "The passwords you have entered do not match. Please try again.",
+  "error_valid_email_address": "Please enter a valid email address.",
+  "error_valid_mobile_number": "Please enter a valid mobile number."
 }

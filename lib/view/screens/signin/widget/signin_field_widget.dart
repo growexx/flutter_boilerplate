@@ -123,7 +123,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       key:const Key("tf_email"),
                       controller: widget.viewModel.emailC,
                       decoration:
-                          const InputDecoration(hintText: "Enter Email"),
+                      InputDecoration(hintText: "enter_email".tr()),
                       validator: ValidationHelper.emailValidation,
                       onFieldSubmitted: (val) {
                         onPressSignIn(ctx);
@@ -135,7 +135,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     PasswordField(
                       key:const Key("tf_password"),
                       controller: widget.viewModel.passwordC,
-                      hintText: "Enter Password",
+                      hintText: "enter_password".tr(),
                       validator: ValidationHelper.passwordValidation,
                       onFieldSubmitted: (val) {
                         onPressSignIn(ctx);

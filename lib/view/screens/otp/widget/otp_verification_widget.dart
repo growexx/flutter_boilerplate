@@ -51,7 +51,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                     ),
                     Text(
                       key:const Key("verification"),
-                      'Verification',
+                      'verification',
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
                     const SizedBox(

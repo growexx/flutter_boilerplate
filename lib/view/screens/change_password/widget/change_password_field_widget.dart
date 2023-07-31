@@ -40,7 +40,7 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
                   PasswordField(
                     key: const Key("tf_old_password"),
                     controller: widget.viewModel.oldPasswordC,
-                    hintText: "Old Password",
+                    hintText: "old_password".tr(),
                     validator: ValidationHelper.passwordValidation,
                     onFieldSubmitted: (val) {
                       onPressChangePassword(ctx);
@@ -50,7 +50,7 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
                   PasswordField(
                     key: const Key("tf_new_password"),
                     controller: widget.viewModel.newPasswordC,
-                    hintText: "New Password",
+                    hintText: "new_password".tr(),
                     validator: ValidationHelper.passwordValidation,
                     onFieldSubmitted: (val) {
                       onPressChangePassword(ctx);
@@ -60,7 +60,7 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
                   PasswordField(
                     key: const Key("tf_confirm_new_password"),
                     controller: widget.viewModel.confirmNewPasswordC,
-                    hintText: "Confirm New Password",
+                    hintText: "confirm_new_password".tr(),
                     validator: ValidationHelper.passwordValidation,
                     onFieldSubmitted: (val) {
                       onPressChangePassword(ctx);

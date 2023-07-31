@@ -36,5 +36,18 @@
   "security_pin": "सुरक्षा पिन",
   "security_pin_description": "अपना सुरक्षा पिन सेट करें",
   "save": "अब सहेजें",
-  "payment_screen": "भुगतान स्क्रीन"
+  "payment_screen": "भुगतान स्क्रीन",
+  "enter_first_name": "प्रथम नाम दर्ज करें",
+  "enter_last_name": "अंतिम नाम दर्ज करो",
+  "confirm_password": "पासवर्ड की पुष्टि कीजिये",
+  "confirm_new_password": "नए पासवर्ड की पुष्टि करें",
+  "old_password": "पुराना पासवर्ड",
+  "new_password": "नया पासवर्ड",
+  "mobile_number": "मोबाइल नंबर",
+  "mandatory_field": "यह अनिवार्य फ़ील्ड है.",
+  "error_valid_name": "कृपया वैध नाम दर्ज करें.",
+  "error_password_policy": "दर्ज किया गया पासवर्ड पासवर्ड नीति से मेल नहीं खाता.",
+  "error_confirm_password": "आपके द्वारा दर्ज किए गए पासवर्ड मेल नहीं खाते. कृपया पुन: प्रयास करें।",
+  "error_valid_email_address": "कृपया एक मान्य ईमेल पता प्रविष्ट करें।",
+  "error_valid_mobile_number": "कृपया एक वैध मोबाइल नंबर दर्ज करें."
 }

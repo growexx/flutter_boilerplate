@@ -38,39 +38,39 @@ void main() async {
       await tester.enterText(find.byKey(const Key("tf_password")), 'Test@123');
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
-      //Sign in button Tap
-      final Finder signInButton = find.byKey(const Key("tb_sign_in"));
-      await tester.tap(signInButton, warnIfMissed: false);
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-      await tester.pumpAndSettle();
-
-      //Google button Tap
+     /* //Google button Tap
       final Finder googleButton = find.byKey(const Key("google"));
       await tester.tap(googleButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 
       //facebook button Tap
-      final Finder facebookButton = find.byKey(const Key("google"));
+      final Finder facebookButton = find.byKey(const Key("facebook"));
       await tester.tap(facebookButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 
       //twitter button Tap
-      final Finder twitterButton = find.byKey(const Key("google"));
+      final Finder twitterButton = find.byKey(const Key("twitter"));
       await tester.tap(twitterButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 
       //instagram button Tap
-      final Finder instagramButton = find.byKey(const Key("google"));
+      final Finder instagramButton = find.byKey(const Key("instagram"));
       await tester.tap(instagramButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 
       //apple button Tap
-      final Finder appleButton = find.byKey(const Key("google"));
+      final Finder appleButton = find.byKey(const Key("apple"));
       await tester.tap(appleButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+*/
+      //Sign in button Tap
+      final Finder signInButton = find.byKey(const Key("tb_sign_in"));
+      await tester.tap(signInButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 

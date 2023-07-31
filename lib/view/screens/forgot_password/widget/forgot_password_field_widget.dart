@@ -53,7 +53,7 @@ class _ForgotPasswordFieldWidgetState extends State<ForgotPasswordFieldWidget> {
                       key:const Key("tf_email_address"),
                       controller: widget.viewModel.emailAddressC,
                       decoration:
-                          const InputDecoration(hintText: "Enter Email"),
+                      InputDecoration(hintText: "enter_email".tr()),
                       validator: ValidationHelper.emailValidation,
                       onFieldSubmitted: (val) {
                         onPressReset(ctx);

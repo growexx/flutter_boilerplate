@@ -94,8 +94,8 @@ class _OTPWidgetState extends State<OTPWidget> {
                             selectorConfig: const SelectorConfig(
                               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                             ),
-                            inputDecoration:const InputDecoration(
-                              hintText: "Mobile Number",
+                            inputDecoration: InputDecoration(
+                              hintText: "mobile_number".tr(),
                             ),
                             ignoreBlank: false,
                             autoValidateMode: AutovalidateMode.disabled,

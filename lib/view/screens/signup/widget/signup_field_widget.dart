@@ -44,7 +44,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     TextFormField(
                       key: const Key("tf_first_name"),
                       controller: widget.viewModel.firstNameC,
-                      decoration: const InputDecoration(hintText: "First Name"),
+                      decoration: InputDecoration(hintText: "enter_first_name".tr()),
                       validator: ValidationHelper.nameValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
@@ -54,8 +54,8 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     TextFormField(
                         controller: widget.viewModel.lastNameC,
                         key: const Key("tf_last_name"),
-                        decoration: const InputDecoration(
-                          hintText: "Last Name",
+                        decoration: InputDecoration(
+                          hintText: "enter_last_name".tr(),
                         ),
                         validator: ValidationHelper.nameValidation,
                         onFieldSubmitted: (val) {
@@ -65,8 +65,8 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     TextFormField(
                         controller: widget.viewModel.emailC,
                         key: const Key("tf_email_address"),
-                        decoration: const InputDecoration(
-                          hintText: "Email",
+                        decoration: InputDecoration(
+                          hintText: "enter_email".tr(),
                         ),
                         validator: ValidationHelper.emailValidation,
                         onFieldSubmitted: (val) {
@@ -76,7 +76,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     PasswordField(
                       key: const Key("tf_password"),
                       controller: widget.viewModel.passwordC,
-                      hintText: "Enter Password",
+                      hintText: "enter_password".tr(),
                       validator: ValidationHelper.passwordValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
@@ -86,7 +86,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     PasswordField(
                       key: const Key("tf_confirm_password"),
                       controller: widget.viewModel.confirmPasswordC,
-                      hintText: "Confirm Password",
+                      hintText: "confirm_password".tr(),
                       validator: ValidationHelper.passwordValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
