@@ -65,7 +65,7 @@ class _PasswordFieldState extends State<PasswordField> {
             color: AppColor.hintColor,
           ),
         ),
-      ).applyDefaults(widget.theme ?? CustomTextFieldTheme.primaryLight),
+      ),
       validator: widget.validator ?? ValidationHelper.passwordValidation,
     );
   }

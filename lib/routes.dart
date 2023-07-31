@@ -7,10 +7,7 @@ import 'package:flutter_boilerplate/view/screens/pin_support/security_pin_suppor
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:flutter_boilerplate/view_model/google_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
