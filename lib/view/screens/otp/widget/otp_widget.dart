@@ -56,7 +56,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                     height: 24,
                   ),
                   Text(
-                      key: const Key("sent_otp"),
+                      key: const Key("send_otp"),
                       'send_otp',
                       style: theme.textTheme.headlineSmall)
                       .tr(),
@@ -81,7 +81,18 @@ class _OTPWidgetState extends State<OTPWidget> {
                     child: Form(
                       child: Column(
                         children: [
-                          InternationalPhoneNumberInput(
+                          TextFormField(
+                            maxLines: 1,
+                            maxLength: 10,
+                            key:const Key("phone"),
+                            controller: widget.viewModel.phoneC,
+                            decoration:
+                            InputDecoration(hintText: "mobile_number".tr()),
+                            validator: ValidationHelper.emailValidation,
+                            onFieldSubmitted: (val) {
+                            },
+                          ),
+                         /* InternationalPhoneNumberInput(
                             key: const Key("phone"),
                             validator: (val) =>
                                 ValidationHelper.mobileValidation(val),
@@ -109,7 +120,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                             onSaved: (PhoneNumber number) {
                               //print('On Saved: $number');
                             },
-                          ),
+                          ),*/
                           const SizedBox(
                             height: 22,
                           ),
