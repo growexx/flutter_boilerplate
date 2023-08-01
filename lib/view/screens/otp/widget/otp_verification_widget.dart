@@ -76,7 +76,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         border: Border.all(color: theme.primaryColor),
-                        color: theme.backgroundColor,
+                        color: theme.colorScheme.background,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(

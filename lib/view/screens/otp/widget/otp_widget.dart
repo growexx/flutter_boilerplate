@@ -76,7 +76,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                     padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
                       border: Border.all(color: theme.primaryColor,width: 1),
-                      color: theme.backgroundColor,
+                      color: theme.colorScheme.background,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Form(
