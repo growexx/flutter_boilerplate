@@ -82,11 +82,11 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                       child: Column(
                         children: [
                           Row(
-                              key: const Key("otp_text_field_container"),
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 PinCodeTextField(
+                                  key: const Key("otp_text_field_container"),
                                   autofocus: true,
                                   controller: controller,
                                   hideCharacter: false,
