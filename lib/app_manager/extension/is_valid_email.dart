@@ -1,9 +1,3 @@
-
-
-
-
-
-
 extension EmailValidator on String {
   bool isValidEmail() {
     return RegExp(
