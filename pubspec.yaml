@@ -55,7 +55,7 @@ dependencies:
   sign_in_with_apple: ^5.0.0
 
 
-  pay: ^1.1.0
+  pay: ^1.1.1
   firebase_messaging: ^14.6.5
 
 dev_dependencies:

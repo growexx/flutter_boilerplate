@@ -16,9 +16,28 @@ class FirebasePushNotifications {
   final _firebaseMessaging = FirebaseMessaging.instance;
   
   Future<void> initNotifications() async {
-    await _firebaseMessaging.requestPermission();
+    await _firebaseMessaging.requestPermission(
+       alert: true,
+       announcement: false,
+       badge: true,
+       carPlay: false,
+       criticalAlert: false,
+       provisional: false,
+       sound: true,
+   );
+
+
+   //final fCMToken = await FirebaseMessaging.instance.getToken(vapidKey: "bB3mJU8vW0ZjrEEAwyKb8neXN0dXW88fT0NcD6O_lw");
     final fCMToken = await _firebaseMessaging.getToken();
+     print('KKKKK');
     print(fCMToken);
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Got a message whilst in the foreground!');
+    print('Message data: ${message.data}');
+    if (message.notification != null) {
+    print('Message also contained a notification: ${message.notification}');
+    }
+   });
   }
 }
