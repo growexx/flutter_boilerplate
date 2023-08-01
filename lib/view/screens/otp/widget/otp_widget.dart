@@ -75,7 +75,8 @@ class _OTPWidgetState extends State<OTPWidget> {
                   Container(
                     padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      border: Border.all(color: theme.primaryColor,width: 1),
+                      color: theme.backgroundColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Form(
@@ -125,7 +126,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                             height: 22,
                           ),
                           SizedBox(
-                              width: 100,
+                              width: double.infinity,
                               child: TextButton(
                                 key: const Key("send"),
                                 onPressed: () {

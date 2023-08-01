@@ -37,7 +37,4 @@ class LocalStorage {
         final prefs = pref ?? await SharedPreferences.getInstance();
         await prefs.setString(key, useEncrypt==true? Encrypt.encryption(data):data);
   }
-
-
-
 }

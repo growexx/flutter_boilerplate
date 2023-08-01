@@ -63,6 +63,10 @@ class DashboardScreen extends StatelessWidget {
                     child: Wrap(
                       children: [
                         TextButton(onPressed: (){
+                          userRepository.setSecurityPin(context);
+                        }, child: const Text("set_security_pin").tr()),
+                        const SizedBox(width: 10),
+                        TextButton(onPressed: (){
                           userRepository.changePassword(context);
                         }, child: const Text("change_password").tr()),
                         const SizedBox(width: 10),

@@ -52,6 +52,7 @@ class ThemeProvider extends ChangeNotifier {
     expansionTileTheme: _expansionTileThemeData,
     tabBarTheme: _tabBarTheme,
     dividerTheme: _dividerThemeData,
+    backgroundColor: Colors.white,
     scrollbarTheme: _scrollbarTheme,
       brightness: Brightness.light
   );
@@ -73,7 +74,8 @@ class ThemeProvider extends ChangeNotifier {
     tabBarTheme: _tabBarTheme,
     dividerTheme: _dividerThemeData,
     scrollbarTheme: _scrollbarTheme,
-    brightness: Brightness.dark
+    brightness: Brightness.dark,
+    backgroundColor:Colors.black
   );
 
 

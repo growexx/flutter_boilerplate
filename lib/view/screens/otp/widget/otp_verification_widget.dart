@@ -75,7 +75,8 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        border: Border.all(color: theme.primaryColor),
+                        color: theme.backgroundColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -111,7 +112,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                                   wrapAlignment: WrapAlignment.spaceAround,
                                   pinBoxDecoration:
                                   ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                                  pinTextStyle: const TextStyle(fontSize: 22.0),
+                                  pinTextStyle:  TextStyle(fontSize: 20.0,color: theme.primaryColor),
                                   pinTextAnimatedSwitcherTransition:
                                   ProvidedPinBoxTextAnimation.scalingTransition,
                                   pinTextAnimatedSwitcherDuration:
@@ -122,7 +123,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                                 ),
                               ]),
                           const SizedBox(
-                            height: 10,
+                            height: 30,
                           ),
                           SizedBox(
                             width: double.infinity,

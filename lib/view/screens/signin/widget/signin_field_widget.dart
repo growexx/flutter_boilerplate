@@ -94,7 +94,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                         Assets.png.icTwitter.image(
                             key:const Key("twitter"),
                             width: 35, height: 35),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 15),
                         InkWell(
                           onTap: (){
                             widget.socialSignInViewModel
@@ -112,7 +112,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                           },
                           child: Assets.png.icApple.image(
                               key:const Key("apple"),
-                              width: 38, height: 38),
+                              width: 40, height: 40),
                         ),
                       ],
                     ),

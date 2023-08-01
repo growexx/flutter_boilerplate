@@ -53,5 +53,6 @@
   "error_confirm_password": "The passwords you have entered do not match. Please try again.",
   "error_valid_email_address": "Please enter a valid email address.",
   "error_valid_mobile_number": "Please enter a valid mobile number.",
-  "sign_in_with_otp": "Sign In with OTP"
+  "sign_in_with_otp": "Sign In with OTP",
+  "set_security_pin": "Set Security PIN"
 }
