@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/pin_support/security_pin_support_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +13,7 @@ Future checkLoginStatus(BuildContext context,) async{
     Router.neglect(context, () =>
         context.goNamed(
             isLoggedIn?
-            DashboardScreen.name:SignInScreen.name)
+            DashboardScreen.name:PaymentScreen.name)
     );
   });
 }
