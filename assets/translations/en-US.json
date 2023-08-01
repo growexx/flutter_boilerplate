@@ -43,6 +43,7 @@
   "enter_security_pin": "Enter Your Security PIN",
   "save": "Save",
   "payment_screen": "Payment Screen",
+  "payment": "Payment",
   "enter_first_name": "Enter First Name",
   "enter_last_name": "Enter Last Name",
   "confirm_password": "Confirm Password",
@@ -58,5 +59,7 @@
   "error_valid_mobile_number": "Please enter a valid mobile number.",
   "sign_in_with_otp": "Sign In with OTP",
   "verify_pin": "Verify PIN",
-  "cancel": "CANCEL"
+  "cancel": "CANCEL",
+  "want_to_exit": "Do you want to exit the app?",
+  "exit": "exit"
 }

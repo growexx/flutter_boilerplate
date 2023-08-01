@@ -40,6 +40,7 @@
   "enter_security_pin": "अपना सुरक्षा पिन दर्ज करें",
   "save": "अब सहेजें",
   "payment_screen": "भुगतान स्क्रीन",
+  "payment": "भुगतान",
   "enter_first_name": "प्रथम नाम दर्ज करें",
   "enter_last_name": "अंतिम नाम दर्ज करो",
   "confirm_password": "पासवर्ड की पुष्टि कीजिये",
@@ -55,5 +56,7 @@
   "error_valid_mobile_number": "कृपया एक वैध मोबाइल नंबर दर्ज करें.",
   "sign_in_with_otp": "ओटीपी के साथ साइन इन करें",
   "verify_pin": "पिन सत्यापित करें",
-  "cancel": "रद्द करें"
+  "cancel": "रद्द करें",
+  "want_to_exit": "क्या आप ऐप से बाहर निकलना चाहते हैं?",
+  "exit": "बाहर"
 }

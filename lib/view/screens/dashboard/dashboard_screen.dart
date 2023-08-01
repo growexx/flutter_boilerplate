@@ -24,8 +24,8 @@ class DashboardScreen extends StatelessWidget {
       onWillPop: () {
         CustomBottomSheet.open(context,
             child: FunctionalSheet(
-                message: "Do you want to exit the app?",
-                buttonName: "exit",
+                message: "want_to_exit".tr(),
+                buttonName: "exit".tr(),
                 onPressButton: () async {
                   exit(0);
                 }));
@@ -48,7 +48,7 @@ class DashboardScreen extends StatelessWidget {
                           children: [
                             const Text(
                                 key:Key("welcome"),
-                                "Welcome"),
+                                "welcome").tr(),
                             Text(currentUser?.firstName??""),
                           ],
                         );
@@ -90,7 +90,7 @@ class DashboardScreen extends StatelessWidget {
                          context.goNamed(
                              PaymentScreen.name
                           );
-                    }, child: const Text("Payment"))
+                    }, child: const Text("payment").tr())
               ),
             ),
           ],

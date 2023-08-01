@@ -25,7 +25,6 @@ class _OTPWidgetState extends State<OTPWidget> {
   @override
   void initState() {
     super.initState();
-    //number = getInitialNumber() as PhoneNumber;
   }
 
   @override
