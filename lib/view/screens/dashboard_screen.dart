@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -10,10 +6,11 @@ import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bo
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/todo/todo_list_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatelessWidget {
-
   static const String name = "dashboard";
   static const String path = "/$name";
 
@@ -21,8 +18,9 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserRepository userRepository = Provider.of<UserRepository>(context,listen: false);
-    return  WillPopScope(
+    final UserRepository userRepository =
+        Provider.of<UserRepository>(context, listen: false);
+    return WillPopScope(
       onWillPop: () {
         CustomBottomSheet.open(context,
             child: FunctionalSheet(
@@ -41,32 +39,42 @@ class DashboardScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Selector<UserRepository,User?>(
+                    child: Selector<UserRepository, User?>(
                         shouldRebuild: (prev, nex) => true,
                         selector: (buildContext, vm) => vm.currentUser,
-                        builder: (context,User? currentUser, child) {
-                        return Wrap(
-                          spacing: 5,
-                          children: [
-                            const Text("Welcome"),
-                            Text(currentUser?.firstName??""),
-                          ],
-                        );
-                      }
-                    ),
+                        builder: (context, User? currentUser, child) {
+                          return Wrap(
+                            spacing: 5,
+                            children: [
+                              const Text("Welcome"),
+                              Text(currentUser?.firstName ?? ""),
+                            ],
+                          );
+                        }),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: TextButton(onPressed: (){
-                      userRepository.signOutUser(context);
-                    }, child: const Text("Sign out")),
+                    child: TextButton(
+                        onPressed: () {
+                          userRepository.signOutUser(context);
+                        },
+                        child: const Text("Sign out")),
                   ),
                 ],
               ),
             ),
             Expanded(
-              child: Center(
-                child: const Text("dashboard_screen").tr(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text("dashboard_screen").tr(),
+                  ElevatedButton(
+                      onPressed: () {
+                        context.pushNamed(TodoListScreen.name);
+                      },
+                      child: const Text("TODO List"))
+                ],
               ),
             ),
           ],

@@ -19,8 +19,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // use usePathUrlStrategy to remove # from url path
   usePathUrlStrategy();
@@ -36,26 +35,28 @@ void main() async{
   User user = await UserRepository.fetchUserData();
   // fetching stored theme model
   ThemeMode themeMode = await ThemeProvider.retrieveStoredTheme();
-   Hive.registerAdapter(TodoDataAdapter()); 
-   await Hive.openBox('todo_db');
+  await Hive.initFlutter();
+  Hive.registerAdapter(TodoDataAdapter());
+  await Hive.openBox('todo_db');
 
-  runApp( EasyLocalization(
+  runApp(EasyLocalization(
     supportedLocales: LocaleHelper.supportedLocales,
     path: LocaleHelper.path,
     fallbackLocale: LocaleHelper.fallbackLocale,
     child: MultiProvider(
       providers: [
         ChangeNotifierProvider<UserRepository>(
-          create: (_) => UserRepository(currentUser: user),),
+          create: (_) => UserRepository(currentUser: user),
+        ),
         ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(themeMode: themeMode),),
+          create: (_) => ThemeProvider(themeMode: themeMode),
+        ),
       ],
       child: ChangeNotifierProvider<UserRepository>(
           create: (_) => UserRepository(currentUser: user),
           child: const MyApp()),
     ),
-  )
-  );
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -77,9 +78,7 @@ class MyApp extends StatelessWidget {
       builder: (context, widget) {
         return Container(
           color: AppColor.primary,
-          child: SafeArea(
-              child: widget ?? Container()
-          ),
+          child: SafeArea(child: widget ?? Container()),
         );
       },
     );
@@ -91,6 +90,3 @@ GoRouter router = GoRouter(
   navigatorKey: NavigationService.navigatorKey,
   errorBuilder: (context, state) => const ErrorScreen(),
 );
-
-
-
