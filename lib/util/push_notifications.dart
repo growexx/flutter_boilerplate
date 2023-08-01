@@ -26,11 +26,7 @@ class FirebasePushNotifications {
        sound: true,
    );
 
-
-   //final fCMToken = await FirebaseMessaging.instance.getToken(vapidKey: "bB3mJU8vW0ZjrEEAwyKb8neXN0dXW88fT0NcD6O_lw");
     final fCMToken = await _firebaseMessaging.getToken();
-     print('KKKKK');
-    print(fCMToken);
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Got a message whilst in the foreground!');
