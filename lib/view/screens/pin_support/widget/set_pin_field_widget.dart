@@ -41,7 +41,7 @@ class _SetSecurityPinWidgetState extends State<SetSecurityPinWidget> {
                     height: 10,
                   ),
                   Text(
-                      key:const Key("sign_in_description"),
+                      key:const Key("security_pin_description"),
                       "security_pin_description",
                           style: theme.textTheme.bodyMedium)
                       .tr(),
@@ -53,7 +53,7 @@ class _SetSecurityPinWidgetState extends State<SetSecurityPinWidget> {
                     key:const Key("tf_security_pin"),
                     controller: widget.viewModel.pinC,
                     decoration:
-                        const InputDecoration(hintText: "Your 4 digit PIN"),
+                    InputDecoration(hintText: "your_4_digit_pin".tr()),
                     validator: ValidationHelper.requiredField,
                     onFieldSubmitted: (val) {
                       onPressSave(ctx);

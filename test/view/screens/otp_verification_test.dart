@@ -26,8 +26,8 @@ void main() async {
   await commonInitialActivity();
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group("OTP Widget test", () {
-    testWidgets('OTP widget', (WidgetTester tester) async {
+  group("OTP Verification Widget test", () {
+    testWidgets('OTP Verification widget', (WidgetTester tester) async {
       MockOTPViewModel mockOTPViewModel = MockOTPViewModel();
       MockSocialSignInViewModel mockSocialSignInViewModel =
           MockSocialSignInViewModel();

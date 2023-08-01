@@ -33,16 +33,16 @@ class _VerifySecurityPinWidgetState extends State<VerifySecurityPinWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    key:const Key("security_pin"),
-                    "security_pin",
+                    key:const Key("verify_security_pin"),
+                    "verify_security_pin",
                     style: theme.textTheme.headlineMedium,
                   ).tr(),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                      key:const Key("sign_in_description"),
-                      "security_pin_description",
+                      key:const Key("enter_security_pin"),
+                      "enter_security_pin",
                           style: theme.textTheme.bodyMedium)
                       .tr(),
                   const SizedBox(height: 20),
@@ -53,7 +53,7 @@ class _VerifySecurityPinWidgetState extends State<VerifySecurityPinWidget> {
                     key:const Key("tf_security_pin"),
                     controller: widget.viewModel.pinC,
                     decoration:
-                        const InputDecoration(hintText: "Your 4 digit PIN"),
+                    InputDecoration(hintText: "your_4_digit_pin".tr()),
                     validator: ValidationHelper.requiredField,
                     onFieldSubmitted: (val) {
                       onPressSave(ctx);
@@ -63,7 +63,7 @@ class _VerifySecurityPinWidgetState extends State<VerifySecurityPinWidget> {
                     height: 20,
                   ),
                   TextButton(
-                    key:const Key("tb_save"),
+                    key:const Key("tb_verify"),
                     onPressed: () {
                       onPressSave(ctx);
                     },
@@ -73,7 +73,7 @@ class _VerifySecurityPinWidgetState extends State<VerifySecurityPinWidget> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    child: const Text("save").tr(),
+                    child: const Text("verify").tr(),
                   ),
                 ],
               );
