@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
+import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
@@ -45,7 +46,14 @@ List<RouteBase> routes = [
     name: SecurityPinScreen.name,
     path: SecurityPinScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: const SecurityPinScreen()),
+        context: context, state: state, child: MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SecurityPinViewModel>(
+          create: (_) => SecurityPinViewModel(),
+        ),
+      ],
+      child: const SecurityPinScreen(),
+    ),)
   ),
   GoRoute(
     name: DashboardScreen.name,

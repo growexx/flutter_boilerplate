@@ -16,10 +16,7 @@ class OTPViewModel extends ChangeNotifier {
   }
 
   void otpVerification(BuildContext context, String otp) {
-    /// Implement Api Call Here & navigate to Dashboard screen
-    //NavigationHelper.pushNamed(context, DashboardScreen.name);
     verificationStatus  = Status.verifiedSuccess;
     notifyListeners();
-    //Router.neglect(context, () => context.goNamed(DashboardScreen.name));
   }
 }
