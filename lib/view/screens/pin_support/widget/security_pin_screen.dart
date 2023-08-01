@@ -50,12 +50,17 @@ class _SecurityPinScreenState extends State<SecurityPinScreen> {
     );
 
     return  Scaffold(
+      key: const Key("sf_widget"),
       body: ResponsiveHelperWidget(
         mobile: fieldPart,
         desktop: Row(
+          key: const Key("row"),
           children: [
-            const Expanded(flex: 3,child: WelcomeWidget()),
+            const Expanded(flex: 3,child: WelcomeWidget(
+              key:Key("welcome_widget"),
+            )),
             SizedBox(
+                key:const Key("filedPart"),
                 width: 440,
                 child: fieldPart),
           ],

@@ -5,8 +5,9 @@ import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:provider/provider.dart';
 import '../../util/common_initial_activity.dart';
-import '../../util/testing_material_app.dart';
 import 'otp_widget_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -33,15 +34,24 @@ void main() async {
           MockSocialSignInViewModel();
       MockUserRepository mockUserRepository = MockUserRepository();
 
-      Widget widget = testingWidget(
-          child: OTPVerificationWidget(
+      when(mockOTPViewModel.verificationStatus).thenReturn(Status.verifiedFailure);
+
+      Widget widget = OTPVerificationWidget(
         googleSignInViewModel: mockSocialSignInViewModel,
         userRepository: mockUserRepository,
         viewModel: mockOTPViewModel,
         key: const Key("12"),
-      ));
+      );
 
-      await tester.pumpWidget(widget);
+      await tester.pumpWidget(MultiProvider(
+        providers: [
+          ChangeNotifierProvider<OTPViewModel>.value(
+              value: mockOTPViewModel),
+        ],
+        child: MaterialApp(
+          home: Scaffold(body: widget),
+        ),
+      ),);
 
       expect(find.byKey(const Key("verification")), findsOneWidget);
       expect(find.byKey(const Key("enter_otp")), findsOneWidget);

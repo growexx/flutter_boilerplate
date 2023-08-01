@@ -1,18 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
-import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:flutter/material.dart';
+enum Status{verifiedSuccess, verifiedFailure}
 class OTPViewModel extends ChangeNotifier {
   var isPhoneNumberEntered = false;
-
+  Status verificationStatus = Status.verifiedFailure;
   OTPViewModel() {
-    //pending..
-  }
 
+    //process required things..
+  }
   final TextEditingController phoneC = TextEditingController();
   final TextEditingController otpC = TextEditingController();
-  
   set setPhoneNumberValidated(bool value) {
     isPhoneNumberEntered = value;
     notifyListeners();
@@ -20,6 +17,9 @@ class OTPViewModel extends ChangeNotifier {
 
   void otpVerification(BuildContext context, String otp) {
     /// Implement Api Call Here & navigate to Dashboard screen
-    Router.neglect(context, () => context.goNamed(DashboardScreen.name));
+    //NavigationHelper.pushNamed(context, DashboardScreen.name);
+    verificationStatus  = Status.verifiedSuccess;
+    notifyListeners();
+    //Router.neglect(context, () => context.goNamed(DashboardScreen.name));
   }
 }

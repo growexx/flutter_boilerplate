@@ -128,8 +128,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                               child: TextButton(
                                 key: const Key("send"),
                                 onPressed: () {
-                                  widget.viewModel.setPhoneNumberValidated =
-                                  true;
+                                  widget.viewModel.setPhoneNumberValidated = true;
                                 },
                                 style: TextButton.styleFrom(
                                   minimumSize: const Size.fromHeight(50),

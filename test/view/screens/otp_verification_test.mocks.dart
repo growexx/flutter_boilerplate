@@ -55,6 +55,20 @@ class MockOTPViewModel extends _i1.Mock implements _i3.OTPViewModel {
         returnValueForMissingStub: null,
       );
   @override
+  _i3.Status get verificationStatus => (super.noSuchMethod(
+        Invocation.getter(#verificationStatus),
+        returnValue: _i3.Status.verifiedSuccess,
+        returnValueForMissingStub: _i3.Status.verifiedSuccess,
+      ) as _i3.Status);
+  @override
+  set verificationStatus(_i3.Status? _verificationStatus) => super.noSuchMethod(
+        Invocation.setter(
+          #verificationStatus,
+          _verificationStatus,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   _i2.TextEditingController get phoneC => (super.noSuchMethod(
         Invocation.getter(#phoneC),
         returnValue: _FakeTextEditingController_0(
