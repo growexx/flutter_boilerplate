@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/go_router/error_screen.dart';
+import 'package:flutter_boilerplate/util/push_notifications.dart';
 import 'package:flutter_boilerplate/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:flutter/foundation.dart';
 
 
 void main() async{
@@ -30,6 +32,9 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  if (defaultTargetPlatform == TargetPlatform.iOS && defaultTargetPlatform == TargetPlatform.android) {
+    await FirebasePushNotifications().initNotifications();
+  }
   // fetching user details
   User user = await UserRepository.fetchUserData();
   // fetching stored theme model
