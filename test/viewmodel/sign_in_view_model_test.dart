@@ -19,5 +19,7 @@ void main() {
     expect(model.emailC.text, "jaimin.modi@growexx.com");
     model.passwordC.text = "Test@123";
     expect(model.passwordC.text, "Test@123");
+    model.setRememberMe=false;
+    expect(model.getRememberMe,false);
   });
 }
