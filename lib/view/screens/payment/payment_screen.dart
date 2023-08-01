@@ -21,15 +21,16 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _buildApplePayButton(),
+        child: _buildPaymentButtons(),
       ),
     );
   }
 
-  Widget _buildApplePayButton() {
+  Widget _buildPaymentButtons() {
     if (defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.macOS) {
       return ApplePayButton(
+        key: const Key("apple"),
         paymentConfiguration:
             PaymentConfiguration.fromJsonString(defaultApplePay),
         paymentItems: _paymentItems,
@@ -41,9 +42,9 @@ class PaymentScreen extends StatelessWidget {
           child: CircularProgressIndicator(),
         ),
       );
-    } else if (defaultTargetPlatform != TargetPlatform.iOS &&
-        defaultTargetPlatform == TargetPlatform.macOS) {
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
       return GooglePayButton(
+        key: const Key("google"),
         paymentConfiguration:
             PaymentConfiguration.fromJsonString(defaultGooglePay),
         paymentItems: _paymentItems,
@@ -54,8 +55,8 @@ class PaymentScreen extends StatelessWidget {
           child: CircularProgressIndicator(),
         ),
       );
-    }else{
-      return const Center(child:Text("Issue in setting Payment buttons"));
+    } else {
+      return const Center(child: Text("Issue in setting Payment buttons"));
     }
   }
 }

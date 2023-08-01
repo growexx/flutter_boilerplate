@@ -14,5 +14,12 @@ void main() async{
     );
     await tester.pumpWidget(widget);
     await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key("welcome")), findsOneWidget);
+    expect(find.byKey(const Key("change_password")), findsOneWidget);
+    expect(find.byKey(const Key("sign_out")), findsOneWidget);
+    expect(find.byKey(const Key("payment")), findsOneWidget);
+
+
   });
 }

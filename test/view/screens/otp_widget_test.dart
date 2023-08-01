@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/otp/widget/otp_widget.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';

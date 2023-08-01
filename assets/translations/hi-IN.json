@@ -54,5 +54,6 @@
   "error_valid_email_address": "कृपया एक मान्य ईमेल पता प्रविष्ट करें।",
   "error_valid_mobile_number": "कृपया एक वैध मोबाइल नंबर दर्ज करें.",
   "sign_in_with_otp": "ओटीपी के साथ साइन इन करें",
-  "set_security_pin": "सुरक्षा पिन सेट करें"
+  "verify_pin": "पिन सत्यापित करें",
+  "cancel": "रद्द करें"
 }

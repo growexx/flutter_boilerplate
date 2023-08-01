@@ -5,7 +5,6 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class OTPWidget extends StatefulWidget {
   final OTPViewModel viewModel;
@@ -22,7 +21,6 @@ class OTPWidget extends StatefulWidget {
 }
 
 class _OTPWidgetState extends State<OTPWidget> {
-  late PhoneNumber number;
 
   @override
   void initState() {
@@ -152,13 +150,5 @@ class _OTPWidgetState extends State<OTPWidget> {
         ),
       ),
     );
-  }
-
-  Future<PhoneNumber> getInitialNumber() async {
-    var phoneNumber = "+234 500 500 5005";
-    await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber).then((value){
-        number = value;
-    });
-    return number;
   }
 }

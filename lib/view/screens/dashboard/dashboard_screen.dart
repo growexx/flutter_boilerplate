@@ -1,9 +1,4 @@
-
-
-
-
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
@@ -51,7 +46,9 @@ class DashboardScreen extends StatelessWidget {
                         return Wrap(
                           spacing: 5,
                           children: [
-                            const Text("Welcome"),
+                            const Text(
+                                key:Key("welcome"),
+                                "Welcome"),
                             Text(currentUser?.firstName??""),
                           ],
                         );
@@ -62,15 +59,16 @@ class DashboardScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Wrap(
                       children: [
-                        TextButton(onPressed: (){
-                          userRepository.setSecurityPin(context);
-                        }, child: const Text("set_security_pin").tr()),
                         const SizedBox(width: 10),
-                        TextButton(onPressed: (){
+                        TextButton(
+                            key:const Key("change_password"),
+                            onPressed: (){
                           userRepository.changePassword(context);
                         }, child: const Text("change_password").tr()),
                         const SizedBox(width: 10),
-                        TextButton(onPressed: (){
+                        TextButton(
+                            key:const Key("sign_out"),
+                            onPressed: (){
                           userRepository.signOutUser(context);
                         }, child: const Text("sign_out").tr()),
                       ],
@@ -86,7 +84,9 @@ class DashboardScreen extends StatelessWidget {
             ),
             Expanded(
               child: Center(
-                child: TextButton(onPressed: (){
+                child: TextButton(
+                    key:const Key("payment"),
+                    onPressed: (){
                          context.goNamed(
                              PaymentScreen.name
                           );

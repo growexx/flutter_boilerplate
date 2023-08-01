@@ -238,14 +238,6 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
         returnValueForMissingStub: _i6.Future<dynamic>.value(),
       ) as _i6.Future<dynamic>);
   @override
-  void setSecurityPin(_i2.BuildContext? context) => super.noSuchMethod(
-        Invocation.method(
-          #setSecurityPin,
-          [context],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
   void changePassword(_i2.BuildContext? context) => super.noSuchMethod(
         Invocation.method(
           #changePassword,
