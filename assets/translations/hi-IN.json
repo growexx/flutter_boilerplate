@@ -56,5 +56,6 @@
   "sign_in_with_otp": "ओटीपी के साथ साइन इन करें",
   "verify_pin": "पिन सत्यापित करें",
   "cancel": "रद्द करें",
-  "google-map-functionality":"गूगल मानचित्र कार्यक्षमता (वेब)"
+  "google-map-functionality":"गूगल मानचित्र कार्यक्षमता (वेब)",
+  "your_location": "आपका स्थान:"
 }

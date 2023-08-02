@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -18,22 +19,10 @@ class GoogleMapFieldWidget extends StatefulWidget {
 }
 
 class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
-  String? _currentAddress;
-  Position? _currentPosition;
-
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(23.033863, 72.585022),
-    zoom: 14,
-  );
-
   @override
   void initState() {
     super.initState();
-    _getCurrentPosition();
-    //_getAddressFromLatLng(_currentPosition!);
+    _getCurrentPosition(context);
   }
 
   @override
@@ -42,7 +31,7 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
     return Center(
         child: defaultTargetPlatform == TargetPlatform.android ||
                 defaultTargetPlatform == TargetPlatform.iOS
-            ? _currentPosition != null
+            ? widget.viewModel.currentPosition != null
                 ? buildGoogleMap()
                 : const Center(child: CircularProgressIndicator())
             : Center(
@@ -54,78 +43,71 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
   }
 
   Widget buildGoogleMap() {
-    return GoogleMap(
-      mapType: MapType.normal,
-      initialCameraPosition: _kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 10),
+        widget.viewModel.currentAddress != null
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("your_location").tr(),
+                  Text(
+                    "${widget.viewModel.currentAddress}",
+                    maxLines: 1,
+                    style: const TextStyle(overflow: TextOverflow.ellipsis),
+                  )
+                ],
+              )
+            : const SizedBox(height: 0, width: 0),
+        const SizedBox(height: 10),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.80,
+          child: GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: widget.viewModel.kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              widget.viewModel.controller.complete(controller);
 
-        //moving camera to current location.
-        LatLng currentPositionLatLng = LatLng(_currentPosition!.latitude,_currentPosition!.longitude);
-        controller.animateCamera(
-            CameraUpdate.newCameraPosition(
-                CameraPosition(target: currentPositionLatLng, zoom: 17)
-              //17 is new zoom level
-            )
-        );
-      },
-      markers: {
-        Marker(
-          markerId: const MarkerId('Current Location'),
-          position: LatLng(
-              _currentPosition!.latitude, _currentPosition!.longitude),
-        )
-      },
+              //moving camera to current location.
+              LatLng currentPositionLatLng = LatLng(
+                  widget.viewModel.currentPosition!.latitude,
+                  widget.viewModel.currentPosition!.longitude);
+              controller.animateCamera(CameraUpdate.newCameraPosition(
+                  CameraPosition(target: currentPositionLatLng, zoom: 14)));
+              _getAddressFromLatLng(widget.viewModel.currentPosition!);
+            },
+            markers: {
+              Marker(
+                markerId: const MarkerId('Current Location'),
+                position: LatLng(widget.viewModel.currentPosition!.latitude,
+                    widget.viewModel.currentPosition!.longitude),
+              )
+            },
+          ),
+        ),
+      ],
     );
   }
 
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
-      return false;
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are denied')));
-        return false;
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
-      return false;
-    }
-    return true;
-  }
-
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission();
+  Future<void> _getCurrentPosition(BuildContext context) async {
+    final hasPermission = await handleLocationPermission(context);
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
-      setState(() => _currentPosition = position);
+      setState(() => widget.viewModel.currentPosition = position);
     }).catchError((e) {
       debugPrint(e);
     });
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
+    await placemarkFromCoordinates(widget.viewModel.currentPosition!.latitude,
+            widget.viewModel.currentPosition!.longitude)
         .then((List<Placemark> placeMarks) {
       Placemark place = placeMarks[0];
       setState(() {
-        _currentAddress =
+        widget.viewModel.currentAddress =
             "'${place.street}, ${place.subLocality},${place.subAdministrativeArea}, ${place.postalCode}'";
       });
     }).catchError((e) {
