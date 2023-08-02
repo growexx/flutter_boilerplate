@@ -14,7 +14,6 @@ class GoogleMapWidget extends StatefulWidget {
 }
 
 class _GoogleMapWidgetState extends State<GoogleMapWidget> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,45 +21,51 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
       children: [
         const SizedBox(height: 10),
         widget.viewModel.currentAddress != null
-            ? Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("your_location").tr(),
-            Text("${widget.viewModel.currentAddress}",
-                maxLines: 1,
-                style: const TextStyle(overflow: TextOverflow.ellipsis))
-          ],
-        )
+            ? Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("your_location").tr(),
+                    Text("${widget.viewModel.currentAddress}",
+                        maxLines: 1,
+                        style: const TextStyle(overflow: TextOverflow.ellipsis))
+                  ],
+                ),
+              )
             : const SizedBox(height: 0, width: 0),
         const SizedBox(height: 10),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.80,
-          child: GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: widget.viewModel.kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              widget.viewModel.controller.complete(controller);
+        Expanded(
+          flex: 10,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: GoogleMap(
+              mapType: MapType.normal,
+              initialCameraPosition: widget.viewModel.kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                widget.viewModel.controller.complete(controller);
 
-              //moving camera to current location.
-              LatLng currentPositionLatLng = LatLng(
-                  widget.viewModel.currentPosition!.latitude,
-                  widget.viewModel.currentPosition!.longitude);
-              controller.animateCamera(CameraUpdate.newCameraPosition(
-                  CameraPosition(target: currentPositionLatLng, zoom: 14)));
+                //moving camera to current location.
+                LatLng currentPositionLatLng = LatLng(
+                    widget.viewModel.currentPosition!.latitude,
+                    widget.viewModel.currentPosition!.longitude);
+                controller.animateCamera(CameraUpdate.newCameraPosition(
+                    CameraPosition(target: currentPositionLatLng, zoom: 14)));
 
-              //getting current address or location from co-ordinates
-              getAddressFromLatLng(widget.viewModel.currentPosition!)
-                  .then((value) {
-                widget.viewModel.setCurrentAddress = value;
-              });
-            },
-            markers: {
-              Marker(
-                markerId: const MarkerId('Current Location'),
-                position: LatLng(widget.viewModel.currentPosition!.latitude,
-                    widget.viewModel.currentPosition!.longitude),
-              )
-            },
+                //getting current address or location from co-ordinates
+                getAddressFromLatLng(widget.viewModel.currentPosition!)
+                    .then((value) {
+                  widget.viewModel.setCurrentAddress = value;
+                });
+              },
+              markers: {
+                Marker(
+                  markerId: const MarkerId('Current Location'),
+                  position: LatLng(widget.viewModel.currentPosition!.latitude,
+                      widget.viewModel.currentPosition!.longitude),
+                )
+              },
+            ),
           ),
         ),
       ],
