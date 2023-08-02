@@ -183,7 +183,7 @@ List<RouteBase> routes = [
     name: UserDetailsScreen.name,
     path: UserDetailsScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: UserDetailsScreen())
+        context: context, state: state, child: UserDetailsScreen()),
   ),
   GoRoute(
     name: EditProfileScreen.name,
