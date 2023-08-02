@@ -56,6 +56,14 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
         returnValueForMissingStub: _i4.Future<dynamic>.value(),
       ) as _i4.Future<dynamic>);
   @override
+  void changePassword(_i5.BuildContext? context) => super.noSuchMethod(
+        Invocation.method(
+          #changePassword,
+          [context],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   _i4.Future<dynamic> signOutUser(_i5.BuildContext? context) =>
       (super.noSuchMethod(
         Invocation.method(

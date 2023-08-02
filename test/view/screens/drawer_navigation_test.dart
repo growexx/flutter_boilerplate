@@ -3,8 +3,8 @@ import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/routes.dart';
-import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation/drawer_navigation.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,10 +25,10 @@ import 'drawer_navigation_test.mocks.dart';
       as: #MockThemeProvider, onMissingStub: OnMissingStub.returnDefault),
 ])
 @GenerateNiceMocks([
-  MockSpec<SigninViewModel>(
+  MockSpec<SignInViewModel>(
       as: #MockSigninViewModel, onMissingStub: OnMissingStub.returnDefault),
 ])
-class MockGoogleSigninViewModel extends Mock implements GoogleSigninViewModel {}
+class MockSocialSignInViewModel extends Mock implements SocialSignInViewModel {}
 
 void main() {
   group("Drawer Navigation test", () {
@@ -137,8 +137,8 @@ void main() {
         (WidgetTester tester) async {
       MockUserRepository mockUserRepository = MockUserRepository();
       MockSigninViewModel mockSigninViewModel = MockSigninViewModel();
-      MockGoogleSigninViewModel mockGoogleSigninViewModel =
-          MockGoogleSigninViewModel();
+      MockSocialSignInViewModel mockSocialSignInViewModel =
+          MockSocialSignInViewModel();
 
       MockThemeProvider mockThemeProvider = MockThemeProvider();
       when(mockSigninViewModel.emailC.text).thenReturn("email");
@@ -150,10 +150,10 @@ void main() {
             builder: (context, state) => const DrawerNavigation(),
           ),
           GoRoute(
-            name: SigninScreen.name,
-            path: SigninScreen.path,
+            name: SignInScreen.name,
+            path: SignInScreen.path,
             pageBuilder: (context, state) => buildPageWithDefaultTransition(
-                context: context, state: state, child: const SigninScreen()),
+                context: context, state: state, child: const SignInScreen()),
           ),
         ],
       );
@@ -164,10 +164,10 @@ void main() {
                 value: mockUserRepository),
             ChangeNotifierProvider<ThemeProvider>.value(
                 value: mockThemeProvider),
-            ChangeNotifierProvider<SigninViewModel>.value(
+            ChangeNotifierProvider<SignInViewModel>.value(
                 value: mockSigninViewModel),
-            ChangeNotifierProvider<GoogleSigninViewModel>.value(
-                value: mockGoogleSigninViewModel),
+            ChangeNotifierProvider<SocialSignInViewModel>.value(
+                value: mockSocialSignInViewModel),
           ],
           child: MaterialApp.router(
             routerConfig: router,
@@ -182,7 +182,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Expect to see the MainScreen content on the screen
-      expect(find.byType(SigninScreen), findsOneWidget);
+      expect(find.byType(SignInScreen), findsOneWidget);
     });
   });
 }

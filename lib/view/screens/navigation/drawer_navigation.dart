@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/main_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
 import '../../../app_manager/helper/navigation/navigation_helper.dart';
-import '../dashboard_screen.dart';
+import '../dashboard/dashboard_screen.dart';
+import '../signin/signin_screen.dart';
 
 class DrawerNavigation extends StatefulWidget {
   const DrawerNavigation({super.key});
@@ -70,7 +70,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                 leading: const Icon(Icons.logout),
                 title: const Text('Logout'),
                 onTap: () {
-                  NavigationHelper.pushNamed(context, SigninScreen.name);
+                  NavigationHelper.pushNamed(context, SignInScreen.name);
                 },
               ),
             ],

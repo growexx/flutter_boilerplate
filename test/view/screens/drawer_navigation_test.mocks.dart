@@ -70,6 +70,14 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
         returnValueForMissingStub: _i5.Future<dynamic>.value(),
       ) as _i5.Future<dynamic>);
   @override
+  void changePassword(_i2.BuildContext? context) => super.noSuchMethod(
+        Invocation.method(
+          #changePassword,
+          [context],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   _i5.Future<dynamic> signOutUser(_i2.BuildContext? context) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -189,10 +197,24 @@ class MockThemeProvider extends _i1.Mock implements _i7.ThemeProvider {
       );
 }
 
-/// A class which mocks [SigninViewModel].
+/// A class which mocks [SignInViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSigninViewModel extends _i1.Mock implements _i8.SigninViewModel {
+class MockSigninViewModel extends _i1.Mock implements _i8.SignInViewModel {
+  @override
+  bool get isRememberMeChecked => (super.noSuchMethod(
+        Invocation.getter(#isRememberMeChecked),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+  @override
+  set isRememberMeChecked(bool? _isRememberMeChecked) => super.noSuchMethod(
+        Invocation.setter(
+          #isRememberMeChecked,
+          _isRememberMeChecked,
+        ),
+        returnValueForMissingStub: null,
+      );
   @override
   _i2.TextEditingController get emailC => (super.noSuchMethod(
         Invocation.getter(#emailC),
@@ -218,6 +240,20 @@ class MockSigninViewModel extends _i1.Mock implements _i8.SigninViewModel {
         ),
       ) as _i2.TextEditingController);
   @override
+  bool get getRememberMe => (super.noSuchMethod(
+        Invocation.getter(#getRememberMe),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+  @override
+  set setRememberMe(bool? value) => super.noSuchMethod(
+        Invocation.setter(
+          #setRememberMe,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   bool get hasListeners => (super.noSuchMethod(
         Invocation.getter(#hasListeners),
         returnValue: false,
@@ -227,6 +263,7 @@ class MockSigninViewModel extends _i1.Mock implements _i8.SigninViewModel {
   _i5.Future<bool> signIn({
     required String? email,
     required String? password,
+    required _i2.BuildContext? context,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -235,11 +272,20 @@ class MockSigninViewModel extends _i1.Mock implements _i8.SigninViewModel {
           {
             #email: email,
             #password: password,
+            #context: context,
           },
         ),
         returnValue: _i5.Future<bool>.value(false),
         returnValueForMissingStub: _i5.Future<bool>.value(false),
       ) as _i5.Future<bool>);
+  @override
+  void signInWithOTP(_i2.BuildContext? context) => super.noSuchMethod(
+        Invocation.method(
+          #signInWithOTP,
+          [context],
+        ),
+        returnValueForMissingStub: null,
+      );
   @override
   void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(

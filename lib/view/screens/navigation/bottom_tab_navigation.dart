@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
-import '../dashboard_screen.dart';
+import '../dashboard/dashboard_screen.dart';
 
 class BottomTabNavigation extends StatefulWidget {
   const BottomTabNavigation({super.key});

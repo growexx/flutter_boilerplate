@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation/top_tab_navigation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
