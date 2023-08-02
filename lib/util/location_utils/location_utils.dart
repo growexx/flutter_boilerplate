@@ -31,14 +31,26 @@ Future<bool> handleLocationPermission(BuildContext context) async {
   return true;
 }
 
-Future<String> _getAddressFromLatLng(Position position) async {
-  String currentAddress="Fetching Location...";
-  await placemarkFromCoordinates(
-      position.latitude, position.longitude)
+Future<Position?> getCurrentPosition(BuildContext context) async {
+  Position? currentPosition;
+  final hasPermission = await handleLocationPermission(context);
+  if (!hasPermission) return null;
+  await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+      .then((Position position) {
+    currentPosition = position;
+  }).catchError((e) {
+    debugPrint(e);
+  });
+  return currentPosition;
+}
+
+Future<String> getAddressFromLatLng(Position position) async {
+  String currentAddress = "Fetching Location...";
+  await placemarkFromCoordinates(position.latitude, position.longitude)
       .then((List<Placemark> placeMarks) {
     Placemark place = placeMarks[0];
-      currentAddress =
-      "'${place.street}, ${place.subLocality},${place.subAdministrativeArea}, ${place.postalCode}'";
+    currentAddress =
+        "'${place.street}, ${place.subLocality},${place.subAdministrativeArea}, ${place.postalCode}'";
   }).catchError((e) {
     debugPrint(e);
   });

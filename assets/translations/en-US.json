@@ -60,5 +60,6 @@
   "verify_pin": "Verify PIN",
   "cancel": "CANCEL",
   "google-map-functionality": "Google Map Functionality\n(WEB)",
-  "your_location": "Your Location: "
+  "your_location": "Your Location: ",
+  "fetching_location": "Fetching Current Location..."
 }

@@ -57,5 +57,6 @@
   "verify_pin": "पिन सत्यापित करें",
   "cancel": "रद्द करें",
   "google-map-functionality":"गूगल मानचित्र कार्यक्षमता (वेब)",
-  "your_location": "आपका स्थान:"
+  "your_location": "आपका स्थान: ",
+  "fetching_location": "वर्तमान स्थान लाया जा रहा है..."
 }

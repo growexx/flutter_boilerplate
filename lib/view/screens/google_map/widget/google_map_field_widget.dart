@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class GoogleMapFieldWidget extends StatefulWidget {
   final GoogleMapViewModel viewModel;
@@ -22,24 +19,34 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
   @override
   void initState() {
     super.initState();
-    _getCurrentPosition(context);
+    getCurrentPosition(context).then((value) {
+      widget.viewModel.setCurrentPosition = value;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    print("build called");
+
     final theme = Theme.of(context);
-    return Center(
-        child: defaultTargetPlatform == TargetPlatform.android ||
-                defaultTargetPlatform == TargetPlatform.iOS
-            ? widget.viewModel.currentPosition != null
-                ? buildGoogleMap()
-                : const Center(child: CircularProgressIndicator())
-            : Center(
-                child: Text("google-map-functionality",
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.headlineMedium)
-                    .tr(),
-              ));
+    return Consumer(
+      builder: (BuildContext context, value, Widget? child) {
+        print("builder called");
+        return Center(
+            child: defaultTargetPlatform == TargetPlatform.android ||
+                    defaultTargetPlatform == TargetPlatform.iOS
+                ? widget.viewModel.currentPosition != null
+                    ? buildGoogleMap()
+                    : const Center(child: CircularProgressIndicator())
+                : Center(
+                    child: Text("google-map-functionality",
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.headlineMedium)
+                        .tr(),
+                  ));
+      },
+    );
   }
 
   Widget buildGoogleMap() {
@@ -52,11 +59,9 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("your_location").tr(),
-                  Text(
-                    "${widget.viewModel.currentAddress}",
-                    maxLines: 1,
-                    style: const TextStyle(overflow: TextOverflow.ellipsis),
-                  )
+                  Text("${widget.viewModel.currentAddress}",
+                      maxLines: 1,
+                      style: const TextStyle(overflow: TextOverflow.ellipsis))
                 ],
               )
             : const SizedBox(height: 0, width: 0),
@@ -75,7 +80,12 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
                   widget.viewModel.currentPosition!.longitude);
               controller.animateCamera(CameraUpdate.newCameraPosition(
                   CameraPosition(target: currentPositionLatLng, zoom: 14)));
-              _getAddressFromLatLng(widget.viewModel.currentPosition!);
+
+              //getting current address or location from co-ordinates
+              getAddressFromLatLng(widget.viewModel.currentPosition!)
+                  .then((value) {
+                widget.viewModel.setCurrentAddress = value;
+              });
             },
             markers: {
               Marker(
@@ -88,30 +98,5 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
         ),
       ],
     );
-  }
-
-  Future<void> _getCurrentPosition(BuildContext context) async {
-    final hasPermission = await handleLocationPermission(context);
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      setState(() => widget.viewModel.currentPosition = position);
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
-
-  Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(widget.viewModel.currentPosition!.latitude,
-            widget.viewModel.currentPosition!.longitude)
-        .then((List<Placemark> placeMarks) {
-      Placemark place = placeMarks[0];
-      setState(() {
-        widget.viewModel.currentAddress =
-            "'${place.street}, ${place.subLocality},${place.subAdministrativeArea}, ${place.postalCode}'";
-      });
-    }).catchError((e) {
-      debugPrint(e);
-    });
   }
 }
