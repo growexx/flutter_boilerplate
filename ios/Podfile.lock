@@ -76,8 +76,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+<<<<<<< HEAD
   sign_in_with_apple:
     :path: ".symlinks/plugins/sign_in_with_apple/ios"
+=======
+>>>>>>> b63a902b8a2bdc78d72a8d601df2148033ac2a93
 
 SPEC CHECKSUMS:
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
