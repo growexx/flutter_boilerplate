@@ -36,6 +36,7 @@ void main() async{
   User user = await UserRepository.fetchUserData();
   // fetching stored theme model
   ThemeMode themeMode = await ThemeProvider.retrieveStoredTheme();
+   await Hive.initFlutter();
    Hive.registerAdapter(TodoDataAdapter()); 
    await Hive.openBox('todo_db');
 
