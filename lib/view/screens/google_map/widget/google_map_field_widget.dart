@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -31,12 +32,17 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: GoogleMap(
-      mapType: MapType.hybrid,
-      initialCameraPosition: _kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
-      },
-    ));
+        child: defaultTargetPlatform == TargetPlatform.android ||
+                defaultTargetPlatform == TargetPlatform.android
+            ? GoogleMap(
+                mapType: MapType.hybrid,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              )
+            : const Center(
+                child: Text("Google Map"),
+              ));
   }
 }
