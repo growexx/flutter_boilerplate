@@ -16,21 +16,31 @@ class GoogleMapWidget extends StatefulWidget {
 class _GoogleMapWidgetState extends State<GoogleMapWidget> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(height: 10),
+        const SizedBox(
+            height: 10),
         widget.viewModel.currentAddress != null
             ? Expanded(
                 flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("your_location").tr(),
-                    Text("${widget.viewModel.currentAddress}",
-                        maxLines: 1,
-                        style: const TextStyle(overflow: TextOverflow.ellipsis))
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("your_location", style: theme.textTheme.bodyLarge).tr(),
+                      const Expanded(
+                        child: Text(
+                            "this is very long text that I am going to chekc now.. afjij oifsoih osihoidshf oihoi hoihf",
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            softWrap: false,
+                            style: TextStyle(overflow: TextOverflow.ellipsis)),
+                      )
+                    ],
+                  ),
                 ),
               )
             : const SizedBox(height: 0, width: 0),
