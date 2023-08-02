@@ -37,9 +37,6 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
 
     return Consumer<OTPViewModel>(
       builder: (BuildContext context, viewModel, Widget? child) {
-        if (viewModel.verificationStatus == Status.verifiedSuccess) {
-          NavigationHelper.pushNamed(context, DashboardScreen.name);
-        }
         return Center(
                 child: SingleChildScrollView(
                   child: ConstrainedBox(
@@ -146,11 +143,14 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                                       width: double.infinity,
                                       child: TextButton(
                                         key: const Key("verify"),
-                                        onPressed: () {
-                                          onPressVerify(
+                                        onPressed: () async {
+                                         await onPressVerify(
                                               context: ctx,
                                               otp: "1",
                                               viewModel: viewModel);
+                                         if (viewModel.verificationStatus == Status.verifiedSuccess) {
+                                           NavigationHelper.pushNamed(context, DashboardScreen.name);
+                                         }
                                         },
                                         style: TextButton.styleFrom(
                                           minimumSize:
@@ -205,11 +205,10 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
     );
   }
 
-  Future<bool> onPressVerify(
+  Future<void> onPressVerify(
       {required BuildContext context,
       required String otp,
       required OTPViewModel viewModel}) async {
     viewModel.otpVerification(context, otp);
-    return true;
   }
 }
