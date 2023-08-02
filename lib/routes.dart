@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
+import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
 import 'package:flutter_boilerplate/view_model/forgot_password_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
+import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -182,5 +184,21 @@ List<RouteBase> routes = [
     path: UserDetailsScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: UserDetailsScreen()),
+        context: context, state: state, child: const PaymentScreen()),
+  GoRoute(
+    name: EditProfileScreen.name,
+    path: EditProfileScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      context: context,
+      state: state,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<EditProfileViewModel>(
+            create: (_) => EditProfileViewModel(),
+          ),
+        ],
+        child: const EditProfileScreen(),
+      ),
+    ),
   ),
 ];
