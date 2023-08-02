@@ -22,9 +22,10 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<GoogleMapViewModel>(context, listen: false);
 
-    Widget googleMapFieldWidget = GoogleMapFieldWidget(
-      viewModel: viewModel,
-    );
+    Widget googleMapFieldWidget = GoogleMapFieldWidget(viewModel: viewModel);
+
+    Widget googleMapFieldWidgetForWeb =
+        GoogleMapWebPageFillerWidget(viewModel: viewModel);
 
     return Scaffold(
       body: Column(
@@ -51,8 +52,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
               mobile: googleMapFieldWidget,
               desktop: Row(
                 children: [
-                  const Expanded(
-                      flex: 3, child: GoogleMapWebPageFillerWidget()),
+                  Expanded(flex: 3, child: googleMapFieldWidgetForWeb),
                   Expanded(flex: 1, child: googleMapFieldWidget),
                 ],
               ),

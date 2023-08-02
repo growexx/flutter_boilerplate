@@ -1,11 +1,13 @@
-/*
-import 'dart:async';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
+import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMapWidget extends StatefulWidget {
-  const GoogleMapWidget({super.key});
+  final GoogleMapViewModel viewModel;
+
+  const GoogleMapWidget({super.key, required this.viewModel});
 
   @override
   State<GoogleMapWidget> createState() => _GoogleMapWidgetState();
@@ -13,57 +15,55 @@ class GoogleMapWidget extends StatefulWidget {
 
 class _GoogleMapWidgetState extends State<GoogleMapWidget> {
 
-  final Completer<GoogleMapController> _controller =
-  Completer<GoogleMapController>();
-
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(23.033863, 72.585022),
-    zoom: 14,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 10),
-        _currentAddress != null
+        widget.viewModel.currentAddress != null
             ? Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("your_location").tr(),
-            Text(
-              "$_currentAddress",
-              maxLines: 1,
-              style: const TextStyle(overflow: TextOverflow.ellipsis),
-            )
+            Text("${widget.viewModel.currentAddress}",
+                maxLines: 1,
+                style: const TextStyle(overflow: TextOverflow.ellipsis))
           ],
         )
             : const SizedBox(height: 0, width: 0),
         const SizedBox(height: 10),
-        GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: _kGooglePlex,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.80,
+          child: GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: widget.viewModel.kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              widget.viewModel.controller.complete(controller);
 
-            //moving camera to current location.
-            LatLng currentPositionLatLng =
-            LatLng(_currentPosition!.latitude, _currentPosition!.longitude);
-            controller.animateCamera(CameraUpdate.newCameraPosition(
-                CameraPosition(target: currentPositionLatLng, zoom: 14)));
-            getAddressFromLatLng(_currentPosition!);
-          },
-          markers: {
-            Marker(
-              markerId: const MarkerId('Current Location'),
-              position: LatLng(
-                  _currentPosition!.latitude, _currentPosition!.longitude),
-            )
-          },
+              //moving camera to current location.
+              LatLng currentPositionLatLng = LatLng(
+                  widget.viewModel.currentPosition!.latitude,
+                  widget.viewModel.currentPosition!.longitude);
+              controller.animateCamera(CameraUpdate.newCameraPosition(
+                  CameraPosition(target: currentPositionLatLng, zoom: 14)));
+
+              //getting current address or location from co-ordinates
+              getAddressFromLatLng(widget.viewModel.currentPosition!)
+                  .then((value) {
+                widget.viewModel.setCurrentAddress = value;
+              });
+            },
+            markers: {
+              Marker(
+                markerId: const MarkerId('Current Location'),
+                position: LatLng(widget.viewModel.currentPosition!.latitude,
+                    widget.viewModel.currentPosition!.longitude),
+              )
+            },
+          ),
         ),
       ],
     );
   }
 }
-*/
