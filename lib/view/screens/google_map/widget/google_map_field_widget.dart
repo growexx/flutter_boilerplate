@@ -26,9 +26,6 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-    print("build called");
-
     final theme = Theme.of(context);
     return Consumer<GoogleMapViewModel>(
       builder: (BuildContext context, value, Widget? child) {
@@ -36,10 +33,18 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
             child: defaultTargetPlatform == TargetPlatform.android ||
                     defaultTargetPlatform == TargetPlatform.iOS
                 ? widget.viewModel.currentPosition != null
-                    ? GoogleMapWidget(viewModel: widget.viewModel)
-                    : const Center(child: CircularProgressIndicator())
+                    ? GoogleMapWidget(
+                        key: const Key("google_map_widget"),
+                        viewModel: widget.viewModel)
+                    : const Center(
+                        key: Key("center"),
+                        child: CircularProgressIndicator(
+                          key: Key("cp_indicator"),
+                        ))
                 : Center(
-                    child: Text("google-map-functionality",
+                    child: Text(
+                            key: const Key("text_map_functionality"),
+                            "google-map-functionality",
                             textAlign: TextAlign.center,
                             style: theme.textTheme.headlineMedium)
                         .tr(),

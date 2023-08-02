@@ -21,9 +21,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<GoogleMapViewModel>(context, listen: false);
-
     Widget googleMapFieldWidget = GoogleMapFieldWidget(viewModel: viewModel);
-
     Widget googleMapFieldWidgetForWeb =
         GoogleMapWebPageFillerWidget(viewModel: viewModel);
 
