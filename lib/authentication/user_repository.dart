@@ -9,7 +9,8 @@ import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
-import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
+import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
+import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class UserRepository extends ChangeNotifier {
@@ -53,6 +54,10 @@ class UserRepository extends ChangeNotifier {
     } catch (e) {
       return User();
     }
+  }
+
+  void changePassword(BuildContext context) {
+    Router.neglect(context, () => context.goNamed(ChangePasswordScreen.name));
   }
 
   Future signOutUser(BuildContext context) async {
