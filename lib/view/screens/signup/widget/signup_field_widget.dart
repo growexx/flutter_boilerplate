@@ -12,6 +12,7 @@ import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 import 'select_photo_options_screen.dart';
 
@@ -27,7 +28,6 @@ class SignUpFieldWidget extends StatefulWidget {
 }
 
 class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
-  File? _image;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -66,25 +66,38 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                   color: Colors.grey.shade200,
                                 ),
                                 child: Center(
-                                  child: _image == null
+                                  child: widget.viewModel.pickedImage == null
                                       ? const Text(
-                                    'No image selected',
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                      : CircleAvatar(
-                                    backgroundImage: FileImage(_image!),
-                                    radius: 200.0,
-                                  ),
+                                          'pick_image',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 16),
+                                        ).tr()
+                                      : Selector<SignUpViewModel, File?>(
+                                          selector: (_, listener) =>
+                                              listener.pickedImage,
+                                          builder:
+                                              (context, pickedImage, child) {
+                                            widget.viewModel.pickedImage =
+                                                pickedImage;
+                                            return CircleAvatar(
+                                              backgroundImage:
+                                                  FileImage(pickedImage!),
+                                              radius: 200.0,
+                                            );
+                                          }),
                                 )),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     TextFormField(
                       key: const Key("tf_first_name"),
                       controller: widget.viewModel.firstNameC,
-                      decoration: InputDecoration(hintText: "enter_first_name".tr()),
+                      decoration:
+                          InputDecoration(hintText: "enter_first_name".tr()),
                       validator: ValidationHelper.nameValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
@@ -177,12 +190,12 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future<void> onPressSignUp(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-        widget.viewModel.signUp(
-            context:ctx,
-            firstName: widget.viewModel.firstNameC.text.trim(),
-            lastName: widget.viewModel.lastNameC.text.trim(),
-            email: widget.viewModel.emailC.text.trim(),
-            password: widget.viewModel.passwordC.text.trim());
+      widget.viewModel.signUp(
+          context: ctx,
+          firstName: widget.viewModel.firstNameC.text.trim(),
+          lastName: widget.viewModel.lastNameC.text.trim(),
+          email: widget.viewModel.emailC.text.trim(),
+          password: widget.viewModel.passwordC.text.trim());
     } else {
       showToast("Fill Required Fields");
     }
@@ -194,10 +207,8 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
       if (image == null) return;
       File? img = File(image.path);
       img = await _cropImage(imageFile: img);
-      setState(() {
-        _image = img;
-        Navigator.of(context).pop();
-      });
+      widget.viewModel.pickedImage = img;
+      Navigator.of(context).pop();
     } on PlatformException catch (e) {
       print(e);
       Navigator.of(context).pop();
@@ -206,7 +217,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future<File?> _cropImage({required File imageFile}) async {
     CroppedFile? croppedImage =
-    await ImageCropper().cropImage(sourcePath: imageFile.path);
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
     if (croppedImage == null) return null;
     return File(croppedImage.path);
   }

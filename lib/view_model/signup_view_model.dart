@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 class SignUpViewModel extends ChangeNotifier {
   http.Client client = http.Client();
+  File? pickedImage;
 
   SignUpViewModel() {
     //checkIfUserIsLoggedIn();
@@ -14,6 +17,11 @@ class SignUpViewModel extends ChangeNotifier {
   final TextEditingController emailC = TextEditingController();
   final TextEditingController passwordC = TextEditingController();
   final TextEditingController confirmPasswordC = TextEditingController();
+
+  set setPickedImage(File? val) {
+    pickedImage = val;
+    notifyListeners();
+  }
 
   Future<bool> signUp({
     required String firstName,

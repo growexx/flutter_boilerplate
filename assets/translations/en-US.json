@@ -62,5 +62,7 @@
   "google-map-functionality": "Google Map Functionality\n(WEB)",
   "your_location": "Your Location: ",
   "fetching_location": "Fetching Current Location...",
-  "browse_gallery":"Browse Gallery"
+  "browse_gallery":"Browse Gallery",
+  "use_a_camera": "Use a Camera",
+  "pick_image": "Pick\nImage",
 }

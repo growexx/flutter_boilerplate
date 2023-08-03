@@ -59,5 +59,7 @@
   "google-map-functionality":"गूगल मानचित्र कार्यक्षमता (वेब)",
   "your_location": "आपका स्थान: ",
   "fetching_location": "वर्तमान स्थान लाया जा रहा है...",
-  "browse_gallery":"गैलरी ब्राउज़ करें"
+  "browse_gallery":"गैलरी ब्राउज़ करें",
+  "use_a_camera": "कैमरे का प्रयोग करें",
+  "pick_image": "छवि\nचुनें"
 }

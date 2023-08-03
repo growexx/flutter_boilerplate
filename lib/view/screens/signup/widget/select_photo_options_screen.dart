@@ -44,11 +44,11 @@ class SelectPhotoOptionsScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Center(
-              child: Text(
-                'OR',
+            Center(
+              child: const Text(
+                'or_capital',
                 style: TextStyle(fontSize: 18),
-              ),
+              ).tr(),
             ),
             const SizedBox(
               height: 10,
@@ -56,7 +56,7 @@ class SelectPhotoOptionsScreen extends StatelessWidget {
             SelectPhoto(
               onTap: () => onTap(ImageSource.camera),
               icon: Icons.camera_alt_outlined,
-              textLabel: 'Use a Camera',
+              textLabel: 'use_a_camera'.tr(),
             ),
           ])
         ],
