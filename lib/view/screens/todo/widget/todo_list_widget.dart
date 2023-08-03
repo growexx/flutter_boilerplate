@@ -8,8 +8,8 @@ class TodoListWidget extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      final viewModel = Provider.of<HiveModel>(context, listen: false);
+    final viewModel = Provider.of<HiveModel>(context, listen: false);
+  
       return SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -22,7 +22,6 @@ class TodoListWidget extends StatelessWidget {
             }, icon: const Icon(Icons.delete_forever)),
           ),
         ),
-      );
-    });
+    );
   }
 }

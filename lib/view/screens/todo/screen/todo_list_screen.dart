@@ -13,7 +13,7 @@ class TodoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HiveModel>(context, listen: false);
+    final viewModel = Provider.of<HiveModel>(context,listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Todo List"),
@@ -25,27 +25,31 @@ class TodoListScreen extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      body: Selector<HiveModel, bool>(
+      body: Selector<HiveModel, List<dynamic>>(
         shouldRebuild: (previous, next) => true,
-        selector: (context, viewModel) => viewModel.isLoading,
-        builder: (context, isLoading, child) {
-          return isLoading
+        selector: (context, viewModel) => viewModel.todoList,
+        builder: (context, todoList, child) {
+          return viewModel.isLoading
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : GridView.builder(
-                itemCount: viewModel.todoList.length,
-                gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) {
-                  return TodoListWidget(
-                    data: viewModel.todoList[index],
-                    index: index,
-                  );
-                },
-              );
+              : todoList.isEmpty
+                  ? const Center(
+                      child: Text("Please Add Notes"),
+                    )
+                  : GridView.builder(
+                      itemCount: todoList.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemBuilder: (context, index) {
+                        return TodoListWidget(
+                          data: todoList[index],
+                          index: index,
+                        );
+                      },
+                    );
         },
       ),
     );

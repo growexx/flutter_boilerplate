@@ -15,10 +15,11 @@ class HiveModel extends ChangeNotifier {
 
   final formKey = GlobalKey<FormState>();
 
-  final List<dynamic> _todoList = [];
+  List<dynamic> _todoList = [];
 
   set todoList(List<dynamic> data) {
-    _todoList.addAll(data);
+    _todoList = data;
+    notifyListeners();
   }
 
   List<dynamic> get todoList => _todoList;
@@ -49,26 +50,28 @@ class HiveModel extends ChangeNotifier {
   }
 
   //Reading all the users data
-  void getDataLists() async {
+  Future getDataLists() async {
     isLoading = true;
     var box = await Hive.openBox(hiveBox);
-    List<dynamic> todoData = [];
-
-    for (int i = box.length - 1; i >= 0; i--) {
-      var data = box.getAt(i);
-      todoData.add(data);
-      if (kDebugMode) {
-        print((data.toString()));
+    if (box.length == 0) {
+      todoList = [];
+    } else {
+      List<dynamic> todoData = [];
+      for (int i = box.length - 1; i >= 0; i--) {
+        var data = box.getAt(i);
+        todoData.add(data);
+        if (kDebugMode) {
+          print((data.toString()));
+        }
       }
-    }
     todoList = todoData;
+    }
     isLoading = false;
   }
 
   void deleteListData(String index) async {
-    isLoading = true;
     var box = await Hive.openBox(hiveBox);
     box.delete(index);
-    isLoading = false;
+    await getDataLists();
   }
 }
