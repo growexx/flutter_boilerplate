@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
 import 'package:flutter_boilerplate/view/screens/todo/widget/todo_list_widget.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
@@ -16,6 +17,11 @@ class TodoListScreen extends StatelessWidget {
     final viewModel = Provider.of<HiveModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              context.goNamed(DashboardScreen.name);
+            },
+            icon: const Icon(Icons.arrow_back_sharp)),
         title: const Text("Todo List"),
         automaticallyImplyLeading: true,
       ),

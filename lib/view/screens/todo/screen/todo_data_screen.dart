@@ -97,7 +97,7 @@ class AddEditTodoScreen extends StatelessWidget {
       actions: [
         ElevatedButton(
           onPressed: () {
-            context.pushReplacementNamed(TodoListScreen.name);
+            context.pushNamed(TodoListScreen.name);
           },
           child: const Text('Cancel'),
         ),
