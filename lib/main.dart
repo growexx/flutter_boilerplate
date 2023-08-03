@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
-import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
+// import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 import 'package:flutter_boilerplate/app_manager/locale/locale_provider.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
@@ -12,7 +12,7 @@ import 'package:flutter_boilerplate/go_router/error_screen.dart';
 import 'package:flutter_boilerplate/util/push_notifications.dart';
 import 'package:flutter_boilerplate/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 // ignore: depend_on_referenced_packages
@@ -36,12 +36,12 @@ void main() async{
   );
   // FaceBook Initialise
   if (kIsWeb || defaultTargetPlatform == TargetPlatform.macOS) {
-    await FacebookAuth.instance.webAndDesktopInitialize(
-      appId: dotenv.env[Environment.appId]!,
-      cookie: true,
-      xfbml: true,
-      version: "v15.0",
-    );
+    // await FacebookAuth.instance.webAndDesktopInitialize(
+    //   appId: dotenv.env[Environment.appId]!,
+    //   cookie: true,
+    //   xfbml: true,
+    //   version: "v15.0",
+    // );
   }
   if (defaultTargetPlatform == TargetPlatform.iOS && defaultTargetPlatform == TargetPlatform.android) {
     await FirebasePushNotifications().initNotifications();
