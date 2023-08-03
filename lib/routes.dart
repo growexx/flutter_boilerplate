@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/chat/chat_screen.dart';
-import 'package:flutter_boilerplate/view/screens/chat/recent_chats.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
-import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/payment/stripe_payment.dart';
-import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
-import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
-import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
+
+import 'package:flutter_boilerplate/view/screens/pin_support/widget/security_pin_screen.dart';
+import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -36,25 +31,102 @@ List<RouteBase> routes = [
         context: context, state: state, child: const SplashScreen()),
   ),
   GoRoute(
-    name: SigninScreen.name,
-    path: SigninScreen.path,
+    name: SecurityPinScreen.name,
+    path: SecurityPinScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context,
-        state: state,
-        child: MultiProvider(providers: [
-          ChangeNotifierProvider<GoogleSigninViewModel>(
-            create: (_) => GoogleSigninViewModel(),
-          ),
-          ChangeNotifierProvider<SigninViewModel>(
-            create: (_) => SigninViewModel(),
-          ),
-        ], child: const SigninScreen())),
+        context: context, state: state, child: MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SecurityPinViewModel>(
+          create: (_) => SecurityPinViewModel(),
+        ),
+      ],
+      child: const SecurityPinScreen(),
+    ),)
   ),
   GoRoute(
     name: DashboardScreen.name,
     path: DashboardScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: const DashboardScreen()),
+  ),
+  GoRoute(
+    name: SignUpScreen.name,
+    path: SignUpScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      context: context,
+      state: state,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<SignUpViewModel>(
+            create: (_) => SignUpViewModel(),
+          ),
+        ],
+        child: const SignUpScreen(),
+      ),
+    ),
+  ),
+  GoRoute(
+      name: OTPScreen.name,
+      path: OTPScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<OTPViewModel>(
+                  create: (_) => OTPViewModel(),
+                ),
+                ChangeNotifierProvider<SocialSignInViewModel>(
+                  create: (_) => SocialSignInViewModel(),
+                ),
+              ],
+              child: const OTPScreen(),
+            ),
+          )),
+  GoRoute(
+      name: ChangePasswordScreen.name,
+      path: ChangePasswordScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<ChangePasswordViewModel>(
+                  create: (_) => ChangePasswordViewModel(),
+                ),
+              ],
+              child: const ChangePasswordScreen(),
+            ),
+          )),
+  GoRoute(
+      name: ForgotPasswordScreen.name,
+      path: ForgotPasswordScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<ForgotPasswordViewModel>(
+                  create: (_) => ForgotPasswordViewModel(),
+                ),
+              ],
+              child: const ForgotPasswordScreen(),
+            ),
+          )),
+  GoRoute(
+    name: SignInScreen.name,
+    path: SignInScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: MultiProvider(providers: [
+          ChangeNotifierProvider<SocialSignInViewModel>(
+            create: (_) => SocialSignInViewModel(),
+          ),
+          ChangeNotifierProvider<SignInViewModel>(
+            create: (_) => SignInViewModel(),
+          ),
+        ], child: const SignInScreen())),
   ),
   GoRoute(
     name: PaymentScreen.name,
@@ -79,5 +151,49 @@ List<RouteBase> routes = [
     path: ChatScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: ChatScreen()),
+    name: MainScreen.name,
+    path: MainScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const MainScreen()),
+  ),
+  GoRoute(
+    name: BottomTabNavigation.name,
+    path: BottomTabNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const BottomTabNavigation()),
+  ),
+  GoRoute(
+    name: DrawerNavigation.name,
+    path: DrawerNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const DrawerNavigation()),
+  ),
+  GoRoute(
+    name: TopTabNavigation.name,
+    path: TopTabNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: TopTabNavigation()),
+  ),
+  GoRoute(
+    name: UserDetailsScreen.name,
+    path: UserDetailsScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: UserDetailsScreen()),
+  ),
+  GoRoute(
+    name: EditProfileScreen.name,
+    path: EditProfileScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      context: context,
+      state: state,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<EditProfileViewModel>(
+            create: (_) => EditProfileViewModel(),
+          ),
+        ],
+        child: const EditProfileScreen(),
+      ),
+    ),
   ),
 ];

@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 
@@ -14,4 +13,3 @@ void showToast(String msg) {
     }
   }
 }
-

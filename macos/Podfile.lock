@@ -1,4 +1,5 @@
 PODS:
+  - FlutterMacOS (1.0.0)
   - Firebase/CoreOnly (10.12.0):
     - FirebaseCore (= 10.12.0)
   - firebase_core (2.15.0):
@@ -16,18 +17,19 @@ PODS:
   - GoogleUtilities/Logger (7.11.4):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.11.4)"
-  - PromisesObjC (2.3.1)
+  - PromisesObjC (2.2.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sign_in_with_apple (0.0.1):
-    - FlutterMacOS
 
 DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
+
+EXTERNAL SOURCES:
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - sign_in_with_apple (from `Flutter/ephemeral/.symlinks/plugins/sign_in_with_apple/macos`)
 
 SPEC REPOS:
   trunk:
@@ -44,19 +46,17 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
   shared_preferences_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
-  sign_in_with_apple:
-    :path: Flutter/ephemeral/.symlinks/plugins/sign_in_with_apple/macos
 
 SPEC CHECKSUMS:
+  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
   firebase_core: ff59797157ca9adda4440071643761b41fcd03b3
   FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
   FirebaseCoreInternal: 950500ad8a08963657f6d8c67b579740c06d6aa1
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   GoogleUtilities: c63691989bf362ba0505507da00eeb326192e83e
-  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  sign_in_with_apple: a9e97e744e8edc36aefc2723111f652102a7a727
 
 PODFILE CHECKSUM: 236401fc2c932af29a9fcf0e97baeeb2d750d367
 

@@ -37,10 +37,10 @@ packages:
     dependency: transitive
     description:
       name: asn1lib
-      sha256: b74e3842a52c61f8819a1ec8444b4de5419b41a7465e69d4aa681445377398b0
+      sha256: "21afe4333076c02877d14f4a89df111e658a6d466cbfc802eb705eb91bd5adfd"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.1"
+    version: "1.5.0"
   async:
     dependency: transitive
     description:
@@ -201,6 +201,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  coverage:
+    dependency: transitive
+    description:
+      name: coverage
+      sha256: "2fb815080e44a09b85e0f2ca8a820b15053982b2e714b59267719e8a9ff17097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.3"
   crypto:
     dependency: transitive
     description:
@@ -209,6 +217,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: "706b5707578e0c1b4b7550f64078f0a0f19dec3f50a178ffae7006b0a9ca58fb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -217,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  custom_pin_screen:
+    dependency: "direct main"
+    description:
+      name: custom_pin_screen
+      sha256: "5c5661c98b99fef1db557b272f77589cc7a46204c876022c7e891eb0f497782c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   dart_style:
     dependency: transitive
     description:
@@ -313,6 +337,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.0"
+  firebase_messaging:
+    dependency: "direct main"
+    description:
+      name: firebase_messaging
+      sha256: "8ac91d83a028eef050de770f1dc98421e215714d245f34de7b154d436676fbd0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "14.6.5"
+  firebase_messaging_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_messaging_platform_interface
+      sha256: b2995e3640efb646e9ebf0e2fa50dea84895f0746a31d7e3af0e5e009a533a1a
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.4"
+  firebase_messaging_web:
+    dependency: transitive
+    description:
+      name: firebase_messaging_web
+      sha256: "5d8446a28339124a2cb4f57a6ca454a3aca7d0c5c0cdfa5707afb192f7c830a7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.5.4"
   fixnum:
     dependency: transitive
     description:
@@ -371,6 +419,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      sha256: "950e77c2bbe1692bc0874fc7fb491b96a4dc340457f4ea1641443d0a6c1ea360"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.15"
+  flutter_screen_lock:
+    dependency: "direct main"
+    description:
+      name: flutter_screen_lock
+      sha256: "1d86191e67f8c2f09349c2d2929b6d019db213f012d577ad3b85935d22b13207"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.1"
   flutter_stripe:
     dependency: "direct main"
     description:
@@ -437,6 +501,54 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
+  google_maps:
+    dependency: transitive
+    description:
+      name: google_maps
+      sha256: "555d5d736339b0478e821167ac521c810d7b51c3b2734e6802a9f046b64ea37a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.0"
+  google_maps_flutter:
+    dependency: "direct dev"
+    description:
+      name: google_maps_flutter
+      sha256: c290921cd1750b5ede99c82dcaa84740da86278e6ed0f83ad29752b29a8552c6
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+  google_maps_flutter_android:
+    dependency: transitive
+    description:
+      name: google_maps_flutter_android
+      sha256: "9512c862df77c1f0fa5f445513dd3c57f5996f0a809dccb74e54b690ee4e3a0f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.15"
+  google_maps_flutter_ios:
+    dependency: transitive
+    description:
+      name: google_maps_flutter_ios
+      sha256: a9462a433bf3ebe60aadcf4906d2d6341a270d69d3e0fcaa8eb2b64699fcfb4f
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
+  google_maps_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: google_maps_flutter_platform_interface
+      sha256: b363e9a1ef7d063fb21ec8eef5a450db4b0500cc39712c9410b5cc64013d6fc6
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+  google_maps_flutter_web:
+    dependency: transitive
+    description:
+      name: google_maps_flutter_web
+      sha256: "229391997f216d37c76bfc10d9b5837a1dfeb98c4b4063c605016382e5bcd910"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -485,8 +597,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  http:
+  html:
     dependency: transitive
+    description:
+      name: html
+      sha256: "3a7812d5bcd2894edf53dfaf8cd640876cf6cef50a8f238745c8b8120ea74d3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.4"
+  http:
+    dependency: "direct main"
     description:
       name: http
       sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
@@ -541,6 +661,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+  js_wrapping:
+    dependency: transitive
+    description:
+      name: js_wrapping
+      sha256: e385980f7c76a8c1c9a560dfb623b890975841542471eade630b2871d243851c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.4"
   json_annotation:
     dependency: transitive
     description:
@@ -605,6 +733,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.2"
+  mocktail:
+    dependency: transitive
+    description:
+      name: mocktail
+      sha256: "80a996cd9a69284b3dc521ce185ffe9150cde69767c2d3a0720147d93c0cef53"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
+  mocktail_image_network:
+    dependency: "direct main"
+    description:
+      name: mocktail_image_network
+      sha256: a13cb88a8e199c797ad9ddce80880821781c164a9693ddb58104c07915f60877
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.1"
   nested:
     dependency: transitive
     description:
@@ -613,6 +757,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  network_image_mock:
+    dependency: "direct main"
+    description:
+      name: network_image_mock
+      sha256: "855cdd01d42440e0cffee0d6c2370909fc31b3bcba308a59829f24f64be42db7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
+  node_preamble:
+    dependency: transitive
+    description:
+      name: node_preamble
+      sha256: "6e7eac89047ab8a8d26cf16127b5ed26de65209847630400f9aefd7cd5c730db"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   package_config:
     dependency: transitive
     description:
@@ -649,10 +809,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_platform_interface
-      sha256: "57585299a729335f1298b43245842678cb9f43a6310351b18fb577d6e33165ec"
+      sha256: bced5679c7df11190e1ddc35f3222c858f328fff85c3942e46e7f5589bf9eb84
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.0"
   path_provider_windows:
     dependency: transitive
     description:
@@ -665,26 +825,26 @@ packages:
     dependency: "direct main"
     description:
       name: pay
-      sha256: f32c846b1373ae46cfca47298d89ebfa865927ed226b40e1f5fc22c68dc7b018
+      sha256: d7525538a66af1982a0932d3969416e835a6aeafda59e280ed2d1f410b4aaa09
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   pay_android:
     dependency: transitive
     description:
       name: pay_android
-      sha256: "51fb98aaaf1ce3058b62b451fbb0ce980675128912cc2d117cf0be113a8334b5"
+      sha256: "1018a21650109a829bfc35794aa548a087dde5170b14bcb5c603f8b723f985d2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.10"
+    version: "1.0.11"
   pay_ios:
     dependency: transitive
     description:
       name: pay_ios
-      sha256: "04c12e73d404e69f8a6e3cc0a3261d0b3980007a7bd6a2de2940b856d3de9d4c"
+      sha256: eb83e70282de8aed3ceca31ed045ee1d80bf4b50d331411a9d62ad0428a91808
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.8"
+    version: "1.0.9"
   pay_platform_interface:
     dependency: transitive
     description:
@@ -773,6 +933,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  sanitize_html:
+    dependency: transitive
+    description:
+      name: sanitize_html
+      sha256: "0a445f19bbaa196f5a4f93461aa066b94e6e025622eb1e9bc77872a5e25233a5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -837,6 +1005,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  shelf_packages_handler:
+    dependency: transitive
+    description:
+      name: shelf_packages_handler
+      sha256: "89f967eca29607c933ba9571d838be31d67f53f6e4ee15147d5dc2934fee1b1e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
+  shelf_static:
+    dependency: transitive
+    description:
+      name: shelf_static
+      sha256: a41d3f53c4adf0f57480578c1d61d90342cd617de7fc8077b1304643c2d85c1e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -882,6 +1066,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  source_map_stack_trace:
+    dependency: transitive
+    description:
+      name: source_map_stack_trace
+      sha256: "84cf769ad83aa6bb61e0aa5a18e53aea683395f196a6f39c4c881fb90ed4f7ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
+  source_maps:
+    dependency: transitive
+    description:
+      name: source_maps
+      sha256: "708b3f6b97248e5781f493b765c3337db11c5d2c81c3094f10904bfa8004c703"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.12"
   source_span:
     dependency: transitive
     description:
@@ -954,11 +1154,27 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  test:
+    dependency: transitive
+    description:
+      name: test
+      sha256: "3dac9aecf2c3991d09b9cdde4f98ded7b30804a88a0d7e4e7e1678e78d6b97f4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.24.1"
   test_api:
     dependency: transitive
     description:
       name: test_api
       sha256: eb6ac1540b26de412b3403a163d919ba86f6a973fe6cc50ae3541b80092fdcfb
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  test_core:
+    dependency: transitive
+    description:
+      name: test_core
+      sha256: "5138dbffb77b2289ecb12b81c11ba46036590b72a64a7a90d6ffb880f1a29e93"
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
@@ -1018,6 +1234,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  vm_service:
+    dependency: transitive
+    description:
+      name: vm_service
+      sha256: ada49637c27973c183dad90beb6bd781eea4c9f5f955d35da172de0af7bd3440
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.8.0"
   watcher:
     dependency: transitive
     description:
@@ -1034,6 +1258,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
+  webkit_inspection_protocol:
+    dependency: transitive
+    description:
+      name: webkit_inspection_protocol
+      sha256: "67d3a8b6c79e1987d19d848b0892e582dbb0c66c57cc1fef58a177dd2aa2823d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   win32:
     dependency: transitive
     description:
@@ -1068,4 +1300,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.6 <4.0.0"
-  flutter: ">=3.7.6"
+  flutter: ">=3.10.0"
