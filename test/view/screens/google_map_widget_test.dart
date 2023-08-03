@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_field_widget.dart';
+import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_widget.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
@@ -18,8 +18,8 @@ void main() async {
   await commonInitialActivity();
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group("Google Map Field Widget test", () {
-    testWidgets('Google Map Field Widget test', (WidgetTester tester) async {
+  group("Google Map Widget test", () {
+    testWidgets('Google Map Widget test', (WidgetTester tester) async {
       MockGoogleMapInnerViewModel mockModel = MockGoogleMapInnerViewModel();
 
       expect(find.byKey(const Key("google_map")), findsNothing);
@@ -49,13 +49,15 @@ void main() async {
               ChangeNotifierProvider<GoogleMapViewModel>.value(value: mockModel)
             ],
             child: MaterialApp(
-              home: GoogleMapFieldWidget(viewModel: mockModel),
+              home: GoogleMapWidget(viewModel: mockModel),
             )),
       );
 
       expect(find.byKey(const Key("google_map")), findsOneWidget);
       expect(find.byKey(const Key("your_location")), findsOneWidget);
       expect(find.byKey(const Key("address_value")), findsOneWidget);
+
+      tester.pumpAndSettle();
     });
   });
 }

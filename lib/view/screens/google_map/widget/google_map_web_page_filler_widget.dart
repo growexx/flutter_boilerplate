@@ -22,6 +22,7 @@ class _GoogleMapWebPageFillerWidgetState
 
   Widget buildGoogleMap() {
     return GoogleMap(
+      key:const Key("google_map"),
       mapType: MapType.normal,
       initialCameraPosition: widget.viewModel.kGooglePlex,
       onMapCreated: (GoogleMapController controller) {

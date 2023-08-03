@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_field_widget.dart';
+import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_web_page_filler_widget.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
@@ -23,10 +23,7 @@ void main() async {
       MockGoogleMapInnerViewModel mockModel = MockGoogleMapInnerViewModel();
 
       expect(find.byKey(const Key("google_map")), findsNothing);
-      expect(find.byKey(const Key("your_location")), findsNothing);
-      expect(find.byKey(const Key("address_value")), findsNothing);
 
-      when(mockModel.currentAddress).thenReturn("B25, Dummy Address");
       when(mockModel.latLngForWeb)
           .thenAnswer((realInvocation) => const LatLng(23.033863, 72.585022));
       when(mockModel.kGooglePlex).thenReturn(CameraPosition(
@@ -49,13 +46,13 @@ void main() async {
               ChangeNotifierProvider<GoogleMapViewModel>.value(value: mockModel)
             ],
             child: MaterialApp(
-              home: GoogleMapFieldWidget(viewModel: mockModel),
+              home: GoogleMapWebPageFillerWidget(viewModel: mockModel),
             )),
       );
 
       expect(find.byKey(const Key("google_map")), findsOneWidget);
-      expect(find.byKey(const Key("your_location")), findsOneWidget);
-      expect(find.byKey(const Key("address_value")), findsOneWidget);
+
+      tester.pumpAndSettle();
     });
   });
 }
