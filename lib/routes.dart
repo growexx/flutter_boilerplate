@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/chat/chat_screen.dart';
+import 'package:flutter_boilerplate/view/screens/chat/recent_chats.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
@@ -65,5 +67,17 @@ List<RouteBase> routes = [
     path: StripePaymentScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: StripePaymentScreen()),
+  ),
+    GoRoute(
+    name: RecentChats.name,
+    path: RecentChats.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: RecentChats()),
+  ),
+  GoRoute(
+    name: ChatScreen.name,
+    path: ChatScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: ChatScreen()),
   ),
 ];
