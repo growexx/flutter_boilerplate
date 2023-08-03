@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/google_map/google_map_screen.dart';
 import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_field_widget.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,6 +10,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import '../../util/common_initial_activity.dart';
+import '../../util/testing_material_app.dart';
 import 'google_map_widget_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -53,9 +56,33 @@ void main() async {
             )),
       );
 
+      expect(find.byKey(const Key("center")), findsNothing);
+      expect(find.byKey(const Key("cp_indicator")), findsNothing);
+
       expect(find.byKey(const Key("google_map")), findsOneWidget);
       expect(find.byKey(const Key("your_location")), findsOneWidget);
       expect(find.byKey(const Key("address_value")), findsOneWidget);
     });
+
+    testWidgets('Google Map Filed Widget Test - Android: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      Widget widget =  testingMaterial(
+          initialLocation: GoogleMapScreen.path
+      );
+      await tester.pumpWidget(widget);
+      expect(find.byKey(const Key("google-map-functionality")), findsNothing);
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    testWidgets('Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      Widget widget =  testingMaterial(
+          initialLocation: GoogleMapScreen.path
+      );
+      await tester.pumpWidget(widget);
+      expect(find.byKey(const Key("google-map-functionality")), findsNothing);
+      debugDefaultTargetPlatformOverride = null;
+    });
+
   });
 }
