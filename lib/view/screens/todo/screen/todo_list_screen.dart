@@ -13,7 +13,7 @@ class TodoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HiveModel>(context,listen: false);
+    final viewModel = Provider.of<HiveModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Todo List"),
@@ -37,16 +37,12 @@ class TodoListScreen extends StatelessWidget {
                   ? const Center(
                       child: Text("Please Add Notes."),
                     )
-                  : GridView.builder(
+                  : ListView.builder(
+                      shrinkWrap: true,
                       itemCount: todoList.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      itemBuilder: (context, index) {
+                      itemBuilder: (BuildContext context, int index) {
                         return TodoListWidget(
                           data: todoList[index],
-                          index: index,
                         );
                       },
                     );

@@ -6,30 +6,70 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class TodoListWidget extends StatelessWidget {
-  const TodoListWidget({super.key, required this.data, required this.index});
+  const TodoListWidget({super.key, required this.data});
   final TodoData data;
-  final int index;
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HiveModel>(context, listen: false);
 
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(border: Border.all()),
-        child: ListTile(
-          title: Text(" Title : ${data.title}"),
-          subtitle: Text("Data : ${data.data}"),
-          trailing: IconButton(
-              onPressed: () {
-                viewModel.deleteListData(data.listId);
-              },
-              icon: const Icon(Icons.delete_forever)),
-              leading:   IconButton(
-                onPressed: () {
-                context.pushNamed(AddEditTodoScreen.name, extra: data);
-                },
-                icon: const Icon(Icons.edit)),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: Card(
+          child: Wrap(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        title: Text(
+                          data.title,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(
+                          data.data,
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                context.pushNamed(AddEditTodoScreen.name,
+                                    extra: data);
+                              },
+                              icon: const Icon(Icons.edit),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                viewModel.deleteListData(data.listId);
+                              },
+                              icon: const Icon(Icons.delete_forever),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
+                        child: Text(
+                          'Last Updated at: ${data.dateTime}',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ]),
+              ),
+            ],
+          ),
         ),
       ),
     );

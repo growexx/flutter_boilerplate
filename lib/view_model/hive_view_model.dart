@@ -35,7 +35,7 @@ class HiveModel extends ChangeNotifier {
   void saveData(TodoData data) async {
     var box = await Hive.openBox(hiveBox); //open the hive box before writing
     if (formKey.currentState!.validate()) {
-      box.put(data.toJson()["list_id"], data.toJson());
+      box.put(data.listId, data.toJson());
       BuildContext? context = NavigationService.context;
       if (context != null) {
         // ignore: use_build_context_synchronously
