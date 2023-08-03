@@ -257,7 +257,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   Future<void> onPressSignIn(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
       widget.viewModel.signIn(
-          context: ctx,
           email: widget.viewModel.emailC.text,
           password: widget.viewModel.passwordC.text);
     } else {
