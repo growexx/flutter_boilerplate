@@ -15,13 +15,10 @@ class SelectPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ElevatedButton(
       onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        elevation: 10,
-        backgroundColor: Colors.grey.shade200,
-        shape: const StadiumBorder(),
-      ),
+      style: theme.elevatedButtonTheme.style,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 16,
@@ -32,7 +29,7 @@ class SelectPhoto extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Colors.black,
+              color: theme.primaryColor,
             ),
             const SizedBox(
               width: 14,
