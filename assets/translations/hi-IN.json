@@ -58,5 +58,6 @@
   "cancel": "रद्द करें",
   "google-map-functionality":"गूगल मानचित्र कार्यक्षमता (वेब)",
   "your_location": "आपका स्थान: ",
-  "fetching_location": "वर्तमान स्थान लाया जा रहा है..."
+  "fetching_location": "वर्तमान स्थान लाया जा रहा है...",
+  "browse_gallery":"गैलरी ब्राउज़ करें"
 }

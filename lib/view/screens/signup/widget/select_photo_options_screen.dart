@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,7 +39,7 @@ class SelectPhotoOptionsScreen extends StatelessWidget {
             SelectPhoto(
               onTap: () => onTap(ImageSource.gallery),
               icon: Icons.image,
-              textLabel: 'Browse Gallery',
+              textLabel: 'browse_gallery'.tr(),
             ),
             const SizedBox(
               height: 10,

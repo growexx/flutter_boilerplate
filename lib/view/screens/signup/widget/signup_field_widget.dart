@@ -177,17 +177,12 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future<void> onPressSignUp(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-      if (widget.viewModel.passwordC.text.trim() ==
-          widget.viewModel.confirmPasswordC.text.trim()) {
         widget.viewModel.signUp(
             context:ctx,
             firstName: widget.viewModel.firstNameC.text.trim(),
             lastName: widget.viewModel.lastNameC.text.trim(),
             email: widget.viewModel.emailC.text.trim(),
             password: widget.viewModel.passwordC.text.trim());
-      } else {
-        showToast("Password & Confirm Password did not match");
-      }
     } else {
       showToast("Fill Required Fields");
     }
@@ -204,6 +199,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
         Navigator.of(context).pop();
       });
     } on PlatformException catch (e) {
+      print(e);
       Navigator.of(context).pop();
     }
   }
