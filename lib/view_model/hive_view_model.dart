@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
@@ -11,7 +11,7 @@ class HiveModel extends ChangeNotifier {
     getDataLists();
   }
 
-  String hiveBox = "todo_db";
+  String hiveBox = AppConstant.hiveDB;
 
   final formKey = GlobalKey<FormState>();
 
@@ -32,8 +32,8 @@ class HiveModel extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  void addData(TodoData data) async {
-    var box = await Hive.openBox("todo_db"); //open the hive box before writing
+  void saveData(TodoData data) async {
+    var box = await Hive.openBox(hiveBox); //open the hive box before writing
     if (formKey.currentState!.validate()) {
       box.put(data.toJson()["list_id"], data.toJson());
       BuildContext? context = NavigationService.context;
@@ -42,10 +42,6 @@ class HiveModel extends ChangeNotifier {
         context.pushReplacementNamed(TodoListScreen.name);
       }
     }
-    if (kDebugMode) {
-      print((data.toString()));
-    }
-
     Hive.close(); //closing the hive box
   }
 
@@ -60,9 +56,6 @@ class HiveModel extends ChangeNotifier {
       for (int i = box.length - 1; i >= 0; i--) {
         var data = box.getAt(i);
         todoData.add(TodoData.fromJson(data));
-        if (kDebugMode) {
-          print((data.toString()));
-        }
       }
     todoList = todoData;
     }

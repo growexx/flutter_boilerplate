@@ -21,7 +21,7 @@ class TodoListScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.pushNamed(AddEditTodoScreen.name);
+          context.goNamed(AddEditTodoScreen.name);
         },
         child: const Icon(Icons.add),
       ),
@@ -35,7 +35,7 @@ class TodoListScreen extends StatelessWidget {
                 )
               : todoList.isEmpty
                   ? const Center(
-                      child: Text("Please Add Notes"),
+                      child: Text("Please Add Notes."),
                     )
                   : GridView.builder(
                       itemCount: todoList.length,

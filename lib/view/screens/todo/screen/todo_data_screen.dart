@@ -40,53 +40,57 @@ class AddEditTodoScreen extends StatelessWidget {
         width: width,
         child: Form(
           key: viewModel.formKey,
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: titleController,
-                style: const TextStyle(fontSize: 14),
-                validator: (value) {
-                  return ValidationHelper.requiredField(value);
-                },
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  hintText: 'Task',
-                  hintStyle: const TextStyle(fontSize: 14),
-                  icon: const Icon(Icons.edit_document, color: Colors.brown),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              TextFormField(
-                controller: dataController,
-                maxLength: 1000,
-                maxLines: 10,
-                keyboardType: TextInputType.multiline,
-                style: const TextStyle(fontSize: 14),
-                validator: (value) {
-                  return ValidationHelper.requiredField(value);
-                },
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  hintText: 'Description',
-                  hintStyle: const TextStyle(fontSize: 14),
-                  icon: const Icon(Icons.chat_bubble_outline,
-                      color: Colors.brown),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  key: const Key("task"),
+                  controller: titleController,
+                  style: const TextStyle(fontSize: 14),
+                  validator: (value) {
+                    return ValidationHelper.requiredField(value);
+                  },
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 20,
+                    ),
+                    hintText: 'Task',
+                    hintStyle: const TextStyle(fontSize: 14),
+                    icon: const Icon(Icons.edit_document, color: Colors.brown),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 15),
-            ],
+                const SizedBox(height: 15),
+                TextFormField(
+                  key: const Key("description"),
+                  controller: dataController,
+                  maxLength: 1000,
+                  maxLines: 10,
+                  keyboardType: TextInputType.multiline,
+                  style: const TextStyle(fontSize: 14),
+                  validator: (value) {
+                    return ValidationHelper.requiredField(value);
+                  },
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 20,
+                    ),
+                    hintText: 'Description',
+                    hintStyle: const TextStyle(fontSize: 14),
+                    icon: const Icon(Icons.chat_bubble_outline,
+                        color: Colors.brown),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+              ],
+            ),
           ),
         ),
       ),
@@ -100,8 +104,7 @@ class AddEditTodoScreen extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             const uuid = Uuid();
-
-            viewModel.addData(TodoData(
+            viewModel.saveData(TodoData(
                 listId: data?.listId ?? uuid.v4(),
                 title: titleController.text.trim(),
                 data: dataController.text.trim(),
@@ -109,6 +112,7 @@ class AddEditTodoScreen extends StatelessWidget {
                       DateTime.now(),
                     ),
                 userId: '1'));
+            //replace user id with user token in future...
           },
           child: const Text('Save'),
         ),
