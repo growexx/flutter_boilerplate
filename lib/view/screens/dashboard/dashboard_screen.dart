@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
+import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:provider/provider.dart';
@@ -92,7 +93,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       onPressed: () {
                         context.goNamed(PaymentScreen.name);
                       },
-                      child: const Text("Payment"))),
+                      child: const Text("payment").tr())),
+            ),
+            Expanded(
+              child: Center(
+                child: TextButton(
+                    key:const Key("editprofile"),
+                    onPressed: (){
+                         context.goNamed(
+                             EditProfileScreen.name
+                          );
+                    }, child: const Text("editprofile").tr())
+              ),
             ),
           ],
         ),
