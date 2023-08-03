@@ -81,15 +81,6 @@ class DashboardScreen extends StatelessWidget {
                     }, child: const Text("Payment"))
               ),
             ),
-
-            Expanded(
-              child: Center(
-                  child: TextButton(
-                      onPressed: () {
-                        context.pushNamed(TodoListScreen.name);
-                      },
-                      child: const Text("TODO List"))),
-            ),
           ],
         ),
       ),
