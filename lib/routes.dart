@@ -83,6 +83,6 @@ List<RouteBase> routes = [
         context: context,
         state: state,
         child: ChangeNotifierProvider<HiveModel>(
-            create: (context) => HiveModel(), child:  AddTodoDataScreen())),
+            create: (context) => HiveModel(), child:  AddTodoDataScreen(data: state.extra ?? {} ,))),
   ),
 ];

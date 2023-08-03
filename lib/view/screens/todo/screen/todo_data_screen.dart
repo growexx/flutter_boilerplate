@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
@@ -11,11 +12,12 @@ import 'package:uuid/uuid.dart';
 class AddTodoDataScreen extends StatelessWidget {
   static const String name = "add-todo-data";
   static const String path = "/$name";
-  AddTodoDataScreen({super.key});
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController dataController = TextEditingController();
+  const AddTodoDataScreen({super.key, this.data});
+  final dynamic data;
   @override
   Widget build(BuildContext context) {
+  final TextEditingController titleController = TextEditingController(text: data["title"] ?? "" );
+  final TextEditingController dataController = TextEditingController(text: data["data"] ?? "" );
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     HiveModel viewModel = Provider.of<HiveModel>(context, listen: false);
@@ -28,7 +30,7 @@ class AddTodoDataScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.brown),
           ),
-          Text(DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
+          Text(data["date_time"] ?? DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
               style: const TextStyle(fontSize: 16, color: Colors.brown)),
         ],
       ),
@@ -99,7 +101,7 @@ class AddTodoDataScreen extends StatelessWidget {
             const uuid = Uuid();
 
             viewModel.addData(TodoData(
-                listId: uuid.v4(),
+                listId: data["list_id"] ?? uuid.v4(),
                 title: titleController.text.trim(),
                 data: dataController.text.trim(),
                 dateTime: DateFormat.yMMMMd('en_US').add_jm().format(
