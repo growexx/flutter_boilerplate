@@ -10,6 +10,7 @@ import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
@@ -17,8 +18,15 @@ import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
 import 'package:flutter_boilerplate/view_model/forgot_password_view_model.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
+import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import 'view/screens/main_screen.dart';
+import 'view/screens/navigation/bottom_tab_navigation.dart';
+import 'view/screens/navigation/drawer_navigation.dart';
+import 'view/screens/navigation/top_tab_navigation.dart';
+import 'view/screens/user_details_screen.dart';
 
 // define for transition animation
 CustomTransitionPage buildPageWithDefaultTransition<T>({
@@ -146,6 +154,55 @@ List<RouteBase> routes = [
     name: PaymentScreen.name,
     path: PaymentScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state,
+        child: const PaymentScreen()),
+  ),
+  GoRoute(
+    name: MainScreen.name,
+    path: MainScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const MainScreen()),
+  ),
+  GoRoute(
+    name: BottomTabNavigation.name,
+    path: BottomTabNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const BottomTabNavigation()),
+  ),
+  GoRoute(
+    name: DrawerNavigation.name,
+    path: DrawerNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: const DrawerNavigation()),
+  ),
+  GoRoute(
+    name: TopTabNavigation.name,
+    path: TopTabNavigation.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: TopTabNavigation()),
+  ),
+  GoRoute(
+    name: UserDetailsScreen.name,
+    path: UserDetailsScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: UserDetailsScreen()),
+  ),
+  GoRoute(
+    name: EditProfileScreen.name,
+    path: EditProfileScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      context: context,
+      state: state,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<EditProfileViewModel>(
+            create: (_) => EditProfileViewModel(),
+          ),
+        ],
+        child: const EditProfileScreen(),
+      ),
+    ),
+  ),
         context: context, state: state, child: const PaymentScreen()),
   ),
   GoRoute(
