@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
-
-import 'package:flutter_boilerplate/view/screens/pin_support/widget/security_pin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'view/screens/screens.dart';
+import 'view_model/veiw_model.dart';
 
 // define for transition animation
 CustomTransitionPage buildPageWithDefaultTransition<T>({
@@ -31,18 +29,20 @@ List<RouteBase> routes = [
         context: context, state: state, child: const SplashScreen()),
   ),
   GoRoute(
-    name: SecurityPinScreen.name,
-    path: SecurityPinScreen.path,
-    pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: MultiProvider(
-      providers: [
-        ChangeNotifierProvider<SecurityPinViewModel>(
-          create: (_) => SecurityPinViewModel(),
-        ),
-      ],
-      child: const SecurityPinScreen(),
-    ),)
-  ),
+      name: SecurityPinScreen.name,
+      path: SecurityPinScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<SecurityPinViewModel>(
+                  create: (_) => SecurityPinViewModel(),
+                ),
+              ],
+              child: const SecurityPinScreen(),
+            ),
+          )),
   GoRoute(
     name: DashboardScreen.name,
     path: DashboardScreen.path,
@@ -140,7 +140,7 @@ List<RouteBase> routes = [
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: StripePaymentScreen()),
   ),
-    GoRoute(
+  GoRoute(
     name: RecentChats.name,
     path: RecentChats.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
@@ -151,6 +151,8 @@ List<RouteBase> routes = [
     path: ChatScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: ChatScreen()),
+  ),
+  GoRoute(
     name: MainScreen.name,
     path: MainScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
