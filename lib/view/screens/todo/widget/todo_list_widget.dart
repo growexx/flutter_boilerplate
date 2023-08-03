@@ -27,7 +27,7 @@ class TodoListWidget extends StatelessWidget {
               icon: const Icon(Icons.delete_forever)),
               leading:   IconButton(
                 onPressed: () {
-                  context.pushNamed(AddTodoDataScreen.name , extra: data);
+                context.pushNamed(AddEditTodoScreen.name, extra: data);
                 },
                 icon: const Icon(Icons.edit)),
         ),

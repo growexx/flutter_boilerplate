@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
+import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-class AddTodoDataScreen extends StatelessWidget {
-  static const String name = "add-todo-data";
+class AddEditTodoScreen extends StatelessWidget {
+  static const String name = "add-edit-todo-data";
   static const String path = "/$name";
-  const AddTodoDataScreen({super.key, this.data});
+  const AddEditTodoScreen({super.key, this.data});
   final TodoData? data;
   @override
   Widget build(BuildContext context) {
@@ -92,7 +93,7 @@ class AddTodoDataScreen extends StatelessWidget {
       actions: [
         ElevatedButton(
           onPressed: () {
-            context.pop();
+            context.pushReplacementNamed(TodoListScreen.name);
           },
           child: const Text('Cancel'),
         ),

@@ -78,12 +78,15 @@ List<RouteBase> routes = [
             create: (context) => HiveModel(), child: const TodoListScreen())),
   ),
   GoRoute(
-    name: AddTodoDataScreen.name,
-    path: AddTodoDataScreen.path,
+    name: AddEditTodoScreen.name,
+    path: AddEditTodoScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
         child: ChangeNotifierProvider<HiveModel>(
-            create: (context) => HiveModel(), child:  AddTodoDataScreen(data: state.extra as TodoData? ,))),
+            create: (context) => HiveModel(),
+            child: AddEditTodoScreen(
+              data: state.extra as TodoData?,
+            ))),
   ),
 ];

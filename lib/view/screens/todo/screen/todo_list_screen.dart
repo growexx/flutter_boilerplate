@@ -21,7 +21,7 @@ class TodoListScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.pushReplacementNamed(AddTodoDataScreen.name);
+          context.pushNamed(AddEditTodoScreen.name);
         },
         child: const Icon(Icons.add),
       ),
