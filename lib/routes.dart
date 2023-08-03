@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
@@ -83,6 +84,6 @@ List<RouteBase> routes = [
         context: context,
         state: state,
         child: ChangeNotifierProvider<HiveModel>(
-            create: (context) => HiveModel(), child:  AddTodoDataScreen(data: state.extra ?? {} ,))),
+            create: (context) => HiveModel(), child:  AddTodoDataScreen(data: state.extra as TodoData? ,))),
   ),
 ];

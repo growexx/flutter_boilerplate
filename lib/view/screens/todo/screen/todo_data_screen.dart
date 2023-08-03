@@ -13,11 +13,11 @@ class AddTodoDataScreen extends StatelessWidget {
   static const String name = "add-todo-data";
   static const String path = "/$name";
   const AddTodoDataScreen({super.key, this.data});
-  final dynamic data;
+  final TodoData? data;
   @override
   Widget build(BuildContext context) {
-  final TextEditingController titleController = TextEditingController(text: data["title"] ?? "" );
-  final TextEditingController dataController = TextEditingController(text: data["data"] ?? "" );
+  final TextEditingController titleController = TextEditingController(text: data?.title ?? "" );
+  final TextEditingController dataController = TextEditingController(text: data?.data ?? "" );
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     HiveModel viewModel = Provider.of<HiveModel>(context, listen: false);
@@ -30,7 +30,7 @@ class AddTodoDataScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.brown),
           ),
-          Text(data["date_time"] ?? DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
+          Text(data?.dateTime ?? DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
               style: const TextStyle(fontSize: 16, color: Colors.brown)),
         ],
       ),
@@ -101,7 +101,7 @@ class AddTodoDataScreen extends StatelessWidget {
             const uuid = Uuid();
 
             viewModel.addData(TodoData(
-                listId: data["list_id"] ?? uuid.v4(),
+                listId: data?.listId ?? uuid.v4(),
                 title: titleController.text.trim(),
                 data: dataController.text.trim(),
                 dateTime: DateFormat.yMMMMd('en_US').add_jm().format(
