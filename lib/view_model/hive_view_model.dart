@@ -15,14 +15,14 @@ class HiveModel extends ChangeNotifier {
 
   final formKey = GlobalKey<FormState>();
 
-  List<dynamic> _todoList = [];
+  List<TodoData> _todoList = [];
 
-  set todoList(List<dynamic> data) {
+  set todoList(List<TodoData> data) {
     _todoList = data;
     notifyListeners();
   }
 
-  List<dynamic> get todoList => _todoList;
+  List<TodoData> get todoList => _todoList;
 
   bool _isLoading = false;
   set isLoading(bool value) {
@@ -56,10 +56,10 @@ class HiveModel extends ChangeNotifier {
     if (box.length == 0) {
       todoList = [];
     } else {
-      List<dynamic> todoData = [];
+      List<TodoData> todoData = [];
       for (int i = box.length - 1; i >= 0; i--) {
         var data = box.getAt(i);
-        todoData.add(data);
+        todoData.add(TodoData.fromJson(data));
         if (kDebugMode) {
           print((data.toString()));
         }
