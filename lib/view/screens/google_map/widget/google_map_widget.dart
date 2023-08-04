@@ -68,7 +68,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                     CameraPosition(target: currentPositionLatLng, zoom: 14)));
 
                 //getting current address or location from co-ordinates
-                LocationUtils().getAddressFromLatLng(widget.viewModel.currentPosition!)
+                getAddressFromLatLng(widget.viewModel.currentPosition!)
                     .then((value) {
                   widget.viewModel.setCurrentAddress = value;
                 });
