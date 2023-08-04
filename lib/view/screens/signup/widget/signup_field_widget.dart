@@ -32,7 +32,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    Uint8List change = Uint8List.fromList([]);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
