@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
@@ -32,7 +31,6 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    Uint8List change = Uint8List.fromList([]);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -75,35 +73,20 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                           textAlign: TextAlign.center,
                                           style: theme.textTheme.titleSmall,
                                         ).tr()
-                                      : kIsWeb ? Selector<SignUpViewModel, Unit8List?>(
+                                      : Selector<SignUpViewModel, File?>(
+                                          shouldRebuild: (prev,nex)=>true,
                                           selector: (_, listener) =>
-                                              listener.webImage,
+                                              listener.pickedImage,
                                           builder:
-                                              (context, webImage, child) {
-                                            widget.viewModel.webImage =
-                                                webImage;
+                                              (context, pickedImage, child) {
                                             return CircleAvatar(
                                               key: const Key(
                                                   "circle_avatar_picked_image"),
                                               backgroundImage:
-                                                  FileImage(webImage!),
+                                                  FileImage(pickedImage!),
                                               radius: 200.0,
                                             );
-                                          }):Selector<SignUpViewModel, File?>(
-                                      selector: (_, listener) =>
-                                      listener.pickedImage,
-                                      builder:
-                                          (context, pickedImage, child) {
-                                        widget.viewModel.pickedImage =
-                                            pickedImage;
-                                        return CircleAvatar(
-                                          key: const Key(
-                                              "circle_avatar_picked_image"),
-                                          backgroundImage:
-                                          FileImage(pickedImage!),
-                                          radius: 200.0,
-                                        );
-                                      }),
+                                          }),
                                 )),
                           ),
                         ),
@@ -224,24 +207,12 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
-      if (!kIsWeb) {
-        File? img = File(image.path);
-        img = await _cropImage(imageFile: img);
-        widget.viewModel.setPickedImage = img;
-        if (!mounted) return;
-        Navigator.of(context).pop();
-      } else {
-        var fileBytes = await image.readAsBytes();
-        widget.viewModel.setWebImage = fileBytes;
-        widget.viewModel.pickedImage = File('a');
-        if (!mounted) return;
-        Navigator.of(context).pop();
-      }
+      File? img = File(image.path);
+      img = await _cropImage(imageFile: img);
+      widget.viewModel.setPickedImage = img;
+      Navigator.of(context).pop();
     } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-
+      print(e);
       Navigator.of(context).pop();
     }
   }
