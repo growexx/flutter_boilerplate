@@ -59,7 +59,6 @@
   "error_valid_mobile_number": "Please enter a valid mobile number.",
   "sign_in_with_otp": "Sign In with OTP",
   "verify_pin": "Verify PIN",
-  "cancel": "CANCEL",
   "want_to_exit": "Do you want to exit the app?",
   "exit": "exit",
   "location_services_are_disabled":"Location services are disabled. Please enable the services",
@@ -70,7 +69,7 @@
   "fetching_location": "Fetching Current Location...",
   "browse_gallery":"Browse Gallery",
   "use_a_camera": "Use a Camera",
-  "pick_image": "Pick\nImage"
+  "pick_image": "Pick\nImage",
   "todo_screen":"Todo Screen",
   "todo_list":"Todo List",
   "new_task":"New Task",

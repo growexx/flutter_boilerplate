@@ -64,7 +64,6 @@
   "error_valid_mobile_number": "कृपया एक वैध मोबाइल नंबर दर्ज करें.",
   "sign_in_with_otp": "ओटीपी के साथ साइन इन करें",
   "verify_pin": "पिन सत्यापित करें",
-  "cancel": "रद्द करें",
   "want_to_exit": "क्या आप ऐप से बाहर निकलना चाहते हैं?",
   "exit": "बाहर",
   "location_services_are_disabled": "स्थान सेवाएँ अक्षम हैं. कृपया सेवाएँ सक्षम करें",
@@ -72,7 +71,7 @@
   "location_permission_permanently_denied": "स्थान अनुमतियाँ स्थायी रूप से अस्वीकार कर दी गई हैं, हम अनुमतियों का अनुरोध नहीं कर सकते।",
   "browse_gallery":"गैलरी ब्राउज़ करें",
   "use_a_camera": "कैमरे का प्रयोग करें",
-  "pick_image": "छवि\nचुनें"
+  "pick_image": "छवि\nचुनें",
   "todo_screen": "टूडू स्क्रीन",
   "todo_list":"टूडू सूची",
   "new_task":"नया कार्य",
