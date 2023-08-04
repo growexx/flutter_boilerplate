@@ -63,9 +63,25 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     Wrap(
                       key:const Key("social_container"),
                       children: [
-                        Assets.png.icFacebook.image(
-                            key:const Key("facebook"),
-                            width: 35, height: 35),
+                        InkWell(
+                            onTap: () {
+                              widget.socialSignInViewModel
+                                  .signinWithFaceBook()
+                                  .then((User? user) {
+                                if (user != null) {
+                                  widget.userRepository
+                                      .updateUserData(user)
+                                      .then((value) => Router.neglect(
+                                      context,
+                                          () => context
+                                          .goNamed(DashboardScreen.name)));
+                                }
+                              });
+                            },
+                            child:
+                            Assets.png.icFacebook.image(
+                                key:const Key("facebook"),
+                                width: 35, height: 35),),
                         const SizedBox(width: 20),
                         Assets.png.icInstagram.image(
                             key:const Key("instagram"),
