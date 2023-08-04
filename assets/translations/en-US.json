@@ -64,5 +64,8 @@
   "verify_pin": "Verify PIN",
   "cancel": "CANCEL",
   "want_to_exit": "Do you want to exit the app?",
-  "exit": "exit"
+  "exit": "exit",
+  "location_services_are_disabled":"Location services are disabled. Please enable the services",
+  "location_permission_denied": "Location permissions are denied",
+  "location_permission_permanently_denied": "Location permissions are permanently denied, we cannot request permissions."
 }

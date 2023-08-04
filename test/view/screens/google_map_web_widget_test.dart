@@ -15,10 +15,6 @@ import 'google_map_web_widget_test.mocks.dart';
   MockSpec<GoogleMapViewModel>(
       as: #MockGoogleMapInnerViewModel, onMissingStub: OnMissingStub.returnDefault),
 ])
-@GenerateNiceMocks([
-  MockSpec<GoogleMap>(
-      as: #MockGoogleMap, onMissingStub: OnMissingStub.returnDefault),
-])
 void main() async {
   await commonInitialActivity();
   TestWidgetsFlutterBinding.ensureInitialized();

@@ -4,16 +4,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:ui' as _i8;
+import 'dart:ui' as _i6;
 
-import 'package:flutter/cupertino.dart' as _i4;
-import 'package:flutter/foundation.dart' as _i9;
-import 'package:flutter/gestures.dart' as _i10;
-import 'package:flutter/src/foundation/assertions.dart' as _i11;
-import 'package:flutter/src/foundation/diagnostics.dart' as _i5;
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart'
-    as _i6;
-import 'package:geolocator/geolocator.dart' as _i7;
+    as _i4;
+import 'package:geolocator/geolocator.dart' as _i5;
 import 'package:google_maps_flutter/google_maps_flutter.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -59,91 +54,11 @@ class _FakeCameraPosition_2 extends _i1.SmartFake
         );
 }
 
-class _FakeCameraTargetBounds_3 extends _i1.SmartFake
-    implements _i2.CameraTargetBounds {
-  _FakeCameraTargetBounds_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeMinMaxZoomPreference_4 extends _i1.SmartFake
-    implements _i2.MinMaxZoomPreference {
-  _FakeMinMaxZoomPreference_4(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeEdgeInsets_5 extends _i1.SmartFake implements _i4.EdgeInsets {
-  _FakeEdgeInsets_5(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeState_6<T extends _i4.StatefulWidget> extends _i1.SmartFake
-    implements _i4.State<T> {
-  _FakeState_6(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-
-  @override
-  String toString({_i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.info}) =>
-      super.toString();
-}
-
-class _FakeStatefulElement_7 extends _i1.SmartFake
-    implements _i4.StatefulElement {
-  _FakeStatefulElement_7(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-
-  @override
-  String toString({_i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.info}) =>
-      super.toString();
-}
-
-class _FakeDiagnosticsNode_8 extends _i1.SmartFake
-    implements _i4.DiagnosticsNode {
-  _FakeDiagnosticsNode_8(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-
-  @override
-  String toString({
-    _i5.TextTreeConfiguration? parentConfiguration,
-    _i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.info,
-  }) =>
-      super.toString();
-}
-
 /// A class which mocks [GoogleMapViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGoogleMapInnerViewModel extends _i1.Mock
-    implements _i6.GoogleMapViewModel {
+    implements _i4.GoogleMapViewModel {
   @override
   set currentAddress(String? _currentAddress) => super.noSuchMethod(
         Invocation.setter(
@@ -153,7 +68,7 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  set currentPosition(_i7.Position? _currentPosition) => super.noSuchMethod(
+  set currentPosition(_i5.Position? _currentPosition) => super.noSuchMethod(
         Invocation.setter(
           #currentPosition,
           _currentPosition,
@@ -213,7 +128,7 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  set setCurrentPosition(_i7.Position? fetchedPosition) => super.noSuchMethod(
+  set setCurrentPosition(_i5.Position? fetchedPosition) => super.noSuchMethod(
         Invocation.setter(
           #setCurrentPosition,
           fetchedPosition,
@@ -235,7 +150,7 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  void addListener(_i8.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -243,7 +158,7 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i8.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -266,331 +181,4 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       );
-}
-
-/// A class which mocks [GoogleMap].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGoogleMap extends _i1.Mock implements _i2.GoogleMap {
-  @override
-  _i2.CameraPosition get initialCameraPosition => (super.noSuchMethod(
-        Invocation.getter(#initialCameraPosition),
-        returnValue: _FakeCameraPosition_2(
-          this,
-          Invocation.getter(#initialCameraPosition),
-        ),
-        returnValueForMissingStub: _FakeCameraPosition_2(
-          this,
-          Invocation.getter(#initialCameraPosition),
-        ),
-      ) as _i2.CameraPosition);
-  @override
-  bool get compassEnabled => (super.noSuchMethod(
-        Invocation.getter(#compassEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get mapToolbarEnabled => (super.noSuchMethod(
-        Invocation.getter(#mapToolbarEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  _i2.CameraTargetBounds get cameraTargetBounds => (super.noSuchMethod(
-        Invocation.getter(#cameraTargetBounds),
-        returnValue: _FakeCameraTargetBounds_3(
-          this,
-          Invocation.getter(#cameraTargetBounds),
-        ),
-        returnValueForMissingStub: _FakeCameraTargetBounds_3(
-          this,
-          Invocation.getter(#cameraTargetBounds),
-        ),
-      ) as _i2.CameraTargetBounds);
-  @override
-  _i2.MapType get mapType => (super.noSuchMethod(
-        Invocation.getter(#mapType),
-        returnValue: _i2.MapType.none,
-        returnValueForMissingStub: _i2.MapType.none,
-      ) as _i2.MapType);
-  @override
-  _i2.MinMaxZoomPreference get minMaxZoomPreference => (super.noSuchMethod(
-        Invocation.getter(#minMaxZoomPreference),
-        returnValue: _FakeMinMaxZoomPreference_4(
-          this,
-          Invocation.getter(#minMaxZoomPreference),
-        ),
-        returnValueForMissingStub: _FakeMinMaxZoomPreference_4(
-          this,
-          Invocation.getter(#minMaxZoomPreference),
-        ),
-      ) as _i2.MinMaxZoomPreference);
-  @override
-  bool get rotateGesturesEnabled => (super.noSuchMethod(
-        Invocation.getter(#rotateGesturesEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get scrollGesturesEnabled => (super.noSuchMethod(
-        Invocation.getter(#scrollGesturesEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get zoomControlsEnabled => (super.noSuchMethod(
-        Invocation.getter(#zoomControlsEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get zoomGesturesEnabled => (super.noSuchMethod(
-        Invocation.getter(#zoomGesturesEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get liteModeEnabled => (super.noSuchMethod(
-        Invocation.getter(#liteModeEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get tiltGesturesEnabled => (super.noSuchMethod(
-        Invocation.getter(#tiltGesturesEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get fortyFiveDegreeImageryEnabled => (super.noSuchMethod(
-        Invocation.getter(#fortyFiveDegreeImageryEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  _i4.EdgeInsets get padding => (super.noSuchMethod(
-        Invocation.getter(#padding),
-        returnValue: _FakeEdgeInsets_5(
-          this,
-          Invocation.getter(#padding),
-        ),
-        returnValueForMissingStub: _FakeEdgeInsets_5(
-          this,
-          Invocation.getter(#padding),
-        ),
-      ) as _i4.EdgeInsets);
-  @override
-  Set<_i2.Marker> get markers => (super.noSuchMethod(
-        Invocation.getter(#markers),
-        returnValue: <_i2.Marker>{},
-        returnValueForMissingStub: <_i2.Marker>{},
-      ) as Set<_i2.Marker>);
-  @override
-  Set<_i2.Polygon> get polygons => (super.noSuchMethod(
-        Invocation.getter(#polygons),
-        returnValue: <_i2.Polygon>{},
-        returnValueForMissingStub: <_i2.Polygon>{},
-      ) as Set<_i2.Polygon>);
-  @override
-  Set<_i2.Polyline> get polylines => (super.noSuchMethod(
-        Invocation.getter(#polylines),
-        returnValue: <_i2.Polyline>{},
-        returnValueForMissingStub: <_i2.Polyline>{},
-      ) as Set<_i2.Polyline>);
-  @override
-  Set<_i2.Circle> get circles => (super.noSuchMethod(
-        Invocation.getter(#circles),
-        returnValue: <_i2.Circle>{},
-        returnValueForMissingStub: <_i2.Circle>{},
-      ) as Set<_i2.Circle>);
-  @override
-  Set<_i2.TileOverlay> get tileOverlays => (super.noSuchMethod(
-        Invocation.getter(#tileOverlays),
-        returnValue: <_i2.TileOverlay>{},
-        returnValueForMissingStub: <_i2.TileOverlay>{},
-      ) as Set<_i2.TileOverlay>);
-  @override
-  bool get myLocationEnabled => (super.noSuchMethod(
-        Invocation.getter(#myLocationEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get myLocationButtonEnabled => (super.noSuchMethod(
-        Invocation.getter(#myLocationButtonEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get indoorViewEnabled => (super.noSuchMethod(
-        Invocation.getter(#indoorViewEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get trafficEnabled => (super.noSuchMethod(
-        Invocation.getter(#trafficEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  bool get buildingsEnabled => (super.noSuchMethod(
-        Invocation.getter(#buildingsEnabled),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-  @override
-  Set<_i9.Factory<_i10.OneSequenceGestureRecognizer>> get gestureRecognizers =>
-      (super.noSuchMethod(
-        Invocation.getter(#gestureRecognizers),
-        returnValue: <_i9.Factory<_i10.OneSequenceGestureRecognizer>>{},
-        returnValueForMissingStub: <_i9
-            .Factory<_i10.OneSequenceGestureRecognizer>>{},
-      ) as Set<_i9.Factory<_i10.OneSequenceGestureRecognizer>>);
-  @override
-  _i4.State<_i4.StatefulWidget> createState() => (super.noSuchMethod(
-        Invocation.method(
-          #createState,
-          [],
-        ),
-        returnValue: _FakeState_6<_i4.StatefulWidget>(
-          this,
-          Invocation.method(
-            #createState,
-            [],
-          ),
-        ),
-        returnValueForMissingStub: _FakeState_6<_i4.StatefulWidget>(
-          this,
-          Invocation.method(
-            #createState,
-            [],
-          ),
-        ),
-      ) as _i4.State<_i4.StatefulWidget>);
-  @override
-  _i4.StatefulElement createElement() => (super.noSuchMethod(
-        Invocation.method(
-          #createElement,
-          [],
-        ),
-        returnValue: _FakeStatefulElement_7(
-          this,
-          Invocation.method(
-            #createElement,
-            [],
-          ),
-        ),
-        returnValueForMissingStub: _FakeStatefulElement_7(
-          this,
-          Invocation.method(
-            #createElement,
-            [],
-          ),
-        ),
-      ) as _i4.StatefulElement);
-  @override
-  String toStringShort() => (super.noSuchMethod(
-        Invocation.method(
-          #toStringShort,
-          [],
-        ),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  void debugFillProperties(_i11.DiagnosticPropertiesBuilder? properties) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #debugFillProperties,
-          [properties],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  String toStringShallow({
-    String? joiner = r', ',
-    _i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.debug,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #toStringShallow,
-          [],
-          {
-            #joiner: joiner,
-            #minLevel: minLevel,
-          },
-        ),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  String toStringDeep({
-    String? prefixLineOne = r'',
-    String? prefixOtherLines,
-    _i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.debug,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #toStringDeep,
-          [],
-          {
-            #prefixLineOne: prefixLineOne,
-            #prefixOtherLines: prefixOtherLines,
-            #minLevel: minLevel,
-          },
-        ),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  _i4.DiagnosticsNode toDiagnosticsNode({
-    String? name,
-    _i11.DiagnosticsTreeStyle? style,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #toDiagnosticsNode,
-          [],
-          {
-            #name: name,
-            #style: style,
-          },
-        ),
-        returnValue: _FakeDiagnosticsNode_8(
-          this,
-          Invocation.method(
-            #toDiagnosticsNode,
-            [],
-            {
-              #name: name,
-              #style: style,
-            },
-          ),
-        ),
-        returnValueForMissingStub: _FakeDiagnosticsNode_8(
-          this,
-          Invocation.method(
-            #toDiagnosticsNode,
-            [],
-            {
-              #name: name,
-              #style: style,
-            },
-          ),
-        ),
-      ) as _i4.DiagnosticsNode);
-  @override
-  List<_i4.DiagnosticsNode> debugDescribeChildren() => (super.noSuchMethod(
-        Invocation.method(
-          #debugDescribeChildren,
-          [],
-        ),
-        returnValue: <_i4.DiagnosticsNode>[],
-        returnValueForMissingStub: <_i4.DiagnosticsNode>[],
-      ) as List<_i4.DiagnosticsNode>);
-  @override
-  String toString({_i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.info}) =>
-      super.toString();
 }
