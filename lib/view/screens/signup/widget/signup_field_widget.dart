@@ -15,7 +15,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import 'select_photo_options_screen.dart';
+import 'select_image_options_widget.dart';
 
 class SignUpFieldWidget extends StatefulWidget {
   final SignUpViewModel viewModel;
@@ -54,6 +54,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       padding: const EdgeInsets.all(20.0),
                       child: Center(
                         child: GestureDetector(
+                          key: const Key("pick_image_gesture_detector"),
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
                             _showSelectPhotoOptions(context);
@@ -68,10 +69,11 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                 ),
                                 child: Center(
                                   child: widget.viewModel.pickedImage == null
-                                      ? const Text(
+                                      ?  Text(
+                                          key: const Key("pick_image_text"),
                                           'pick_image',
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 16),
+                                          style: theme.textTheme.titleSmall,
                                         ).tr()
                                       : Selector<SignUpViewModel, File?>(
                                           selector: (_, listener) =>
@@ -81,6 +83,8 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                             widget.viewModel.pickedImage =
                                                 pickedImage;
                                             return CircleAvatar(
+                                              key: const Key(
+                                                  "circle_avatar_picked_image"),
                                               backgroundImage:
                                                   FileImage(pickedImage!),
                                               radius: 200.0,
@@ -210,16 +214,20 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
         File? img = File(image.path);
         img = await _cropImage(imageFile: img);
         widget.viewModel.pickedImage = img;
+        if (!mounted) return;
         Navigator.of(context).pop();
-      }else{
+      } else {
         final image = await ImagePicker().pickImage(source: source);
         if (image == null) return;
-        var f= await image.readAsBytes();
-
+//        var f = await image.readAsBytes();
+        if (!mounted) return;
         Navigator.of(context).pop();
       }
     } on PlatformException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
+
       Navigator.of(context).pop();
     }
   }
@@ -248,7 +256,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
           builder: (context, scrollController) {
             return SingleChildScrollView(
               controller: scrollController,
-              child: SelectPhotoOptionsScreen(
+              child: SelectImageOptionsScreen(
                 onTap: _pickImage,
               ),
             );

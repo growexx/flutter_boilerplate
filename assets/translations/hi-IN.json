@@ -69,10 +69,7 @@
   "exit": "बाहर",
   "location_services_are_disabled": "स्थान सेवाएँ अक्षम हैं. कृपया सेवाएँ सक्षम करें",
   "location_permission_denied": "स्थान अनुमतियाँ अस्वीकृत हैं",
-  "location_permission_permanently_denied": "स्थान अनुमतियाँ स्थायी रूप से अस्वीकार कर दी गई हैं, हम अनुमतियों का अनुरोध नहीं कर सकते।"
-  "google-map-functionality":"गूगल मानचित्र कार्यक्षमता (वेब)",
-  "your_location": "आपका स्थान: ",
-  "fetching_location": "वर्तमान स्थान लाया जा रहा है...",
+  "location_permission_permanently_denied": "स्थान अनुमतियाँ स्थायी रूप से अस्वीकार कर दी गई हैं, हम अनुमतियों का अनुरोध नहीं कर सकते।",
   "browse_gallery":"गैलरी ब्राउज़ करें",
   "use_a_camera": "कैमरे का प्रयोग करें",
   "pick_image": "छवि\nचुनें"

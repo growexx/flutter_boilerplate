@@ -4,106 +4,60 @@ import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/button_theme.dart';
-import 'package:flutter_boilerplate/app_manager/theme/theme_components/elevated_button_theme.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_field_theme.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode;
-
   ThemeProvider({
-    this.themeMode = ThemeMode.system,
+    this.themeMode=ThemeMode.system,
   });
 
   set setThemeMode(ThemeMode val) {
-    themeMode = val;
+    themeMode=val;
     _storeTheme(val);
     notifyListeners();
   }
 
-  void _storeTheme(ThemeMode value) async {
-    await LocalStorage.setString(
-        key: StorageConstant.themeMode, data: value.name);
+  void _storeTheme(ThemeMode value) async{
+    await LocalStorage.setString(key: StorageConstant.themeMode, data: value.name);
   }
 
-  static Future<ThemeMode> retrieveStoredTheme() async {
-    String? storedTheme =
-        await LocalStorage.getString(key: StorageConstant.themeMode);
-    if (storedTheme != null) {
+  static Future<ThemeMode> retrieveStoredTheme() async{
+    String? storedTheme = await LocalStorage.getString(key: StorageConstant.themeMode);
+    if(storedTheme!=null) {
       return ThemeMode.values.byName(storedTheme);
     } else {
       return ThemeMode.system;
     }
   }
 
+
   static ThemeData lightTheme = ThemeData(
-    fontFamily: _fontFamily,
-    scaffoldBackgroundColor: _scaffoldBackgroundColor,
-    appBarTheme: _appBarTheme,
-    primaryColor: _primaryColor,
-    textTheme: CustomTextTheme.primaryLight,
-    textButtonTheme: CustomTextButtonTheme.primaryLight,
-    inputDecorationTheme: CustomTextFieldTheme.primaryLight,
-    listTileTheme: _listTileThemeData,
-    expansionTileTheme: _expansionTileThemeData,
-    tabBarTheme: _tabBarTheme,
-    dividerTheme: _dividerThemeData,
-    scrollbarTheme: _scrollbarTheme,
-      brightness: Brightness.light, colorScheme: ColorScheme.light(
-      primary: AppColor.primary,
-      secondary: AppColor.secondary,
-      error: AppColor.error
-    ).copyWith(background: Colors.white)
-  );
       fontFamily: _fontFamily,
       scaffoldBackgroundColor: _scaffoldBackgroundColor,
       appBarTheme: _appBarTheme,
       primaryColor: _primaryColor,
       textTheme: CustomTextTheme.primaryLight,
-      colorScheme: ColorScheme.light(
-          primary: AppColor.primary,
-          secondary: AppColor.secondary,
-          error: AppColor.error),
-      elevatedButtonTheme: CustomElevatedButtonTheme.primaryLight,
       textButtonTheme: CustomTextButtonTheme.primaryLight,
       inputDecorationTheme: CustomTextFieldTheme.primaryLight,
       listTileTheme: _listTileThemeData,
       expansionTileTheme: _expansionTileThemeData,
       tabBarTheme: _tabBarTheme,
       dividerTheme: _dividerThemeData,
-      backgroundColor: Colors.white,
       scrollbarTheme: _scrollbarTheme,
-      brightness: Brightness.light);
-
-  static ThemeData darkTheme = ThemeData(
-    fontFamily: _fontFamily,
-    appBarTheme: _appBarTheme,
-    primaryColor: _primaryColor,
-    textTheme: CustomTextTheme.primaryDark,
-    textButtonTheme: CustomTextButtonTheme.primaryDark,
-    inputDecorationTheme: CustomTextFieldTheme.primaryDark,
-    listTileTheme: _listTileThemeData,
-    expansionTileTheme: _expansionTileThemeData,
-    tabBarTheme: _tabBarTheme,
-    dividerTheme: _dividerThemeData,
-    scrollbarTheme: _scrollbarTheme,
-    brightness: Brightness.dark, colorScheme: ColorScheme.dark(
+      brightness: Brightness.light, colorScheme: ColorScheme.light(
       primary: AppColor.primary,
       secondary: AppColor.secondary,
-        error: AppColor.error,
-    ).copyWith(background: Colors.black)
+      error: AppColor.error
+  ).copyWith(background: Colors.white)
   );
 
+  static ThemeData darkTheme = ThemeData(
       fontFamily: _fontFamily,
       appBarTheme: _appBarTheme,
       primaryColor: _primaryColor,
       textTheme: CustomTextTheme.primaryDark,
-      colorScheme: ColorScheme.dark(
-        primary: AppColor.primary,
-        secondary: AppColor.secondary,
-        error: AppColor.error,
-      ),
-      elevatedButtonTheme: CustomElevatedButtonTheme.primaryDark,
       textButtonTheme: CustomTextButtonTheme.primaryDark,
       inputDecorationTheme: CustomTextFieldTheme.primaryDark,
       listTileTheme: _listTileThemeData,
@@ -111,12 +65,16 @@ class ThemeProvider extends ChangeNotifier {
       tabBarTheme: _tabBarTheme,
       dividerTheme: _dividerThemeData,
       scrollbarTheme: _scrollbarTheme,
-      brightness: Brightness.dark,
-      backgroundColor: Colors.black);
+      brightness: Brightness.dark, colorScheme: ColorScheme.dark(
+    primary: AppColor.primary,
+    secondary: AppColor.secondary,
+    error: AppColor.error,
+  ).copyWith(background: Colors.black)
+  );
+
 
   static const String _fontFamily = AppConstant.fontFamily;
-  static final Color _scaffoldBackgroundColor =
-      AppColor.scaffoldBackgroundColor;
+  static final Color _scaffoldBackgroundColor = AppColor.scaffoldBackgroundColor;
   static final Color _primaryColor = AppColor.primary;
 
   static final AppBarTheme _appBarTheme = AppBarTheme(
@@ -124,8 +82,14 @@ class ThemeProvider extends ChangeNotifier {
       centerTitle: true,
       elevation: 0,
       titleTextStyle: TextStyle(
-          fontFamily: AppConstant.fontFamily, color: AppColor.secondary),
-      iconTheme: IconThemeData(color: AppColor.secondary));
+          fontFamily: AppConstant.fontFamily,
+          color: AppColor.secondary
+      ),
+      iconTheme: IconThemeData(
+          color: AppColor.secondary
+      )
+  );
+
 
   static final ListTileThemeData _listTileThemeData = ListTileThemeData(
     dense: true,
@@ -133,16 +97,16 @@ class ThemeProvider extends ChangeNotifier {
     textColor: AppColor.greyDark,
     selectedColor: Colors.white,
     minLeadingWidth: 15,
-    contentPadding: const EdgeInsets.only(left: 16, right: 16),
+    contentPadding: const EdgeInsets.only(left: 16,right: 16),
   );
 
-  static final ExpansionTileThemeData _expansionTileThemeData =
-      ExpansionTileThemeData(
+
+  static final ExpansionTileThemeData _expansionTileThemeData = ExpansionTileThemeData(
     iconColor: Colors.white,
     textColor: Colors.white,
     collapsedIconColor: AppColor.greyDark,
     collapsedTextColor: AppColor.greyDark,
-    tilePadding: const EdgeInsets.only(left: 16, right: 16),
+    tilePadding: const EdgeInsets.only(left: 16,right: 16),
   );
 
   static final TabBarTheme _tabBarTheme = TabBarTheme(
@@ -161,14 +125,19 @@ class ThemeProvider extends ChangeNotifier {
         fontFamily: AppConstant.fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w500,
-      ));
+      )
+  );
 
-  static final DividerThemeData _dividerThemeData =
-      DividerThemeData(color: AppColor.grey1, thickness: 1);
+
+  static final DividerThemeData _dividerThemeData = DividerThemeData(
+      color: AppColor.grey1,
+      thickness: 1
+  );
 
   static final ScrollbarThemeData _scrollbarTheme = ScrollbarThemeData(
     thickness: MaterialStateProperty.all<double>(6),
     thumbColor: MaterialStateProperty.all<Color>(AppColor.grey4),
     radius: const Radius.circular(30),
   );
+
 }

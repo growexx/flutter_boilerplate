@@ -1,11 +1,11 @@
+
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
 
 class SignUpViewModel extends ChangeNotifier {
-  http.Client client = http.Client();
   File? pickedImage;
 
   SignUpViewModel() {
