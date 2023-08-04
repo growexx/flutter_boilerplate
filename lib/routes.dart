@@ -9,6 +9,7 @@ import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
+import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import 'view/screens/google_map/google_map_screen.dart';
 import 'view/screens/main_screen.dart';
 import 'view/screens/navigation/bottom_tab_navigation.dart';
 import 'view/screens/navigation/drawer_navigation.dart';
@@ -51,18 +53,20 @@ List<RouteBase> routes = [
         context: context, state: state, child: const SplashScreen()),
   ),
   GoRoute(
-    name: SecurityPinScreen.name,
-    path: SecurityPinScreen.path,
-    pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: MultiProvider(
-      providers: [
-        ChangeNotifierProvider<SecurityPinViewModel>(
-          create: (_) => SecurityPinViewModel(),
-        ),
-      ],
-      child: const SecurityPinScreen(),
-    ),)
-  ),
+      name: SecurityPinScreen.name,
+      path: SecurityPinScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<SecurityPinViewModel>(
+                  create: (_) => SecurityPinViewModel(),
+                ),
+              ],
+              child: const SecurityPinScreen(),
+            ),
+          )),
   GoRoute(
     name: DashboardScreen.name,
     path: DashboardScreen.path,
@@ -152,8 +156,7 @@ List<RouteBase> routes = [
     name: PaymentScreen.name,
     path: PaymentScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state,
-        child: const PaymentScreen()),
+        context: context, state: state, child: const PaymentScreen()),
   ),
   GoRoute(
     name: MainScreen.name,
@@ -201,4 +204,19 @@ List<RouteBase> routes = [
       ),
     ),
   ),
+  GoRoute(
+      name: GoogleMapScreen.name,
+      path: GoogleMapScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<GoogleMapViewModel>(
+                  create: (_) => GoogleMapViewModel(),
+                ),
+              ],
+              child: const GoogleMapScreen(),
+            ),
+          )),
 ];

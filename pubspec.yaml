@@ -50,6 +50,12 @@ dependencies:
 
   go_router: ^10.0.0
   google_sign_in: ^6.1.4
+  google_maps_flutter: ^2.4.0 #for map support in android and iOS
+  google_maps_flutter_web: ^0.5.3 #for map support in web
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
+  #location: ^5.0.1 #to get the current location & other stuffs
+  #syncfusion_flutter_maps: ^22.2.7 #with support to location
 
   provider: ^6.0.5
 
@@ -72,8 +78,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.4.2
-  google_maps_flutter: ^2.4.0
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
