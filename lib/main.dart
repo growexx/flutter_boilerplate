@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 // import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 import 'package:flutter_boilerplate/app_manager/locale/locale_provider.dart';
+import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_boilerplate/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -50,6 +52,9 @@ void main() async{
   User user = await UserRepository.fetchUserData();
   // fetching stored theme model
   ThemeMode themeMode = await ThemeProvider.retrieveStoredTheme();
+   await Hive.initFlutter();
+   Hive.registerAdapter(TodoDataAdapter()); 
+   await Hive.openBox('todo_db');
 
   runApp( EasyLocalization(
     supportedLocales: LocaleHelper.supportedLocales,

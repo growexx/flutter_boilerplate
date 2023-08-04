@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/apple_auth.dart';
@@ -10,13 +8,11 @@ import 'package:flutter_boilerplate/authentication/user.dart';
 // import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
 // import 'package:twitter_login/entity/auth_result.dart';
 
 
-
-
 class SocialSignInViewModel extends ChangeNotifier {
-
 
   final GoogleAuth _googleAuth = GoogleAuth();
   final AppleAuth _appleAuth = AppleAuth();
