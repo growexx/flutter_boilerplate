@@ -3,8 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
 
-
-
   static Future<bool> remove({
     required String key,
     SharedPreferences? pref,
@@ -37,7 +35,4 @@ class LocalStorage {
         final prefs = pref ?? await SharedPreferences.getInstance();
         await prefs.setString(key, useEncrypt==true? Encrypt.encryption(data):data);
   }
-
-
-
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
