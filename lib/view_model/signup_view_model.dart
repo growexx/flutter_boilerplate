@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -8,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 class SignUpViewModel extends ChangeNotifier {
   File? pickedImage;
+  Uint8List? webImage;
 
   SignUpViewModel() {
     //checkIfUserIsLoggedIn();
@@ -23,6 +23,11 @@ class SignUpViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  set setWebImage(Uint8List fileBytes) {
+    webImage = fileBytes;
+    notifyListeners();
+  }
+
   Future<bool> signUp({
     required String firstName,
     required String lastName,
@@ -31,7 +36,6 @@ class SignUpViewModel extends ChangeNotifier {
   }) async {
     /// Implement Api Call Here & navigate to Login screen
     Router.neglect(context, () => context.goNamed(SignInScreen.name));
-    Uint8List change = Uint8List.fromList([]);
     return true;
   }
 }

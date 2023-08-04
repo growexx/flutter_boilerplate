@@ -69,27 +69,41 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                 ),
                                 child: Center(
                                   child: widget.viewModel.pickedImage == null
-                                      ?  Text(
+                                      ? Text(
                                           key: const Key("pick_image_text"),
                                           'pick_image',
                                           textAlign: TextAlign.center,
                                           style: theme.textTheme.titleSmall,
                                         ).tr()
-                                      : Selector<SignUpViewModel, File?>(
+                                      : kIsWeb ? Selector<SignUpViewModel, Unit8List?>(
                                           selector: (_, listener) =>
-                                              listener.pickedImage,
+                                              listener.webImage,
                                           builder:
-                                              (context, pickedImage, child) {
-                                            widget.viewModel.pickedImage =
-                                                pickedImage;
+                                              (context, webImage, child) {
+                                            widget.viewModel.webImage =
+                                                webImage;
                                             return CircleAvatar(
                                               key: const Key(
                                                   "circle_avatar_picked_image"),
                                               backgroundImage:
-                                                  FileImage(pickedImage!),
+                                                  FileImage(webImage!),
                                               radius: 200.0,
                                             );
-                                          }),
+                                          }):Selector<SignUpViewModel, File?>(
+                                      selector: (_, listener) =>
+                                      listener.pickedImage,
+                                      builder:
+                                          (context, pickedImage, child) {
+                                        widget.viewModel.pickedImage =
+                                            pickedImage;
+                                        return CircleAvatar(
+                                          key: const Key(
+                                              "circle_avatar_picked_image"),
+                                          backgroundImage:
+                                          FileImage(pickedImage!),
+                                          radius: 200.0,
+                                        );
+                                      }),
                                 )),
                           ),
                         ),
@@ -208,18 +222,18 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future _pickImage(ImageSource source) async {
     try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
       if (!kIsWeb) {
-        final image = await ImagePicker().pickImage(source: source);
-        if (image == null) return;
         File? img = File(image.path);
         img = await _cropImage(imageFile: img);
         widget.viewModel.setPickedImage = img;
         if (!mounted) return;
         Navigator.of(context).pop();
       } else {
-        final image = await ImagePicker().pickImage(source: source);
-        if (image == null) return;
-//        var f = await image.readAsBytes();
+        var fileBytes = await image.readAsBytes();
+        widget.viewModel.setWebImage = fileBytes;
+        widget.viewModel.pickedImage = File('a');
         if (!mounted) return;
         Navigator.of(context).pop();
       }
