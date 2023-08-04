@@ -1,10 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripePaymentScreen extends StatelessWidget {
   static const String name = "stripe-payment";
   static const String path = "/$name";
+
+  const StripePaymentScreen({super.key});
 
   Future<Map> _createTestPaymentSheet() {
     //TODO api call here
@@ -33,7 +35,9 @@ class StripePaymentScreen extends StatelessWidget {
       // You can now process the payment with the obtained paymentMethod
       // For example, send the paymentMethod.id to your server and handle the payment on the server-side.
     } catch (e) {
-      print('Error: ${e.toString()}');
+      if (kDebugMode) {
+        print('Error: ${e.toString()}');
+      }
     }
   }
 
@@ -41,12 +45,12 @@ class StripePaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stripe Payment'),
+        title: const Text('Stripe Payment'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: _handlePayment,
-          child: Text('Make Payment'),
+          child: const Text('Make Payment'),
         ),
       ),
     );

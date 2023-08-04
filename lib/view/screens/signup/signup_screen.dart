@@ -21,9 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<SignUpViewModel>(context, listen: false);
     final userRepository = Provider.of<UserRepository>(context, listen: false);
-    
 
-    
     Widget fieldPart = SignUpFieldWidget(
       viewModel: viewModel,
       userRepository: userRepository,

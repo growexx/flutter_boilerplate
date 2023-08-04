@@ -139,19 +139,19 @@ List<RouteBase> routes = [
     name: StripePaymentScreen.name,
     path: StripePaymentScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: StripePaymentScreen()),
+        context: context, state: state, child: const StripePaymentScreen()),
   ),
   GoRoute(
     name: RecentChats.name,
     path: RecentChats.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: RecentChats()),
+        context: context, state: state, child: const RecentChats()),
   ),
   GoRoute(
     name: ChatScreen.name,
     path: ChatScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: ChatScreen()),
+        context: context, state: state, child: const ChatScreen()),
   ),
   GoRoute(
     name: MainScreen.name,

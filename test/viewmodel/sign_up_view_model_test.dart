@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,5 +23,7 @@ void main() {
     expect(model.passwordC.text, "Test@123");
     model.confirmPasswordC.text = "Test@123";
     expect(model.confirmPasswordC.text, "Test@123");
+    model.setPickedImage=File("file_name");
+    expect(model.pickedImage,File("file_name"));
   });
 }

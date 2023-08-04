@@ -47,7 +47,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      key:const Key("sign_in"),
+                      key: const Key("sign_in"),
                       "sign_in",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
@@ -55,37 +55,36 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 10,
                     ),
                     Text(
-                        key:const Key("sign_in_description"),
-                        "login_using_social_networks",
+                            key: const Key("sign_in_description"),
+                            "login_using_social_networks",
                             style: theme.textTheme.bodyMedium)
                         .tr(),
                     const SizedBox(height: 20),
                     Wrap(
-                      key:const Key("social_container"),
+                      key: const Key("social_container"),
                       children: [
                         InkWell(
-                            onTap: () {
-                              widget.socialSignInViewModel
-                                  .signinWithFaceBook()
-                                  .then((User? user) {
-                                if (user != null) {
-                                  widget.userRepository
-                                      .updateUserData(user)
-                                      .then((value) => Router.neglect(
-                                      context,
-                                          () => context
-                                          .goNamed(DashboardScreen.name)));
-                                }
-                              });
-                            },
-                            child:
-                            Assets.png.icFacebook.image(
-                                key:const Key("facebook"),
-                                width: 35, height: 35),),
+                          onTap: () {
+                            widget.socialSignInViewModel
+                                .signinWithFaceBook()
+                                .then((User? user) {
+                              if (user != null) {
+                                widget.userRepository.updateUserData(user).then(
+                                    (value) => Router.neglect(
+                                        context,
+                                        () => context
+                                            .goNamed(DashboardScreen.name)));
+                              }
+                            });
+                          },
+                          child: Assets.png.icFacebook.image(
+                              key: const Key("facebook"),
+                              width: 35,
+                              height: 35),
+                        ),
                         const SizedBox(width: 20),
                         Assets.png.icInstagram.image(
-                            key:const Key("instagram"),
-                            width: 35, height: 35),
+                            key: const Key("instagram"), width: 35, height: 35),
                         const SizedBox(width: 20),
                         InkWell(
                             onTap: () {
@@ -102,52 +101,56 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                 }
                               });
                             },
-                            child:
-                                Assets.png.icGoogle.image(
-                                    key:const Key("google"),
-                                    width: 35, height: 35)),
+                            child: Assets.png.icGoogle.image(
+                                key: const Key("google"),
+                                width: 35,
+                                height: 35)),
                         const SizedBox(width: 20),
-                        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)?
+                        (defaultTargetPlatform == TargetPlatform.android ||
+                                defaultTargetPlatform == TargetPlatform.iOS)
+                            ? InkWell(
+                                onTap: () {
+                                  widget.socialSignInViewModel
+                                      .signinWithTwitter()
+                                      .then((User? user) {
+                                    if (user != null) {
+                                      widget.userRepository
+                                          .updateUserData(user)
+                                          .then((value) => Router.neglect(
+                                              context,
+                                              () => context.goNamed(
+                                                  DashboardScreen.name)));
+                                    }
+                                  });
+                                },
+                                child: Assets.png.icTwitter.image(
+                                    key: const Key("twitter"),
+                                    width: 35,
+                                    height: 35),
+                              )
+                            : const SizedBox(
+                                height: 0,
+                                width: 0,
+                              ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 20),
+                          padding: const EdgeInsets.only(left:15,bottom: 12),
                           child: InkWell(
                             onTap: () {
                               widget.socialSignInViewModel
-                                  .signinWithTwitter()
+                                  .signinWithApple()
                                   .then((User? user) {
                                 if (user != null) {
-                                  widget.userRepository
-                                      .updateUserData(user)
-                                      .then((value) => Router.neglect(
-                                      context,
+                                  widget.userRepository.updateUserData(user).then(
+                                      (value) => Router.neglect(
+                                          context,
                                           () => context
-                                          .goNamed(DashboardScreen.name)));
+                                              .goNamed(DashboardScreen.name)));
                                 }
                               });
                             },
-                            child:
-                            Assets.png.icTwitter.image(
-                                key:const Key("twitter"),
-                                width: 35, height: 35),),
-                        ):Container(),
-                        InkWell(
-                          onTap: (){
-                            widget.socialSignInViewModel
-                                .signinWithApple()
-                                .then((User? user) {
-                              if (user != null) {
-                                widget.userRepository
-                                    .updateUserData(user)
-                                    .then((value) => Router.neglect(
-                                    context,
-                                        () => context
-                                        .goNamed(DashboardScreen.name)));
-                              }
-                            });
-                          },
-                          child: Assets.png.icApple.image(
-                              key:const Key("apple"),
-                              width: 40, height: 40),
+                            child: Assets.png.icApple.image(
+                                key: const Key("apple"), width: 40, height: 40),
+                          ),
                         ),
                       ],
                     ),
@@ -155,10 +158,9 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     Text("or_capital", style: theme.textTheme.bodyMedium).tr(),
                     const SizedBox(height: 10),
                     TextFormField(
-                      key:const Key("tf_email"),
+                      key: const Key("tf_email"),
                       controller: widget.viewModel.emailC,
-                      decoration:
-                      InputDecoration(hintText: "enter_email".tr()),
+                      decoration: InputDecoration(hintText: "enter_email".tr()),
                       validator: ValidationHelper.emailValidation,
                       onFieldSubmitted: (val) {
                         onPressSignIn(ctx);
@@ -168,7 +170,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 20,
                     ),
                     PasswordField(
-                      key:const Key("tf_password"),
+                      key: const Key("tf_password"),
                       controller: widget.viewModel.passwordC,
                       hintText: "enter_password".tr(),
                       validator: ValidationHelper.passwordValidation,
@@ -180,7 +182,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 20,
                     ),
                     TextButton(
-                      key:const Key("tb_sign_in"),
+                      key: const Key("tb_sign_in"),
                       onPressed: () {
                         onPressSignIn(ctx);
                       },
@@ -194,7 +196,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     ),
                     const SizedBox(height: 20),
                     TextButton(
-                      key:const Key("tb_sign_in_with_otp"),
+                      key: const Key("tb_sign_in_with_otp"),
                       onPressed: () {
                         onPressSignInWithOTP(ctx);
                       },
@@ -210,12 +212,12 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 20,
                     ),
                     Row(
-                      key:const Key("row_sing_in_utils"),
+                      key: const Key("row_sing_in_utils"),
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: Wrap(
-                            key:const Key("remember_me"),
+                            key: const Key("remember_me"),
                             crossAxisAlignment: WrapCrossAlignment.center,
                             spacing: 5,
                             runSpacing: 5,
@@ -224,22 +226,22 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                 width: 12,
                                 child: Selector<SignInViewModel, bool>(
                                   selector: (_, listener) =>
-                                  listener.isRememberMeChecked,
+                                      listener.isRememberMeChecked,
                                   builder: (context, isRememberCheck, child) =>
                                       Checkbox(
-                                        key:const Key("cb_remember_me"),
-                                        fillColor: theme.checkboxTheme.fillColor,
-                                        value: isRememberCheck,
-                                        onChanged: (bool? value) =>
+                                    key: const Key("cb_remember_me"),
+                                    fillColor: theme.checkboxTheme.fillColor,
+                                    value: isRememberCheck,
+                                    onChanged: (bool? value) =>
                                         widget.viewModel.setRememberMe = value!,
-                                      ),
+                                  ),
                                 ),
                               ),
                               const SizedBox(
                                 width: 5,
                               ),
                               Text(
-                                key:const Key("t_remember_me"),
+                                key: const Key("t_remember_me"),
                                 "remember_me",
                                 style: theme.textTheme.bodySmall,
                               ).tr()
@@ -247,15 +249,15 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                           ),
                         ),
                         InkWell(
-                            key:const Key("forgot_password"),
+                            key: const Key("forgot_password"),
                             onTap: () {
                               NavigationHelper.pushNamed(
                                   context, ForgotPasswordScreen.name);
                             },
                             child: Text(
-                                key:const Key("t_forgot_password"),
-                                "forgot_password",
-                                style: theme.textTheme.bodySmall)
+                                    key: const Key("t_forgot_password"),
+                                    "forgot_password",
+                                    style: theme.textTheme.bodySmall)
                                 .tr())
                       ],
                     ),
@@ -263,7 +265,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       height: 20,
                     ),
                     Wrap(
-                      key:const Key("t_sign_up_description"),
+                      key: const Key("t_sign_up_description"),
                       children: [
                         Text("don't_have_an_account",
                                 style: theme.textTheme.bodyMedium)
@@ -273,7 +275,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             onTap: () => NavigationHelper.pushNamed(
                                 context, SignUpScreen.name),
                             child: Text(
-                              key:const Key("t_sign_up"),
+                              key: const Key("t_sign_up"),
                               "sign_up",
                               style: theme.textTheme.bodyMedium,
                             ).tr()),
@@ -296,7 +298,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
           password: widget.viewModel.passwordC.text);
     }
   }
+
   Future<void> onPressSignInWithOTP(BuildContext ctx) async {
-      widget.viewModel.signInWithOTP(ctx);
+    widget.viewModel.signInWithOTP(ctx);
   }
 }

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
@@ -7,6 +11,11 @@ import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
+import 'select_image_options_widget.dart';
 
 class SignUpFieldWidget extends StatefulWidget {
   final SignUpViewModel viewModel;
@@ -23,7 +32,6 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -41,10 +49,63 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
                     const SizedBox(height: 20),
+                    !kIsWeb?Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Center(
+                        child: GestureDetector(
+                          key: const Key("pick_image_gesture_detector"),
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            if (kIsWeb) {
+                              _pickImage(ImageSource.gallery);
+                            } else {
+                              _showSelectPhotoOptions(context);
+                            }
+                          },
+                          child: Center(
+                            child: Container(
+                                height: 130.0,
+                                width: 130.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.shade200,
+                                ),
+                                child: Center(
+                                  child: Selector<SignUpViewModel, File?>(
+                                      shouldRebuild: (prev, nex) => true,
+                                      selector: (_, listener) =>
+                                          listener.pickedImage,
+                                      builder: (context, pickedImage, child) {
+                                        return pickedImage == null
+                                            ? Text(
+                                                key: const Key(
+                                                    "pick_image_text"),
+                                                'pick_image',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    theme.textTheme.titleSmall,
+                                              ).tr()
+                                            : CircleAvatar(
+                                                key: const Key(
+                                                    "circle_avatar_picked_image"),
+                                                backgroundImage:
+                                                    FileImage(pickedImage),
+                                                radius: 200.0,
+                                              );
+                                      }),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ):const SizedBox(height: 0),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     TextFormField(
                       key: const Key("tf_first_name"),
                       controller: widget.viewModel.firstNameC,
-                      decoration: InputDecoration(hintText: "enter_first_name".tr()),
+                      decoration:
+                          InputDecoration(hintText: "enter_first_name".tr()),
                       validator: ValidationHelper.nameValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
@@ -137,19 +198,62 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future<void> onPressSignUp(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-      if (widget.viewModel.passwordC.text.trim() ==
-          widget.viewModel.confirmPasswordC.text.trim()) {
-        widget.viewModel.signUp(
-            context:ctx,
-            firstName: widget.viewModel.firstNameC.text.trim(),
-            lastName: widget.viewModel.lastNameC.text.trim(),
-            email: widget.viewModel.emailC.text.trim(),
-            password: widget.viewModel.passwordC.text.trim());
-      } else {
-        showToast("Password & Confirm Password did not match");
-      }
+      widget.viewModel.signUp(
+          context: ctx,
+          firstName: widget.viewModel.firstNameC.text.trim(),
+          lastName: widget.viewModel.lastNameC.text.trim(),
+          email: widget.viewModel.emailC.text.trim(),
+          password: widget.viewModel.passwordC.text.trim());
     } else {
       showToast("Fill Required Fields");
     }
+  }
+
+  Future _pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      File? img = File(image.path);
+      img = await _cropImage(imageFile: img);
+      widget.viewModel.setPickedImage = img;
+      Navigator.of(context).pop();
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage =
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
+  }
+
+  void _showSelectPhotoOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25.0),
+        ),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+          initialChildSize: 0.28,
+          maxChildSize: 0.4,
+          minChildSize: 0.28,
+          expand: false,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: SelectImageOptionsScreen(
+                onTap: _pickImage,
+              ),
+            );
+          }),
+    );
   }
 }

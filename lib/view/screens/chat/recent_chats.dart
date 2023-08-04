@@ -116,14 +116,14 @@ class _RecentChatsState extends State<RecentChats> {
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(5.0), topRight: Radius.circular(5.0)),
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               itemCount: sampleUsers.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (BuildContext context, int index) {
                 String tempUrl = "";
                 // log("tempUrl is $tempUrl");
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 5),
+                  margin: const EdgeInsets.symmetric(vertical: 5),
                   child: Row(
                     children: [
                       Container(
@@ -133,7 +133,7 @@ class _RecentChatsState extends State<RecentChats> {
                           decoration: BoxDecoration(
                               color: Colors.amber,
                               borderRadius: BorderRadius.circular(100)),
-                          child: tempUrl == "" || tempUrl == null
+                          child: tempUrl == ""
                               ? Image.asset("images/avatar.png")
                               : Image.network(
                                   tempUrl.toString(),

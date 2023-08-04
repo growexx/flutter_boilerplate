@@ -12,6 +12,7 @@ void main() async {
     testWidgets('sign-up screen', (WidgetTester tester) async {
       Widget widget = testingMaterial(initialLocation: SignUpScreen.path);
       await tester.pumpWidget(widget);
+
       expect(find.byKey(const Key("sign_up")), findsOneWidget);
       expect(find.byKey(const Key("tf_first_name")), findsOneWidget);
       expect(find.byKey(const Key("tf_last_name")), findsOneWidget);
@@ -21,6 +22,14 @@ void main() async {
       expect(find.byKey(const Key("tb_sign_up")), findsOneWidget);
       expect(find.byKey(const Key("t_sign_up_description")), findsOneWidget);
       expect(find.byKey(const Key("t_sign_in")), findsOneWidget);
+      expect(find.byKey(const Key("pick_image_gesture_detector")), findsOneWidget);
+      expect(find.byKey(const Key("pick_image_text")), findsOneWidget);
+
+      final Finder pickImageButton = find.byKey(const Key("circle_avatar_picked_image"));
+      expect(pickImageButton, findsNothing);
+     // await tester.tap(pickImageButton, warnIfMissed: false);
+
+
 
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
