@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class UserDetailsScreen extends StatefulWidget {
   static const String name = "user-details";
   static const String path = "/$name";
@@ -12,6 +13,7 @@ class UserDetailsScreen extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _UserDetailsScreenState createState() => _UserDetailsScreenState();
 }
 
