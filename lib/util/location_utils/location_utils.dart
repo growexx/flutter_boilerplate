@@ -4,8 +4,6 @@ import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-
-class LocationUtils {
   Future<bool> handleLocationPermission(BuildContext context) async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -55,6 +53,5 @@ class LocationUtils {
     });
     return currentAddress;
   }
-}
 
 

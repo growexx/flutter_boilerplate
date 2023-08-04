@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
-enum ButtonStatus{notClicked,clicked}
+import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
 class SecurityPinViewModel extends ChangeNotifier {
   final TextEditingController pinC = TextEditingController();
-  ButtonStatus buttonStatus = ButtonStatus.notClicked;
+  ButtonStatus buttonStatus = ButtonStatus.initial;
 
   Future<bool> savePin({
     required String pin,
     required BuildContext context,
   }) async {
-    buttonStatus  = ButtonStatus.clicked;
+    buttonStatus  = ButtonStatus.complete;
     notifyListeners();
     return true;
   }

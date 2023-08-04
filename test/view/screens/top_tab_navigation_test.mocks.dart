@@ -7,8 +7,8 @@ import 'dart:async' as _i4;
 import 'dart:ui' as _i6;
 
 import 'package:flutter/material.dart' as _i5;
-import 'package:flutter_boilerplate/authentication/user.dart' as _i3;
-import 'package:flutter_boilerplate/authentication/user_repository.dart' as _i2;
+import 'package:flutter_boilerplate/authentication/user.dart' as _i2;
+import 'package:flutter_boilerplate/authentication/user_repository.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,18 +22,40 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeUser_0 extends _i1.SmartFake implements _i2.User {
+  _FakeUser_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   @override
-  set currentUser(_i3.User? _currentUser) => super.noSuchMethod(
+  set currentUser(_i2.User? _currentUser) => super.noSuchMethod(
         Invocation.setter(
           #currentUser,
           _currentUser,
         ),
         returnValueForMissingStub: null,
       );
+  @override
+  _i2.User get getUser => (super.noSuchMethod(
+        Invocation.getter(#getUser),
+        returnValue: _FakeUser_0(
+          this,
+          Invocation.getter(#getUser),
+        ),
+        returnValueForMissingStub: _FakeUser_0(
+          this,
+          Invocation.getter(#getUser),
+        ),
+      ) as _i2.User);
   @override
   bool get isLoggedIn => (super.noSuchMethod(
         Invocation.getter(#isLoggedIn),
@@ -47,7 +69,7 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i4.Future<dynamic> updateUserData(_i3.User? userData) => (super.noSuchMethod(
+  _i4.Future<dynamic> updateUserData(_i2.User? userData) => (super.noSuchMethod(
         Invocation.method(
           #updateUserData,
           [userData],
@@ -79,6 +101,24 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
         Invocation.method(
           #directLogOut,
           [context],
+        ),
+        returnValue: _i4.Future<dynamic>.value(),
+        returnValueForMissingStub: _i4.Future<dynamic>.value(),
+      ) as _i4.Future<dynamic>);
+  @override
+  _i4.Future<bool?> refreshToken() => (super.noSuchMethod(
+        Invocation.method(
+          #refreshToken,
+          [],
+        ),
+        returnValue: _i4.Future<bool?>.value(),
+        returnValueForMissingStub: _i4.Future<bool?>.value(),
+      ) as _i4.Future<bool?>);
+  @override
+  _i4.Future<dynamic> updateToken(String? token) => (super.noSuchMethod(
+        Invocation.method(
+          #updateToken,
+          [token],
         ),
         returnValue: _i4.Future<dynamic>.value(),
         returnValueForMissingStub: _i4.Future<dynamic>.value(),
