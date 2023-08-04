@@ -1,31 +1,37 @@
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
-import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
+import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
-class DashboardScreen extends StatelessWidget {
+import '../../../app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
+import '../../../app_manager/component/bottom_sheet/functional_sheet.dart';
 
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
   static const String name = "dashboard";
   static const String path = "/$name";
 
-  const DashboardScreen({super.key});
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
 
+class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-
-    final UserRepository userRepository = Provider.of<UserRepository>(context,listen: false);
-    return  WillPopScope(
+    final UserRepository userRepository =
+        Provider.of<UserRepository>(context, listen: false);
+    return WillPopScope(
       onWillPop: () {
         CustomBottomSheet.open(context,
             child: FunctionalSheet(
-                message: "Do you want to exit the app?",
-                buttonName: "exit",
+                message: "want_to_exit".tr(),
+                buttonName: "exit".tr(),
                 onPressButton: () async {
                   exit(0);
                 }));
@@ -39,21 +45,18 @@ class DashboardScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Selector<UserRepository,User?>(
+                    child: Selector<UserRepository, User?>(
                         shouldRebuild: (prev, nex) => true,
                         selector: (buildContext, vm) => vm.currentUser,
-                        builder: (context,User? currentUser, child) {
-                        return Wrap(
-                          spacing: 5,
-                          children: [
-                            const Text(
-                                key:Key("welcome"),
-                                "Welcome"),
-                            Text(currentUser?.firstName??""),
-                          ],
-                        );
-                      }
-                    ),
+                        builder: (context, User? currentUser, child) {
+                          return Wrap(
+                            spacing: 5,
+                            children: [
+                              const Text(key: Key("welcome"), "welcome").tr(),
+                              Text(currentUser?.firstName ?? ""),
+                            ],
+                          );
+                        }),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
@@ -61,16 +64,18 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         const SizedBox(width: 10),
                         TextButton(
-                            key:const Key("change_password"),
-                            onPressed: (){
-                          userRepository.changePassword(context);
-                        }, child: const Text("change_password").tr()),
+                            key: const Key("change_password"),
+                            onPressed: () {
+                              userRepository.changePassword(context);
+                            },
+                            child: const Text("change_password").tr()),
                         const SizedBox(width: 10),
                         TextButton(
-                            key:const Key("sign_out"),
-                            onPressed: (){
-                          userRepository.signOutUser(context);
-                        }, child: const Text("sign_out").tr()),
+                            key: const Key("sign_out"),
+                            onPressed: () {
+                              userRepository.signOutUser(context);
+                            },
+                            child: const Text("sign_out").tr()),
                       ],
                     ),
                   ),
@@ -84,13 +89,21 @@ class DashboardScreen extends StatelessWidget {
             ),
             Expanded(
               child: Center(
+                  child: TextButton(
+                      onPressed: () {
+                        context.goNamed(PaymentScreen.name);
+                      },
+                      child: const Text("payment").tr())),
+            ),
+            Expanded(
+              child: Center(
                 child: TextButton(
-                    key:const Key("payment"),
+                    key:const Key("editprofile"),
                     onPressed: (){
                          context.goNamed(
-                             PaymentScreen.name
+                             EditProfileScreen.name
                           );
-                    }, child: const Text("Payment"))
+                    }, child: const Text("editprofile").tr())
               ),
             ),
           ],

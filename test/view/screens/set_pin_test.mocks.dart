@@ -142,7 +142,6 @@ class MockUserRepository extends _i1.Mock implements _i6.UserRepository {
         returnValue: _i4.Future<dynamic>.value(),
         returnValueForMissingStub: _i4.Future<dynamic>.value(),
       ) as _i4.Future<dynamic>);
-  @override
   void setSecurityPin(_i2.BuildContext? context) => super.noSuchMethod(
         Invocation.method(
           #setSecurityPin,

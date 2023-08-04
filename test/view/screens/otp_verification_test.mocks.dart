@@ -185,6 +185,15 @@ class MockSocialSignInViewModel extends _i1.Mock
         returnValueForMissingStub: _i6.Future<_i7.User?>.value(),
       ) as _i6.Future<_i7.User?>);
   @override
+  _i6.Future<_i7.User?> signinWithFaceBook() => (super.noSuchMethod(
+        Invocation.method(
+          #signinWithFaceBook,
+          [],
+        ),
+        returnValue: _i6.Future<_i7.User?>.value(),
+        returnValueForMissingStub: _i6.Future<_i7.User?>.value(),
+      ) as _i6.Future<_i7.User?>);
+  @override
   void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,

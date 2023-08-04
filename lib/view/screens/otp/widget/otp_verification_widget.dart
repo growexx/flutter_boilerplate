@@ -149,6 +149,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                                               otp: "1",
                                               viewModel: viewModel);
                                          if (viewModel.verificationStatus == Status.verifiedSuccess) {
+                                           if (!mounted) return;
                                            NavigationHelper.pushNamed(context, DashboardScreen.name);
                                          }
                                         },

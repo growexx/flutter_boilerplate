@@ -20,8 +20,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(
-            height: 10),
+        const SizedBox(height: 10),
         widget.viewModel.currentAddress != null
             ? Expanded(
                 flex: 1,
@@ -30,14 +29,19 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("your_location", style: theme.textTheme.bodyLarge).tr(),
-                      const Expanded(
+                      Text(
+                              key: const Key("your_location"),
+                              "your_location",
+                              style: theme.textTheme.bodyLarge)
+                          .tr(),
+                      Expanded(
                         child: Text(
-                            "this is very long text that I am going to chekc now.. afjij oifsoih osihoidshf oihoi hoihf",
+                            key:const Key("address_value"),
+                            "${widget.viewModel.currentAddress}",
                             maxLines: 2,
                             textAlign: TextAlign.center,
                             softWrap: false,
-                            style: TextStyle(overflow: TextOverflow.ellipsis)),
+                            style: const TextStyle(overflow: TextOverflow.ellipsis)),
                       )
                     ],
                   ),
@@ -50,6 +54,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: GoogleMap(
+              key:const Key("google_map"),
               mapType: MapType.normal,
               initialCameraPosition: widget.viewModel.kGooglePlex,
               onMapCreated: (GoogleMapController controller) {
@@ -63,7 +68,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                     CameraPosition(target: currentPositionLatLng, zoom: 14)));
 
                 //getting current address or location from co-ordinates
-                getAddressFromLatLng(widget.viewModel.currentPosition!)
+                LocationUtils().getAddressFromLatLng(widget.viewModel.currentPosition!)
                     .then((value) {
                   widget.viewModel.setCurrentAddress = value;
                 });
