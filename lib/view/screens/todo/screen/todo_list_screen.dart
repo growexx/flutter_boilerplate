@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
@@ -22,10 +23,11 @@ class TodoListScreen extends StatelessWidget {
               context.goNamed(DashboardScreen.name);
             },
             icon: const Icon(Icons.arrow_back_sharp)),
-        title: const Text("Todo List"),
+        title: const Text("todo_list").tr(),
         automaticallyImplyLeading: true,
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
           context.goNamed(AddEditTodoScreen.name);
         },
@@ -40,8 +42,8 @@ class TodoListScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 )
               : todoList.isEmpty
-                  ? const Center(
-                      child: Text("Please Add Notes."),
+                  ? Center(
+                      child: const Text("empty_note").tr(),
                     )
                   : ListView.builder(
                       shrinkWrap: true,

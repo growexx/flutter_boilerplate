@@ -5,5 +5,11 @@
   "login_screen": "लॉगिन स्क्रीन",
   "dashboard_screen": "डैशबोर्ड स्क्रीन",
   "payment_screen": "भुगतान स्क्रीन",
-  "sign_in": "डसंकेत"
+  "sign_in": "डसंकेत",
+  "todo_screen": "टूडू स्क्रीन",
+  "todo_list":"टूडू सूची",
+  "new_task":"नया कार्य",
+  "cancel":"रद्द करना",
+  "empty_note":"कृपया नोट्स जोड़ें.",
+  "save":"सेव"
 }

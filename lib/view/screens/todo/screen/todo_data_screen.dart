@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -19,6 +19,11 @@ class AddEditTodoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
   final TextEditingController titleController = TextEditingController(text: data?.title ?? "" );
   final TextEditingController dataController = TextEditingController(text: data?.data ?? "" );
+    titleController.selection = TextSelection.fromPosition(
+        TextPosition(offset: titleController.text.length));
+
+    dataController.selection = TextSelection.fromPosition(
+        TextPosition(offset: dataController.text.length));
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     HiveModel viewModel = Provider.of<HiveModel>(context, listen: false);
@@ -27,10 +32,10 @@ class AddEditTodoScreen extends StatelessWidget {
       title: Column(
         children: [
           const Text(
-            'New Task',
+            'new_task',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.brown),
-          ),
+          ).tr(),
           Text(data?.dateTime ?? DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
               style: const TextStyle(fontSize: 16, color: Colors.brown)),
         ],
@@ -96,12 +101,14 @@ class AddEditTodoScreen extends StatelessWidget {
       ),
       actions: [
         ElevatedButton(
+          key: const Key("cancel"),
           onPressed: () {
             context.pushNamed(TodoListScreen.name);
           },
-          child: const Text('Cancel'),
+          child: const Text('cancel').tr(),
         ),
         ElevatedButton(
+          key: const Key("save"),
           onPressed: () {
             const uuid = Uuid();
             viewModel.saveData(TodoData(
@@ -114,7 +121,7 @@ class AddEditTodoScreen extends StatelessWidget {
                 userId: '1'));
             //replace user id with user token in future...
           },
-          child: const Text('Save'),
+          child: const Text('save').tr(),
         ),
       ],
     );

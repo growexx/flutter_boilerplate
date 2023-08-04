@@ -39,4 +39,7 @@ void main() {
       model.deleteListData("1");
     },
   );
+  tearDownAll(() async {
+    await Hive.close();
+  });
 }

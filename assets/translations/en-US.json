@@ -5,5 +5,11 @@
   "login_screen": "Login Screen",
   "dashboard_screen": "Dashboard Screen",
   "payment_screen": "Payment Screen",
-  "sign_in": "Signin"
+  "sign_in": "Signin",
+  "todo_screen":"Todo Screen",
+  "todo_list":"Todo List",
+  "new_task":"New Task",
+  "cancel":"Cancel",
+  "empty_note":"Please Add Notes.",
+  "save":"Save"
 }
