@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../util/common_initial_activity.dart';
 
@@ -10,15 +11,15 @@ void main() async {
      /* Widget widget = testingWidget(
           child: const SelectImageOptionsScreen(
             key: Key("12"),
-            onTap: (source) => Function(ImageSource source) ,
+            onTap: tester.tap() ,
           ));
 
-      await tester.pumpWidget(widget);
+      await tester.pumpWidget(widget);*/
 
       expect(find.byKey(const Key("key_container")), findsOneWidget);
       expect(find.byKey(const Key("key_browse_gallery")), findsOneWidget);
       expect(find.byKey(const Key("key_or")), findsOneWidget);
-      expect(find.byKey(const Key("key_use_a_camera")), findsOneWidget);*/
+      expect(find.byKey(const Key("key_use_a_camera")), findsOneWidget);
     });
   });
 }

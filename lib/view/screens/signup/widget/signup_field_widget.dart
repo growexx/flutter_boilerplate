@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
@@ -55,7 +56,11 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           key: const Key("pick_image_gesture_detector"),
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
-                            _showSelectPhotoOptions(context);
+                            if (kIsWeb) {
+                              _pickImage(ImageSource.gallery);
+                            } else {
+                              _showSelectPhotoOptions(context);
+                            }
                           },
                           child: Center(
                             child: Container(
@@ -67,26 +72,27 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                 ),
                                 child: Center(
                                   child: Selector<SignUpViewModel, File?>(
-                                          shouldRebuild: (prev,nex)=>true,
-                                          selector: (_, listener) =>
-                                              listener.pickedImage,
-                                          builder:
-                                              (context, pickedImage, child) {
-                                            return pickedImage == null
-                                                ? Text(
-                                              key: const Key("pick_image_text"),
-                                              'pick_image',
-                                              textAlign: TextAlign.center,
-                                              style: theme.textTheme.titleSmall,
-                                            ).tr()
-                                                : CircleAvatar(
-                                              key: const Key(
-                                                  "circle_avatar_picked_image"),
-                                              backgroundImage:
-                                                  FileImage(pickedImage),
-                                              radius: 200.0,
-                                            );
-                                          }),
+                                      shouldRebuild: (prev, nex) => true,
+                                      selector: (_, listener) =>
+                                          listener.pickedImage,
+                                      builder: (context, pickedImage, child) {
+                                        return pickedImage == null
+                                            ? Text(
+                                                key: const Key(
+                                                    "pick_image_text"),
+                                                'pick_image',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    theme.textTheme.titleSmall,
+                                              ).tr()
+                                            : CircleAvatar(
+                                                key: const Key(
+                                                    "circle_avatar_picked_image"),
+                                                backgroundImage:
+                                                    FileImage(pickedImage),
+                                                radius: 200.0,
+                                              );
+                                      }),
                                 )),
                           ),
                         ),
@@ -212,7 +218,9 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
       widget.viewModel.setPickedImage = img;
       Navigator.of(context).pop();
     } on PlatformException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       Navigator.of(context).pop();
     }
   }
