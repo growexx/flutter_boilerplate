@@ -213,7 +213,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
         if (image == null) return;
         File? img = File(image.path);
         img = await _cropImage(imageFile: img);
-        widget.viewModel.pickedImage = img;
+        widget.viewModel.setPickedImage = img;
         if (!mounted) return;
         Navigator.of(context).pop();
       } else {

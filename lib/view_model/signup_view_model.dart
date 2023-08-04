@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
@@ -30,6 +31,7 @@ class SignUpViewModel extends ChangeNotifier {
   }) async {
     /// Implement Api Call Here & navigate to Login screen
     Router.neglect(context, () => context.goNamed(SignInScreen.name));
+    Uint8List change = Uint8List.fromList([]);
     return true;
   }
 }
