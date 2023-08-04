@@ -1,36 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
-import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
-import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
-import 'package:flutter_boilerplate/view/screens/pin_support/widget/security_pin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
-import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
-import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
-import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
-import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
-import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
-import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
-import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
-import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
-import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
-import 'package:flutter_boilerplate/view_model/change_password_view_model.dart';
-import 'package:flutter_boilerplate/view_model/forgot_password_view_model.dart';
-import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
-import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 import 'app_manager/models/todo_data.dart';
-import 'view/screens/google_map/google_map_screen.dart';
-import 'view/screens/main_screen.dart';
-import 'view/screens/navigation/bottom_tab_navigation.dart';
-import 'view/screens/navigation/drawer_navigation.dart';
-import 'view/screens/navigation/top_tab_navigation.dart';
-import 'view/screens/todo/screen/todo_list_screen.dart';
-import 'view/screens/user_details_screen.dart';
+import 'view/screens/screens.dart';
+import 'view_model/veiw_model.dart';
 
 // define for transition animation
 CustomTransitionPage buildPageWithDefaultTransition<T>({
@@ -161,6 +134,24 @@ List<RouteBase> routes = [
     path: PaymentScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context, state: state, child: const PaymentScreen()),
+  ),
+  GoRoute(
+    name: StripePaymentScreen.name,
+    path: StripePaymentScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: StripePaymentScreen()),
+  ),
+  GoRoute(
+    name: RecentChats.name,
+    path: RecentChats.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: RecentChats()),
+  ),
+  GoRoute(
+    name: ChatScreen.name,
+    path: ChatScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context, state: state, child: ChatScreen()),
   ),
   GoRoute(
     name: MainScreen.name,
