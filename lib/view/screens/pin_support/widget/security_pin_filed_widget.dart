@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
@@ -18,7 +19,7 @@ class _SecurityPinFieldWidgetState extends State<SecurityPinFieldWidget> {
   Widget build(BuildContext context) {
     return Consumer<SecurityPinViewModel>(
       builder: (BuildContext context, viewModel, Widget? child) {
-        if (viewModel.buttonStatus == ButtonStatus.clicked) {
+        if (viewModel.buttonStatus == ButtonStatus.complete) {
           NavigationHelper.pushNamed(context, DashboardScreen.name);
         }
         return Center(

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
-import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
@@ -273,11 +272,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   Future<void> onPressSignIn(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
       widget.viewModel.signIn(
-          context: ctx,
           email: widget.viewModel.emailC.text,
           password: widget.viewModel.passwordC.text);
-    } else {
-      showToast("Fill Required Fields");
     }
   }
   Future<void> onPressSignInWithOTP(BuildContext ctx) async {
