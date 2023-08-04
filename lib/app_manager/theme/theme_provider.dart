@@ -37,6 +37,24 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   static ThemeData lightTheme = ThemeData(
+    fontFamily: _fontFamily,
+    scaffoldBackgroundColor: _scaffoldBackgroundColor,
+    appBarTheme: _appBarTheme,
+    primaryColor: _primaryColor,
+    textTheme: CustomTextTheme.primaryLight,
+    textButtonTheme: CustomTextButtonTheme.primaryLight,
+    inputDecorationTheme: CustomTextFieldTheme.primaryLight,
+    listTileTheme: _listTileThemeData,
+    expansionTileTheme: _expansionTileThemeData,
+    tabBarTheme: _tabBarTheme,
+    dividerTheme: _dividerThemeData,
+    scrollbarTheme: _scrollbarTheme,
+      brightness: Brightness.light, colorScheme: ColorScheme.light(
+      primary: AppColor.primary,
+      secondary: AppColor.secondary,
+      error: AppColor.error
+    ).copyWith(background: Colors.white)
+  );
       fontFamily: _fontFamily,
       scaffoldBackgroundColor: _scaffoldBackgroundColor,
       appBarTheme: _appBarTheme,
@@ -58,6 +76,24 @@ class ThemeProvider extends ChangeNotifier {
       brightness: Brightness.light);
 
   static ThemeData darkTheme = ThemeData(
+    fontFamily: _fontFamily,
+    appBarTheme: _appBarTheme,
+    primaryColor: _primaryColor,
+    textTheme: CustomTextTheme.primaryDark,
+    textButtonTheme: CustomTextButtonTheme.primaryDark,
+    inputDecorationTheme: CustomTextFieldTheme.primaryDark,
+    listTileTheme: _listTileThemeData,
+    expansionTileTheme: _expansionTileThemeData,
+    tabBarTheme: _tabBarTheme,
+    dividerTheme: _dividerThemeData,
+    scrollbarTheme: _scrollbarTheme,
+    brightness: Brightness.dark, colorScheme: ColorScheme.dark(
+      primary: AppColor.primary,
+      secondary: AppColor.secondary,
+        error: AppColor.error,
+    ).copyWith(background: Colors.black)
+  );
+
       fontFamily: _fontFamily,
       appBarTheme: _appBarTheme,
       primaryColor: _primaryColor,

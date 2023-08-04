@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
-import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
@@ -63,9 +62,25 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     Wrap(
                       key:const Key("social_container"),
                       children: [
-                        Assets.png.icFacebook.image(
-                            key:const Key("facebook"),
-                            width: 35, height: 35),
+                        InkWell(
+                            onTap: () {
+                              widget.socialSignInViewModel
+                                  .signinWithFaceBook()
+                                  .then((User? user) {
+                                if (user != null) {
+                                  widget.userRepository
+                                      .updateUserData(user)
+                                      .then((value) => Router.neglect(
+                                      context,
+                                          () => context
+                                          .goNamed(DashboardScreen.name)));
+                                }
+                              });
+                            },
+                            child:
+                            Assets.png.icFacebook.image(
+                                key:const Key("facebook"),
+                                width: 35, height: 35),),
                         const SizedBox(width: 20),
                         Assets.png.icInstagram.image(
                             key:const Key("instagram"),
@@ -259,8 +274,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
       widget.viewModel.signIn(
           email: widget.viewModel.emailC.text,
           password: widget.viewModel.passwordC.text);
-    } else {
-      showToast("Fill Required Fields");
     }
   }
   Future<void> onPressSignInWithOTP(BuildContext ctx) async {
