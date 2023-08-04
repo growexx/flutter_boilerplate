@@ -13,3 +13,5 @@ export './signup/signup_screen.dart';
 export './splash/splash_screen.dart';
 export './user_details_screen.dart';
 export './pin_support/pin_support.dart';
+export './todo/screen/todo.dart';
+export './google_map/google_map_screen.dart';
