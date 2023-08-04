@@ -66,24 +66,24 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                   color: Colors.grey.shade200,
                                 ),
                                 child: Center(
-                                  child: widget.viewModel.pickedImage == null
-                                      ? Text(
-                                          key: const Key("pick_image_text"),
-                                          'pick_image',
-                                          textAlign: TextAlign.center,
-                                          style: theme.textTheme.titleSmall,
-                                        ).tr()
-                                      : Selector<SignUpViewModel, File?>(
+                                  child: Selector<SignUpViewModel, File?>(
                                           shouldRebuild: (prev,nex)=>true,
                                           selector: (_, listener) =>
                                               listener.pickedImage,
                                           builder:
                                               (context, pickedImage, child) {
-                                            return CircleAvatar(
+                                            return pickedImage == null
+                                                ? Text(
+                                              key: const Key("pick_image_text"),
+                                              'pick_image',
+                                              textAlign: TextAlign.center,
+                                              style: theme.textTheme.titleSmall,
+                                            ).tr()
+                                                : CircleAvatar(
                                               key: const Key(
                                                   "circle_avatar_picked_image"),
                                               backgroundImage:
-                                                  FileImage(pickedImage!),
+                                                  FileImage(pickedImage),
                                               radius: 200.0,
                                             );
                                           }),
