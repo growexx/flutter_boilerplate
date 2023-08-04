@@ -74,6 +74,8 @@
     			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
     			<string>com.googleusercontent.apps.201284781559-5i7up014ek22tkq5dcd7norj395rsu8a</string>
                 <string>fb616638203906216</string>
+                <!-- Registered Callback URLs in TwitterApp -->
+                      <string>https://flutter-boilerplate-919f8.firebaseapp.com/__/auth/handler</string>
     		</array>
     	</dict>
     </array>
