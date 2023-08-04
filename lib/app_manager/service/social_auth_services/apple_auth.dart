@@ -19,7 +19,7 @@ class AppleAuth {
         null:
         WebAuthenticationOptions(
             clientId: dotenv.env[Environment.appleClientId]!,
-            redirectUri: Uri.parse("https://flutter-boilerplate-919f8.firebaseapp.com/__/auth/handler"),),
+            redirectUri: Uri.parse(dotenv.env[Environment.firebaseRedirectURI]??""),),
       );
       return credential;
     } catch (error) {
