@@ -49,7 +49,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
                     const SizedBox(height: 20),
-                    Padding(
+                    !kIsWeb?Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Center(
                         child: GestureDetector(
@@ -97,7 +97,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           ),
                         ),
                       ),
-                    ),
+                    ):const SizedBox(height: 0),
                     const SizedBox(
                       height: 20,
                     ),
