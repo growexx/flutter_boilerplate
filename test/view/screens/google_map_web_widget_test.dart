@@ -7,12 +7,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+
 import '../../util/common_initial_activity.dart';
-import 'google_map_widget_test.mocks.dart';
+import 'google_map_web_widget_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<GoogleMapViewModel>(
       as: #MockGoogleMapInnerViewModel, onMissingStub: OnMissingStub.returnDefault),
+])
+@GenerateNiceMocks([
+  MockSpec<GoogleMap>(
+      as: #MockGoogleMap, onMissingStub: OnMissingStub.returnDefault),
 ])
 void main() async {
   await commonInitialActivity();
@@ -21,6 +26,7 @@ void main() async {
   group("Google Map Field Widget test", () {
     testWidgets('Google Map Field Widget test', (WidgetTester tester) async {
       MockGoogleMapInnerViewModel mockModel = MockGoogleMapInnerViewModel();
+      //MockGoogleMap mockGoogleMap = MockGoogleMap();
 
       expect(find.byKey(const Key("google_map")), findsNothing);
 
@@ -51,8 +57,8 @@ void main() async {
       );
 
       expect(find.byKey(const Key("google_map")), findsOneWidget);
-
       tester.pumpAndSettle();
+
     });
   });
 }

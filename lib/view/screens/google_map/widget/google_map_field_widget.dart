@@ -19,7 +19,7 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
   @override
   void initState() {
     super.initState();
-    getCurrentPosition(context).then((value) {
+    LocationUtils().getCurrentPosition(context).then((value) {
       widget.viewModel.setCurrentPosition = value;
     });
   }

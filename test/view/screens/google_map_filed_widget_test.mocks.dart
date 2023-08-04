@@ -57,7 +57,7 @@ class _FakeCameraPosition_2 extends _i1.SmartFake
 /// A class which mocks [GoogleMapViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGoogleMapViewModel extends _i1.Mock
+class MockGoogleMapInnerViewModel extends _i1.Mock
     implements _i4.GoogleMapViewModel {
   @override
   set currentAddress(String? _currentAddress) => super.noSuchMethod(
