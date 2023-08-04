@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
-// import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
+import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 import 'package:flutter_boilerplate/app_manager/locale/locale_provider.dart';
 import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_boilerplate/go_router/error_screen.dart';
 import 'package:flutter_boilerplate/util/push_notifications.dart';
 import 'package:flutter_boilerplate/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +23,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/foundation.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // use usePathUrlStrategy to remove # from url path
   usePathUrlStrategy();
@@ -52,27 +51,30 @@ void main() async{
   User user = await UserRepository.fetchUserData();
   // fetching stored theme model
   ThemeMode themeMode = await ThemeProvider.retrieveStoredTheme();
+  Stripe.publishableKey = Environment.stripePublishableKey;
+  Stripe.merchantIdentifier = 'YOUR_MERCHANT_ID';
    await Hive.initFlutter();
    Hive.registerAdapter(TodoDataAdapter()); 
    await Hive.openBox('todo_db');
 
-  runApp( EasyLocalization(
+  runApp(EasyLocalization(
     supportedLocales: LocaleHelper.supportedLocales,
     path: LocaleHelper.path,
     fallbackLocale: LocaleHelper.fallbackLocale,
     child: MultiProvider(
       providers: [
         ChangeNotifierProvider<UserRepository>(
-          create: (_) => UserRepository(currentUser: user),),
+          create: (_) => UserRepository(currentUser: user),
+        ),
         ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(themeMode: themeMode),),
+          create: (_) => ThemeProvider(themeMode: themeMode),
+        ),
       ],
       child: ChangeNotifierProvider<UserRepository>(
           create: (_) => UserRepository(currentUser: user),
           child: const MyApp()),
     ),
-  )
-  );
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -94,9 +96,7 @@ class MyApp extends StatelessWidget {
       builder: (context, widget) {
         return Container(
           color: AppColor.primary,
-          child: SafeArea(
-              child: widget ?? Container()
-          ),
+          child: SafeArea(child: widget ?? Container()),
         );
       },
     );
@@ -108,6 +108,3 @@ GoRouter router = GoRouter(
   navigatorKey: NavigationService.navigatorKey,
   errorBuilder: (context, state) => const ErrorScreen(),
 );
-
-
-
