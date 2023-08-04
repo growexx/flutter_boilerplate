@@ -41,20 +41,18 @@ class ThemeProvider extends ChangeNotifier {
     appBarTheme: _appBarTheme,
     primaryColor: _primaryColor,
     textTheme: CustomTextTheme.primaryLight,
-    colorScheme: ColorScheme.light(
-      primary: AppColor.primary,
-      secondary: AppColor.secondary,
-      error: AppColor.error
-    ),
     textButtonTheme: CustomTextButtonTheme.primaryLight,
     inputDecorationTheme: CustomTextFieldTheme.primaryLight,
     listTileTheme: _listTileThemeData,
     expansionTileTheme: _expansionTileThemeData,
     tabBarTheme: _tabBarTheme,
     dividerTheme: _dividerThemeData,
-    backgroundColor: Colors.white,
     scrollbarTheme: _scrollbarTheme,
-      brightness: Brightness.light
+      brightness: Brightness.light, colorScheme: ColorScheme.light(
+      primary: AppColor.primary,
+      secondary: AppColor.secondary,
+      error: AppColor.error
+    ).copyWith(background: Colors.white)
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -62,11 +60,6 @@ class ThemeProvider extends ChangeNotifier {
     appBarTheme: _appBarTheme,
     primaryColor: _primaryColor,
     textTheme: CustomTextTheme.primaryDark,
-    colorScheme: ColorScheme.dark(
-      primary: AppColor.primary,
-      secondary: AppColor.secondary,
-        error: AppColor.error,
-    ),
     textButtonTheme: CustomTextButtonTheme.primaryDark,
     inputDecorationTheme: CustomTextFieldTheme.primaryDark,
     listTileTheme: _listTileThemeData,
@@ -74,8 +67,11 @@ class ThemeProvider extends ChangeNotifier {
     tabBarTheme: _tabBarTheme,
     dividerTheme: _dividerThemeData,
     scrollbarTheme: _scrollbarTheme,
-    brightness: Brightness.dark,
-    backgroundColor:Colors.black
+    brightness: Brightness.dark, colorScheme: ColorScheme.dark(
+      primary: AppColor.primary,
+      secondary: AppColor.secondary,
+        error: AppColor.error,
+    ).copyWith(background: Colors.black)
   );
 
 

@@ -198,4 +198,41 @@ List<RouteBase> routes = [
       ),
     ),
   ),
+  GoRoute(
+      name: GoogleMapScreen.name,
+      path: GoogleMapScreen.path,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context,
+            state: state,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<GoogleMapViewModel>(
+                  create: (_) => GoogleMapViewModel(),
+                ),
+              ],
+              child: const GoogleMapScreen(),
+            ),
+          )),
+  GoRoute(
+    name: TodoListScreen.name,
+    path: TodoListScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: ChangeNotifierProvider<HiveModel>(
+            create: (context) => HiveModel(), child: const TodoListScreen())),
+  ),
+  GoRoute(
+    name: AddEditTodoScreen.name,
+    path: AddEditTodoScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: ChangeNotifierProvider<HiveModel>(
+            create: (context) => HiveModel(),
+            child: AddEditTodoScreen(
+              data: state.extra as TodoData?,
+            ))),
+  ),
+  
 ];

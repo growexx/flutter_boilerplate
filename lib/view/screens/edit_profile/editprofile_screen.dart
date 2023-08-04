@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/edit_profile/widget/editprofile_field_widget.dart';
-import 'package:flutter_boilerplate/view/widgets/welcome.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:provider/provider.dart';
 

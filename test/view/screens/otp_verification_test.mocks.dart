@@ -3,15 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
-import 'dart:ui' as _i4;
+import 'dart:async' as _i7;
+import 'dart:ui' as _i5;
 
 import 'package:flutter/cupertino.dart' as _i2;
-import 'package:flutter_boilerplate/authentication/user.dart' as _i7;
+import 'package:flutter_boilerplate/authentication/user.dart' as _i3;
 import 'package:flutter_boilerplate/authentication/user_repository.dart' as _i8;
-import 'package:flutter_boilerplate/view_model/otp_view_model.dart' as _i3;
+import 'package:flutter_boilerplate/view_model/otp_view_model.dart' as _i4;
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart'
-    as _i5;
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -36,10 +36,20 @@ class _FakeTextEditingController_0 extends _i1.SmartFake
         );
 }
 
+class _FakeUser_1 extends _i1.SmartFake implements _i3.User {
+  _FakeUser_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [OTPViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOTPViewModel extends _i1.Mock implements _i3.OTPViewModel {
+class MockOTPViewModel extends _i1.Mock implements _i4.OTPViewModel {
   @override
   bool get isPhoneNumberEntered => (super.noSuchMethod(
         Invocation.getter(#isPhoneNumberEntered),
@@ -55,13 +65,13 @@ class MockOTPViewModel extends _i1.Mock implements _i3.OTPViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  _i3.Status get verificationStatus => (super.noSuchMethod(
+  _i4.Status get verificationStatus => (super.noSuchMethod(
         Invocation.getter(#verificationStatus),
-        returnValue: _i3.Status.verifiedSuccess,
-        returnValueForMissingStub: _i3.Status.verifiedSuccess,
-      ) as _i3.Status);
+        returnValue: _i4.Status.verifiedSuccess,
+        returnValueForMissingStub: _i4.Status.verifiedSuccess,
+      ) as _i4.Status);
   @override
-  set verificationStatus(_i3.Status? _verificationStatus) => super.noSuchMethod(
+  set verificationStatus(_i4.Status? _verificationStatus) => super.noSuchMethod(
         Invocation.setter(
           #verificationStatus,
           _verificationStatus,
@@ -122,7 +132,7 @@ class MockOTPViewModel extends _i1.Mock implements _i3.OTPViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -130,7 +140,7 @@ class MockOTPViewModel extends _i1.Mock implements _i3.OTPViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -159,7 +169,7 @@ class MockOTPViewModel extends _i1.Mock implements _i3.OTPViewModel {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSocialSignInViewModel extends _i1.Mock
-    implements _i5.SocialSignInViewModel {
+    implements _i6.SocialSignInViewModel {
   @override
   bool get hasListeners => (super.noSuchMethod(
         Invocation.getter(#hasListeners),
@@ -167,25 +177,34 @@ class MockSocialSignInViewModel extends _i1.Mock
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i6.Future<_i7.User?> signinWithGoogle() => (super.noSuchMethod(
+  _i7.Future<_i3.User?> signinWithGoogle() => (super.noSuchMethod(
         Invocation.method(
           #signinWithGoogle,
           [],
         ),
-        returnValue: _i6.Future<_i7.User?>.value(),
-        returnValueForMissingStub: _i6.Future<_i7.User?>.value(),
-      ) as _i6.Future<_i7.User?>);
+        returnValue: _i7.Future<_i3.User?>.value(),
+        returnValueForMissingStub: _i7.Future<_i3.User?>.value(),
+      ) as _i7.Future<_i3.User?>);
   @override
-  _i6.Future<_i7.User?> signinWithApple() => (super.noSuchMethod(
+  _i7.Future<_i3.User?> signinWithApple() => (super.noSuchMethod(
         Invocation.method(
           #signinWithApple,
           [],
         ),
-        returnValue: _i6.Future<_i7.User?>.value(),
-        returnValueForMissingStub: _i6.Future<_i7.User?>.value(),
-      ) as _i6.Future<_i7.User?>);
+        returnValue: _i7.Future<_i3.User?>.value(),
+        returnValueForMissingStub: _i7.Future<_i3.User?>.value(),
+      ) as _i7.Future<_i3.User?>);
   @override
-  void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  _i7.Future<_i3.User?> signinWithFaceBook() => (super.noSuchMethod(
+        Invocation.method(
+          #signinWithFaceBook,
+          [],
+        ),
+        returnValue: _i7.Future<_i3.User?>.value(),
+        returnValueForMissingStub: _i7.Future<_i3.User?>.value(),
+      ) as _i7.Future<_i3.User?>);
+  @override
+  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -193,7 +212,7 @@ class MockSocialSignInViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -223,13 +242,25 @@ class MockSocialSignInViewModel extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
   @override
-  set currentUser(_i7.User? _currentUser) => super.noSuchMethod(
+  set currentUser(_i3.User? _currentUser) => super.noSuchMethod(
         Invocation.setter(
           #currentUser,
           _currentUser,
         ),
         returnValueForMissingStub: null,
       );
+  @override
+  _i3.User get getUser => (super.noSuchMethod(
+        Invocation.getter(#getUser),
+        returnValue: _FakeUser_1(
+          this,
+          Invocation.getter(#getUser),
+        ),
+        returnValueForMissingStub: _FakeUser_1(
+          this,
+          Invocation.getter(#getUser),
+        ),
+      ) as _i3.User);
   @override
   bool get isLoggedIn => (super.noSuchMethod(
         Invocation.getter(#isLoggedIn),
@@ -243,14 +274,14 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i6.Future<dynamic> updateUserData(_i7.User? userData) => (super.noSuchMethod(
+  _i7.Future<dynamic> updateUserData(_i3.User? userData) => (super.noSuchMethod(
         Invocation.method(
           #updateUserData,
           [userData],
         ),
-        returnValue: _i6.Future<dynamic>.value(),
-        returnValueForMissingStub: _i6.Future<dynamic>.value(),
-      ) as _i6.Future<dynamic>);
+        returnValue: _i7.Future<dynamic>.value(),
+        returnValueForMissingStub: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
   @override
   void changePassword(_i2.BuildContext? context) => super.noSuchMethod(
         Invocation.method(
@@ -260,27 +291,45 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
         returnValueForMissingStub: null,
       );
   @override
-  _i6.Future<dynamic> signOutUser(_i2.BuildContext? context) =>
+  _i7.Future<dynamic> signOutUser(_i2.BuildContext? context) =>
       (super.noSuchMethod(
         Invocation.method(
           #signOutUser,
           [context],
         ),
-        returnValue: _i6.Future<dynamic>.value(),
-        returnValueForMissingStub: _i6.Future<dynamic>.value(),
-      ) as _i6.Future<dynamic>);
+        returnValue: _i7.Future<dynamic>.value(),
+        returnValueForMissingStub: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
   @override
-  _i6.Future<dynamic> directLogOut(_i2.BuildContext? context) =>
+  _i7.Future<dynamic> directLogOut(_i2.BuildContext? context) =>
       (super.noSuchMethod(
         Invocation.method(
           #directLogOut,
           [context],
         ),
-        returnValue: _i6.Future<dynamic>.value(),
-        returnValueForMissingStub: _i6.Future<dynamic>.value(),
-      ) as _i6.Future<dynamic>);
+        returnValue: _i7.Future<dynamic>.value(),
+        returnValueForMissingStub: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
   @override
-  void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  _i7.Future<bool?> refreshToken() => (super.noSuchMethod(
+        Invocation.method(
+          #refreshToken,
+          [],
+        ),
+        returnValue: _i7.Future<bool?>.value(),
+        returnValueForMissingStub: _i7.Future<bool?>.value(),
+      ) as _i7.Future<bool?>);
+  @override
+  _i7.Future<dynamic> updateToken(String? token) => (super.noSuchMethod(
+        Invocation.method(
+          #updateToken,
+          [token],
+        ),
+        returnValue: _i7.Future<dynamic>.value(),
+        returnValueForMissingStub: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
+  @override
+  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -288,7 +337,7 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i4.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -18,6 +19,6 @@ void main() {
     expect(model.pinC.text, "1234");
 
     model.savePin(pin: "1234", context: context);
-    expect(model.buttonStatus, ButtonStatus.clicked);
+    expect(model.buttonStatus, ButtonStatus.complete);
   });
 }
