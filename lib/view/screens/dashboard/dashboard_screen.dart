@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
@@ -104,6 +105,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                              EditProfileScreen.name
                           );
                     }, child: const Text("editprofile").tr())
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: TextButton(
+                    key:const Key("todo_screen"),
+                    onPressed: (){
+                         context.goNamed(
+                             TodoListScreen.name
+                          );
+                    }, child: const Text("todo_screen").tr())
               ),
             ),
           ],

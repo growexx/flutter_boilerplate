@@ -71,4 +71,9 @@
   "browse_gallery":"Browse Gallery",
   "use_a_camera": "Use a Camera",
   "pick_image": "Pick\nImage"
+  "todo_screen":"Todo Screen",
+  "todo_list":"Todo List",
+  "new_task":"New Task",
+  "cancel":"Cancel",
+  "empty_note":"Please Add Notes."
 }

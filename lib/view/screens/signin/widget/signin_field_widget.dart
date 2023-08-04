@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
@@ -106,10 +107,29 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                     key:const Key("google"),
                                     width: 35, height: 35)),
                         const SizedBox(width: 20),
-                        Assets.png.icTwitter.image(
-                            key:const Key("twitter"),
-                            width: 35, height: 35),
-                        const SizedBox(width: 15),
+                        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)?
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: InkWell(
+                            onTap: () {
+                              widget.socialSignInViewModel
+                                  .signinWithTwitter()
+                                  .then((User? user) {
+                                if (user != null) {
+                                  widget.userRepository
+                                      .updateUserData(user)
+                                      .then((value) => Router.neglect(
+                                      context,
+                                          () => context
+                                          .goNamed(DashboardScreen.name)));
+                                }
+                              });
+                            },
+                            child:
+                            Assets.png.icTwitter.image(
+                                key:const Key("twitter"),
+                                width: 35, height: 35),),
+                        ):Container(),
                         InkWell(
                           onTap: (){
                             widget.socialSignInViewModel
