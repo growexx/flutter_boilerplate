@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
@@ -203,12 +204,20 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future _pickImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      File? img = File(image.path);
-      img = await _cropImage(imageFile: img);
-      widget.viewModel.pickedImage = img;
-      Navigator.of(context).pop();
+      if (!kIsWeb) {
+        final image = await ImagePicker().pickImage(source: source);
+        if (image == null) return;
+        File? img = File(image.path);
+        img = await _cropImage(imageFile: img);
+        widget.viewModel.pickedImage = img;
+        Navigator.of(context).pop();
+      }else{
+        final image = await ImagePicker().pickImage(source: source);
+        if (image == null) return;
+        var f= await image.readAsBytes();
+
+        Navigator.of(context).pop();
+      }
     } on PlatformException catch (e) {
       print(e);
       Navigator.of(context).pop();
