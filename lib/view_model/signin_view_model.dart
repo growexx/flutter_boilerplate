@@ -52,6 +52,7 @@ class SignInViewModel extends ChangeNotifier {
       if(data.status == 1) {
         BuildContext? context = NavigationService.context;
         if(context!=null) {
+          loginStatus = ButtonStatus.complete;
           // ignore: use_build_context_synchronously
           UserRepository.of(context).updateUserData(User.fromJson(data.data))
               .then((value) {

@@ -14,9 +14,31 @@ void main() {
       expect(ApiConstant.baseUrl, isNotEmpty);
       expect(ApiConstant.cancelResponse, isNotEmpty);
       expect(Environment.baseURL, isNotEmpty);
+      expect(Environment.appId, isNotEmpty);
+      expect(Environment.appleClientId, isNotEmpty);
+      expect(Environment.encryptionKey, isNotEmpty);
+      expect(Environment.googleClientId, isNotEmpty);
       if (!kDebugMode) {
         expect(ApiConstant.baseUrl, isNotEmpty);
       }
     });
+
+    test("test", () async {
+
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      expect(ApiConstant.baseUrl, isNotEmpty);
+      expect(ApiConstant.cancelResponse, isNotEmpty);
+      expect(Environment.baseURL, isNotEmpty);
+      expect(Environment.appId, isNotEmpty);
+      expect(Environment.appleClientId, isNotEmpty);
+      expect(Environment.encryptionKey, isNotEmpty);
+      expect(Environment.googleClientId, isNotEmpty);
+      if (!kDebugMode) {
+        expect(ApiConstant.baseUrl, isNotEmpty);
+      }
+      debugDefaultTargetPlatformOverride = null;
+
+    });
+
   });
 }
