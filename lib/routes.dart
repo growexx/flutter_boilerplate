@@ -145,13 +145,13 @@ List<RouteBase> routes = [
     name: RecentChats.name,
     path: RecentChats.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: RecentChats()),
+        context: context, state: state, child: const RecentChats()),
   ),
   GoRoute(
     name: ChatScreen.name,
     path: ChatScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: ChatScreen()),
+        context: context, state: state, child: const ChatScreen()),
   ),
   GoRoute(
     name: MainScreen.name,
