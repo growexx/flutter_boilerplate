@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/chat/recent_chats.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
+import 'package:provider/provider.dart';
 
+import '../../../view_model/veiw_model.dart';
 import '../dashboard/dashboard_screen.dart';
 
 class BottomTabNavigation extends StatefulWidget {
@@ -27,11 +30,9 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
         style: TextStyle(fontSize: 24),
       ),
     ),
-    const Center(
-      child: Text(
-        'Chat Screen',
-        style: TextStyle(fontSize: 24),
-      ),
+    ChangeNotifierProvider<ChatViewModel>(
+      create: (_) => ChatViewModel(),
+      child: const RecentChats(autoShowBackButton: false),
     ),
   ];
 

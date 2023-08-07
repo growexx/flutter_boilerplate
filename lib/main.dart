@@ -12,6 +12,7 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/go_router/error_screen.dart';
 import 'package:flutter_boilerplate/util/push_notifications.dart';
 import 'package:flutter_boilerplate/routes.dart';
+import 'package:flutter_boilerplate/view_model/chat_view_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';
@@ -44,7 +45,8 @@ void main() async {
     //   version: "v15.0",
     // );
   }
-  if (defaultTargetPlatform == TargetPlatform.iOS && defaultTargetPlatform == TargetPlatform.android) {
+  if (defaultTargetPlatform == TargetPlatform.iOS &&
+      defaultTargetPlatform == TargetPlatform.android) {
     await FirebasePushNotifications().initNotifications();
   }
   // fetching user details
@@ -53,9 +55,9 @@ void main() async {
   ThemeMode themeMode = await ThemeProvider.retrieveStoredTheme();
   Stripe.publishableKey = Environment.stripePublishableKey;
   Stripe.merchantIdentifier = 'YOUR_MERCHANT_ID';
-   await Hive.initFlutter();
-   Hive.registerAdapter(TodoDataAdapter()); 
-   await Hive.openBox('todo_db');
+  await Hive.initFlutter();
+  Hive.registerAdapter(TodoDataAdapter());
+  await Hive.openBox('todo_db');
 
   runApp(EasyLocalization(
     supportedLocales: LocaleHelper.supportedLocales,

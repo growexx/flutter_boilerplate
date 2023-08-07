@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/chat/recent_chats.dart';
 import 'package:flutter_boilerplate/view/screens/main_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
@@ -57,6 +58,14 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                   // Navigate to the settings screen or perform any action
                 },
               ),
+              ListTile(
+                leading: const Icon(Icons.screenshot_rounded),
+                title: const Text('Recent Chats'),
+                onTap: () {
+                  NavigationHelper.pushNamed(context, RecentChats.name);
+                },
+              ),
+              const Divider(),
               const Divider(),
               ListTile(
                 leading: const Icon(Icons.screenshot_rounded),
