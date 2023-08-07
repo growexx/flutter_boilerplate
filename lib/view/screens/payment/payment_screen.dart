@@ -31,7 +31,7 @@ class PaymentScreen extends StatelessWidget {
             onPressed: () {
               NavigationHelper.pushNamed(context, StripePaymentScreen.name);
             },
-            child: Text("Stripe Payment"),
+            child: const Text("Stripe Payment"),
           )
         ],
       ),

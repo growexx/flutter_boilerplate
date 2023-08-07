@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/main_screen.dart';
+import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 
 import '../../../app_manager/helper/navigation/navigation_helper.dart';
@@ -60,9 +60,9 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
               const Divider(),
               ListTile(
                 leading: const Icon(Icons.screenshot_rounded),
-                title: const Text('Main Screen'),
+                title: const Text('Navigation Screen'),
                 onTap: () {
-                  NavigationHelper.pushNamed(context, MainScreen.name);
+                  NavigationHelper.pushNamed(context, NavigationScreen.name);
                 },
               ),
               const Divider(),

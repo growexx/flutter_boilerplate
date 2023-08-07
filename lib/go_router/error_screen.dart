@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
+import 'package:flutter_boilerplate/util/check_login_status.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key});
@@ -32,7 +33,7 @@ class ErrorScreen extends StatelessWidget {
                   width: 166,
                   child: TextButton(
                     onPressed: () {
-
+                      checkLoginStatus(context);
                     },
                     child: const Text("Return to home"),
                   ),

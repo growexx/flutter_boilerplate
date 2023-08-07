@@ -216,6 +216,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
       File? img = File(image.path);
       img = await _cropImage(imageFile: img);
       widget.viewModel.setPickedImage = img;
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     } on PlatformException catch (e) {
       if (kDebugMode) {
