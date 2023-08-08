@@ -76,5 +76,13 @@
   "todo_list":"टूडू सूची",
   "new_task":"नया कार्य",
   "cancel":"रद्द करना",
-  "empty_note":"कृपया नोट्स जोड़ें."
+  "empty_note":"कृपया नोट्स जोड़ें.",
+  "validation":{
+    "fill_required_fields": "आवश्यक फ़ील्ड भरें"
+  },
+  "navigation":{
+    "drawer_navigation": "दराज_नेविगेशन",
+    "top_tab_navigation": "टॉप बार नेविगेशन",
+    "bottom_tab_navigation": "बॉटम टैब नेविगेशन"
+  }
 }

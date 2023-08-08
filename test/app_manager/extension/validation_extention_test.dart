@@ -2,6 +2,7 @@
 
 
 import 'package:flutter_boilerplate/app_manager/extension/is_valid_email.dart';
+import 'package:flutter_boilerplate/app_manager/extension/is_valid_mobile.dart';
 import 'package:flutter_boilerplate/app_manager/extension/valid_password.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -19,5 +20,12 @@ void main() {
       expect("mail.com".isValidEmail(), false);
       expect("".isValidEmail(), false);
     },);
+
+    test("Valid Mobile Extension Test", () {
+      expect("+911234567890".isValidMobile(), true);
+      expect("1234567890".isValidMobile(), true);
+      expect("911234567890".isValidMobile(), false);
+      expect("".isValidMobile(), false);
+    });
   });
 }

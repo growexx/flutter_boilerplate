@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
@@ -5,10 +7,12 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/testing.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../util/common_initial_activity.dart';
 import '../util/router_testing.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -47,6 +51,32 @@ void main() async{
       () async {
         User user = await UserRepository.fetchUserData();
         expect(user.email, isNull);
+      },
+    );
+
+    test(
+      "fetch user token info from api",
+      () async {
+        final mockClient = MockClient((request) async {
+          return http.Response(json.encode({"refreshToken": "token"}), 200);
+        });
+
+        final model = UserRepository();
+
+        model.client = mockClient;
+
+        await model.refreshToken();
+
+        expect(model.currentUser?.token, isNull);
+      },
+    );
+
+    test(
+      "updateToken tests",
+      () async {
+        final model = UserRepository();
+        model.updateToken('test-token');
+        expect(model.currentUser?.token, isNull);
       },
     );
 

@@ -168,10 +168,10 @@ List<RouteBase> routes = [
     ),
   ),
   GoRoute(
-    name: MainScreen.name,
-    path: MainScreen.path,
+    name: NavigationScreen.name,
+    path: NavigationScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: const MainScreen()),
+        context: context, state: state, child: const NavigationScreen()),
   ),
   GoRoute(
     name: BottomTabNavigation.name,

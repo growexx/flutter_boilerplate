@@ -13,13 +13,13 @@ import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart'
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
+import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class UserRepository extends ChangeNotifier {
-  final http.Client _client = http.Client();
+  http.Client client = http.Client();
   User? currentUser;
 
   UserRepository({
@@ -104,7 +104,7 @@ class UserRepository extends ChangeNotifier {
       };
       ProjectResponse data = ProjectResponse.fromJson(await _apiCall.call(
         url: "auth/refresh-token",
-        client: _client,
+        client: client,
         apiCallType: ApiCallType.post(body: body),));
       if(data.status == 1) {
         await updateToken(data.data["token"]);

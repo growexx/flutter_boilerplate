@@ -33,7 +33,7 @@ void main() {
   );
   test(
     "hive model test delete method",
-    () {
+    () async {
       Hive.init(Directory.systemTemp.path);
       final model = HiveModel();
       model.deleteListData("1");

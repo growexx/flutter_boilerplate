@@ -3,13 +3,11 @@ import 'package:flutter_boilerplate/app_manager/api/api_call.dart';
 import 'package:flutter_boilerplate/app_manager/api/project_response.dart';
 import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
 import 'package:flutter_boilerplate/app_manager/extension/to_sh256.dart';
+import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
-import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/otp/otp_screen.dart';
-import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 class SignInViewModel extends ChangeNotifier {
@@ -34,7 +32,7 @@ class SignInViewModel extends ChangeNotifier {
   }
 
 
-  Future<void> signIn({
+  Future<User?> signIn({
     required String email,
     required String password,
   }) async{
@@ -53,11 +51,8 @@ class SignInViewModel extends ChangeNotifier {
         BuildContext? context = NavigationService.context;
         if(context!=null) {
           loginStatus = ButtonStatus.complete;
-          // ignore: use_build_context_synchronously
-          UserRepository.of(context).updateUserData(User.fromJson(data.data))
-              .then((value) {
-            Router.neglect(context, () => context.go(DashboardScreen.path));
-          });
+          return User.fromJson(data.data);
+
         }
       } else {
         showToast(data.message??"");
@@ -71,6 +66,7 @@ class SignInViewModel extends ChangeNotifier {
       showToast(e.toString());
       loginStatus = ButtonStatus.error;
     }
+    return null;
   }
 
 
@@ -80,6 +76,6 @@ class SignInViewModel extends ChangeNotifier {
   }
 
   void signInWithOTP(BuildContext context) {
-    Router.neglect(context, () => context.goNamed(OTPScreen.name));
+    NavigationHelper.pushNamed(context, OTPScreen.name);
   }
 }

@@ -16,29 +16,29 @@ void main() {
 
   test('SignInViewModel test', () {
     final model = SignInViewModel();
-    model.isRememberMeChecked=false;
+    model.isRememberMeChecked = false;
     expect(model.isRememberMeChecked, false);
-    model.isRememberMeChecked=true;
+    model.isRememberMeChecked = true;
     expect(model.isRememberMeChecked, true);
     model.emailC.text = "jaimin.modi@growexx.com";
     expect(model.emailC.text, "jaimin.modi@growexx.com");
     model.passwordC.text = "Test@123";
     expect(model.passwordC.text, "Test@123");
-    model.setRememberMe=false;
-    expect(model.getRememberMe,false);
-    model.loginStatus=ButtonStatus.error;
+    model.setRememberMe = false;
+    expect(model.getRememberMe, false);
+    model.loginStatus = ButtonStatus.error;
     expect(model.loginStatus, ButtonStatus.error);
-    model.loginStatus=ButtonStatus.complete;
+    model.loginStatus = ButtonStatus.complete;
     expect(model.loginStatus, ButtonStatus.complete);
-    model.loginStatus=ButtonStatus.initial;
+    model.loginStatus = ButtonStatus.initial;
     expect(model.loginStatus, ButtonStatus.initial);
-    model.loginStatus=ButtonStatus.hit;
+    model.loginStatus = ButtonStatus.hit;
     expect(model.loginStatus, ButtonStatus.hit);
   });
 
   test(
     "sign-in api response test",
-        () async {
+    () async {
       final mockClient = MockClient((request) async {
         return http.Response(
             json.encode({
@@ -48,7 +48,8 @@ void main() {
                 "email": "syed.raza@growexx.com",
                 "first_name": "Syed",
                 "last_name": "Raza",
-                "profile_url": "https://lh3.googleusercontent.com/a/AAcHTtd7auRtGuCeGoZCgjG8s2RPlIZAFeRFi2DHiGC6=s96-c",
+                "profile_url":
+                    "https://lh3.googleusercontent.com/a/AAcHTtd7auRtGuCeGoZCgjG8s2RPlIZAFeRFi2DHiGC6=s96-c",
                 "role": 1,
                 "is_subscriber": 1,
                 "is_active": 1,
@@ -56,8 +57,10 @@ void main() {
                 "is_premium": 0,
                 "is_active_plan_cancelled": 0,
                 "is_walkthrough_completed": 1,
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM0NDExOTU0LTFhZTgtNDRkMy1hYTYyLTMyMzhjNmM0YTI0NyIsImVtYWlsIjoic3llZC5yYXphQGdyb3dleHguY29tIiwiaWF0IjoxNjkxMTM0MDQ2LCJleHAiOjE2OTEyMjA0NDZ9.-RGvJPh2NTCVwoLxZRCaQR9C_-PERzEmf8YN_3o5_GU",
-                "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM0NDExOTU0LTFhZTgtNDRkMy1hYTYyLTMyMzhjNmM0YTI0NyIsImVtYWlsIjoic3llZC5yYXphQGdyb3dleHguY29tIiwiaWF0IjoxNjkxMTM0MDQ2LCJleHAiOjE2OTM3MjYwNDZ9.KgWFTo04K9lNO7rsC6e6lskeRpde_sU1t7zqLsjRfEc"
+                "token":
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM0NDExOTU0LTFhZTgtNDRkMy1hYTYyLTMyMzhjNmM0YTI0NyIsImVtYWlsIjoic3llZC5yYXphQGdyb3dleHguY29tIiwiaWF0IjoxNjkxMTM0MDQ2LCJleHAiOjE2OTEyMjA0NDZ9.-RGvJPh2NTCVwoLxZRCaQR9C_-PERzEmf8YN_3o5_GU",
+                "refreshToken":
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM0NDExOTU0LTFhZTgtNDRkMy1hYTYyLTMyMzhjNmM0YTI0NyIsImVtYWlsIjoic3llZC5yYXphQGdyb3dleHguY29tIiwiaWF0IjoxNjkxMTM0MDQ2LCJleHAiOjE2OTM3MjYwNDZ9.KgWFTo04K9lNO7rsC6e6lskeRpde_sU1t7zqLsjRfEc"
               },
               "message": "User successfully logged in"
             }),
@@ -67,8 +70,28 @@ void main() {
       final model = SignInViewModel();
       model.client = mockClient;
       expect(model.loginStatus, ButtonStatus.initial);
-      await model.signIn(
-          email: "syed.raza@growexx.com", password: "Test@123");
+      await model.signIn(email: "syed.raza@growexx.com", password: "Test@123");
+
+      expect(model.loginStatus, ButtonStatus.error);
+    },
+  );
+  test(
+    "sign-in api response test for error",
+    () async {
+      final mockClient = MockClient((request) async {
+        return http.Response(
+            json.encode({
+              "status": 1,
+              "data": {},
+              "message": "User successfully logged in"
+            }),
+            400);
+      });
+
+      final model = SignInViewModel();
+      model.client = mockClient;
+      expect(model.loginStatus, ButtonStatus.initial);
+      await model.signIn(email: "syed.raza@growexx.com", password: "Test@123");
 
       expect(model.loginStatus, ButtonStatus.error);
     },

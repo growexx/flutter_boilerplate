@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
+import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
+import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
@@ -54,8 +56,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                            key: const Key("sign_in_description"),
+                    Text(key: const Key("sign_in_description"),
                             "login_using_social_networks",
                             style: theme.textTheme.bodyMedium)
                         .tr(),
@@ -225,8 +226,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               SizedBox(
                                 width: 12,
                                 child: Selector<SignInViewModel, bool>(
-                                  selector: (_, listener) =>
-                                      listener.isRememberMeChecked,
+                                  selector: (_, listener) => listener.isRememberMeChecked,
                                   builder: (context, isRememberCheck, child) =>
                                       Checkbox(
                                     key: const Key("cb_remember_me"),
@@ -295,7 +295,16 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
     if (Form.of(ctx).validate()) {
       widget.viewModel.signIn(
           email: widget.viewModel.emailC.text,
-          password: widget.viewModel.passwordC.text);
+          password: widget.viewModel.passwordC.text).then((User? value) {
+            if(value!=null) {
+              widget.userRepository.updateUserData(value)
+                  .then((value) {
+                NavigationHelper.pushNamed(context, NavigationScreen.name);
+              });
+            }
+      });
+    } else{
+      showToast("validation".tr(gender: "fill_required_fields"));
     }
   }
 

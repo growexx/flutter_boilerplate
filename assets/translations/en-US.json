@@ -59,7 +59,7 @@
   "error_valid_mobile_number": "Please enter a valid mobile number.",
   "sign_in_with_otp": "Sign In with OTP",
   "verify_pin": "Verify PIN",
-  "want_to_exit": "Do you want to exit the app?",
+  "want_to_exit": "Do you want to exit the",
   "exit": "exit",
   "location_services_are_disabled":"Location services are disabled. Please enable the services",
   "location_permission_denied": "Location permissions are denied",
@@ -74,5 +74,13 @@
   "todo_list":"Todo List",
   "new_task":"New Task",
   "cancel":"Cancel",
-  "empty_note":"Please Add Notes."
+  "empty_note":"Please Add Notes.",
+  "validation":{
+    "fill_required_fields": "Fill Required Fields"
+  },
+  "navigation":{
+    "drawer_navigation": "Drawer Navigation",
+    "top_tab_navigation": "Top Bar Navigation",
+    "bottom_tab_navigation": "Bottom Tab Navigation"
+  }
 }
