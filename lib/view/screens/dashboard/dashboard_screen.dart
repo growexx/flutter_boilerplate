@@ -91,6 +91,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Expanded(
               child: Center(
                   child: TextButton(
+                      key: const Key("payment"),
                       onPressed: () {
                         context.goNamed(PaymentScreen.name);
                       },

@@ -3,6 +3,7 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/models/message.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:provider/provider.dart';
 
 class MessageTile extends StatefulWidget {
   final Message recentMessage;
@@ -14,18 +15,18 @@ class MessageTile extends StatefulWidget {
 
 class _MessageTileState extends State<MessageTile> {
   String message = "";
-  bool isMe = false;
+  UserRepository userRepository = UserRepository();
 
   @override
   void initState() {
-    isMe = widget.recentMessage.messageSenderId.toString() ==
-        UserRepository().currentUser!.id;
     super.initState();
+    userRepository = Provider.of<UserRepository>(context, listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width * 0.85,
       margin: const EdgeInsets.only(
         top: 5.0,
         bottom: 5.0,
@@ -56,9 +57,10 @@ class _MessageTileState extends State<MessageTile> {
                 children: [
                   Text(
                     widget.recentMessage.messageSenderId.toString() ==
-                            UserRepository().currentUser!.id
+                            userRepository.currentUser!.id
                         ? widget.recentMessage.messageTo.toString()
                         : widget.recentMessage.messageFrom.toString(),
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -84,18 +86,26 @@ class _MessageTileState extends State<MessageTile> {
               ),
             ],
           ),
-          Text(
-            Jiffy.parse(
-              widget.recentMessage.msgTime == null
-                  ? DateFormat('dd-MM-yyyy hh:mm a').format(
-                      DateTime.parse(DateTime.now().toLocal().toString()))
-                  : DateFormat('dd-MM-yyyy hh:mm a').format(
-                      DateTime.parse(widget.recentMessage.msgTime.toString())),
-            ).fromNow(),
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
+
+          SizedBox(
+            // width: 150,
+            child: Text(
+              Jiffy.parse(
+                      widget.recentMessage.msgTime == null
+                          ? DateFormat('dd-MM-yyyy hh:mm a').format(
+                              DateTime.parse(DateTime.now().toLocal().toString()))
+                          : DateFormat('dd-MM-yyyy hh:mm a').format(
+                              DateTime.parse(
+                                  widget.recentMessage.msgTime.toString())),
+                      pattern: 'dd-MM-yyyy hh:mm a')
+                  .fromNow(),
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.grey,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 12.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

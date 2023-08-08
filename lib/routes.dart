@@ -145,13 +145,27 @@ List<RouteBase> routes = [
     name: RecentChats.name,
     path: RecentChats.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: const RecentChats()),
+      context: context,
+      state: state,
+      child: MultiProvider(providers: [
+        ChangeNotifierProvider<ChatViewModel>(
+          create: (_) => ChatViewModel(),
+        ),
+      ], child: const RecentChats()),
+    ),
   ),
   GoRoute(
     name: ChatScreen.name,
     path: ChatScreen.path,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context, state: state, child: const ChatScreen()),
+      context: context,
+      state: state,
+      child: MultiProvider(providers: [
+        ChangeNotifierProvider<ChatViewModel>(
+          create: (_) => ChatViewModel(),
+        ),
+      ], child: const ChatScreen()),
+    ),
   ),
   GoRoute(
     name: NavigationScreen.name,
@@ -235,5 +249,4 @@ List<RouteBase> routes = [
               data: state.extra as TodoData?,
             ))),
   ),
-  
 ];

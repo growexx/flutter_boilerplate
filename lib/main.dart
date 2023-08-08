@@ -43,7 +43,8 @@ void main() async {
     //   version: "v15.0",
     // );
   }
-  if (defaultTargetPlatform == TargetPlatform.iOS && defaultTargetPlatform == TargetPlatform.android) {
+  if (defaultTargetPlatform == TargetPlatform.iOS &&
+      defaultTargetPlatform == TargetPlatform.android) {
     await FirebasePushNotifications().initNotifications();
   }
   // fetching user details

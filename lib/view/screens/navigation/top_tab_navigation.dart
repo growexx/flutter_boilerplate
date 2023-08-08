@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
-
-import '../dashboard/dashboard_screen.dart';
+import 'package:provider/provider.dart';
+import '../../../view_model/chat_view_model.dart';
+import '../screens.dart';
 
 class TopTabNavigation extends StatelessWidget {
   TopTabNavigation({super.key});
@@ -19,11 +19,9 @@ class TopTabNavigation extends StatelessWidget {
         style: TextStyle(fontSize: 24),
       ),
     ),
-    const Center(
-      child: Text(
-        'Chat Screen',
-        style: TextStyle(fontSize: 24),
-      ),
+    ChangeNotifierProvider<ChatViewModel>(
+      create: (_) => ChatViewModel(),
+      child: const RecentChats(autoShowBackButton: false),
     ),
   ];
 

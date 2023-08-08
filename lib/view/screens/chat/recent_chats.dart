@@ -9,13 +9,17 @@ import '../components/message_tile.dart';
 class RecentChats extends StatefulWidget {
   static const String name = "recent-chats";
   static const String path = "/$name";
-  const RecentChats({Key? key}) : super(key: key);
+  final bool autoShowBackButton;
+  const RecentChats({Key? key, this.autoShowBackButton = true})
+      : super(key: key);
 
   @override
   State<RecentChats> createState() => _RecentChatsState();
 }
 
 class _RecentChatsState extends State<RecentChats> {
+  ChatViewModel chatViewModel = ChatViewModel();
+
   List<ChatUser> sampleUsers = [
     ChatUser(
       photoUrl: 'https://example.com/user1.png',
@@ -108,74 +112,88 @@ class _RecentChatsState extends State<RecentChats> {
   ];
 
   @override
+  void initState() {
+    chatViewModel = Provider.of<ChatViewModel>(context, listen: false);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(5.0), topRight: Radius.circular(5.0)),
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              itemCount: sampleUsers.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (BuildContext context, int index) {
-                String tempUrl = "";
-                // log("tempUrl is $tempUrl");
-                return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    children: [
-                      Container(
-                          height: 60,
-                          width: 60,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(100)),
-                          child: tempUrl == ""
-                              ? Image.asset("images/avatar.png")
-                              : Image.network(
-                                  tempUrl.toString(),
-                                  fit: BoxFit.fill,
-                                  loadingBuilder:
-                                      (context, child, loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    }
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                null
-                                            ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                loadingProgress
-                                                    .expectedTotalBytes!
-                                            : null,
-                                        strokeWidth: 5,
-                                        color: Colors.black,
-                                      ),
-                                    );
-                                  },
-                                )),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Provider.of<ChatViewModel>(context, listen: false)
-                                .recentChatClickListener(context);
-                          },
-                          child: MessageTile(messages[index]),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+    return Consumer<ChatViewModel>(
+      builder: (context, chatViewModel, child) => Scaffold(
+        appBar: AppBar(
+          title: const Text("Recent Chats"),
+          automaticallyImplyLeading: widget.autoShowBackButton,
         ),
-      ],
+        body: Column(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(5.0),
+                    topRight: Radius.circular(5.0)),
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  itemCount: sampleUsers.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, int index) {
+                    String tempUrl = "";
+                    // log("tempUrl is $tempUrl");
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          Container(
+                              height: 60,
+                              width: 60,
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(100)),
+                              child: tempUrl == ""
+                                  ? Image.network(ChatUser.avatarUrl)
+                                  : Image.network(
+                                      tempUrl.toString(),
+                                      fit: BoxFit.fill,
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                            strokeWidth: 5,
+                                            color: Colors.black,
+                                          ),
+                                        );
+                                      },
+                                    )),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                chatViewModel.recentChatClickListener(context);
+                              },
+                              child: MessageTile(messages[index]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
