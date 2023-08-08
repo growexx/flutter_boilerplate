@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:nock/nock.dart';
 import 'package:provider/provider.dart';
 
 import 'bottom_navigation_test.mocks.dart';
@@ -17,6 +18,13 @@ import 'bottom_navigation_test.mocks.dart';
       as: #MockUserRepository, onMissingStub: OnMissingStub.returnDefault),
 ])
 void main() {
+  setUpAll(() {
+    nock.init();
+  });
+
+  setUp(() {
+    nock.cleanAll();
+  });
   testWidgets('TopTabNavigation should render tabs and content correctly',
       (WidgetTester tester) async {
     MockUserRepository mockUserRepository = MockUserRepository();
