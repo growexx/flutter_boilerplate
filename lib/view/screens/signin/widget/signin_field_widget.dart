@@ -65,6 +65,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       key: const Key("social_container"),
                       children: [
                         InkWell(
+                          key: const Key("facebook"),
                           onTap: () {
                             widget.socialSignInViewModel
                                 .signinWithFaceBook()
@@ -78,8 +79,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               }
                             });
                           },
-                          child: Assets.png.icFacebook.image(
-                              key: const Key("facebook"),
+                          child: Assets.png.icFacebook
+                              .image(
                               width: 35,
                               height: 35),
                         ),
@@ -88,6 +89,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             key: const Key("instagram"), width: 35, height: 35),
                         const SizedBox(width: 20),
                         InkWell(
+                            key: const Key("google"),
                             onTap: () {
                               widget.socialSignInViewModel
                                   .signinWithGoogle()
@@ -102,14 +104,15 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                 }
                               });
                             },
-                            child: Assets.png.icGoogle.image(
-                                key: const Key("google"),
+                            child: Assets.png.icGoogle
+                                .image(
                                 width: 35,
                                 height: 35)),
                         const SizedBox(width: 20),
                         (defaultTargetPlatform == TargetPlatform.android ||
                                 defaultTargetPlatform == TargetPlatform.iOS)
                             ? InkWell(
+                                key: const Key("twitter"),
                                 onTap: () {
                                   widget.socialSignInViewModel
                                       .signinWithTwitter()
@@ -124,8 +127,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                     }
                                   });
                                 },
-                                child: Assets.png.icTwitter.image(
-                                    key: const Key("twitter"),
+                                child: Assets.png.icTwitter
+                                    .image(
                                     width: 35,
                                     height: 35),
                               )
@@ -136,6 +139,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                         Padding(
                           padding: const EdgeInsets.only(left:15,bottom: 12),
                           child: InkWell(
+                            key: const Key("apple"),
                             onTap: () {
                               widget.socialSignInViewModel
                                   .signinWithApple()
@@ -150,7 +154,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               });
                             },
                             child: Assets.png.icApple.image(
-                                key: const Key("apple"), width: 40, height: 40),
+                                 width: 40, height: 40),
                           ),
                         ),
                       ],
@@ -272,10 +276,10 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             .tr(),
                         const SizedBox(width: 10),
                         InkWell(
+                            key: const Key("t_sign_up"),
                             onTap: () => NavigationHelper.pushNamed(
                                 context, SignUpScreen.name),
                             child: Text(
-                              key: const Key("t_sign_up"),
                               "sign_up",
                               style: theme.textTheme.bodyMedium,
                             ).tr()),
