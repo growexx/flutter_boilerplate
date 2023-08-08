@@ -48,7 +48,7 @@ void main() {
       );
 
       // Expect to see the DashboardScreen content on the screen
-      expect(find.text('Welcome'), findsOneWidget);
+      expect(find.text('Welcome to Flutter Boilerplate'), findsOneWidget);
     });
 
     testWidgets('DrawerNavigation should show UserDetailsScreen when tapped',
@@ -107,7 +107,9 @@ void main() {
             name: NavigationScreen.name,
             path: NavigationScreen.path,
             pageBuilder: (context, state) => buildPageWithDefaultTransition(
-                context: context, state: state, child: const NavigationScreen()),
+                context: context,
+                state: state,
+                child: const NavigationScreen()),
           ),
         ],
       );

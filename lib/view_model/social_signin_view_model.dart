@@ -11,18 +11,16 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 // import 'package:twitter_login/entity/auth_result.dart';
 
-
 class SocialSignInViewModel extends ChangeNotifier {
-
-  final GoogleAuth _googleAuth = GoogleAuth();
-  final AppleAuth _appleAuth = AppleAuth();
+  GoogleAuth googleAuth = GoogleAuth();
+  AppleAuth appleAuth = AppleAuth();
   // final TwitterAuth _twitterAuth = TwitterAuth();
   // final FbAuth _fbAuth = FbAuth();
 
-  Future<User?> signinWithGoogle() async{
+  Future<User?> signinWithGoogle() async {
     try {
-      GoogleSignInAccount? user = await _googleAuth.signIn();
-      if(user!=null) {
+      GoogleSignInAccount? user = await googleAuth.signIn();
+      if (user != null) {
         List<String> name = (user.displayName ?? "").split(" ");
         return User(
           id: user.id,
@@ -40,24 +38,22 @@ class SocialSignInViewModel extends ChangeNotifier {
     return null;
   }
 
-
-  Future<User?> signinWithApple() async{
+  Future<User?> signinWithApple() async {
     try {
-      AuthorizationCredentialAppleID? user = await _appleAuth.getAppleIDCredential();
-        return User(
-          id: user.userIdentifier,
-          firstName: user.givenName,
-          lastName: user.familyName,
-        );
+      AuthorizationCredentialAppleID? user =
+          await appleAuth.getAppleIDCredential();
+      return User(
+        id: user.userIdentifier,
+        firstName: user.givenName,
+        lastName: user.familyName,
+      );
     } catch (e) {
       showToast(e.toString());
       rethrow;
     }
   }
 
-
-
-  Future<User?> signinWithFaceBook() async{
+  Future<User?> signinWithFaceBook() async {
     try {
       // LoginResult? user = await _fbAuth.login();
       // return User(
@@ -70,7 +66,7 @@ class SocialSignInViewModel extends ChangeNotifier {
     return null;
   }
 
-  Future<User?> signinWithTwitter() async{
+  Future<User?> signinWithTwitter() async {
     try {
       // AuthResult? user = await _twitterAuth.login();
       // return User(
@@ -83,6 +79,4 @@ class SocialSignInViewModel extends ChangeNotifier {
     }
     return null;
   }
-
-
 }

@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class UserRepository extends ChangeNotifier {
-  final http.Client _client = http.Client();
+  http.Client client = http.Client();
   User? currentUser;
 
   UserRepository({
@@ -104,7 +104,7 @@ class UserRepository extends ChangeNotifier {
       };
       ProjectResponse data = ProjectResponse.fromJson(await _apiCall.call(
         url: "auth/refresh-token",
-        client: _client,
+        client: client,
         apiCallType: ApiCallType.post(body: body),));
       if(data.status == 1) {
         await updateToken(data.data["token"]);
