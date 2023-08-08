@@ -12,7 +12,6 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/go_router/error_screen.dart';
 import 'package:flutter_boilerplate/util/push_notifications.dart';
 import 'package:flutter_boilerplate/routes.dart';
-import 'package:flutter_boilerplate/view_model/chat_view_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:go_router/go_router.dart';

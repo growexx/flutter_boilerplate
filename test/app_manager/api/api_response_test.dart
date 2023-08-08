@@ -20,6 +20,10 @@ void main() {
       expect(apiResponse.data,null);
       expect(apiResponse.message,"initial");
       expect(apiResponse.status,Status.initial);
+      apiResponse = ApiResponse.loading("loading");
+      expect(apiResponse.data, null);
+      expect(apiResponse.message, "loading");
+      expect(apiResponse.status, Status.loading);
 
     });
   });

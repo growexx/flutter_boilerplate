@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/models/chat_user.dart';
 import 'package:flutter_boilerplate/models/message.dart';
@@ -123,7 +122,7 @@ class _RecentChatsState extends State<RecentChats> {
     return Consumer<ChatViewModel>(
       builder: (context, chatViewModel, child) => Scaffold(
         appBar: AppBar(
-          title: Text("Recent Chats"),
+          title: const Text("Recent Chats"),
           automaticallyImplyLeading: widget.autoShowBackButton,
         ),
         body: Column(
