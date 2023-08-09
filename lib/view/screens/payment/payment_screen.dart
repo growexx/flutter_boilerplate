@@ -4,6 +4,9 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/view/screens/payment/stripe_payment.dart';
 import 'package:pay/pay.dart';
 import 'package:flutter/foundation.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 const _paymentItems = [
   PaymentItem(
@@ -22,6 +25,15 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              context.goNamed(DashboardScreen.name);
+            },
+            icon: const Icon(Icons.arrow_back_sharp)),
+        title: const Text("payment").tr(),
+        automaticallyImplyLeading: true,
+      ),
       body: Center(
        child: Column(
           children: [
@@ -36,7 +48,7 @@ class PaymentScreen extends StatelessWidget {
               },
               color: Colors.black,
               textColor: Colors.white,
-              child: const Text("Stripe Payment"),
+              child: const Text("stripe_payment").tr(),
           ),
         )
       ],

@@ -72,6 +72,7 @@
   "pick_image": "Pick\nImage",
   "todo_screen":"Todo Screen",
   "todo_list":"Todo List",
+  "stripe_payment":"Stripe Payment",
   "new_task":"New Task",
   "cancel":"Cancel",
   "empty_note":"Please Add Notes.",
