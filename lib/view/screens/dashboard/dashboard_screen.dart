@@ -43,182 +43,189 @@ class _DashboardScreenState extends State<DashboardScreen> {
         return Future.value(true);
       },
       child: Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Selector<UserRepository, User?>(
-                        shouldRebuild: (prev, nex) => true,
-                        selector: (buildContext, vm) => vm.currentUser,
-                        builder: (context, User? currentUser, child) {
-                          return Wrap(
-                            spacing: 5,
-                            children: [
-                              Text(key: const Key("welcome"), "welcome",style: theme.textTheme.headlineMedium).tr(),
-                              Text(currentUser?.firstName ?? ""),
-                            ],
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            ),
-            Center(
-              child:
-                  Text("dashboard_screen", style: theme.textTheme.headlineLarge)
-                      .tr(),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
-                child: TextButton(
-                  key: const Key("change_password"),
-                  onPressed: () async {
-                    userRepository.changePassword(context);
-                  },
-                  style: TextButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Selector<UserRepository, User?>(
+                          shouldRebuild: (prev, nex) => true,
+                          selector: (buildContext, vm) => vm.currentUser,
+                          builder: (context, User? currentUser, child) {
+                            return Wrap(
+                              spacing: 5,
+                              children: [
+                                Text(
+                                        key: const Key("welcome"),
+                                        "welcome",
+                                        style: theme.textTheme.headlineSmall)
+                                    .tr(),
+                                Text(currentUser?.firstName ?? ""),
+                              ],
+                            );
+                          }),
                     ),
-                  ),
-                  child: const Text("change_password").tr(),
+                  ],
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
-                child: TextButton(
-                  key: const Key("payment"),
-                  onPressed: () async {
-                    NavigationHelper.pushNamed(context, PaymentScreen.name);
-                  },
-                  style: TextButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  child: const Text("payment").tr(),
-                ),
+              Center(
+                child: Text("dashboard_screen",
+                        style: theme.textTheme.headlineMedium)
+                    .tr(),
               ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
-                child: TextButton(
-                  key: const Key("editprofile"),
-                  onPressed: () async {
-                    NavigationHelper.pushNamed(context, EditProfileScreen.name);
-                  },
-                  style: TextButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  child: const Text("editprofile").tr(),
-                ),
+              const SizedBox(
+                height: 50,
               ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
+              SizedBox(
+                width: 300,
+                child: Center(
                   child: TextButton(
-                key: const Key("todo_screen"),
-                onPressed: () async {
-                  NavigationHelper.pushNamed(context, TodoListScreen.name);
-                },
-                style: TextButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                child: const Text("todo_screen").tr(),
-              )),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
-                  child: TextButton(
-                key: const Key("show_google_map"),
-                onPressed: () async {
-                  NavigationHelper.pushNamed(context, GoogleMapScreen.name);
-                },
-                style: TextButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                child: const Text("show_google_map").tr(),
-              )),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
-                  child: TextButton(
-                key: const Key("show_security_pin"),
-                onPressed: () async {
-                  NavigationHelper.pushNamed(context, SecurityPinScreen.name);
-                },
-                style: TextButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                child: const Text("show_security_pin").tr(),
-              )),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            SizedBox(
-              width: 300,
-              child: Center(
-                  child: TextButton(
-                    key: const Key("sign_out"),
+                    key: const Key("change_password"),
                     onPressed: () async {
-                      userRepository.signOutUser(context);
+                      userRepository.changePassword(context);
                     },
                     style: TextButton.styleFrom(
-                      elevation: 0.9,
                       minimumSize: const Size.fromHeight(50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    child: const Text("sign_out").tr(),
-                  )),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-          ],
+                    child: const Text("change_password").tr(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 300,
+                child: Center(
+                  child: TextButton(
+                    key: const Key("payment"),
+                    onPressed: () async {
+                      NavigationHelper.pushNamed(context, PaymentScreen.name);
+                    },
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    child: const Text("payment").tr(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 300,
+                child: Center(
+                  child: TextButton(
+                    key: const Key("editprofile"),
+                    onPressed: () async {
+                      NavigationHelper.pushNamed(
+                          context, EditProfileScreen.name);
+                    },
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    child: const Text("editprofile").tr(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 300,
+                child: Center(
+                    child: TextButton(
+                  key: const Key("todo_screen"),
+                  onPressed: () async {
+                    NavigationHelper.pushNamed(context, TodoListScreen.name);
+                  },
+                  style: TextButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: const Text("todo_screen").tr(),
+                )),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 300,
+                child: Center(
+                    child: TextButton(
+                  key: const Key("show_google_map"),
+                  onPressed: () async {
+                    NavigationHelper.pushNamed(context, GoogleMapScreen.name);
+                  },
+                  style: TextButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: const Text("show_google_map").tr(),
+                )),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 300,
+                child: Center(
+                    child: TextButton(
+                  key: const Key("show_security_pin"),
+                  onPressed: () async {
+                    NavigationHelper.pushNamed(context, SecurityPinScreen.name);
+                  },
+                  style: TextButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: const Text("show_security_pin").tr(),
+                )),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 300,
+                child: Center(
+                    child: TextButton(
+                  key: const Key("sign_out"),
+                  onPressed: () async {
+                    userRepository.signOutUser(context);
+                  },
+                  style: TextButton.styleFrom(
+                    elevation: 0.9,
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: const Text("sign_out").tr(),
+                )),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
         ),
       ),
     );
