@@ -28,6 +28,15 @@ import 'package:geolocator/geolocator.dart';
     return true;
   }
 
+  Future<bool> isLocationServiceEnabled(BuildContext context) async {
+    bool serviceEnabled;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      showToast("location_services_are_disabled".tr());
+    }
+    return serviceEnabled;
+  }
+
   Future<Position?> getCurrentPosition(BuildContext context) async {
     Position? currentPosition;
     final hasPermission = await handleLocationPermission(context);
