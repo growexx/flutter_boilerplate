@@ -81,7 +81,10 @@ class _OTPWidgetState extends State<OTPWidget> {
                         children: [
                           IntlPhoneField(
                             decoration: InputDecoration(
+                              errorStyle: const TextStyle(color: Colors.red),
                               labelText: 'mobile_number'.tr(),
+                              floatingLabelStyle:
+                                  TextStyle(color: theme.primaryColor),
                               border: const OutlineInputBorder(
                                 borderSide: BorderSide(),
                               ),
@@ -91,8 +94,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                               if (phone.isValidNumber()) {
                                 widget.viewModel.setIsValidNumber = true;
                               } else {
-                                widget.viewModel.setIsValidNumber =
-                                    false;
+                                widget.viewModel.setIsValidNumber = false;
                               }
                             },
                           ),
@@ -107,7 +109,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                                   if (widget.viewModel.isValidNumber) {
                                     widget.viewModel.setPhoneNumberValidated =
                                         true;
-                                  }else{
+                                  } else {
                                     showToast("error_valid_mobile_number".tr());
                                   }
                                 },

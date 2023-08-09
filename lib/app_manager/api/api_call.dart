@@ -255,7 +255,7 @@ class ApiCall {
 
         return data;
       } else {
-        showToast("Null response");
+        showToast("Null response",);
         return ApiConstant.cancelResponse;
       }
     } catch (e) {

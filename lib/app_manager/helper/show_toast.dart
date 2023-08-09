@@ -1,14 +1,16 @@
-//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 
 void showToast(String msg) {
-  // flutter toast is not working in android need to change it in future
   try {
-    // Fluttertoast.showToast(
-    //     msg: msg,
-    // );
-  } catch(e) {
-    // if (kDebugMode) {
-    //   print(e);
-    // }
+    var snackBar = SnackBar(
+      content: Text(msg),
+    );
+    ScaffoldMessenger.of(NavigationService.context!).showSnackBar(snackBar);
+  } catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
   }
 }

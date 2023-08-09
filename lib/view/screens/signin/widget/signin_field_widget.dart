@@ -310,7 +310,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
         }
       });
     } else {
-      showToast("validation".tr(gender: "fill_required_fields"));
+      showToast("validation".tr(gender: "fill_required_fields".tr()));
     }
   }
 
