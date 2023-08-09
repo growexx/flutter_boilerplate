@@ -47,6 +47,7 @@
   "enter_security_pin": "अपना सुरक्षा पिन दर्ज करें",
   "save": "अब सहेजें",
   "payment_screen": "भुगतान स्क्रीन",
+  "stripe_payment":"धारी भुगतान",
   "payment": "भुगतान",
   "editprofile_screen": "संपादन प्रोफ़ाइल स्क्रीन",
   "editprofile": "संपादन प्रोफ़ाइल",
