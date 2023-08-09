@@ -78,6 +78,8 @@
   "new_task":"नया कार्य",
   "cancel":"रद्द करना",
   "empty_note":"कृपया नोट्स जोड़ें.",
+  "show_google_map": "गूगल मानचित्र प्रदर्शित करें",
+  "show_security_pin": "सुरक्षा पिन दिखाएँ",
   "validation":{
     "fill_required_fields": "आवश्यक फ़ील्ड भरें"
   },
