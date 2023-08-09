@@ -8,19 +8,17 @@ import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/testing.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../util/common_initial_activity.dart';
-import '../util/router_testing.dart';
 import 'package:http/http.dart' as http;
 
+import '../util/testing_material_app.dart';
 
-
-void main() async{
+void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   late UserRepository model;
   await commonInitialActivity();
-  setUpAll(() async{
+  setUpAll(() async {
     model = UserRepository();
     SharedPreferences.setMockInitialValues({});
     await dotenv.load();
@@ -82,28 +80,15 @@ void main() async{
 
     testWidgets(
       "logout",
-          (WidgetTester tester) async {
-            Widget widget =        ChangeNotifierProvider<UserRepository>(
-              create: (_) => UserRepository(
-                currentUser: User(id: "test_id")
-              ),
-              child: MaterialApp.router(
-                  routerConfig: routerTesting(
-                      initialLocation: DashboardScreen.path
-                  )
-              ),
-            );
-            await tester.pumpWidget(widget);
-            BuildContext context = NavigationService.context!;
-            model.signOutUser(context);
-            await tester.pumpAndSettle();
-            await tester.tap(find.byKey(const Key("function")));
-            model.directLogOut(context);
+      (WidgetTester tester) async {
+        Widget widget = testingMaterial(initialLocation: DashboardScreen.path);
+        await tester.pumpWidget(widget);
+        BuildContext context = NavigationService.context!;
+        model.signOutUser(context);
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(const Key("function")));
+        model.directLogOut(context);
       },
     );
-
-
   });
-
-
 }

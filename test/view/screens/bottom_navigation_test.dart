@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/navigation/bottom_tab_navigation.dart';
+import 'package:flutter_boilerplate/view_model/veiw_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:provider/provider.dart';
 
+import '../../util/common_initial_activity.dart';
 import 'bottom_navigation_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<UserRepository>(
       as: #MockUserRepository, onMissingStub: OnMissingStub.returnDefault)
 ])
-void main() {
+void main() async {
+  await commonInitialActivity();
+
   group('Bottom Navigation test', () {
     testWidgets('BottomTabNavigation should show DashboardScreen by default',
         (WidgetTester tester) async {
@@ -59,24 +66,30 @@ void main() {
     testWidgets('BottomTabNavigation should show ChatScreen when tapped',
         (WidgetTester tester) async {
       MockUserRepository mockUserRepository = MockUserRepository();
-      await tester.pumpWidget(
-        MultiProvider(
-          providers: [
-            ChangeNotifierProvider<UserRepository>.value(
-                value: mockUserRepository),
-          ],
-          child: const MaterialApp(
-            home: BottomTabNavigation(),
+      when(mockUserRepository.currentUser).thenReturn(
+          User(email: 'email', firstName: 'firstName', profileUrl: ''));
+
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          MultiProvider(
+            providers: [
+              ChangeNotifierProvider<UserRepository>.value(
+                  value: mockUserRepository),
+              ChangeNotifierProvider.value(value: ChatViewModel())
+            ],
+            child: const MaterialApp(
+              home: BottomTabNavigation(),
+            ),
           ),
-        ),
-      );
+        );
+      });
 
       // Tap on the Chats tab
-      await tester.tap(find.text('Chats'));
+      await tester.tap(find.byIcon(Icons.chat));
       await tester.pumpAndSettle();
 
       // Expect to see the ChatScreen content on the screen
-      expect(find.text('Chat Screen'), findsOneWidget);
+      expect(find.text('Recent Chats'), findsOneWidget);
     });
   });
 }
