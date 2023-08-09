@@ -23,6 +23,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
+        key: const Key('scaffold-key'),
         appBar: AppBar(
           title: Text("flutter_boilerplate",style: theme.textTheme.headlineSmall).tr(),
           automaticallyImplyLeading: isDrawerNav,
@@ -44,6 +45,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                 ),
               ),
               ListTile(
+                key: const Key('user-profile-key'),
                 leading: const Icon(Icons.person),
                 title: const Text('User profile'),
                 onTap: () {
@@ -52,6 +54,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                 },
               ),
               ListTile(
+                key: const Key('settings-key'),
                 leading: const Icon(Icons.settings),
                 title: const Text('Settings'),
                 onTap: () {
@@ -60,6 +63,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
               ),
               const Divider(),
               ListTile(
+                key: const Key('navigation-screen-key'),
                 leading: const Icon(Icons.screenshot_rounded),
                 title: const Text('Navigation Screen'),
                 onTap: () {
@@ -68,6 +72,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
               ),
               const Divider(),
               ListTile(
+                key: const Key('logout-key'),
                 leading: const Icon(Icons.logout),
                 title: const Text('Logout'),
                 onTap: () {

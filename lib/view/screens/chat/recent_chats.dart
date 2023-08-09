@@ -10,8 +10,7 @@ class RecentChats extends StatefulWidget {
   static const String name = "recent-chats";
   static const String path = "/$name";
   final bool autoShowBackButton;
-  const RecentChats({Key? key, this.autoShowBackButton = true})
-      : super(key: key);
+  const RecentChats({super.key, this.autoShowBackButton = true});
 
   @override
   State<RecentChats> createState() => _RecentChatsState();

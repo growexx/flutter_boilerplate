@@ -30,5 +30,7 @@ void main() {
 
     model.otpVerification(context, "1234");
     expect(model.verificationStatus, Status.verifiedSuccess);
+    model.setIsValidNumber = false;
+    expect(model.isValidNumber, false);
   });
 }

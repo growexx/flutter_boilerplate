@@ -8,23 +8,25 @@ void main() {
 
     test("test", (){
 
-      ApiResponse apiResponse=ApiResponse.initial("");
-
+      ApiResponse apiResponse = ApiResponse.initial("");
       expect(apiResponse.data, isNull);
       expect(apiResponse.message, isEmpty);
 
-
-      apiResponse=ApiResponse.empty("empty data");
-
-
+      apiResponse = ApiResponse.empty("empty data");
       expect(apiResponse.data, isNull);
       expect(apiResponse.message, "empty data");
 
       apiResponse=ApiResponse.completed("Done");
       expect(apiResponse.data, "Done");
-
       expect(apiResponse.toString(), isNotEmpty);
 
+      apiResponse = ApiResponse.loading("loading");
+      expect(apiResponse.message, "loading");
+      expect(apiResponse.toString(), isNotEmpty);
+
+      apiResponse = ApiResponse.error("error");
+      expect(apiResponse.message, "error");
+      expect(apiResponse.toString(), isNotEmpty);  
     });
 
   });

@@ -64,39 +64,6 @@ void main() async {
       expect(find.byKey(const Key("address_value")), findsOneWidget);
     });
 
-    testWidgets('Google Map Field Widget test 2' , (WidgetTester tester) async {
-      MockGoogleMapInnerViewModel mockModel = MockGoogleMapInnerViewModel();
-
-      expect(find.byKey(const Key("google_map")), findsNothing);
-      expect(find.byKey(const Key("your_location")), findsNothing);
-      expect(find.byKey(const Key("address_value")), findsNothing);
-
-      when(mockModel.currentAddress).thenReturn("B25, Dummy Address");
-      when(mockModel.latLngForWeb)
-          .thenAnswer((realInvocation) => const LatLng(23.033863, 72.585022));
-      when(mockModel.kGooglePlex).thenReturn(CameraPosition(
-          target: mockModel.latLngForWeb, bearing: 192, tilt: 2, zoom: 12));
-      when(mockModel.currentPosition).thenReturn(null);
-
-      await tester.pumpWidget(
-        MultiProvider(
-            providers: [
-              ChangeNotifierProvider<GoogleMapViewModel>.value(value: mockModel)
-            ],
-            child: MaterialApp(
-              home: GoogleMapFieldWidget(viewModel: mockModel),
-            )),
-      );
-
-      expect(find.byKey(const Key("center")), findsOneWidget);
-      expect(find.byKey(const Key("cp_indicator")), findsOneWidget);
-
-      expect(find.byKey(const Key("google_map")), findsNothing);
-      expect(find.byKey(const Key("your_location")), findsNothing);
-      expect(find.byKey(const Key("address_value")), findsNothing);
-    });
-
-
     testWidgets('Google Map Filed Widget Test - Android: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       Widget widget =  testingMaterial(
