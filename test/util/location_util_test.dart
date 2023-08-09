@@ -4,13 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 
 void main() {
-  /*test('requestPermission', () async {
-
-    final permission = await LocationUtils().handleLocationPermission(context);
-    expect(permission, LocationPermission.whileInUse);
-  });
-  getCurrentPosition(context);
-  getAddressFromLatLng(position);*/
   test(
     "getAddressFromLatLng test",
     () async {
