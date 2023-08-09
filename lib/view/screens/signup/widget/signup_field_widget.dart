@@ -205,7 +205,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
           email: widget.viewModel.emailC.text.trim(),
           password: widget.viewModel.passwordC.text.trim());
     } else {
-      showToast("Fill Required Fields");
+      showToast("fill_required_fields".tr());
     }
   }
 

@@ -27,62 +27,65 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
       child: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 400),
-          child: Form(
-            child: Builder(builder: (ctx) {
-              return Column(
-                children: [
-                  Text(
-                    key: const Key("title_change_password"),
-                    "change_password",
-                    style: theme.textTheme.headlineMedium,
-                  ).tr(),
-                  const SizedBox(key: Key("size_one"), height: 20),
-                  PasswordField(
-                    key: const Key("tf_old_password"),
-                    controller: widget.viewModel.oldPasswordC,
-                    hintText: "old_password".tr(),
-                    validator: ValidationHelper.passwordValidation,
-                    onFieldSubmitted: (val) {
-                      onPressChangePassword(ctx);
-                    },
-                  ),
-                  const SizedBox(key: Key("size_two"), height: 20),
-                  PasswordField(
-                    key: const Key("tf_new_password"),
-                    controller: widget.viewModel.newPasswordC,
-                    hintText: "new_password".tr(),
-                    validator: ValidationHelper.passwordValidation,
-                    onFieldSubmitted: (val) {
-                      onPressChangePassword(ctx);
-                    },
-                  ),
-                  const SizedBox(key: Key("size_three"), height: 20),
-                  PasswordField(
-                    key: const Key("tf_confirm_new_password"),
-                    controller: widget.viewModel.confirmNewPasswordC,
-                    hintText: "confirm_new_password".tr(),
-                    validator: ValidationHelper.passwordValidation,
-                    onFieldSubmitted: (val) {
-                      onPressChangePassword(ctx);
-                    },
-                  ),
-                  const SizedBox(key: Key("size_four"), height: 20),
-                  TextButton(
-                    key: const Key("tb_change_password"),
-                    onPressed: () {
-                      onPressChangePassword(ctx);
-                    },
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Form(
+              child: Builder(builder: (ctx) {
+                return Column(
+                  children: [
+                    Text(
+                      key: const Key("title_change_password"),
+                      "change_password",
+                      style: theme.textTheme.headlineMedium,
+                    ).tr(),
+                    const SizedBox(key: Key("size_one"), height: 20),
+                    PasswordField(
+                      key: const Key("tf_old_password"),
+                      controller: widget.viewModel.oldPasswordC,
+                      hintText: "old_password".tr(),
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressChangePassword(ctx);
+                      },
                     ),
-                    child: const Text("change_password").tr(),
-                  ),
-                ],
-              );
-            }),
+                    const SizedBox(key: Key("size_two"), height: 20),
+                    PasswordField(
+                      key: const Key("tf_new_password"),
+                      controller: widget.viewModel.newPasswordC,
+                      hintText: "new_password".tr(),
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressChangePassword(ctx);
+                      },
+                    ),
+                    const SizedBox(key: Key("size_three"), height: 20),
+                    PasswordField(
+                      key: const Key("tf_confirm_new_password"),
+                      controller: widget.viewModel.confirmNewPasswordC,
+                      hintText: "confirm_new_password".tr(),
+                      validator: ValidationHelper.passwordValidation,
+                      onFieldSubmitted: (val) {
+                        onPressChangePassword(ctx);
+                      },
+                    ),
+                    const SizedBox(key: Key("size_four"), height: 20),
+                    TextButton(
+                      key: const Key("tb_change_password"),
+                      onPressed: () {
+                        onPressChangePassword(ctx);
+                      },
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Text("change_password").tr(),
+                    ),
+                  ],
+                );
+              }),
+            ),
           ),
         ),
       ),
@@ -93,20 +96,20 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
     if (Form.of(ctx).validate()) {
       if (widget.viewModel.oldPasswordC.text.trim() ==
           widget.viewModel.newPasswordC.text.trim()) {
-        showToast("New Password should not be same as Old Password");
+        showToast("change_new_old_password".tr());
         return;
       }
       if (widget.viewModel.newPasswordC.text.trim() !=
           widget.viewModel.confirmNewPasswordC.text.trim()) {
-        showToast("New Password & Confirm New Password did not match");
+        showToast("change_new_confirm_password".tr());
         return;
       }
       widget.viewModel.changePassword(
-        context: ctx,
+          context: ctx,
           oldPassword: widget.viewModel.oldPasswordC.text.trim(),
           newPassword: widget.viewModel.newPasswordC.text.trim());
     } else {
-      showToast("Fill Required Fields");
+      showToast("fill_required_fields".tr());
     }
   }
 }

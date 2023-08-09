@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/api/api_call.dart';
 import 'package:flutter_boilerplate/app_manager/api/project_response.dart';
 import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
@@ -55,7 +55,7 @@ class SignInViewModel extends ChangeNotifier {
 
         }
       } else {
-        showToast(data.message??"");
+        showToast(data.message??"",);
         if(data.data != null){
           if(data.data['is_active'] == 0) {
             //verifyEmail(data.data['email']);

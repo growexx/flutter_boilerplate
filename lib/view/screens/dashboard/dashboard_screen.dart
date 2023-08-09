@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/view/screens/google_map/google_map_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/pin_support/pin_support.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import '../../../app_manager/component/bottom_sheet/functional_sheet.dart';
@@ -95,7 +95,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: TextButton(
                       key: const Key("payment"),
                       onPressed: () {
-                        context.goNamed(PaymentScreen.name);
+                        NavigationHelper.pushNamed(context, PaymentScreen.name);
                       },
                       child: const Text("payment").tr())),
             ),
@@ -104,9 +104,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: TextButton(
                     key:const Key("editprofile"),
                     onPressed: (){
-                         context.goNamed(
-                             EditProfileScreen.name
-                          );
+                      NavigationHelper.pushNamed(context, EditProfileScreen.name);
                     }, child: const Text("editprofile").tr())
               ),
             ),
@@ -115,9 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: TextButton(
                     key:const Key("todo_screen"),
                     onPressed: (){
-                         context.goNamed(
-                             TodoListScreen.name
-                          );
+                      NavigationHelper.pushNamed(context, TodoListScreen.name);
                     }, child: const Text("todo_screen").tr())
               ),
             ),
@@ -126,7 +122,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: TextButton(
                       key: const Key("show_google_map"),
                       onPressed: () {
-                        context.goNamed(GoogleMapScreen.name);
+                        NavigationHelper.pushNamed(context, GoogleMapScreen.name);
                       },
                       child: const Text("show_google_map").tr())),
             ),
@@ -135,7 +131,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: TextButton(
                       key: const Key("show_security_pin"),
                       onPressed: () {
-                        context.goNamed(SecurityPinScreen.name);
+                        NavigationHelper.pushNamed(context, SecurityPinScreen.name);
                       },
                       child: const Text("show_security_pin").tr())),
             ),

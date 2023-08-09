@@ -80,6 +80,9 @@
   "empty_note":"कृपया नोट्स जोड़ें.",
   "show_google_map": "गूगल मानचित्र प्रदर्शित करें",
   "show_security_pin": "सुरक्षा पिन दिखाएँ",
+  "sign-out-message": "क्या आप साइन आउट करना चाहते हैं?",
+  "change_new_old_password": "नया पासवर्ड पुराने पासवर्ड जैसा नहीं होना चाहिए",
+  "change_new_confirm_password": "नया पासवर्ड और नए पासवर्ड की पुष्टि करें मेल नहीं खाता",
   "validation":{
     "fill_required_fields": "आवश्यक फ़ील्ड भरें"
   },
