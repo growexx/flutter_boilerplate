@@ -82,6 +82,7 @@
   "change_new_old_password": "New Password should not be same as Old Password",
   "change_new_confirm_password": "New Password & Confirm New Password did not match",
   "password_changed": "Password changed successfully",
+  "flutter_boilerplate": "Flutter Boilerplate",
   "validation":{
     "fill_required_fields": "Fill Required Fields"
   },

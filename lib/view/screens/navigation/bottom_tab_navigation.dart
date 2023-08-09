@@ -38,11 +38,12 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return DefaultTabController(
       length: 4, // Number of tabs
       child: Scaffold(
           appBar: AppBar(
-            title: const Text("Sample Header").tr(),
+            title: Text("flutter_boilerplate", style: theme.textTheme.headlineSmall,).tr(),
           ),
           body: _screens[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(

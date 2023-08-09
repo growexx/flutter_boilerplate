@@ -6,6 +6,7 @@ import '../screens.dart';
 
 class TopTabNavigation extends StatelessWidget {
   TopTabNavigation({super.key});
+
   static const String name = "top_tab_navigation";
   static const String path = "/$name";
   final List<Widget> _screens = [
@@ -27,11 +28,14 @@ class TopTabNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return DefaultTabController(
       length: 4, // Number of tabs
       child: Scaffold(
           appBar: AppBar(
-            title: const Text("Sample Header").tr(),
+            title: Text("flutter_boilerplate",
+                    style: theme.textTheme.headlineSmall)
+                .tr(),
             bottom: const TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               tabs: [
