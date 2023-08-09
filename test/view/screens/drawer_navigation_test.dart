@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nock/nock.dart';
+import '../../util/common_initial_activity.dart';
 import '../../util/testing_material_app.dart';
 
 @GenerateNiceMocks([
@@ -24,7 +25,8 @@ import '../../util/testing_material_app.dart';
 ])
 class MockSocialSignInViewModel extends Mock implements SocialSignInViewModel {}
 
-void main() {
+void main() async {
+  await commonInitialActivity();
   setUpAll(() {
     nock.init();
   });
@@ -39,7 +41,46 @@ void main() {
           .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path));
       await tester.pumpAndSettle();
       // Expect to see the DashboardScreen content on the screen
-      expect(find.byType(Text), findsWidgets);
+      final ScaffoldState state =
+          tester.state(find.byKey(const Key("scaffold-key")));
+      state.openDrawer();
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('settings-key')),
+          warnIfMissed: false);
+      await tester.pumpAndSettle();
+      expect(find.text('Welcome to Flutter Boilerplate'), findsWidgets);
+    });
+
+    testWidgets(
+        'DrawerNavigation should show Navigtaion Screen when navigation is pressed',
+        (WidgetTester tester) async {
+      await tester
+          .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path));
+      await tester.pumpAndSettle();
+      // Expect to see the DashboardScreen content on the screen
+      final ScaffoldState state =
+          tester.state(find.byKey(const Key("scaffold-key")));
+      state.openDrawer();
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('navigation-screen-key')),
+          warnIfMissed: false);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets(
+        'DrawerNavigation should show Navigtaion Screen when logout is pressed',
+        (WidgetTester tester) async {
+      await tester
+          .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path));
+      await tester.pumpAndSettle();
+      // Expect to see the DashboardScreen content on the screen
+      final ScaffoldState state =
+          tester.state(find.byKey(const Key("scaffold-key")));
+      state.openDrawer();
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('logout-key')),
+          warnIfMissed: false);
+      await tester.pumpAndSettle();
     });
   });
 }
