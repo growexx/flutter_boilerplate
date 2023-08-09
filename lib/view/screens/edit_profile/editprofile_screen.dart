@@ -4,6 +4,7 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/edit_profile/widget/editprofile_field_widget.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_boilerplate/view/widgets/welcome.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static const String name = "editprofile";
@@ -31,6 +32,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         mobile: fieldPart,
         desktop: Row(
           children: [
+            const Expanded(child: WelcomeWidget()),
             SizedBox(width: 440,child: fieldPart),
           ],
         ),
