@@ -44,4 +44,15 @@ void main() async {
 
     expect(willPopCalled, false);
   });
+    testWidgets(
+    "buttons are pressed",
+    (WidgetTester tester) async {
+      Widget widget = testingMaterial(initialLocation: DashboardScreen.path);
+      await tester.pumpWidget(widget);
+      await tester.tap(find.byKey(const Key("payment")));
+       final dynamic widgetsAppState = tester.state(find.byType(WidgetsApp));
+    await widgetsAppState.didPopRoute();
+      await tester.tap(find.byKey(const Key("todo_screen")));
+    },
+  );
 }
