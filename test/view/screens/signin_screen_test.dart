@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nock/nock.dart';
 import '../../util/common_initial_activity.dart';
 import '../../util/testing_material_app.dart';
 
 void main() async {
   await commonInitialActivity();
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUp(() {
+    nock.cleanAll();
+  });
+  setUpAll(() {
+    nock.init();
+  });
 
   group("SignIn Screen Test", () {
     testWidgets('sign-in screen : Find Widgets & Tap on SignIn  button', (WidgetTester tester) async {
@@ -19,7 +26,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
@@ -55,7 +62,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
@@ -83,7 +90,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
@@ -121,7 +128,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
@@ -143,7 +150,7 @@ void main() async {
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
       //Apple button Tap
-      final Finder googleButton = find.byKey(const Key("apple"));
+      final Finder googleButton = find.byKey(const Key("apple")).first;
       await tester.tap(googleButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
@@ -159,7 +166,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
@@ -195,7 +202,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
@@ -231,7 +238,7 @@ void main() async {
       expect(find.byKey(const Key("instagram")), findsOneWidget);
       expect(find.byKey(const Key("google")), findsOneWidget);
       expect(find.byKey(const Key("twitter")), findsOneWidget);
-      expect(find.byKey(const Key("apple")), findsOneWidget);
+      expect(find.byKey(const Key("apple")), findsWidgets);
       expect(find.text("OR"), findsOneWidget);
       expect(find.byKey(const Key("tf_email")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);

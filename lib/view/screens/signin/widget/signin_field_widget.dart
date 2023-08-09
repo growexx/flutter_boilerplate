@@ -81,9 +81,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             });
                           },
                           child: Assets.png.icFacebook
-                              .image(
-                              width: 35,
-                              height: 35),
+                              .image(width: 35, height: 35),
                         ),
                         const SizedBox(width: 20),
                         Assets.png.icInstagram.image(
@@ -106,15 +104,14 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               });
                             },
                             child: Assets.png.icGoogle
-                                .image(
-                                width: 35,
-                                height: 35)),
+                                .image(width: 35, height: 35)),
                         const SizedBox(width: 20),
                         (defaultTargetPlatform == TargetPlatform.android ||
                                 defaultTargetPlatform == TargetPlatform.iOS)
                             ? Wrap(
                                 children: [
                                   InkWell(
+                                    key: const Key("twitter"),
                                     onTap: () {
                                       widget.socialSignInViewModel
                                           .signinWithTwitter()
@@ -129,10 +126,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                         }
                                       });
                                     },
-                                    child: Assets.png.icTwitter.image(
-                                        key: const Key("twitter"),
-                                        width: 35,
-                                        height: 35),
+                                    child: Assets.png.icTwitter
+                                        .image(width: 35, height: 35),
                                   ),
                                   const SizedBox(
                                     height: 20,
@@ -145,6 +140,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                                 width: 0,
                               ),
                         InkWell(
+                          key: const Key("apple"),
                           onTap: () {
                             widget.socialSignInViewModel
                                 .signinWithApple()
