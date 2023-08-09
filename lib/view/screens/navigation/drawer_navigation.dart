@@ -21,10 +21,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
         key: const Key('scaffold-key'),
         appBar: AppBar(
-          title: const Text("Sample Header").tr(),
+          title: Text("flutter_boilerplate",style: theme.textTheme.headlineSmall).tr(),
           automaticallyImplyLeading: isDrawerNav,
         ),
         drawer: Drawer(
