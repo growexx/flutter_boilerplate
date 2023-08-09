@@ -1,9 +1,17 @@
+import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
+import 'package:flutter_boilerplate/view/screens/signup/widget/select_image_options_widget.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileFieldWidget extends StatefulWidget {
   final EditProfileViewModel viewModel;
@@ -37,6 +45,59 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                       "editprofile",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
+                     const SizedBox(height: 20),
+                    !kIsWeb?Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Center(
+                        child: GestureDetector(
+                          key: const Key("pick_image_gesture_detector"),
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            if (kIsWeb) {
+                              _pickImage(ImageSource.gallery);
+                            } else {
+                              _showSelectPhotoOptions(context);
+                            }
+                          },
+                          child: Center(
+                            child: Container(
+                                height: 130.0,
+                                width: 130.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.shade200,
+                                ),
+                                child: Center(
+                                  child: Selector<EditProfileViewModel, File?>(
+                                      shouldRebuild: (prev, nex) => true,
+                                      selector: (_, listener) =>
+                                          listener.pickedImage,
+                                      builder: (context, pickedImage, child) {
+                                        return pickedImage == null
+                                            ? Text(
+                                                key: const Key(
+                                                    "pick_image_text"),
+                                                'pick_image',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    theme.textTheme.titleSmall,
+                                              ).tr()
+                                            : CircleAvatar(
+                                                key: const Key(
+                                                    "circle_avatar_picked_image"),
+                                                backgroundImage:
+                                                    FileImage(pickedImage),
+                                                radius: 200.0,
+                                              );
+                                      }),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ):const SizedBox(height: 0),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const SizedBox(height: 20),
                     TextFormField(
                       key: const Key("tf_first_name"),
@@ -102,5 +163,53 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
     } else {
       showToast("Fill Required Fields");
     }
+  }
+    Future _pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      File? img = File(image.path);
+      img = await _cropImage(imageFile: img);
+      widget.viewModel.setPickedImage = img;
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage =
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
+  }
+
+  void _showSelectPhotoOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25.0),
+        ),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+          initialChildSize: 0.28,
+          maxChildSize: 0.4,
+          minChildSize: 0.28,
+          expand: false,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: SelectImageOptionsScreen(
+                onTap: _pickImage,
+              ),
+            );
+          }),
+    );
   }
 }
