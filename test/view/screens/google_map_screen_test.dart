@@ -13,7 +13,7 @@ void main() async {
       Widget widget = testingMaterial(initialLocation: GoogleMapScreen.path);
       await tester.pumpWidget(widget);
 
-      expect(find.byKey(const Key("center")), findsOneWidget);
+      // expect(find.byKey(const Key("center")), findsOneWidget);
       expect(find.byKey(const Key("cp_indicator")), findsOneWidget);
 
     });

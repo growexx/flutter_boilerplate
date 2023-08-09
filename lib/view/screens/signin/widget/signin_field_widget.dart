@@ -56,7 +56,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(key: const Key("sign_in_description"),
+                    Text(
+                            key: const Key("sign_in_description"),
                             "login_using_social_networks",
                             style: theme.textTheme.bodyMedium)
                         .tr(),
@@ -80,9 +81,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                             });
                           },
                           child: Assets.png.icFacebook
-                              .image(
-                              width: 35,
-                              height: 35),
+                              .image(width: 35, height: 35),
                         ),
                         const SizedBox(width: 20),
                         Assets.png.icInstagram.image(
@@ -105,57 +104,58 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               });
                             },
                             child: Assets.png.icGoogle
-                                .image(
-                                width: 35,
-                                height: 35)),
+                                .image(width: 35, height: 35)),
                         const SizedBox(width: 20),
                         (defaultTargetPlatform == TargetPlatform.android ||
                                 defaultTargetPlatform == TargetPlatform.iOS)
-                            ? InkWell(
-                                key: const Key("twitter"),
-                                onTap: () {
-                                  widget.socialSignInViewModel
-                                      .signinWithTwitter()
-                                      .then((User? user) {
-                                    if (user != null) {
-                                      widget.userRepository
-                                          .updateUserData(user)
-                                          .then((value) => Router.neglect(
-                                              context,
-                                              () => context.goNamed(
-                                                  DashboardScreen.name)));
-                                    }
-                                  });
-                                },
-                                child: Assets.png.icTwitter
-                                    .image(
-                                    width: 35,
-                                    height: 35),
+                            ? Wrap(
+                                children: [
+                                  InkWell(
+                                    key: const Key("twitter"),
+                                    onTap: () {
+                                      widget.socialSignInViewModel
+                                          .signinWithTwitter()
+                                          .then((User? user) {
+                                        if (user != null) {
+                                          widget.userRepository
+                                              .updateUserData(user)
+                                              .then((value) => Router.neglect(
+                                                  context,
+                                                  () => context.goNamed(
+                                                      DashboardScreen.name)));
+                                        }
+                                      });
+                                    },
+                                    child: Assets.png.icTwitter
+                                        .image(width: 35, height: 35),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                  ),
+                                ],
                               )
                             : const SizedBox(
                                 height: 0,
                                 width: 0,
                               ),
-                        Padding(
-                          padding: const EdgeInsets.only(left:15,bottom: 12),
-                          child: InkWell(
-                            key: const Key("apple"),
-                            onTap: () {
-                              widget.socialSignInViewModel
-                                  .signinWithApple()
-                                  .then((User? user) {
-                                if (user != null) {
-                                  widget.userRepository.updateUserData(user).then(
-                                      (value) => Router.neglect(
-                                          context,
-                                          () => context
-                                              .goNamed(DashboardScreen.name)));
-                                }
-                              });
-                            },
-                            child: Assets.png.icApple.image(
-                                 width: 40, height: 40),
-                          ),
+                        InkWell(
+                          key: const Key("apple"),
+                          onTap: () {
+                            widget.socialSignInViewModel
+                                .signinWithApple()
+                                .then((User? user) {
+                              if (user != null) {
+                                widget.userRepository.updateUserData(user).then(
+                                    (value) => Router.neglect(
+                                        context,
+                                        () => context
+                                            .goNamed(DashboardScreen.name)));
+                              }
+                            });
+                          },
+                          child: Assets.png.icApple.image(
+                              key: const Key("apple"), width: 35, height: 35),
                         ),
                       ],
                     ),
@@ -230,7 +230,8 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               SizedBox(
                                 width: 12,
                                 child: Selector<SignInViewModel, bool>(
-                                  selector: (_, listener) => listener.isRememberMeChecked,
+                                  selector: (_, listener) =>
+                                      listener.isRememberMeChecked,
                                   builder: (context, isRememberCheck, child) =>
                                       Checkbox(
                                     key: const Key("cb_remember_me"),
@@ -297,17 +298,18 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
 
   Future<void> onPressSignIn(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-      widget.viewModel.signIn(
-          email: widget.viewModel.emailC.text,
-          password: widget.viewModel.passwordC.text).then((User? value) {
-            if(value!=null) {
-              widget.userRepository.updateUserData(value)
-                  .then((value) {
-                NavigationHelper.pushNamed(context, NavigationScreen.name);
-              });
-            }
+      widget.viewModel
+          .signIn(
+              email: widget.viewModel.emailC.text,
+              password: widget.viewModel.passwordC.text)
+          .then((User? value) {
+        if (value != null) {
+          widget.userRepository.updateUserData(value).then((value) {
+            NavigationHelper.pushNamed(context, NavigationScreen.name);
+          });
+        }
       });
-    } else{
+    } else {
       showToast("validation".tr(gender: "fill_required_fields"));
     }
   }
