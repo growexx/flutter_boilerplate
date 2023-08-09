@@ -83,6 +83,7 @@
   "sign-out-message": "क्या आप साइन आउट करना चाहते हैं?",
   "change_new_old_password": "नया पासवर्ड पुराने पासवर्ड जैसा नहीं होना चाहिए",
   "change_new_confirm_password": "नया पासवर्ड और नए पासवर्ड की पुष्टि करें मेल नहीं खाता",
+  "password_changed": "पासवर्ड सफलतापूर्वक बदला गया",
   "validation":{
     "fill_required_fields": "आवश्यक फ़ील्ड भरें"
   },

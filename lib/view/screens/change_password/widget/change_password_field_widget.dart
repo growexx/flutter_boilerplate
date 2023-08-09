@@ -109,7 +109,7 @@ class _ChangePasswordFieldWidgetState extends State<ChangePasswordFieldWidget> {
           oldPassword: widget.viewModel.oldPasswordC.text.trim(),
           newPassword: widget.viewModel.newPasswordC.text.trim());
     } else {
-      showToast("fill_required_fields".tr());
+      showToast("validation".tr(gender: "fill_required_fields".tr()));
     }
   }
 }
