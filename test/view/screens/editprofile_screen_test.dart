@@ -8,8 +8,8 @@ void main() async {
   await commonInitialActivity();
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group("SignUp Screen Test", () {
-    testWidgets('sign-up screen', (WidgetTester tester) async {
+  group("Edit Profile Screen Test", () {
+    testWidgets('edit-profile screen Test', (WidgetTester tester) async {
       Widget widget = testingMaterial(initialLocation: EditProfileScreen.path);
       await tester.pumpWidget(widget);
       expect(find.byKey(const Key("editprofile")), findsOneWidget);
@@ -29,13 +29,12 @@ void main() async {
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
-      //Sign up button Tap
+      //Edit Profile button Tap
       final Finder editButton = find.byKey(const Key("tb_editprofile"));
       await tester.tap(editButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
       //expect(find.text("This is a mandatory field"),findsNWidgets(2));
-
     });
   });
 }
