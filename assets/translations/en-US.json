@@ -1,7 +1,7 @@
 {
   "app_name": "Flutter BoilerPlate",
   "login_screen": "Login Screen",
-  "dashboard_screen": "Dashboard Screen",
+  "dashboard_screen": "Dashboard",
   "go_to_dashboard": "Go To Dashboard",
   "login_using_social_networks": "Login using Social Networks",
   "or_capital": "OR",
@@ -59,7 +59,7 @@
   "error_valid_mobile_number": "Please enter a valid mobile number.",
   "sign_in_with_otp": "Sign In with OTP",
   "verify_pin": "Verify PIN",
-  "want_to_exit": "Do you want to exit the",
+  "want_to_exit": "Are you sure? You want to exit?",
   "exit": "exit",
   "location_services_are_disabled":"Location services are disabled. Please enable the services",
   "location_permission_denied": "Location permissions are denied",

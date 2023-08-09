@@ -15,35 +15,17 @@ class SelectPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return ElevatedButton(
+    return TextButton(
+      key: const Key("text_label"),
       onPressed: onTap,
-      style: theme.elevatedButtonTheme.style,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 16,
-          horizontal: 6,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: theme.primaryColor,
-            ),
-            const SizedBox(
-              width: 14,
-            ),
-            Text(
-              textLabel,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-            )
-          ],
+      style: TextButton.styleFrom(
+        elevation: 0.9,
+        minimumSize: const Size.fromHeight(50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
+      child: Text(textLabel)
     );
   }
 }
