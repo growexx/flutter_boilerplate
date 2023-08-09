@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/api/api_call.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bo
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
+import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
@@ -69,15 +71,16 @@ class UserRepository extends ChangeNotifier {
   }
 
   void changePassword(BuildContext context) {
-    Router.neglect(context, () => context.goNamed(ChangePasswordScreen.name));
+    NavigationHelper.pushNamed(
+        context, ChangePasswordScreen.name);
   }
 
   Future signOutUser(BuildContext context) async {
     CustomBottomSheet.open(context,
         child: FunctionalSheet(
             key: const Key("sign_out"),
-            message: "Do you want to Sign Out?",
-            buttonName: "Sign Out",
+            message: "sign-out-message".tr(),
+            buttonName: "sign_out".tr(),
             onPressButton: () async {
               directLogOut(context);
             }));

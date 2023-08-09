@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
@@ -150,7 +150,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                                               viewModel: viewModel);
                                          if (viewModel.verificationStatus == Status.verifiedSuccess) {
                                            if (!mounted) return;
-                                           NavigationHelper.pushNamed(context, DashboardScreen.name);
+                                           NavigationHelper.pushNamed(context, NavigationScreen.name);
                                          }
                                         },
                                         style: TextButton.styleFrom(

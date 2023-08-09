@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:http/http.dart' as http;
 
 class ChangePasswordViewModel extends ChangeNotifier {
@@ -20,7 +20,10 @@ class ChangePasswordViewModel extends ChangeNotifier {
     required BuildContext context,
   }) async {
     /// Implement Api Call Here & navigate to dashboard
-    Router.neglect(context, () => context.goNamed(DashboardScreen.name));
+    showToast("password_changed".tr());
+    oldPasswordC.text="";
+    newPasswordC.text="";
+    confirmNewPasswordC.text="";
     return true;
   }
 }
