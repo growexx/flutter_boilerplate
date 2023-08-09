@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
