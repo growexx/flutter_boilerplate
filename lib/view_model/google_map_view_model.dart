@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class GoogleMapViewModel extends ChangeNotifier {
   String? currentAddress="fetching_location".tr();
   Position? currentPosition;
+  bool isLocationServiceEnabled=false;
   LatLng latLngForWeb = const LatLng(23.033863, 72.585022);//Ahmedabad LatLng
 
   final Completer<GoogleMapController> controller =
@@ -24,6 +25,11 @@ class GoogleMapViewModel extends ChangeNotifier {
 
   set setCurrentPosition(Position? fetchedPosition) {
     currentPosition = fetchedPosition;
+    notifyListeners();
+  }
+
+  set setLocationServiceStatus(bool isEnabled) {
+    isLocationServiceEnabled = isEnabled;
     notifyListeners();
   }
 

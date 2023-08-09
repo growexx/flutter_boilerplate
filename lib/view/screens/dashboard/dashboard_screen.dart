@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/google_map/google_map_screen.dart';
 import 'package:flutter_boilerplate/view/screens/payment/payment_screen.dart';
 import 'package:flutter_boilerplate/view/screens/edit_profile/editprofile_screen.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/pin_support/pin_support.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
@@ -118,6 +120,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           );
                     }, child: const Text("todo_screen").tr())
               ),
+            ),
+            Expanded(
+              child: Center(
+                  child: TextButton(
+                      key: const Key("show_google_map"),
+                      onPressed: () {
+                        context.goNamed(GoogleMapScreen.name);
+                      },
+                      child: const Text("show_google_map").tr())),
+            ),
+            Expanded(
+              child: Center(
+                  child: TextButton(
+                      key: const Key("show_security_pin"),
+                      onPressed: () {
+                        context.goNamed(SecurityPinScreen.name);
+                      },
+                      child: const Text("show_security_pin").tr())),
             ),
           ],
         ),
