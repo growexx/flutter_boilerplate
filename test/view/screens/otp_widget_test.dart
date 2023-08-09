@@ -47,7 +47,6 @@ void main() async {
 
       expect(find.byKey(const Key("send_otp")), findsOneWidget);
       expect(find.byKey(const Key("add_your_phone_number")), findsOneWidget);
-      // expect(find.byKey(const Key("phone")), findsOneWidget);
     });
   });
 }

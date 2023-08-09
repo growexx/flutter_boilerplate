@@ -15,8 +15,6 @@ void main() async {
     await tester.pumpWidget(widget);
     final Finder apple = find.byType(ApplePayButton);
     expect(apple, findsOneWidget);
-    /*final Finder android = find.byKey(const Key("android"));
-    expect(android, findsOneWidget);*/
     await tester.tap(find.byType(MaterialButton));
     onApplePayResult("");
     onGooglePayResult("");
