@@ -7,7 +7,6 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:flutter_boilerplate/view/screens/signup/widget/select_image_options_widget.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
