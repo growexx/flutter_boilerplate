@@ -22,40 +22,28 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Column(
-        children: [
-          _buildPaymentButtons(),
-          _buildApplePayButton(),
-          MaterialButton(
-            onPressed: () {
+      body: Center(
+       child: Column(
+          children: [
+           _buildPaymentButtons(),
+           const SizedBox(height: 20),
+             Container(
+              width: 150,
+              height: 30,
+              child: MaterialButton(
+              onPressed: () {
               NavigationHelper.pushNamed(context, StripePaymentScreen.name);
-            },
-            child: const Text("Stripe Payment"),
-          )
-        ],
-      ),
-    ));
-  }
+              },
+              color: Colors.black,
+              textColor: Colors.white,
+              child: const Text("Stripe Payment"),
+          ),
+        )
+      ],
+    ),
+  ),
+);
 
-  Widget _buildApplePayButton() {
-    if (defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.macOS) {
-      return ApplePayButton(
-        paymentConfiguration:
-            PaymentConfiguration.fromJsonString(defaultApplePay),
-        paymentItems: _paymentItems,
-        style: ApplePayButtonStyle.black,
-        type: ApplePayButtonType.buy,
-        margin: const EdgeInsets.only(top: 25.0),
-        onPaymentResult: onApplePayResult,
-        loadingIndicator: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    } else {
-      return Container();
-    }
   }
 }
 
@@ -71,6 +59,7 @@ Widget _buildPaymentButtons() {
       paymentItems: _paymentItems,
       style: ApplePayButtonStyle.black,
       type: ApplePayButtonType.buy,
+      width: 150, 
       margin: const EdgeInsets.only(top: 25.0),
       onPaymentResult: onApplePayResult,
       loadingIndicator: const Center(
