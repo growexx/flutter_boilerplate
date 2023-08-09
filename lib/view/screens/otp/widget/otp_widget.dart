@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
@@ -107,6 +108,8 @@ class _OTPWidgetState extends State<OTPWidget> {
                                   if (widget.viewModel.isValidNumber) {
                                     widget.viewModel.setPhoneNumberValidated =
                                         true;
+                                  }else{
+                                    showToast("error_valid_mobile_number".tr());
                                   }
                                 },
                                 style: TextButton.styleFrom(
