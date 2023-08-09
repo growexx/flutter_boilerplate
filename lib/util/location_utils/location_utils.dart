@@ -5,14 +5,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
   Future<bool> handleLocationPermission(BuildContext context) async {
-    bool serviceEnabled;
     LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      showToast("location_services_are_disabled".tr());
-      return false;
-    }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -26,6 +20,15 @@ import 'package:geolocator/geolocator.dart';
       return false;
     }
     return true;
+  }
+
+  Future<bool> isLocationServiceEnabled(BuildContext context) async {
+    bool serviceEnabled;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      showToast("location_services_are_disabled".tr());
+    }
+    return serviceEnabled;
   }
 
   Future<Position?> getCurrentPosition(BuildContext context) async {

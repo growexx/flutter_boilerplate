@@ -75,6 +75,8 @@
   "new_task":"New Task",
   "cancel":"Cancel",
   "empty_note":"Please Add Notes.",
+  "show_google_map": "Show Google Map",
+  "show_security_pin": "Show Security PIN",
   "validation":{
     "fill_required_fields": "Fill Required Fields"
   },
