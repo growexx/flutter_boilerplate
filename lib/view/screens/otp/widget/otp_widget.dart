@@ -5,7 +5,6 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
 class OTPWidget extends StatefulWidget {
   final OTPViewModel viewModel;
@@ -79,7 +78,17 @@ class _OTPWidgetState extends State<OTPWidget> {
                     child: Form(
                       child: Column(
                         children: [
-                          IntlPhoneField(
+                          TextFormField(
+                            keyboardType: TextInputType.number,
+                            key: const Key("tf_mobile_number"),
+                            controller: widget.viewModel.phoneC,
+                            decoration:
+                            InputDecoration(hintText:'mobile_number'.tr()),
+                            onFieldSubmitted: (val) {
+                              widget.viewModel.setIsValidNumber = true;
+                            },
+                          ),
+                          /*IntlPhoneField(
                             decoration: InputDecoration(
                               errorStyle: const TextStyle(color: Colors.red),
                               labelText: 'mobile_number'.tr(),
@@ -97,7 +106,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                                 widget.viewModel.setIsValidNumber = false;
                               }
                             },
-                          ),
+                          ),*/
                           const SizedBox(
                             height: 22,
                           ),
