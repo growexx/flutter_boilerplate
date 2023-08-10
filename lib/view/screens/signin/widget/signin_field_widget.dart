@@ -84,8 +84,24 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                               .image(width: 35, height: 35),
                         ),
                         const SizedBox(width: 20),
-                        Assets.png.icInstagram.image(
-                            key: const Key("instagram"), width: 35, height: 35),
+                        InkWell(
+                          key: const Key("instagram"),
+                          onTap: () {
+                             widget.socialSignInViewModel
+                                .signinWithInstagram()
+                                .then((User? user) {
+                              if (user != null) {
+                                widget.userRepository.updateUserData(user).then(
+                                    (value) => Router.neglect(
+                                        context,
+                                        () => context
+                                            .goNamed(DashboardScreen.name)));
+                              }
+                            });
+                          },
+                          child: Assets.png.icInstagram.image(
+                              key: const Key("instagram"), width: 35, height: 35),
+                        ),
                         const SizedBox(width: 20),
                         InkWell(
                             key: const Key("google"),
