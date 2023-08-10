@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
@@ -6,11 +5,6 @@ import 'package:flutter_boilerplate/app_manager/helper/camera_and_images/custom_
 import 'package:flutter_boilerplate/app_manager/helper/camera_and_images/selection_box.dart';
 import 'package:go_router/go_router.dart';
 import '../../component/bottom_sheet/titled_sheet.dart';
-
-
-
-
-
 class CustomImagePickerWidget extends StatelessWidget {
 
   final Widget child;

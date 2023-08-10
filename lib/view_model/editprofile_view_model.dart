@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:go_router/go_router.dart';
 
 
 class EditProfileViewModel extends ChangeNotifier {
-  File? pickedImage;
-
   EditProfileViewModel() {
     //checkIfUserIsLoggedIn();
   }
@@ -16,8 +12,10 @@ class EditProfileViewModel extends ChangeNotifier {
   final TextEditingController lastNameC = TextEditingController();
   final TextEditingController emailC = TextEditingController();
 
-  set setPickedImage(File? val) {
-    pickedImage = val;
+  String? _selectedImagePath;
+  String? get selectedImagePath=> _selectedImagePath;
+  set selectedImagePath(String? val) {
+    _selectedImagePath = val;
     notifyListeners();
   }
 
