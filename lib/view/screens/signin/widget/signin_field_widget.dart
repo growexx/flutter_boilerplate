@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
+import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
@@ -298,6 +299,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
 
   Future<void> onPressSignIn(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
+      widget.viewModel.loginStatus=ButtonStatus.hit;
       widget.viewModel
           .signIn(
               email: widget.viewModel.emailC.text,
@@ -315,6 +317,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   }
 
   Future<void> onPressSignInWithOTP(BuildContext ctx) async {
+    widget.viewModel.loginStatus=ButtonStatus.hit;
     widget.viewModel.signInWithOTP(ctx);
   }
 }

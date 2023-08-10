@@ -3,7 +3,6 @@ import 'package:flutter_boilerplate/app_manager/component/responsive/widget/resp
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_field_widget.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_web_page_filler_widget.dart';
-import 'package:flutter_boilerplate/view/widgets/screen_text_and_theme_controller.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:provider/provider.dart';
@@ -26,15 +25,8 @@ class _SignInScreenState extends State<SignInScreen> {
     final googleSignInViewModel = Provider.of<SocialSignInViewModel>(context,listen: false);
     final userRepository = Provider.of<UserRepository>(context,listen: false);
 
-    Widget controlBar = ScreenTextAndThemeController(onChange: (){
-      setState(() {
-
-      });
-    });
-
     Widget fieldPart = Column(
       children: [
-        controlBar,
         Expanded(
           child: SignInFieldWidget(
             viewModel: viewModel,

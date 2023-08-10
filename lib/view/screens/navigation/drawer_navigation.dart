@@ -4,6 +4,7 @@ import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
+import 'package:flutter_boilerplate/view/widgets/screen_text_and_theme_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app_manager/helper/navigation/navigation_helper.dart';
@@ -26,6 +27,10 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    Widget controlBar = ScreenTextAndThemeController(onChange: (){
+      setState(() {
+      });
+    });
     return Scaffold(
         key: const Key('scaffold-key'),
         appBar: AppBar(
@@ -85,6 +90,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                           ],
                         );
                       })),
+              controlBar,
               ListTile(
                 key: const Key('user-profile-key'),
                 leading: const Icon(Icons.person),
