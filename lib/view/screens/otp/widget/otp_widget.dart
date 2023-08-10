@@ -115,6 +115,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                               child: TextButton(
                                 key: const Key("send"),
                                 onPressed: () {
+                                  widget.viewModel.setIsValidNumber = true;
                                   if (widget.viewModel.isValidNumber) {
                                     widget.viewModel.setPhoneNumberValidated =
                                         true;
