@@ -4,8 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mockito/mockito.dart';
 
-import '../app_manager/helper/responsive/responsive_test.mocks.dart';
-
 void main() {
   MockBuildContext mockContext;
 
@@ -33,7 +31,7 @@ void main() {
         () async {
       WidgetsFlutterBinding.ensureInitialized();
       mockContext = MockBuildContext();
-      final currentPosition = getCurrentPosition(mockContext);
+      Position? currentPosition = await getCurrentPosition(mockContext);
       expect(currentPosition!=null, true);
     },
   );

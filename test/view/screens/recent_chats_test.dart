@@ -13,7 +13,7 @@ void main() {
       MaterialApp(
         home: ChangeNotifierProvider<ChatViewModel>.value(
           value: chatViewModel,
-          child: RecentChats(),
+          child: const RecentChats(),
         ),
       ),
     );
@@ -30,7 +30,7 @@ void main() {
       MaterialApp(
         home: ChangeNotifierProvider<ChatViewModel>.value(
           value: chatViewModel,
-          child: RecentChats(),
+          child: const RecentChats(),
         ),
       ),
     );

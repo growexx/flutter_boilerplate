@@ -34,7 +34,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
           value: BottomTabNavigation.name,
           extra: Colors.greenAccent.withOpacity(0.8)),
     ];
-    final theme = Theme.of(context);
     return WillPopScope(
       onWillPop: () {
         showExitPopUp(context);
