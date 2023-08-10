@@ -39,7 +39,7 @@ class PaymentScreen extends StatelessWidget {
           children: [
            _buildPaymentButtons(),
            const SizedBox(height: 20),
-             Container(
+             SizedBox(
               width: 150,
               height: 30,
               child: MaterialButton(
