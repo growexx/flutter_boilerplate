@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-
 class ChatUser {
+  static String avatarUrl =
+      "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+  
   ChatUser({
     this.photoUrl,
     required this.email,

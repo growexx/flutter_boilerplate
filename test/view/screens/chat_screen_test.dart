@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Chat screen renders correctly', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: ChatScreen()));
+    await tester.pumpWidget(const MaterialApp(home: ChatScreen()));
 
     // Verify that the chat screen has an app bar with title 'Chat'
     expect(find.text('Chat'), findsOneWidget);
@@ -16,8 +16,10 @@ void main() {
     expect(find.byType(MessageInputField), findsOneWidget);
   });
 
-  testWidgets('Sending a message triggers send message logic', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: ChatScreen()));
+
+  testWidgets('Sending a message triggers send message logic',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ChatScreen()));
 
     // Find the message input field
     final messageInputField = find.byType(MessageInputField);

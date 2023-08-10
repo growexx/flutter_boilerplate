@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
+import 'package:flutter_boilerplate/app_manager/helper/camera_and_images/custom_image_picker_widget.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
+import 'package:provider/provider.dart';
 
 class SignUpFieldWidget extends StatefulWidget {
   final SignUpViewModel viewModel;
@@ -23,7 +28,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final SignUpViewModel viewModel = Provider.of<SignUpViewModel>(context,listen: false);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -41,10 +46,67 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
                     const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Center(
+                        child: GestureDetector(
+                          key: const Key("pick_image_gesture_detector"),
+                          behavior: HitTestBehavior.translucent,
+                          onTap: (){
+                            showCustomImagePicker(context, onReceiveFilePath: (String? filePath) {
+                              if(filePath!=null) {
+                                viewModel.selectedImagePath = filePath;
+                              }
+                            });
+                          },
+                          child: Center(
+                            child: Container(
+                                height: 130.0,
+                                width: 130.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.shade200,
+                                ),
+                                child: Center(
+                                  child: Selector<SignUpViewModel, String?>(
+                                      shouldRebuild: (prev, nex) => true,
+                                      selector: (_, listener) =>
+                                          listener.selectedImagePath,
+                                      builder: (context, pickedImage, child) {
+                                        return pickedImage == null
+                                            ? Text(
+                                                key: const Key(
+                                                    "pick_image_text"),
+                                                'pick_image',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    theme.textTheme.titleSmall,
+                                              ).tr()
+                                            : kIsWeb?CircleAvatar(
+                                          key: const Key(
+                                              "circle_avatar_picked_image_web"),
+                                          backgroundImage: NetworkImage(pickedImage),
+                                          radius: 200.0,
+                                        ):CircleAvatar(
+                                                key: const Key(
+                                                    "circle_avatar_picked_image"),
+                                                backgroundImage: FileImage(File(pickedImage)),
+                                                radius: 200.0,
+                                              );
+                                      }),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     TextFormField(
                       key: const Key("tf_first_name"),
                       controller: widget.viewModel.firstNameC,
-                      decoration: InputDecoration(hintText: "enter_first_name".tr()),
+                      decoration:
+                          InputDecoration(hintText: "enter_first_name".tr()),
                       validator: ValidationHelper.nameValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
@@ -137,19 +199,15 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
 
   Future<void> onPressSignUp(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-      if (widget.viewModel.passwordC.text.trim() ==
-          widget.viewModel.confirmPasswordC.text.trim()) {
-        widget.viewModel.signUp(
-            context:ctx,
-            firstName: widget.viewModel.firstNameC.text.trim(),
-            lastName: widget.viewModel.lastNameC.text.trim(),
-            email: widget.viewModel.emailC.text.trim(),
-            password: widget.viewModel.passwordC.text.trim());
-      } else {
-        showToast("Password & Confirm Password did not match");
-      }
+      widget.viewModel.signUp(
+          context: ctx,
+          firstName: widget.viewModel.firstNameC.text.trim(),
+          lastName: widget.viewModel.lastNameC.text.trim(),
+          email: widget.viewModel.emailC.text.trim(),
+          password: widget.viewModel.passwordC.text.trim());
     } else {
-      showToast("Fill Required Fields");
+      showToast("fill_required_fields".tr());
     }
   }
+
 }

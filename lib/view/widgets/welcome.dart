@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 
 class WelcomeWidget extends StatelessWidget {
+
   const WelcomeWidget({super.key});
 
   @override

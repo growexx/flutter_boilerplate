@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/api/api_call.dart';
@@ -9,17 +10,18 @@ import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bo
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
+import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
-import 'package:flutter_boilerplate/view/screens/splash/splash_screen.dart';
+import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class UserRepository extends ChangeNotifier {
-  final http.Client _client = http.Client();
+  http.Client client = http.Client();
   User? currentUser;
 
   UserRepository({
@@ -69,15 +71,16 @@ class UserRepository extends ChangeNotifier {
   }
 
   void changePassword(BuildContext context) {
-    Router.neglect(context, () => context.goNamed(ChangePasswordScreen.name));
+    NavigationHelper.pushNamed(
+        context, ChangePasswordScreen.name);
   }
 
   Future signOutUser(BuildContext context) async {
     CustomBottomSheet.open(context,
         child: FunctionalSheet(
             key: const Key("sign_out"),
-            message: "Do you want to Sign Out?",
-            buttonName: "Sign Out",
+            message: "sign-out-message".tr(),
+            buttonName: "sign_out".tr(),
             onPressButton: () async {
               directLogOut(context);
             }));
@@ -104,7 +107,7 @@ class UserRepository extends ChangeNotifier {
       };
       ProjectResponse data = ProjectResponse.fromJson(await _apiCall.call(
         url: "auth/refresh-token",
-        client: _client,
+        client: client,
         apiCallType: ApiCallType.post(body: body),));
       if(data.status == 1) {
         await updateToken(data.data["token"]);

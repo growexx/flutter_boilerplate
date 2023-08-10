@@ -347,7 +347,7 @@ class MockSigninViewModel extends _i1.Mock implements _i9.SignInViewModel {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i6.Future<void> signIn({
+  _i6.Future<_i2.User?> signIn({
     required String? email,
     required String? password,
   }) =>
@@ -360,9 +360,9 @@ class MockSigninViewModel extends _i1.Mock implements _i9.SignInViewModel {
             #password: password,
           },
         ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
+        returnValue: _i6.Future<_i2.User?>.value(),
+        returnValueForMissingStub: _i6.Future<_i2.User?>.value(),
+      ) as _i6.Future<_i2.User?>);
   @override
   void signInWithOTP(_i4.BuildContext? context) => super.noSuchMethod(
         Invocation.method(

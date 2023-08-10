@@ -1,9 +1,14 @@
+import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
+import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../app_manager/helper/camera_and_images/custom_image_picker_widget.dart';
 
 class EditProfileFieldWidget extends StatefulWidget {
   final EditProfileViewModel viewModel;
@@ -20,7 +25,7 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final EditProfileViewModel viewModel = Provider.of<EditProfileViewModel>(context,listen: false);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -37,6 +42,60 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                       "editprofile",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
+                     const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Center(
+                        child: GestureDetector(
+                          key: const Key("pick_image_gesture_detector"),
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            showCustomImagePicker(context, onReceiveFilePath: (String? filePath) {
+                              if(filePath!=null) {
+                                viewModel.selectedImagePath = filePath;
+                              }
+                            });
+                          },
+                          child: Center(
+                            child: Container(
+                                height: 130.0,
+                                width: 130.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.shade200,
+                                ),
+                                child: Center(
+                                  child: Selector<EditProfileViewModel, String?>(
+                                      shouldRebuild: (prev, nex) => true,
+                                      selector: (_, listener) =>
+                                      listener.selectedImagePath,
+                                      builder: (context, pickedImage, child) {
+                                        return pickedImage == null
+                                            ? Text(
+                                          key: const Key(
+                                              "pick_image_text"),
+                                          'pick_image',
+                                          textAlign: TextAlign.center,
+                                          style:
+                                          theme.textTheme.titleSmall,
+                                        ).tr()
+                                            : kIsWeb?CircleAvatar(
+                                          key: const Key(
+                                              "circle_avatar_picked_image_web"),
+                                          backgroundImage: NetworkImage(pickedImage),
+                                          radius: 200.0,
+                                        ):CircleAvatar(
+                                          key: const Key(
+                                              "circle_avatar_picked_image"),
+                                          backgroundImage: FileImage(File(pickedImage)),
+                                          radius: 200.0,
+                                        );
+                                      }),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     TextFormField(
                       key: const Key("tf_first_name"),

@@ -21,5 +21,6 @@ void main() {
     expect(model.passwordC.text, "Test@123");
     model.confirmPasswordC.text = "Test@123";
     expect(model.confirmPasswordC.text, "Test@123");
+    model.selectedImagePath = "";
   });
 }

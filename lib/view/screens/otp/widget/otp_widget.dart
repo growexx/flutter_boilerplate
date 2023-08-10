@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
+import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
@@ -11,17 +11,17 @@ class OTPWidget extends StatefulWidget {
   final SocialSignInViewModel googleSignInViewModel;
   final UserRepository userRepository;
 
-  const OTPWidget({super.key,
-    required this.viewModel,
-    required this.googleSignInViewModel,
-    required this.userRepository});
+  const OTPWidget(
+      {super.key,
+      required this.viewModel,
+      required this.googleSignInViewModel,
+      required this.userRepository});
 
   @override
   State<OTPWidget> createState() => _OTPWidgetState();
 }
 
 class _OTPWidgetState extends State<OTPWidget> {
-
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,6 @@ class _OTPWidgetState extends State<OTPWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Center(
       child: SingleChildScrollView(
         child: ConstrainedBox(
@@ -53,9 +52,9 @@ class _OTPWidgetState extends State<OTPWidget> {
                     height: 24,
                   ),
                   Text(
-                      key: const Key("send_otp"),
-                      'send_otp',
-                      style: theme.textTheme.headlineSmall)
+                          key: const Key("send_otp"),
+                          'send_otp',
+                          style: theme.textTheme.headlineSmall)
                       .tr(),
                   const SizedBox(
                     height: 10,
@@ -72,7 +71,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                   Container(
                     padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
-                      border: Border.all(color: theme.primaryColor,width: 1),
+                      border: Border.all(color: theme.primaryColor, width: 1),
                       color: theme.colorScheme.background,
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -80,43 +79,32 @@ class _OTPWidgetState extends State<OTPWidget> {
                       child: Column(
                         children: [
                           TextFormField(
-                            maxLines: 1,
-                            maxLength: 10,
-                            key:const Key("phone"),
+                            keyboardType: TextInputType.number,
+                            key: const Key("tf_mobile_number"),
                             controller: widget.viewModel.phoneC,
                             decoration:
-                            InputDecoration(hintText: "mobile_number".tr()),
-                            validator: ValidationHelper.emailValidation,
+                            InputDecoration(hintText:'mobile_number'.tr()),
                             onFieldSubmitted: (val) {
+                              widget.viewModel.setIsValidNumber = true;
                             },
                           ),
-                         /* InternationalPhoneNumberInput(
-                            key: const Key("phone"),
-                            validator: (val) =>
-                                ValidationHelper.mobileValidation(val),
-                            onInputChanged: (PhoneNumber number) {
-                              //track number
-                            },
-                            onInputValidated: (bool value) {
-                              //validate value
-                            },
-                            selectorConfig: const SelectorConfig(
-                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                          /*IntlPhoneField(
+                            decoration: InputDecoration(
+                              errorStyle: const TextStyle(color: Colors.red),
+                              labelText: 'mobile_number'.tr(),
+                              floatingLabelStyle:
+                                  TextStyle(color: theme.primaryColor),
+                              border: const OutlineInputBorder(
+                                borderSide: BorderSide(),
+                              ),
                             ),
-                            inputDecoration: InputDecoration(
-                              hintText: "mobile_number".tr(),
-                            ),
-                            ignoreBlank: false,
-                            autoValidateMode: AutovalidateMode.disabled,
-                            selectorTextStyle: const TextStyle(
-                                color: Colors.black),
-                            textFieldController: widget.viewModel.phoneC,
-                            formatInput: true,
-                            keyboardType: const TextInputType.numberWithOptions(
-                                signed: true, decimal: true),
-                            inputBorder: const OutlineInputBorder(),
-                            onSaved: (PhoneNumber number) {
-                              //print('On Saved: $number');
+                            initialCountryCode: 'IN',
+                            onChanged: (phone) {
+                              if (phone.isValidNumber()) {
+                                widget.viewModel.setIsValidNumber = true;
+                              } else {
+                                widget.viewModel.setIsValidNumber = false;
+                              }
                             },
                           ),*/
                           const SizedBox(
@@ -127,7 +115,13 @@ class _OTPWidgetState extends State<OTPWidget> {
                               child: TextButton(
                                 key: const Key("send"),
                                 onPressed: () {
-                                  widget.viewModel.setPhoneNumberValidated = true;
+                                  widget.viewModel.setIsValidNumber = true;
+                                  if (widget.viewModel.isValidNumber) {
+                                    widget.viewModel.setPhoneNumberValidated =
+                                        true;
+                                  } else {
+                                    showToast("error_valid_mobile_number".tr());
+                                  }
                                 },
                                 style: TextButton.styleFrom(
                                   minimumSize: const Size.fromHeight(50),

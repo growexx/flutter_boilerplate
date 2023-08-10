@@ -4,6 +4,9 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/view/screens/payment/stripe_payment.dart';
 import 'package:pay/pay.dart';
 import 'package:flutter/foundation.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 const _paymentItems = [
   PaymentItem(
@@ -21,41 +24,39 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
-        body: Center(
-      child: Column(
-        children: [
-          _buildPaymentButtons(),
-          _buildApplePayButton(),
-          MaterialButton(
+      appBar: AppBar(
+        leading: IconButton(
             onPressed: () {
-              NavigationHelper.pushNamed(context, StripePaymentScreen.name);
+              context.goNamed(DashboardScreen.name);
             },
-            child: Text("Stripe Payment"),
-          )
-        ],
+            icon: const Icon(Icons.arrow_back_sharp)),
+        title: Text("payment",style: theme.textTheme.headlineSmall,).tr(),
+        automaticallyImplyLeading: true,
       ),
-    ));
-  }
+      body: Center(
+       child: Column(
+          children: [
+           _buildPaymentButtons(),
+           const SizedBox(height: 20),
+             SizedBox(
+              width: 150,
+              height: 30,
+              child: MaterialButton(
+              onPressed: () {
+              NavigationHelper.pushNamed(context, StripePaymentScreen.name);
+              },
+              color: Colors.black,
+              textColor: Colors.white,
+              child: const Text("stripe_payment").tr(),
+          ),
+        )
+      ],
+    ),
+  ),
+);
 
-  Widget _buildApplePayButton() {
-    if (defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.macOS) {
-      return ApplePayButton(
-        paymentConfiguration:
-            PaymentConfiguration.fromJsonString(defaultApplePay),
-        paymentItems: _paymentItems,
-        style: ApplePayButtonStyle.black,
-        type: ApplePayButtonType.buy,
-        margin: const EdgeInsets.only(top: 25.0),
-        onPaymentResult: onApplePayResult,
-        loadingIndicator: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    } else {
-      return Container();
-    }
   }
 }
 
@@ -71,6 +72,7 @@ Widget _buildPaymentButtons() {
       paymentItems: _paymentItems,
       style: ApplePayButtonStyle.black,
       type: ApplePayButtonType.buy,
+      width: 150, 
       margin: const EdgeInsets.only(top: 25.0),
       onPaymentResult: onApplePayResult,
       loadingIndicator: const Center(

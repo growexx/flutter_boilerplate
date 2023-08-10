@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
-import 'package:flutter_boilerplate/app_manager/locale/widget/locale_selector_widget.dart';
-import 'package:flutter_boilerplate/app_manager/theme/widget/theme_mode_selector.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_field_widget.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_web_page_filler_widget.dart';
@@ -27,29 +25,8 @@ class _SignInScreenState extends State<SignInScreen> {
     final googleSignInViewModel = Provider.of<SocialSignInViewModel>(context,listen: false);
     final userRepository = Provider.of<UserRepository>(context,listen: false);
 
-    Widget controlBar = SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          alignment: WrapAlignment.spaceAround,
-          children: [
-            const ThemeModeSelector(),
-            LocaleSelectorWidget(
-              onLocaleChange: () {
-                setState(() {
-
-                });
-              },
-            )
-          ],
-        ),
-      ),
-    );
-
     Widget fieldPart = Column(
       children: [
-        controlBar,
         Expanded(
           child: SignInFieldWidget(
             viewModel: viewModel,

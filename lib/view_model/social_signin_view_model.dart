@@ -1,28 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/apple_auth.dart';
-// import 'package:flutter_boilerplate/app_manager/service/social_auth_services/facebook_auth.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
-// import 'package:flutter_boilerplate/app_manager/service/social_auth_services/twitter_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-// import 'package:twitter_login/entity/auth_result.dart';
-
-
 class SocialSignInViewModel extends ChangeNotifier {
+  GoogleAuth googleAuth = GoogleAuth();
+  AppleAuth appleAuth = AppleAuth();
 
-  final GoogleAuth _googleAuth = GoogleAuth();
-  final AppleAuth _appleAuth = AppleAuth();
-  // final TwitterAuth _twitterAuth = TwitterAuth();
-  // final FbAuth _fbAuth = FbAuth();
-
-  Future<User?> signinWithGoogle() async{
+  Future<User?> signinWithGoogle() async {
     try {
-      GoogleSignInAccount? user = await _googleAuth.signIn();
-      if(user!=null) {
+      GoogleSignInAccount? user = await googleAuth.signIn();
+      if (user != null) {
         List<String> name = (user.displayName ?? "").split(" ");
         return User(
           id: user.id,
@@ -31,46 +22,44 @@ class SocialSignInViewModel extends ChangeNotifier {
           profileUrl: user.photoUrl,
         );
       } else {
-        showToast("No User Found");
+          showToast("No User Found",);
       }
     } catch (e) {
-      showToast(e.toString());
+      showToast(e.toString(),);
       rethrow;
     }
     return null;
   }
 
-
-  Future<User?> signinWithApple() async{
+  Future<User?> signinWithApple() async {
     try {
-      AuthorizationCredentialAppleID? user = await _appleAuth.getAppleIDCredential();
-        return User(
-          id: user.userIdentifier,
-          firstName: user.givenName,
-          lastName: user.familyName,
-        );
+      AuthorizationCredentialAppleID? user =
+          await appleAuth.getAppleIDCredential();
+      return User(
+        id: user.userIdentifier,
+        firstName: user.givenName,
+        lastName: user.familyName,
+      );
     } catch (e) {
-      showToast(e.toString());
+      showToast(e.toString(),);
       rethrow;
     }
   }
 
-
-
-  Future<User?> signinWithFaceBook() async{
+  Future<User?> signinWithFaceBook() async {
     try {
       // LoginResult? user = await _fbAuth.login();
       // return User(
       //   id: (user?.accessToken ?? "").toString(),
       // );
     } catch (e) {
-      showToast(e.toString());
+      showToast(e.toString(),);
       rethrow;
     }
     return null;
   }
 
-  Future<User?> signinWithTwitter() async{
+  Future<User?> signinWithTwitter() async {
     try {
       // AuthResult? user = await _twitterAuth.login();
       // return User(
@@ -78,11 +67,9 @@ class SocialSignInViewModel extends ChangeNotifier {
       //   firstName: (user?.user?.name ?? "").toString(),
       // );
     } catch (e) {
-      showToast(e.toString());
+      showToast(e.toString(),);
       rethrow;
     }
     return null;
   }
-
-
 }

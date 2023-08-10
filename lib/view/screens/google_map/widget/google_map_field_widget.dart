@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_widget.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +21,13 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
   @override
   void initState() {
     super.initState();
-    getCurrentPosition(context).then((value) {
-      widget.viewModel.setCurrentPosition = value;
+    isLocationServiceEnabled(context).then((value) {
+      widget.viewModel.setLocationServiceStatus = value;
+      if (value) {
+        getCurrentPosition(context).then((value) {
+          widget.viewModel.setCurrentPosition = value;
+        });
+      }
     });
   }
 
@@ -30,17 +37,32 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
     return Consumer<GoogleMapViewModel>(
       builder: (BuildContext context, value, Widget? child) {
         return Center(
-            child: defaultTargetPlatform == TargetPlatform.android ||
-                    defaultTargetPlatform == TargetPlatform.iOS
+            child: (defaultTargetPlatform == TargetPlatform.android ||
+                    defaultTargetPlatform == TargetPlatform.iOS)
                 ? widget.viewModel.currentPosition != null
                     ? GoogleMapWidget(
                         key: const Key("google_map_widget"),
                         viewModel: widget.viewModel)
-                    : const Center(
-                        key: Key("center"),
-                        child: CircularProgressIndicator(
-                          key: Key("cp_indicator"),
-                        ))
+                    : widget.viewModel.isLocationServiceEnabled
+                        ? const Center(
+                            key: Key("center"),
+                            child: CircularProgressIndicator(
+                              key: Key("cp_indicator"),
+                            ))
+                        : AlertDialog(
+                            title: const Text("Enable Location"),
+                            content: const Text(
+                                "Please Enable GPS from device Settings to use this functionality."),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text('Close'),
+                                onPressed: () {
+                                  //Navigator.pop(context);
+                                  NavigationHelper.pushNamed(context, DashboardScreen.name);
+                                },
+                              ),
+                            ],
+                          )
                 : Center(
                     child: Text(
                             key: const Key("text_map_functionality"),
