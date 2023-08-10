@@ -22,6 +22,7 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     final viewModel = Provider.of<EditProfileViewModel>(context, listen: false);
     final userRepository = Provider.of<UserRepository>(context, listen: false);
     
@@ -37,7 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               context.goNamed(DashboardScreen.name);
             },
             icon: const Icon(Icons.arrow_back_sharp)),
-        title: const Text("editprofile").tr(),
+        title: Text("editprofile",style: theme.textTheme.headlineSmall).tr(),
         automaticallyImplyLeading: true,
       ),
       body: ResponsiveHelperWidget(
