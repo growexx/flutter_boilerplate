@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mockito/mockito.dart';
 
 void main() {
+  MockBuildContext mockContext;
+
   test(
     "getAddressFromLatLng test",
     () async {
@@ -20,4 +23,17 @@ void main() {
       expect(address.toString().isNotEmpty, true);
     },
   );
+
+  test(
+    "getCurrentPosition test",
+        () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      mockContext = MockBuildContext();
+      final currentPosition = getCurrentPosition(mockContext);
+      expect(currentPosition!=null, true);
+    },
+  );
+
+
 }
+class MockBuildContext extends Mock implements BuildContext {}
