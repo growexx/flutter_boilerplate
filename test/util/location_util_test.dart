@@ -3,6 +3,8 @@ import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../app_manager/helper/responsive/responsive_test.mocks.dart';
+
 void main() {
   test(
     "getAddressFromLatLng test",
@@ -17,6 +19,8 @@ void main() {
           heading: 12,
           speed: 10,
           speedAccuracy: 12));
+      isLocationServiceEnabled(MockBuildContext());
+      getCurrentPosition(MockBuildContext());
       expect(address.toString().isNotEmpty, true);
     },
   );
