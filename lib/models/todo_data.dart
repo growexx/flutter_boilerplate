@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part '../app_manager/models/todo_data.g.dart';
+part 'todo_data.g.dart';
 
 @HiveType(typeId: 1)
 class TodoData {
