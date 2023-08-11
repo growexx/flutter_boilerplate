@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
 import 'package:flutter_boilerplate/view/screens/todo/widget/todo_list_widget.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
-import '../../dashboard/dashboard_screen.dart';
 
 class TodoListScreen extends StatelessWidget {
   static const String name = "todo-list";
@@ -16,6 +15,7 @@ class TodoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     final viewModel = Provider.of<HiveModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +24,7 @@ class TodoListScreen extends StatelessWidget {
               context.goNamed(DashboardScreen.name);
             },
             icon: const Icon(Icons.arrow_back_sharp)),
-        title: const Text("todo_list").tr(),
+        title: Text("todo_list", style: theme.textTheme.headlineSmall,).tr(),
         automaticallyImplyLeading: true,
       ),
       floatingActionButton: FloatingActionButton(

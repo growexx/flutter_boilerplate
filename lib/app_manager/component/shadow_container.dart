@@ -1,17 +1,6 @@
-
-
-
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
-
-
 class ShadowContainer extends StatelessWidget {
 
   final Widget? child;
@@ -41,11 +30,11 @@ class ShadowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key:const Key("key_shadow_container"),
       height: height,
       width: width,
       decoration: BoxDecoration(
         shape: shape??BoxShape.rectangle,
-
         boxShadow: [
           BoxShadow(
             color: AppColor.grey,

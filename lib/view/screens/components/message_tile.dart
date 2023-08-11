@@ -85,7 +85,6 @@ class _MessageTileState extends State<MessageTile> {
               ),
             ],
           ),
-
           SizedBox(
             // width: 150,
             child: Text(

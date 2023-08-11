@@ -6,7 +6,6 @@ import 'package:flutter_boilerplate/app_manager/helper/camera_and_images/selecti
 import 'package:go_router/go_router.dart';
 import '../../component/bottom_sheet/titled_sheet.dart';
 class CustomImagePickerWidget extends StatelessWidget {
-
   final Widget child;
   final ValueChanged<String?> onReceiveFilePath;
 
@@ -26,8 +25,6 @@ class CustomImagePickerWidget extends StatelessWidget {
     );
   }
 }
-
-
 void showCustomImagePicker(BuildContext context,{
   required ValueChanged<String?> onReceiveFilePath
 }) {
