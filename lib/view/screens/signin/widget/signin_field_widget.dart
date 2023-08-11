@@ -10,7 +10,6 @@ import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/components/loader_button.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_boilerplate/models/option.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
@@ -38,11 +37,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-
-
-
-
     List<Option> socialOptions =[
       Option(
           key: const Key("facebook"),
