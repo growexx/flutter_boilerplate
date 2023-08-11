@@ -65,7 +65,7 @@
   "location_permission_denied": "Location permissions are denied",
   "location_permission_permanently_denied": "Location permissions are permanently denied, we cannot request permissions.",
   "google-map-functionality": "Google Map Functionality\n(WEB)",
-  "your_location": "Your Location: ",
+  "your_location": "\nYour Location: ",
   "fetching_location": "Fetching Current Location...",
   "browse_gallery":"Browse Gallery",
   "use_a_camera": "Use a Camera",
