@@ -49,7 +49,6 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                 ),
               )
             : const SizedBox(height: 0, width: 0),
-        const SizedBox(height: 10),
         Expanded(
           flex: 10,
           child: SizedBox(
@@ -70,11 +69,13 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                 controller.animateCamera(CameraUpdate.newCameraPosition(
                     CameraPosition(target: currentPositionLatLng, zoom: 14)));
 
-                //getting current address or location from co-ordinates
-                getAddressFromLatLng(widget.viewModel.currentPosition!)
-                    .then((value) {
-                  widget.viewModel.setCurrentAddress = value;
-                });
+                if (!kIsWeb) {
+                  //getting current address or location from co-ordinates
+                  getAddressFromLatLng(widget.viewModel.currentPosition!)
+                      .then((value) {
+                    widget.viewModel.setCurrentAddress = value;
+                  });
+                }
               },
               markers: {
                 Marker(
