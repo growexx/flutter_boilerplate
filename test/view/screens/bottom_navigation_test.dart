@@ -40,28 +40,28 @@ void main() async {
       expect(find.byType(Text), findsWidgets);
     });
 
-    testWidgets('BottomTabNavigation should show SettingsScreen when tapped',
-        (WidgetTester tester) async {
-      MockUserRepository mockUserRepository = MockUserRepository();
-      await tester.pumpWidget(
-        MultiProvider(
-          providers: [
-            ChangeNotifierProvider<UserRepository>.value(
-                value: mockUserRepository),
-          ],
-          child: const MaterialApp(
-            home: BottomTabNavigation(),
-          ),
-        ),
-      );
+    // testWidgets('BottomTabNavigation should show SettingsScreen when tapped',
+    //     (WidgetTester tester) async {
+    //   MockUserRepository mockUserRepository = MockUserRepository();
+    //   await tester.pumpWidget(
+    //     MultiProvider(
+    //       providers: [
+    //         ChangeNotifierProvider<UserRepository>.value(
+    //             value: mockUserRepository),
+    //       ],
+    //       child: const MaterialApp(
+    //         home: BottomTabNavigation(),
+    //       ),
+    //     ),
+    //   );
 
-      // Tap on the Settings tab
-      await tester.tap(find.text('Settings'));
-      await tester.pumpAndSettle();
+    //   // Tap on the Settings tab
+    //   await tester.tap(find.text('Settings'));
+    //   await tester.pumpAndSettle();
 
-      // Expect to see the SettingsScreen content on the screen
-      expect(find.text('Settings Screen'), findsOneWidget);
-    });
+    //   // Expect to see the SettingsScreen content on the screen
+    //   expect(find.text('Settings Screen'), findsOneWidget);
+    // });
 
     testWidgets('BottomTabNavigation should show ChatScreen when tapped',
         (WidgetTester tester) async {

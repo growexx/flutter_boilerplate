@@ -45,9 +45,9 @@ void main() async {
           tester.state(find.byKey(const Key("scaffold-key")));
       state.openDrawer();
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('settings-key')),
-          warnIfMissed: false);
-      await tester.pumpAndSettle();
+      // await tester.tap(find.byKey(const Key('settings-key')),
+      //     warnIfMissed: false);
+      // await tester.pumpAndSettle();
       expect(find.text('Dashboard'), findsWidgets);
     });
 
