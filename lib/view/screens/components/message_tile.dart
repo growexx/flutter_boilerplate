@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/models/message.dart';
-import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
@@ -90,15 +89,7 @@ class _MessageTileState extends State<MessageTile> {
           SizedBox(
             // width: 150,
             child: Text(
-              Jiffy.parse(
-                      widget.recentMessage.msgTime == null
-                          ? DateFormat('dd-MM-yyyy hh:mm a').format(
-                              DateTime.parse(DateTime.now().toLocal().toString()))
-                          : DateFormat('dd-MM-yyyy hh:mm a').format(
-                              DateTime.parse(
-                                  widget.recentMessage.msgTime.toString())),
-                      pattern: 'dd-MM-yyyy hh:mm a')
-                  .fromNow(),
+              Jiffy.parseFromDateTime(widget.recentMessage.msgTime).fromNow(),
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.grey,
