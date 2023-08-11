@@ -86,18 +86,13 @@ class _MessageTileState extends State<MessageTile> {
               ),
             ],
           ),
-
           SizedBox(
             // width: 150,
             child: Text(
               Jiffy.parse(
-                      widget.recentMessage.msgTime == null
-                          ? DateFormat('dd-MM-yyyy hh:mm a').format(
-                              DateTime.parse(DateTime.now().toLocal().toString()))
-                          : DateFormat('dd-MM-yyyy hh:mm a').format(
-                              DateTime.parse(
-                                  widget.recentMessage.msgTime.toString())),
-                      pattern: 'dd-MM-yyyy hh:mm a')
+                      DateFormat('dd-MM-yyyy hh:mm a').format(DateTime.parse(
+                          widget.recentMessage.msgTime.toString())),
+                      pattern: 'dd-MM-yyyy hh:mm')
                   .fromNow(),
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(

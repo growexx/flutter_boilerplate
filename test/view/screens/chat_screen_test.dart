@@ -16,6 +16,7 @@ void main() {
     expect(find.byType(MessageInputField), findsOneWidget);
   });
 
+
   testWidgets('Sending a message triggers send message logic',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: ChatScreen()));

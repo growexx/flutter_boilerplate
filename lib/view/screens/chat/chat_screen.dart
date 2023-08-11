@@ -8,9 +8,10 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat'),
+        title: Text('Chat',style: theme.textTheme.headlineSmall),
       ),
       body: Column(
         children: [

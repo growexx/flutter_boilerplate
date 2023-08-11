@@ -1,6 +1,3 @@
-
-
-
 enum ButtonStatus {
   initial,
   hit,
