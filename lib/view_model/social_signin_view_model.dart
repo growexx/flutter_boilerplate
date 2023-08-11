@@ -36,23 +36,26 @@ class SocialSignInViewModel extends ChangeNotifier {
 
   Future<User?> signinWithApple() async {
     try {
-      AuthorizationCredentialAppleID? user =
-          await appleAuth.getAppleIDCredential();
-      return User(
-        id: user.userIdentifier,
-        firstName: user.givenName,
-        lastName: user.familyName,
-      );
+      AuthorizationCredentialAppleID? user = await appleAuth.getAppleIDCredential();
+      if(user!=null) {
+        return User(
+          id: user.userIdentifier,
+          firstName: user.givenName,
+          lastName: user.familyName,
+        );
+      }
+
     } catch (e) {
       showToast(e.toString(),);
       rethrow;
     }
+    return null;
   }
 
   Future<User?> signinWithFaceBook() async {
     try {
       LoginResult? user = await _fbAuth.login();
-      if(user!=null) {
+      if(user!=null && user.accessToken!=null) {
         return User(
           id: (user.accessToken ?? "").toString(),
         );
@@ -66,16 +69,19 @@ class SocialSignInViewModel extends ChangeNotifier {
   }
 
   Future<User?> signinWithTwitter() async {
-    try {
-      // AuthResult? user = await _twitterAuth.login();
-      // return User(
-      //   id: (user?.user?.id ?? "").toString(),
-      //   firstName: (user?.user?.name ?? "").toString(),
-      // );
-    } catch (e) {
-      showToast(e.toString(),);
-      rethrow;
-    }
+    // try {
+    //   AuthResult? user = await _twitterAuth.login();
+    //   if(user!=null) {
+    //     return User(
+    //       id: (user.user?.id ?? "").toString(),
+    //       firstName: (user.user?.name ?? "").toString(),
+    //     );
+    //   }
+    //
+    // } catch (e) {
+    //   showToast(e.toString(),);
+    //   rethrow;
+    // }
     return null;
   }
 }

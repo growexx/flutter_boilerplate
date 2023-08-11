@@ -9,13 +9,12 @@ import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_boilerplate/models/option.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignInFieldWidget extends StatefulWidget {
@@ -37,6 +36,75 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+
+
+
+
+    List<Option> socialOptions =[
+      Option(
+          key: const Key("facebook"),
+        imagePath: Assets.png.icFacebook.path,
+        onTap: (){
+          widget.socialSignInViewModel
+              .signinWithFaceBook()
+              .then((User? user) {
+            if (user != null) {
+              storeAndNavigate(user);
+            }
+          });
+        }
+      ),
+      // Option(
+      //     key: const Key("instagram"),
+      //     imagePath: Assets.png.icInstagram.path,
+      //     onTap: (){
+      //
+      //     }
+      // ),
+
+      Option(
+          key: const Key("google"),
+          onTap: () {
+            widget.socialSignInViewModel
+                .signinWithGoogle()
+                .then((User? user) {
+              if (user != null) {
+                storeAndNavigate(user);
+              }
+            });
+          },
+          imagePath: Assets.png.icGoogle.path
+      ),
+      Option(
+          boolValue: !kIsWeb,
+          key: const Key("twitter"),
+          onTap: () {
+            widget.socialSignInViewModel
+                .signinWithTwitter()
+                .then((User? user) {
+              if (user != null) {
+                storeAndNavigate(user);
+              }
+            });
+          },
+          imagePath: Assets.png.icTwitter.path
+      ),
+      Option(
+
+          key: const Key("apple"),
+          onTap: () {
+            widget.socialSignInViewModel
+                .signinWithApple()
+                .then((User? user) {
+              if (user != null) {
+                storeAndNavigate(user);
+              }
+            });
+          },
+          imagePath: Assets.png.icApple.path
+      ),
+    ];
 
     return Center(
       child: SingleChildScrollView(
@@ -65,100 +133,16 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     const SizedBox(height: 20),
                     Wrap(
                       key: const Key("social_container"),
-                      children: [
-                        InkWell(
-                          key: const Key("facebook"),
-                          onTap: () {
-                            widget.socialSignInViewModel
-                                .signinWithFaceBook()
-                                .then((User? user) {
-                              if (user != null) {
-                                widget.userRepository.updateUserData(user).then(
-                                    (value) => Router.neglect(
-                                        context,
-                                        () => context
-                                            .goNamed(DashboardScreen.name)));
-                              }
-                            });
-                          },
-                          child: Assets.png.icFacebook
-                              .image(width: 35, height: 35),
-                        ),
-                        const SizedBox(width: 20),
-                        Assets.png.icInstagram.image(
-                            key: const Key("instagram"), width: 35, height: 35),
-                        const SizedBox(width: 20),
-                        InkWell(
-                            key: const Key("google"),
-                            onTap: () {
-                              widget.socialSignInViewModel
-                                  .signinWithGoogle()
-                                  .then((User? user) {
-                                if (user != null) {
-                                  widget.userRepository
-                                      .updateUserData(user)
-                                      .then((value) => Router.neglect(
-                                          context,
-                                          () => context
-                                              .goNamed(DashboardScreen.name)));
-                                }
-                              });
-                            },
-                            child: Assets.png.icGoogle
-                                .image(width: 35, height: 35)),
-                        const SizedBox(width: 20),
-                        (defaultTargetPlatform == TargetPlatform.android ||
-                                defaultTargetPlatform == TargetPlatform.iOS)
-                            ? Wrap(
-                                children: [
-                                  InkWell(
-                                    key: const Key("twitter"),
-                                    onTap: () {
-                                      widget.socialSignInViewModel
-                                          .signinWithTwitter()
-                                          .then((User? user) {
-                                        if (user != null) {
-                                          widget.userRepository
-                                              .updateUserData(user)
-                                              .then((value) => Router.neglect(
-                                                  context,
-                                                  () => context.goNamed(
-                                                      DashboardScreen.name)));
-                                        }
-                                      });
-                                    },
-                                    child: Assets.png.icTwitter
-                                        .image(width: 35, height: 35),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
-                              )
-                            : const SizedBox(
-                                height: 0,
-                                width: 0,
-                              ),
-                        InkWell(
-                          key: const Key("apple"),
-                          onTap: () {
-                            widget.socialSignInViewModel
-                                .signinWithApple()
-                                .then((User? user) {
-                              if (user != null) {
-                                widget.userRepository.updateUserData(user).then(
-                                    (value) => Router.neglect(
-                                        context,
-                                        () => context
-                                            .goNamed(DashboardScreen.name)));
-                              }
-                            });
-                          },
-                          child: Assets.png.icApple.image(
-                              key: const Key("apple"), width: 35, height: 35),
-                        ),
-                      ],
+                      spacing: 20,
+                      children: socialOptions
+                          .where((element) => element.boolValue==true)
+                          .map((e) =>
+                          InkWell(
+                            key: e.key,
+                            onTap: e.onTap,
+                            child: Image.asset(e.imagePath??"",width: 35, height: 35)
+                          )
+                      ).toList(),
                     ),
                     const SizedBox(height: 20),
                     Text("or_capital", style: theme.textTheme.bodyMedium).tr(),
@@ -306,14 +290,18 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
               password: widget.viewModel.passwordC.text)
           .then((User? value) {
         if (value != null) {
-          widget.userRepository.updateUserData(value).then((value) {
-            NavigationHelper.pushNamed(context, NavigationScreen.name);
-          });
+          storeAndNavigate(value);
         }
       });
     } else {
       showToast("validation".tr(gender: "fill_required_fields".tr()));
     }
+  }
+
+  void storeAndNavigate(User user) {
+    widget.userRepository.updateUserData(user).then((value) {
+      NavigationHelper.pushNamed(context, NavigationScreen.name);
+    });
   }
 
   Future<void> onPressSignInWithOTP(BuildContext ctx) async {

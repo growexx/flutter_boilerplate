@@ -1,5 +1,5 @@
 
-
+//
 // import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:twitter_login/entity/auth_result.dart';
@@ -12,7 +12,7 @@ class TwitterAuth {
   //   apiSecretKey: dotenv.env[Environment.twitterApiSecretKey]??"",
   //   redirectURI: dotenv.env[Environment.firebaseRedirectURI]??"",
   // );
-
+  //
   // Future<AuthResult?> login() async{
   //   try {
   //     AuthResult? user =await _twitterLogin.login();
