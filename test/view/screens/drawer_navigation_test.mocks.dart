@@ -11,10 +11,10 @@ import 'package:flutter_boilerplate/app_manager/enum/button_status.dart'
     as _i10;
 import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart'
     as _i8;
-import 'package:flutter_boilerplate/authentication/user.dart' as _i2;
+import 'package:flutter_boilerplate/authentication/user.dart' as _i3;
 import 'package:flutter_boilerplate/authentication/user_repository.dart' as _i5;
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart' as _i9;
-import 'package:http/http.dart' as _i3;
+import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -28,8 +28,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeUser_0 extends _i1.SmartFake implements _i2.User {
-  _FakeUser_0(
+class _FakeClient_0 extends _i1.SmartFake implements _i2.Client {
+  _FakeClient_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -38,8 +38,8 @@ class _FakeUser_0 extends _i1.SmartFake implements _i2.User {
         );
 }
 
-class _FakeClient_1 extends _i1.SmartFake implements _i3.Client {
-  _FakeClient_1(
+class _FakeUser_1 extends _i1.SmartFake implements _i3.User {
+  _FakeUser_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -64,7 +64,27 @@ class _FakeTextEditingController_2 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockUserRepository extends _i1.Mock implements _i5.UserRepository {
   @override
-  set currentUser(_i2.User? _currentUser) => super.noSuchMethod(
+  _i2.Client get client => (super.noSuchMethod(
+        Invocation.getter(#client),
+        returnValue: _FakeClient_0(
+          this,
+          Invocation.getter(#client),
+        ),
+        returnValueForMissingStub: _FakeClient_0(
+          this,
+          Invocation.getter(#client),
+        ),
+      ) as _i2.Client);
+  @override
+  set client(_i2.Client? _client) => super.noSuchMethod(
+        Invocation.setter(
+          #client,
+          _client,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set currentUser(_i3.User? _currentUser) => super.noSuchMethod(
         Invocation.setter(
           #currentUser,
           _currentUser,
@@ -72,17 +92,17 @@ class MockUserRepository extends _i1.Mock implements _i5.UserRepository {
         returnValueForMissingStub: null,
       );
   @override
-  _i2.User get getUser => (super.noSuchMethod(
+  _i3.User get getUser => (super.noSuchMethod(
         Invocation.getter(#getUser),
-        returnValue: _FakeUser_0(
+        returnValue: _FakeUser_1(
           this,
           Invocation.getter(#getUser),
         ),
-        returnValueForMissingStub: _FakeUser_0(
+        returnValueForMissingStub: _FakeUser_1(
           this,
           Invocation.getter(#getUser),
         ),
-      ) as _i2.User);
+      ) as _i3.User);
   @override
   bool get isLoggedIn => (super.noSuchMethod(
         Invocation.getter(#isLoggedIn),
@@ -96,7 +116,7 @@ class MockUserRepository extends _i1.Mock implements _i5.UserRepository {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i6.Future<dynamic> updateUserData(_i2.User? userData) => (super.noSuchMethod(
+  _i6.Future<dynamic> updateUserData(_i3.User? userData) => (super.noSuchMethod(
         Invocation.method(
           #updateUserData,
           [userData],
@@ -255,19 +275,19 @@ class MockThemeProvider extends _i1.Mock implements _i8.ThemeProvider {
 /// See the documentation for Mockito's code generation for more information.
 class MockSigninViewModel extends _i1.Mock implements _i9.SignInViewModel {
   @override
-  _i3.Client get client => (super.noSuchMethod(
+  _i2.Client get client => (super.noSuchMethod(
         Invocation.getter(#client),
-        returnValue: _FakeClient_1(
+        returnValue: _FakeClient_0(
           this,
           Invocation.getter(#client),
         ),
-        returnValueForMissingStub: _FakeClient_1(
+        returnValueForMissingStub: _FakeClient_0(
           this,
           Invocation.getter(#client),
         ),
-      ) as _i3.Client);
+      ) as _i2.Client);
   @override
-  set client(_i3.Client? _client) => super.noSuchMethod(
+  set client(_i2.Client? _client) => super.noSuchMethod(
         Invocation.setter(
           #client,
           _client,
@@ -347,7 +367,7 @@ class MockSigninViewModel extends _i1.Mock implements _i9.SignInViewModel {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i6.Future<_i2.User?> signIn({
+  _i6.Future<_i3.User?> signIn({
     required String? email,
     required String? password,
   }) =>
@@ -360,9 +380,9 @@ class MockSigninViewModel extends _i1.Mock implements _i9.SignInViewModel {
             #password: password,
           },
         ),
-        returnValue: _i6.Future<_i2.User?>.value(),
-        returnValueForMissingStub: _i6.Future<_i2.User?>.value(),
-      ) as _i6.Future<_i2.User?>);
+        returnValue: _i6.Future<_i3.User?>.value(),
+        returnValueForMissingStub: _i6.Future<_i3.User?>.value(),
+      ) as _i6.Future<_i3.User?>);
   @override
   void signInWithOTP(_i4.BuildContext? context) => super.noSuchMethod(
         Invocation.method(

@@ -24,6 +24,7 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -31,7 +32,7 @@ class PaymentScreen extends StatelessWidget {
               context.goNamed(DashboardScreen.name);
             },
             icon: const Icon(Icons.arrow_back_sharp)),
-        title: const Text("payment").tr(),
+        title: Text("payment",style: theme.textTheme.headlineSmall,).tr(),
         automaticallyImplyLeading: true,
       ),
       body: Center(
@@ -39,7 +40,7 @@ class PaymentScreen extends StatelessWidget {
           children: [
            _buildPaymentButtons(),
            const SizedBox(height: 20),
-             Container(
+             SizedBox(
               width: 150,
               height: 30,
               child: MaterialButton(

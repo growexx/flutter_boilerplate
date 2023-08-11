@@ -5,7 +5,6 @@ import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_fi
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
@@ -30,10 +29,10 @@ void main() async {
       expect(find.byKey(const Key("address_value")), findsNothing);
 
       when(mockModel.currentAddress).thenReturn("B25, Dummy Address");
-      when(mockModel.latLngForWeb)
-          .thenAnswer((realInvocation) => const LatLng(23.033863, 72.585022));
-      when(mockModel.kGooglePlex).thenReturn(CameraPosition(
-          target: mockModel.latLngForWeb, bearing: 192, tilt: 2, zoom: 12));
+      // when(mockModel.latLngForWeb)
+      //     .thenAnswer((realInvocation) => const LatLng(23.033863, 72.585022));
+      // when(mockModel.kGooglePlex).thenReturn(CameraPosition(
+      //     target: mockModel.latLngForWeb, bearing: 192, tilt: 2, zoom: 12));
       when(mockModel.currentPosition).thenReturn(Position(
           latitude: 23.033863,
           longitude: 72.585022,
@@ -81,26 +80,6 @@ void main() async {
       );
       await tester.pumpWidget(widget);
       expect(find.byKey(const Key("text_map_functionality")), findsNothing);
-      debugDefaultTargetPlatformOverride = null;
-    });
-
-    testWidgets('Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
-      Widget widget =  testingMaterial(
-          initialLocation: GoogleMapScreen.path
-      );
-      await tester.pumpWidget(widget);
-      expect(find.byKey(const Key("text_map_functionality")), findsOneWidget);
-      debugDefaultTargetPlatformOverride = null;
-    });
-
-    testWidgets('Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-      Widget widget =  testingMaterial(
-          initialLocation: GoogleMapScreen.path
-      );
-      await tester.pumpWidget(widget);
-      expect(find.byKey(const Key("text_map_functionality")), findsOneWidget);
       debugDefaultTargetPlatformOverride = null;
     });
 

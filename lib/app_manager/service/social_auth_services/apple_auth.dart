@@ -7,7 +7,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AppleAuth {
 
 
-  Future<AuthorizationCredentialAppleID> getAppleIDCredential() async{
+  Future<AuthorizationCredentialAppleID?> getAppleIDCredential() async{
     try {
       AuthorizationCredentialAppleID credential = await SignInWithApple.getAppleIDCredential(
         scopes: [

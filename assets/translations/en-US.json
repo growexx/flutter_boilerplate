@@ -32,7 +32,7 @@
   "pay_now": "Pay Now",
   "flutter_description1": "Flutter is Google's portable UI toolkit for crafting beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. Flutter works with existing code, is used by developers and organizations around the world, and is free and open source.",
   "flutter_description2": "For users, Flutter makes beautiful apps come to life. For developers, Flutter lowers the bar to entry for building apps. It speeds app development and reduces the cost and complexity of app production across platforms. For designers, Flutter provides a canvas for high-end user experiences. Fast Company described Flutter as one of the top design ideas of the decade for its ability to turn concepts into production code without the compromises imposed by typical frameworks. It also acts as a productive prototyping tool, with CodePen support for sharing your ideas with others. For engineering managers and businesses, Flutter allows the unification of app developers into a single mobile, web, and desktop app team, building branded apps for multiple platforms out of a single codebase. Flutter speeds feature development and synchronizes release schedules across the entire customer base.",
-  "welcome": "Welcome to Flutter Boilerplate",
+  "welcome": "Welcome ",
   "sign_out": "Sign Out",
   "security_pin": "Security PIN",
   "verify_security_pin": "Verify Security PIN",
@@ -65,7 +65,7 @@
   "location_permission_denied": "Location permissions are denied",
   "location_permission_permanently_denied": "Location permissions are permanently denied, we cannot request permissions.",
   "google-map-functionality": "Google Map Functionality\n(WEB)",
-  "your_location": "Your Location: ",
+  "your_location": "\nYour Location: ",
   "fetching_location": "Fetching Current Location...",
   "browse_gallery":"Browse Gallery",
   "use_a_camera": "Use a Camera",
@@ -83,6 +83,9 @@
   "change_new_confirm_password": "New Password & Confirm New Password did not match",
   "password_changed": "Password changed successfully",
   "flutter_boilerplate": "Flutter Boilerplate",
+  "enable_location": "Enable Location",
+  "enable_location_description": "Please Enable GPS from device Settings to use this functionality.",
+  "close": "Close",
   "validation":{
     "fill_required_fields": "Fill Required Fields"
   },
@@ -90,5 +93,7 @@
     "drawer_navigation": "Drawer Navigation",
     "top_tab_navigation": "Top Bar Navigation",
     "bottom_tab_navigation": "Bottom Tab Navigation"
-  }
+  },
+  "delete_task": "Do you want to delete the task?",
+  "google_maps": "Google Maps"
 }

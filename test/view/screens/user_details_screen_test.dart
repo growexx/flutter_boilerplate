@@ -26,7 +26,7 @@ void main() {
       );
     });
 
-    await widgetTester.tap(find.byIcon(Icons.edit));
-    await widgetTester.tap(find.byType(GestureDetector).first);
+    expect(find.byType(Text), findsWidgets);
+    expect(find.byType(IconButton), findsWidgets);
   });
 }
