@@ -13,6 +13,7 @@ import 'package:flutter_boilerplate/view/screens/components/loader_button.dart';
 import 'package:flutter_boilerplate/models/option.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signin/instagram_signin_screen.dart';
 import 'package:flutter_boilerplate/view/screens/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
@@ -37,69 +38,56 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    List<Option> socialOptions =[
+    List<Option> socialOptions = [
       Option(
           key: const Key("facebook"),
-        imagePath: Assets.png.icFacebook.path,
-        onTap: (){
-          widget.socialSignInViewModel
-              .signinWithFaceBook()
-              .then((User? user) {
-            if (user != null) {
-              storeAndNavigate(user);
-            }
-          });
-        }
-      ),
-      // Option(
-      //     key: const Key("instagram"),
-      //     imagePath: Assets.png.icInstagram.path,
-      //     onTap: (){
-      //
-      //     }
-      // ),
-
-      Option(
-          key: const Key("google"),
+          imagePath: Assets.png.icFacebook.path,
           onTap: () {
             widget.socialSignInViewModel
-                .signinWithGoogle()
+                .signinWithFaceBook()
                 .then((User? user) {
               if (user != null) {
                 storeAndNavigate(user);
               }
             });
+          }),
+      Option(
+          key: const Key("instagram"),
+          imagePath: Assets.png.icInstagram.path,
+          onTap: () {
+            NavigationHelper.pushNamed(context, InstagramSigninScreen.name);
+          }),
+      Option(
+          key: const Key("google"),
+          onTap: () {
+            widget.socialSignInViewModel.signinWithGoogle().then((User? user) {
+              if (user != null) {
+                storeAndNavigate(user);
+              }
+            });
           },
-          imagePath: Assets.png.icGoogle.path
-      ),
+          imagePath: Assets.png.icGoogle.path),
       Option(
           boolValue: !kIsWeb,
           key: const Key("twitter"),
           onTap: () {
-            widget.socialSignInViewModel
-                .signinWithTwitter()
-                .then((User? user) {
+            widget.socialSignInViewModel.signinWithTwitter().then((User? user) {
               if (user != null) {
                 storeAndNavigate(user);
               }
             });
           },
-          imagePath: Assets.png.icTwitter.path
-      ),
+          imagePath: Assets.png.icTwitter.path),
       Option(
-
           key: const Key("apple"),
           onTap: () {
-            widget.socialSignInViewModel
-                .signinWithApple()
-                .then((User? user) {
+            widget.socialSignInViewModel.signinWithApple().then((User? user) {
               if (user != null) {
                 storeAndNavigate(user);
               }
             });
           },
-          imagePath: Assets.png.icApple.path
-      ),
+          imagePath: Assets.png.icApple.path),
     ];
 
     return Center(
@@ -131,14 +119,13 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       key: const Key("social_container"),
                       spacing: 20,
                       children: socialOptions
-                          .where((element) => element.boolValue==true)
-                          .map((e) =>
-                          InkWell(
-                            key: e.key,
-                            onTap: e.onTap,
-                            child: Image.asset(e.imagePath??"",width: 35, height: 35)
-                          )
-                      ).toList(),
+                          .where((element) => element.boolValue == true)
+                          .map((e) => InkWell(
+                              key: e.key,
+                              onTap: e.onTap,
+                              child: Image.asset(e.imagePath ?? "",
+                                  width: 35, height: 35)))
+                          .toList(),
                     ),
                     const SizedBox(height: 20),
                     Text("or_capital", style: theme.textTheme.bodyMedium).tr(),
@@ -167,20 +154,19 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Selector<SignInViewModel,ButtonStatus>(
+                    Selector<SignInViewModel, ButtonStatus>(
                         shouldRebuild: (prev, nex) => true,
                         selector: (buildContext, vm) => vm.loginStatus,
-                        builder: (context,ButtonStatus status, child) {
+                        builder: (context, ButtonStatus status, child) {
                           return LoaderButton(
                             label: "sign_in".tr(),
                             loading: status == ButtonStatus.hit,
                             key: const Key("tb_sign_in"),
-                            onPressed: (){
+                            onPressed: () {
                               onPressSignIn(ctx);
                             },
                           );
-                        }
-                    ),
+                        }),
                     const SizedBox(height: 20),
                     TextButton(
                       key: const Key("tb_sign_in_with_otp"),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/pin_support/widget/security_pin_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signin/instagram_signin_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'models/todo_data.dart';
@@ -249,5 +250,15 @@ List<RouteBase> routes = [
             child: AddEditTodoScreen(
               data: state.extra as TodoData?,
             ))),
+  ),
+  GoRoute(
+    name: InstagramSigninScreen.name,
+    path: InstagramSigninScreen.path,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: ChangeNotifierProvider<InstagramSigninViewModel>(
+            create: (context) => InstagramSigninViewModel(),
+            child: const InstagramSigninScreen())),
   ),
 ];
