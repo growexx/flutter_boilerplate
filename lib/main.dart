@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/constant/environment.dart';
 import 'package:flutter_boilerplate/app_manager/locale/locale_provider.dart';
-import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
+import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart';

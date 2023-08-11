@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
+import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:go_router/go_router.dart';

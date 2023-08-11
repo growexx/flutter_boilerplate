@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
+import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/widget/todo_list_widget.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
