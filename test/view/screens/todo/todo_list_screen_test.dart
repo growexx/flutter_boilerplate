@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
-import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
+import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';

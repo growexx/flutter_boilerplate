@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'app_manager/models/todo_data.dart';
+import 'models/todo_data.dart';
 import 'view/screens/screens.dart';
 import 'view_model/veiw_model.dart';
 

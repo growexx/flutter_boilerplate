@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
-import 'package:flutter_boilerplate/app_manager/models/todo_data.dart';
+import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_list_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:go_router/go_router.dart';
