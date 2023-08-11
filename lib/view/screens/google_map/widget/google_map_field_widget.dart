@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
@@ -45,12 +46,12 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
                           key: Key("cp_indicator"),
                         ))
                     : AlertDialog(
-                        title: const Text("Enable Location"),
+                        title: const Text("enable_location").tr(),
                         content: const Text(
-                            "Please Enable GPS from device Settings to use this functionality."),
+                            "enable_location_description").tr(),
                         actions: <Widget>[
                           TextButton(
-                            child: const Text('Close'),
+                            child: const Text('close').tr(),
                             onPressed: () {
                               //Navigator.pop(context);
                               NavigationHelper.pushNamed(
