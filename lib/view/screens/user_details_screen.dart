@@ -5,7 +5,6 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/screens.dart';
 import 'package:provider/provider.dart';
 
-
 // ignore: must_be_immutable
 class UserDetailsScreen extends StatefulWidget {
   static const String name = "user-details";
@@ -35,8 +34,12 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     // _emailController.text = widget.email;
     userRepository = Provider.of<UserRepository>(context, listen: false);
     setState(() {
-      _nameController.text = userRepository.currentUser!.firstName!;
-      _emailController.text = userRepository.currentUser!.email ?? '';
+      _nameController.text = userRepository.currentUser!.firstName != null
+          ? userRepository.currentUser!.firstName!
+          : 'John';
+      _emailController.text = userRepository.currentUser!.email != null
+          ? userRepository.currentUser!.email!
+          : 'Doe';
     });
   }
 
@@ -54,8 +57,9 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 // This will be triggered when the user taps on the profile image
               },
               child: CircleAvatar(
-                backgroundImage:
-                    NetworkImage(userRepository.currentUser!.profileUrl!),
+                backgroundImage: NetworkImage(userRepository.currentUser!.profileUrl != null
+                    ? userRepository.currentUser!.profileUrl!
+                    : 'https://picsum.photos/200/300'),
                 radius: 50,
               ),
             ),
@@ -69,7 +73,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
           TextFormField(
             controller: _nameController,
             decoration: const InputDecoration(
-              labelText: 'Name',
+              hintText: 'Name',
               fillColor: Colors.white,
               filled: true,
             ),
@@ -83,7 +87,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
           TextFormField(
             controller: _emailController,
             decoration: const InputDecoration(
-              labelText: 'Email',
+              hintText: 'Email',
               fillColor: Colors.white,
               filled: true,
             ),
@@ -98,7 +102,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             leading: widget.showButton
                 ? IconButton(
                     onPressed: () {
-                      NavigationHelper.pushNamed(context, DrawerNavigation.name);
+                      NavigationHelper.pushNamed(
+                          context, DrawerNavigation.name);
                     },
                     icon: const Icon(Icons.arrow_back_sharp))
                 : Container(),
