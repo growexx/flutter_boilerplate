@@ -1,9 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
+import '../../../../app_manager/component/bottom_sheet/functional_sheet.dart';
 
 class TodoListWidget extends StatelessWidget {
   const TodoListWidget({super.key, required this.data});
@@ -48,7 +52,15 @@ class TodoListWidget extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () {
-                                viewModel.deleteListData(data.listId);
+                                CustomBottomSheet.open(context,
+                                    child: FunctionalSheet(
+                                        key: const Key("delete_task"),
+                                        message: "delete_task".tr(),
+                                        buttonName: "Delete",
+                                        onPressButton: () async {
+                                          viewModel.deleteListData(data.listId);
+                                        }));
+                                
                               },
                               icon: const Icon(Icons.delete_forever),
                             ),

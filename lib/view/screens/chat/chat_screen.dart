@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../view_model/chat_view_model.dart';
 
 class ChatScreen extends StatelessWidget {
   static const String name = "chat-screen";
@@ -9,28 +12,34 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Chat',style: theme.textTheme.headlineSmall),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10, // Replace this with the actual number of messages
-              itemBuilder: (context, index) {
-                // Replace this with your message widget
-                return MessageBubble(
-                  message: 'Hello, this is message $index',
-                  isMe: index % 2 ==
-                      0, // Just for demonstration, change this based on the user
-                );
-              },
-            ),
+    return Consumer<ChatViewModel>(
+      builder: (context, chatViewModel, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Chat', style: theme.textTheme.headlineSmall),
           ),
-          const MessageInputField(),
-        ],
-      ),
+          body: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: chatViewModel.messageList
+                      .length, // Replace this with the actual number of messages
+                  itemBuilder: (context, index) {
+                    // Replace this with your message widget
+                    final message = chatViewModel.messageList[index];
+                    return MessageBubble(
+                      message: message.message,
+                      isMe: message.messageSenderId ==
+                          "user123", // Just for demonstration, change this based on the user
+                    );
+                  },
+                ),
+              ),
+              const MessageInputField(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -50,7 +59,8 @@ class MessageBubble extends StatelessWidget {
             isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
             decoration: BoxDecoration(
               color: isMe ? Colors.blue : Colors.grey[300],
               borderRadius: BorderRadius.circular(16.0),
@@ -71,30 +81,42 @@ class MessageInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      color: Colors.grey[200],
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Type your message...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+    final messageTextController = TextEditingController();
+    return Consumer<ChatViewModel>(
+      builder: (context, chatViewModel, child) {
+        return Container(
+          padding: const EdgeInsets.all(8.0),
+          color: Colors.grey[200],
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: messageTextController,
+                  onSubmitted: (value) {
+                    chatViewModel.addChatToList(value);
+                    messageTextController.clear();
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Type your message...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(width: 8.0),
+              IconButton(
+                icon: const Icon(Icons.send),
+                onPressed: () {
+                  chatViewModel.addChatToList(messageTextController.text);
+                  messageTextController.clear();
+                  // Handle send message logic here
+                },
+              ),
+            ],
           ),
-          const SizedBox(width: 8.0),
-          IconButton(
-            icon: const Icon(Icons.send),
-            onPressed: () {
-              // Handle send message logic here
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

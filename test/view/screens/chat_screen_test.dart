@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/chat/chat_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../util/testing_material_app.dart';
+
 void main() {
   testWidgets('Chat screen renders correctly', (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: ChatScreen()));
+    await tester.pumpWidget(testingMaterial(initialLocation: ChatScreen.path));
 
     // Verify that the chat screen has an app bar with title 'Chat'
     expect(find.text('Chat'), findsOneWidget);
@@ -19,7 +21,7 @@ void main() {
 
   testWidgets('Sending a message triggers send message logic',
       (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: ChatScreen()));
+    await tester.pumpWidget(testingMaterial(initialLocation: ChatScreen.path));
 
     // Find the message input field
     final messageInputField = find.byType(MessageInputField);

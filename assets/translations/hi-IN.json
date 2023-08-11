@@ -96,5 +96,6 @@
     "drawer_navigation": "दराज_नेविगेशन",
     "top_tab_navigation": "टॉप बार नेविगेशन",
     "bottom_tab_navigation": "बॉटम टैब नेविगेशन"
-  }
+  },
+  "delete_task": "क्या आप कार्य हटाना चाहते हैं?"
 }

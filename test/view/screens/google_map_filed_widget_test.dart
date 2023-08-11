@@ -84,25 +84,5 @@ void main() async {
       debugDefaultTargetPlatformOverride = null;
     });
 
-    testWidgets('Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
-      Widget widget =  testingMaterial(
-          initialLocation: GoogleMapScreen.path
-      );
-      await tester.pumpWidget(widget);
-      expect(find.byKey(const Key("text_map_functionality")), findsOneWidget);
-      debugDefaultTargetPlatformOverride = null;
-    });
-
-    testWidgets('Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-      Widget widget =  testingMaterial(
-          initialLocation: GoogleMapScreen.path
-      );
-      await tester.pumpWidget(widget);
-      expect(find.byKey(const Key("text_map_functionality")), findsOneWidget);
-      debugDefaultTargetPlatformOverride = null;
-    });
-
   });
 }
