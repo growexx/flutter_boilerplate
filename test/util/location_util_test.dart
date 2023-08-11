@@ -20,6 +20,8 @@ void main() {
           heading: 12,
           speed: 10,
           speedAccuracy: 12));
+      isLocationServiceEnabled(MockBuildContext());
+      getCurrentPosition(MockBuildContext());
       expect(address.toString().isNotEmpty, true);
     },
   );
@@ -29,7 +31,7 @@ void main() {
         () async {
       WidgetsFlutterBinding.ensureInitialized();
       mockContext = MockBuildContext();
-      final currentPosition = getCurrentPosition(mockContext);
+      Position? currentPosition = await getCurrentPosition(mockContext);
       expect(currentPosition!=null, true);
     },
   );

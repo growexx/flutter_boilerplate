@@ -34,7 +34,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
           value: BottomTabNavigation.name,
           extra: Colors.greenAccent.withOpacity(0.8)),
     ];
-    final theme = Theme.of(context);
     return WillPopScope(
       onWillPop: () {
         showExitPopUp(context);
@@ -53,13 +52,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 children: List.generate(paths.length, (index) {
                   Option path = paths[index];
                   return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18)),
-                      minWidth: 100,
-                      height: 20,
-                      color: path.extra,
+                    margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    width: MediaQuery.of(context).size.width * 0.50,
+                    child: TextButton(
+                      // shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(18)),
+                      // minWidth: 100,
+                      // height: 20,
                       onPressed: () {
                         NavigationHelper.pushNamed(context, path.value!);
                       },
@@ -70,7 +69,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                             Expanded(
                               child: Text(
                                 path.title!,
-                                style: theme.textTheme.titleMedium,
+                                // style: theme.textTheme.titleMedium,
                               ),
                             ),
                             const Icon(Icons.arrow_forward_ios_rounded)
