@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
@@ -33,44 +32,34 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Consumer<GoogleMapViewModel>(
       builder: (BuildContext context, value, Widget? child) {
         return Center(
-            child: (defaultTargetPlatform == TargetPlatform.android ||
-                    defaultTargetPlatform == TargetPlatform.iOS)
-                ? widget.viewModel.currentPosition != null
-                    ? GoogleMapWidget(
-                        key: const Key("google_map_widget"),
-                        viewModel: widget.viewModel)
-                    : widget.viewModel.isLocationServiceEnabled
-                        ? const Center(
-                            key: Key("center"),
-                            child: CircularProgressIndicator(
-                              key: Key("cp_indicator"),
-                            ))
-                        : AlertDialog(
-                            title: const Text("Enable Location"),
-                            content: const Text(
-                                "Please Enable GPS from device Settings to use this functionality."),
-                            actions: <Widget>[
-                              TextButton(
-                                child: const Text('Close'),
-                                onPressed: () {
-                                  //Navigator.pop(context);
-                                  NavigationHelper.pushNamed(context, DashboardScreen.name);
-                                },
-                              ),
-                            ],
-                          )
-                : Center(
-                    child: Text(
-                            key: const Key("text_map_functionality"),
-                            "google-map-functionality",
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.headlineMedium)
-                        .tr(),
-                  ));
+            child: widget.viewModel.currentPosition != null
+                ? GoogleMapWidget(
+                    key: const Key("google_map_widget"),
+                    viewModel: widget.viewModel)
+                : widget.viewModel.isLocationServiceEnabled
+                    ? const Center(
+                        key: Key("center"),
+                        child: CircularProgressIndicator(
+                          key: Key("cp_indicator"),
+                        ))
+                    : AlertDialog(
+                        title: const Text("enable_location").tr(),
+                        content: const Text(
+                            "enable_location_description").tr(),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('close').tr(),
+                            onPressed: () {
+                              //Navigator.pop(context);
+                              NavigationHelper.pushNamed(
+                                  context, DashboardScreen.name);
+                            },
+                          ),
+                        ],
+                      ));
       },
     );
   }

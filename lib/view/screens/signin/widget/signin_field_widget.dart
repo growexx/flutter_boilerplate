@@ -9,6 +9,7 @@ import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
+import 'package:flutter_boilerplate/view/screens/components/loader_button.dart';
 import 'package:flutter_boilerplate/models/option.dart';
 import 'package:flutter_boilerplate/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
@@ -36,11 +37,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-
-
-
-
     List<Option> socialOptions =[
       Option(
           key: const Key("facebook"),
@@ -171,18 +167,19 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                     const SizedBox(
                       height: 20,
                     ),
-                    TextButton(
-                      key: const Key("tb_sign_in"),
-                      onPressed: () {
-                        onPressSignIn(ctx);
-                      },
-                      style: TextButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                      child: const Text("sign_in").tr(),
+                    Selector<SignInViewModel,ButtonStatus>(
+                        shouldRebuild: (prev, nex) => true,
+                        selector: (buildContext, vm) => vm.loginStatus,
+                        builder: (context,ButtonStatus status, child) {
+                          return LoaderButton(
+                            label: "sign_in".tr(),
+                            loading: status == ButtonStatus.hit,
+                            key: const Key("tb_sign_in"),
+                            onPressed: (){
+                              onPressSignIn(ctx);
+                            },
+                          );
+                        }
                     ),
                     const SizedBox(height: 20),
                     TextButton(
@@ -283,7 +280,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
 
   Future<void> onPressSignIn(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-      widget.viewModel.loginStatus=ButtonStatus.hit;
       widget.viewModel
           .signIn(
               email: widget.viewModel.emailC.text,
@@ -305,7 +301,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
   }
 
   Future<void> onPressSignInWithOTP(BuildContext ctx) async {
-    widget.viewModel.loginStatus=ButtonStatus.hit;
     widget.viewModel.signInWithOTP(ctx);
   }
 }

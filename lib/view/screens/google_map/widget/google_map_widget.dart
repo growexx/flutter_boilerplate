@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/util/location_utils/location_utils.dart';
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
@@ -20,8 +21,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(height: 10),
-        widget.viewModel.currentAddress != null
+        widget.viewModel.currentAddress != null && !kIsWeb
             ? Expanded(
                 flex: 1,
                 child: Padding(
@@ -36,25 +36,27 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                           .tr(),
                       Expanded(
                         child: Text(
-                            key:const Key("address_value"),
+                            key: const Key("address_value"),
                             "${widget.viewModel.currentAddress}",
                             maxLines: 2,
                             textAlign: TextAlign.center,
                             softWrap: false,
-                            style: const TextStyle(overflow: TextOverflow.ellipsis)),
+                            style: const TextStyle(
+                                overflow: TextOverflow.ellipsis)),
                       )
                     ],
                   ),
                 ),
               )
             : const SizedBox(height: 0, width: 0),
-        const SizedBox(height: 10),
         Expanded(
           flex: 10,
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.75,
+            height: !kIsWeb
+                ? MediaQuery.of(context).size.height * 0.80
+                : MediaQuery.of(context).size.height,
             child: GoogleMap(
-              key:const Key("google_map"),
+              key: const Key("google_map"),
               mapType: MapType.normal,
               initialCameraPosition: widget.viewModel.kGooglePlex,
               onMapCreated: (GoogleMapController controller) {
@@ -67,11 +69,13 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                 controller.animateCamera(CameraUpdate.newCameraPosition(
                     CameraPosition(target: currentPositionLatLng, zoom: 14)));
 
-                //getting current address or location from co-ordinates
-                getAddressFromLatLng(widget.viewModel.currentPosition!)
-                    .then((value) {
-                  widget.viewModel.setCurrentAddress = value;
-                });
+                if (!kIsWeb) {
+                  //getting current address or location from co-ordinates
+                  getAddressFromLatLng(widget.viewModel.currentPosition!)
+                      .then((value) {
+                    widget.viewModel.setCurrentAddress = value;
+                  });
+                }
               },
               markers: {
                 Marker(

@@ -65,7 +65,7 @@
   "location_permission_denied": "Location permissions are denied",
   "location_permission_permanently_denied": "Location permissions are permanently denied, we cannot request permissions.",
   "google-map-functionality": "Google Map Functionality\n(WEB)",
-  "your_location": "Your Location: ",
+  "your_location": "\nYour Location: ",
   "fetching_location": "Fetching Current Location...",
   "browse_gallery":"Browse Gallery",
   "use_a_camera": "Use a Camera",
@@ -83,6 +83,9 @@
   "change_new_confirm_password": "New Password & Confirm New Password did not match",
   "password_changed": "Password changed successfully",
   "flutter_boilerplate": "Flutter Boilerplate",
+  "enable_location": "Enable Location",
+  "enable_location_description": "Please Enable GPS from device Settings to use this functionality.",
+  "close": "Close",
   "validation":{
     "fill_required_fields": "Fill Required Fields"
   },
