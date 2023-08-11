@@ -108,7 +108,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                     icon: const Icon(Icons.arrow_back_sharp))
                 : Container(),
             automaticallyImplyLeading: widget.showButton,
-            title: const Text('User Details'),
+            title: Text('User Details',style: Theme.of(context).textTheme.headlineSmall),
             actions: [
               IconButton(
                 icon: const Icon(Icons.edit),

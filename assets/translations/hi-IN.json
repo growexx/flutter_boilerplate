@@ -97,5 +97,6 @@
     "top_tab_navigation": "टॉप बार नेविगेशन",
     "bottom_tab_navigation": "बॉटम टैब नेविगेशन"
   },
-  "delete_task": "क्या आप कार्य हटाना चाहते हैं?"
+  "delete_task": "क्या आप कार्य हटाना चाहते हैं?",
+  "google_maps":"गूगल नक़्शे"
 }

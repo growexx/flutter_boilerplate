@@ -3,13 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i2;
 import 'dart:ui' as _i6;
 
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart'
     as _i4;
 import 'package:geolocator/geolocator.dart' as _i5;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i2;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -23,8 +23,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeLatLng_0 extends _i1.SmartFake implements _i2.LatLng {
-  _FakeLatLng_0(
+class _FakeCompleter_0<T> extends _i1.SmartFake implements _i2.Completer<T> {
+  _FakeCompleter_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -33,19 +33,9 @@ class _FakeLatLng_0 extends _i1.SmartFake implements _i2.LatLng {
         );
 }
 
-class _FakeCompleter_1<T> extends _i1.SmartFake implements _i3.Completer<T> {
-  _FakeCompleter_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeCameraPosition_2 extends _i1.SmartFake
-    implements _i2.CameraPosition {
-  _FakeCameraPosition_2(
+class _FakeCameraPosition_1 extends _i1.SmartFake
+    implements _i3.CameraPosition {
+  _FakeCameraPosition_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -76,51 +66,46 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i2.LatLng get latLngForWeb => (super.noSuchMethod(
-        Invocation.getter(#latLngForWeb),
-        returnValue: _FakeLatLng_0(
-          this,
-          Invocation.getter(#latLngForWeb),
-        ),
-        returnValueForMissingStub: _FakeLatLng_0(
-          this,
-          Invocation.getter(#latLngForWeb),
-        ),
-      ) as _i2.LatLng);
+  bool get isLocationServiceEnabled => (super.noSuchMethod(
+        Invocation.getter(#isLocationServiceEnabled),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
   @override
-  set latLngForWeb(_i2.LatLng? _latLngForWeb) => super.noSuchMethod(
+  set isLocationServiceEnabled(bool? _isLocationServiceEnabled) =>
+      super.noSuchMethod(
         Invocation.setter(
-          #latLngForWeb,
-          _latLngForWeb,
+          #isLocationServiceEnabled,
+          _isLocationServiceEnabled,
         ),
         returnValueForMissingStub: null,
       );
   @override
-  _i3.Completer<_i2.GoogleMapController> get controller => (super.noSuchMethod(
+  _i2.Completer<_i3.GoogleMapController> get controller => (super.noSuchMethod(
         Invocation.getter(#controller),
-        returnValue: _FakeCompleter_1<_i2.GoogleMapController>(
+        returnValue: _FakeCompleter_0<_i3.GoogleMapController>(
           this,
           Invocation.getter(#controller),
         ),
-        returnValueForMissingStub: _FakeCompleter_1<_i2.GoogleMapController>(
+        returnValueForMissingStub: _FakeCompleter_0<_i3.GoogleMapController>(
           this,
           Invocation.getter(#controller),
         ),
-      ) as _i3.Completer<_i2.GoogleMapController>);
+      ) as _i2.Completer<_i3.GoogleMapController>);
   @override
-  _i2.CameraPosition get kGooglePlex => (super.noSuchMethod(
+  _i3.CameraPosition get kGooglePlex => (super.noSuchMethod(
         Invocation.getter(#kGooglePlex),
-        returnValue: _FakeCameraPosition_2(
+        returnValue: _FakeCameraPosition_1(
           this,
           Invocation.getter(#kGooglePlex),
         ),
-        returnValueForMissingStub: _FakeCameraPosition_2(
+        returnValueForMissingStub: _FakeCameraPosition_1(
           this,
           Invocation.getter(#kGooglePlex),
         ),
-      ) as _i2.CameraPosition);
+      ) as _i3.CameraPosition);
   @override
-  set kGooglePlex(_i2.CameraPosition? _kGooglePlex) => super.noSuchMethod(
+  set kGooglePlex(_i3.CameraPosition? _kGooglePlex) => super.noSuchMethod(
         Invocation.setter(
           #kGooglePlex,
           _kGooglePlex,
@@ -132,6 +117,14 @@ class MockGoogleMapInnerViewModel extends _i1.Mock
         Invocation.setter(
           #setCurrentPosition,
           fetchedPosition,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set setLocationServiceStatus(bool? isEnabled) => super.noSuchMethod(
+        Invocation.setter(
+          #setLocationServiceStatus,
+          isEnabled,
         ),
         returnValueForMissingStub: null,
       );

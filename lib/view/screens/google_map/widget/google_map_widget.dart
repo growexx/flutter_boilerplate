@@ -50,7 +50,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
               )
             : const SizedBox(height: 0, width: 0),
         Expanded(
-          flex: 10,
+          flex: 9,
           child: SizedBox(
             height: !kIsWeb
                 ? MediaQuery.of(context).size.height * 0.80
