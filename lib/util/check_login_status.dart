@@ -10,7 +10,7 @@ Future checkLoginStatus(
 ) async {
   await Future.delayed(const Duration(seconds: 1), () async {
     bool isLoggedIn =
-        !Provider.of<UserRepository>(context, listen: false).isLoggedIn;
+        Provider.of<UserRepository>(context, listen: false).isLoggedIn;
     Router.neglect(
         context,
         () => context
