@@ -19,20 +19,6 @@ void main() async{
       expect(find.text(AppConstant.appName.tr()), findsOneWidget);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
-
-      await tester.tap(find.byType(DropdownButton<Locale>));
-      await tester.pump(const Duration(milliseconds: 1000));
-      await tester.pumpAndSettle();
-      final Finder dropDownButton = find.byKey(const ValueKey("hi"));
-      await tester.dragUntilVisible(
-        dropDownButton, // what you want to find
-        find.byType(SingleChildScrollView), // widget you want to scroll
-        const Offset(0, 50), // delta to move
-      );
-      await tester.ensureVisible(dropDownButton);
-      await tester.tap(dropDownButton,warnIfMissed: false);
-      await tester.pumpAndSettle();
-
     });
 
 

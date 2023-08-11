@@ -48,7 +48,7 @@ void main() async {
       await tester.tap(find.byKey(const Key('settings-key')),
           warnIfMissed: false);
       await tester.pumpAndSettle();
-      expect(find.text('Welcome to Flutter Boilerplate'), findsWidgets);
+      expect(find.text('Dashboard'), findsWidgets);
     });
 
     testWidgets(
