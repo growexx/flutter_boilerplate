@@ -90,5 +90,6 @@
     "drawer_navigation": "Drawer Navigation",
     "top_tab_navigation": "Top Bar Navigation",
     "bottom_tab_navigation": "Bottom Tab Navigation"
-  }
+  },
+  "delete_task": "Do you want to delete the task?"
 }
