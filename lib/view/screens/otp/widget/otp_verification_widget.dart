@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:otp_timer_button/otp_timer_button.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,7 @@ class OTPVerificationWidget extends StatefulWidget {
 
 class _OTPWidgetState extends State<OTPVerificationWidget> {
   TextEditingController controller = TextEditingController(text: "");
+  OtpTimerButtonController otpController = OtpTimerButtonController();
   String thisText = "";
   int pinLength = 4;
   bool hasError = false;
@@ -34,7 +36,6 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Consumer<OTPViewModel>(
       builder: (BuildContext context, viewModel, Widget? child) {
         return Center(
@@ -178,21 +179,28 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                         const SizedBox(
                           height: 18,
                         ),
-                        GestureDetector(
-                          key: const Key("resend_new_code"),
-                          onTap: () {
-                            //work in progress
-                            /*const snackBar = SnackBar(
-                  content: Text('Code sent again.'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);*/
-                          },
-                          child: Text(
-                            "resend_new_code",
-                            style: theme.textTheme.headlineSmall,
-                            textAlign: TextAlign.center,
-                          ).tr(),
-                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.50,
+                          child: OtpTimerButton(
+                            backgroundColor: theme.primaryColorDark,
+                            loadingIndicatorColor: Colors.white,
+                            height: 40,
+                            radius: 5,
+                            controller: otpController,
+                            onPressed: () {
+                              otpController.loading();
+                              Future.delayed(const Duration(seconds: 2), () {
+                                otpController.startTimer();
+                              });
+                            },
+                            text: const Text(
+                              'resend_new_code',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14),
+                            ).tr(),
+                            duration: 20,
+                          ),
+                        )
                       ],
                     );
                   }),
