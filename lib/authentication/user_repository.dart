@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/api/api_call.dart';
 import 'package:flutter_boilerplate/app_manager/api/project_response.dart';
+import 'package:flutter_boilerplate/app_manager/component/alert_dialog/alert_dialog_view.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
@@ -28,9 +29,10 @@ class UserRepository extends ChangeNotifier {
     this.currentUser,
   });
 
-
   User get getUser => currentUser ?? User();
+
   bool get isLoggedIn => currentUser?.id != null;
+
   static UserRepository of(BuildContext context) =>
       Provider.of<UserRepository>(context, listen: false);
 
@@ -71,19 +73,35 @@ class UserRepository extends ChangeNotifier {
   }
 
   void changePassword(BuildContext context) {
-    NavigationHelper.pushNamed(
-        context, ChangePasswordScreen.name);
+    NavigationHelper.pushNamed(context, ChangePasswordScreen.name);
   }
 
   Future signOutUser(BuildContext context) async {
-    CustomBottomSheet.open(context,
-        child: FunctionalSheet(
-            key: const Key("sign_out"),
-            message: "sign-out-message".tr(),
-            buttonName: "sign_out".tr(),
-            onPressButton: () async {
-              directLogOut(context);
-            }));
+    if (kIsWeb) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialogView(
+              key: const Key("sign_out"),
+              title: 'flutter_boilerplate'.tr(),
+              message: 'sign-out-message'.tr(),
+              popButtonTitle: 'cancel'.tr(),
+              successButtonTitle: 'sign_out'.tr(),
+              onPressFunction: () async {
+                directLogOut(context);
+              });
+        },
+      );
+    } else {
+      CustomBottomSheet.open(context,
+          child: FunctionalSheet(
+              key: const Key("sign_out"),
+              message: "sign-out-message".tr(),
+              buttonName: "sign_out".tr(),
+              onPressButton: () async {
+                directLogOut(context);
+              }));
+    }
   }
 
   Future directLogOut(BuildContext context) async {
@@ -100,7 +118,7 @@ class UserRepository extends ChangeNotifier {
     }
   }
 
-  Future<bool?> refreshToken() async{
+  Future<bool?> refreshToken() async {
     try {
       var body = {
         "refreshToken": getUser.refreshToken ?? "",
@@ -108,8 +126,9 @@ class UserRepository extends ChangeNotifier {
       ProjectResponse data = ProjectResponse.fromJson(await _apiCall.call(
         url: "auth/refresh-token",
         client: client,
-        apiCallType: ApiCallType.post(body: body),));
-      if(data.status == 1) {
+        apiCallType: ApiCallType.post(body: body),
+      ));
+      if (data.status == 1) {
         await updateToken(data.data["token"]);
         return true;
       } else {
@@ -128,5 +147,4 @@ class UserRepository extends ChangeNotifier {
     newUserData.token = token;
     updateUserData(newUserData);
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/extension/is_valid_email.dart';
@@ -24,6 +23,14 @@ class ValidationHelper {
       return requiredFieldText.tr();
     } else if (!val.isValidPassword()) {
       return "error_password_policy".tr();
+    } else {
+      return null;
+    }
+  }
+
+  static String? passwordValidationSignIn(String? val) {
+    if (val == null || val.trim().isEmpty) {
+      return requiredFieldText.tr();
     } else {
       return null;
     }
@@ -82,5 +89,4 @@ class ValidationHelper {
       return null;
     }
   }
-
 }

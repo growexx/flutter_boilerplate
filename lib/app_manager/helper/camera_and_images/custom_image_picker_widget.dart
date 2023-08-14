@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
@@ -28,10 +29,10 @@ class CustomImagePickerWidget extends StatelessWidget {
 void showCustomImagePicker(BuildContext context,{
   required ValueChanged<String?> onReceiveFilePath
 }) {
-  
+
   List<Widget> widgets = [
   ];
-  
+
   if(!kIsWeb){
     widgets.add(    InkWell(
       key: const Key("camera"),
@@ -46,9 +47,9 @@ void showCustomImagePicker(BuildContext context,{
         description: "Click image using camera",
       ),
     ),);
-    
+
   }
-  
+
   widgets.add( InkWell(
     key: const Key("gallery"),
     onTap: () async{
@@ -63,9 +64,9 @@ void showCustomImagePicker(BuildContext context,{
 
     ),
   ),);
-  
+
   CustomBottomSheet.open(context,
-      child: TitledSheet(title: "Choose Image", child:
+      child: TitledSheet(title: "choose_image".tr(), child:
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: widgets,

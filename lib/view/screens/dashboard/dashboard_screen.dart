@@ -34,6 +34,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         Provider.of<UserRepository>(context, listen: false);
     return WillPopScope(
       onWillPop: () {
+
         CustomBottomSheet.open(context,
             child: FunctionalSheet(
                 message: "want_to_exit".tr(),
