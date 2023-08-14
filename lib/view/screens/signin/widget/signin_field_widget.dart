@@ -158,7 +158,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       key: const Key("tf_password"),
                       controller: widget.viewModel.passwordC,
                       hintText: "enter_password".tr(),
-                      validator: ValidationHelper.passwordValidation,
+                      validator: ValidationHelper.passwordValidationSignIn,
                       onFieldSubmitted: (val) {
                         onPressSignIn(ctx);
                       },
