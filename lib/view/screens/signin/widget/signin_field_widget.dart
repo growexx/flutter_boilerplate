@@ -52,6 +52,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
             });
           }),
       Option(
+          boolValue: !kIsWeb,
           key: const Key("instagram"),
           imagePath: Assets.png.icInstagram.path,
           onTap: () {
