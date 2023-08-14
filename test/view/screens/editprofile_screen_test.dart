@@ -16,6 +16,7 @@ void main() async {
       expect(find.byKey(const Key("tf_first_name")), findsOneWidget);
       expect(find.byKey(const Key("tf_last_name")), findsOneWidget);
       expect(find.byKey(const Key("tf_email_address")), findsOneWidget);
+      expect(find.byKey(const Key("tf_mobile_number")), findsOneWidget);
       expect(find.byKey(const Key("tb_editprofile")), findsOneWidget);
 
       await tester.pumpAndSettle(const Duration(seconds: 2));
@@ -26,6 +27,8 @@ void main() async {
       await tester.enterText(find.byKey(const Key("tf_last_name")), 'Modi');
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.enterText(find.byKey(const Key("tf_email_address")), 'test@gmail.com');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.enterText(find.byKey(const Key("tf_mobile_number")), '9999900000');
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.testTextInput.receiveAction(TextInputAction.done);
 

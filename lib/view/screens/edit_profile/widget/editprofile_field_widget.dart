@@ -25,7 +25,8 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final EditProfileViewModel viewModel = Provider.of<EditProfileViewModel>(context,listen: false);
+    final EditProfileViewModel viewModel =
+        Provider.of<EditProfileViewModel>(context, listen: false);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -42,7 +43,7 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                       "editprofile",
                       style: theme.textTheme.headlineMedium,
                     ).tr(),
-                     const SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Center(
@@ -50,8 +51,9 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                           key: const Key("pick_image_gesture_detector"),
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
-                            showCustomImagePicker(context, onReceiveFilePath: (String? filePath) {
-                              if(filePath!=null) {
+                            showCustomImagePicker(context,
+                                onReceiveFilePath: (String? filePath) {
+                              if (filePath != null) {
                                 viewModel.selectedImagePath = filePath;
                               }
                             });
@@ -65,31 +67,37 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                                   color: Colors.grey.shade200,
                                 ),
                                 child: Center(
-                                  child: Selector<EditProfileViewModel, String?>(
+                                  child: Selector<EditProfileViewModel,
+                                          String?>(
                                       shouldRebuild: (prev, nex) => true,
                                       selector: (_, listener) =>
-                                      listener.selectedImagePath,
+                                          listener.selectedImagePath,
                                       builder: (context, pickedImage, child) {
                                         return pickedImage == null
                                             ? Text(
-                                          key: const Key(
-                                              "pick_image_text"),
-                                          'pick_image',
-                                          textAlign: TextAlign.center,
-                                          style:
-                                          theme.textTheme.titleSmall,
-                                        ).tr()
-                                            : kIsWeb?CircleAvatar(
-                                          key: const Key(
-                                              "circle_avatar_picked_image_web"),
-                                          backgroundImage: NetworkImage(pickedImage),
-                                          radius: 200.0,
-                                        ):CircleAvatar(
-                                          key: const Key(
-                                              "circle_avatar_picked_image"),
-                                          backgroundImage: FileImage(File(pickedImage)),
-                                          radius: 200.0,
-                                        );
+                                                key: const Key(
+                                                    "pick_image_text"),
+                                                'pick_image',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    theme.textTheme.titleSmall,
+                                              ).tr()
+                                            : kIsWeb
+                                                ? CircleAvatar(
+                                                    key: const Key(
+                                                        "circle_avatar_picked_image_web"),
+                                                    backgroundImage:
+                                                        NetworkImage(
+                                                            pickedImage),
+                                                    radius: 200.0,
+                                                  )
+                                                : CircleAvatar(
+                                                    key: const Key(
+                                                        "circle_avatar_picked_image"),
+                                                    backgroundImage: FileImage(
+                                                        File(pickedImage)),
+                                                    radius: 200.0,
+                                                  );
                                       }),
                                 )),
                           ),
@@ -100,7 +108,8 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                     TextFormField(
                       key: const Key("tf_first_name"),
                       controller: widget.viewModel.firstNameC,
-                      decoration: InputDecoration(hintText: "enter_first_name".tr()),
+                      decoration:
+                          InputDecoration(hintText: "enter_first_name".tr()),
                       validator: ValidationHelper.nameValidation,
                       onFieldSubmitted: (val) {
                         onPressEditProfile(ctx);
@@ -129,6 +138,17 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                           onPressEditProfile(ctx);
                         }),
                     const SizedBox(height: 20),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      key: const Key("tf_mobile_number"),
+                      controller: widget.viewModel.phoneC,
+                      decoration:
+                          InputDecoration(hintText: 'mobile_number'.tr()),
+                      onFieldSubmitted: (val) {
+                        //
+                      },
+                    ),
+                    const SizedBox(height: 20),
                     TextButton(
                       onPressed: () {
                         onPressEditProfile(ctx);
@@ -139,7 +159,9 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Text(key: Key("tb_editprofile"), "editprofile").tr(),
+                      child:
+                          const Text(key: Key("tb_editprofile"), "editprofile")
+                              .tr(),
                     ),
                   ],
                 );
@@ -153,11 +175,12 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
 
   Future<void> onPressEditProfile(BuildContext ctx) async {
     if (Form.of(ctx).validate()) {
-        widget.viewModel.editProfile(
-            context:ctx,
-            firstName: widget.viewModel.firstNameC.text.trim(),
-            lastName: widget.viewModel.lastNameC.text.trim(),
-            email: widget.viewModel.emailC.text.trim());
+      widget.viewModel.editProfile(
+          context: ctx,
+          firstName: widget.viewModel.firstNameC.text.trim(),
+          lastName: widget.viewModel.lastNameC.text.trim(),
+          email: widget.viewModel.emailC.text.trim(),
+          phone: widget.viewModel.phoneC.text.trim());
     } else {
       showToast("Fill Required Fields");
     }

@@ -17,6 +17,7 @@ void main() async {
       expect(find.byKey(const Key("tf_first_name")), findsOneWidget);
       expect(find.byKey(const Key("tf_last_name")), findsOneWidget);
       expect(find.byKey(const Key("tf_email_address")), findsOneWidget);
+      expect(find.byKey(const Key("tf_mobile_number")), findsOneWidget);
       expect(find.byKey(const Key("tf_password")), findsOneWidget);
       expect(find.byKey(const Key("tf_confirm_password")), findsOneWidget);
       expect(find.byKey(const Key("tb_sign_up")), findsOneWidget);
@@ -43,6 +44,8 @@ void main() async {
       await tester.enterText(find.byKey(const Key("tf_password")), 'Test@123');
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.enterText(find.byKey(const Key("tf_confirm_password")), 'Test@123');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.enterText(find.byKey(const Key("tf_mobile_number")), '9999990000');
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
       //Sign up button Tap
