@@ -101,5 +101,9 @@
   },
   "delete": "हटाओ",
   "delete_task": "क्या आप कार्य हटाना चाहते हैं?",
-  "google_maps":"गूगल नक़्शे"
+  "google_maps":"गूगल नक़्शे",
+  "settings":"सेटिंग",
+  "appearance":"उपस्थिति",
+  "messaging":"संदेश",
+  "profile":"प्रोफ़ाइल"
 }

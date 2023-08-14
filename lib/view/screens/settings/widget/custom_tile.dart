@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -13,7 +14,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
+      title: Text(title).tr(),
       leading: Icon(icon),
       trailing: trailing,
       onTap: onTap,

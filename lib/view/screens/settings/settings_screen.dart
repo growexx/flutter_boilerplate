@@ -1,15 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:flutter_boilerplate/view/screens/chat/chat_screen.dart';
-import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_boilerplate/view/screens/screens.dart';
 import 'package:flutter_boilerplate/view/screens/settings/widget/custom_tile.dart';
-import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 import 'package:flutter_boilerplate/view/widgets/screen_text_and_theme_controller.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -48,18 +46,18 @@ class _SettingsPageState extends State<SettingsPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Name: ${user.firstName ?? ""}  ${user.lastName ?? ""}',
+                  'Welcome: ${user.firstName ?? ""}  ${user.lastName ?? ""}',
                   style: const TextStyle(
                     fontSize: 18,
                   ),
-                ),
+                ).tr(),
                 const SizedBox(height: 5),
                 Text(
                   'Email: ${user.email ?? ""}',
                   style: const TextStyle(
                     fontSize: 18,
                   ),
-                ),
+                ).tr(),
               ],
             ),
           ),
@@ -73,10 +71,10 @@ class _SettingsPageState extends State<SettingsPage> {
           profileWidget,
           Column(
             children: [
-              const Text("Appearance",
+              const Text("appearance",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                  )),
+                  )).tr(),
               const SizedBox(
                 height: 5,
               ),
@@ -101,14 +99,14 @@ class _SettingsPageState extends State<SettingsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomListTile(
-                title: "Profile",
+                title: "profile",
                 icon: Icons.person_outline_rounded,
                 onTap: () {
                   NavigationHelper.pushNamed(context, UserDetailsScreen.name);
                 },
               ),
               CustomListTile(
-                title: "Messaging",
+                title: "messaging",
                 icon: Icons.message_outlined,
                 onTap: () {
                   NavigationHelper.pushNamed(context, ChatScreen.name);
@@ -147,7 +145,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 onTap: () {},
               ),
               CustomListTile(
-                title: "Sign out",
+                title: "sign_out",
                 icon: Icons.exit_to_app_rounded,
                 onTap: () {
                   Provider.of<UserRepository>(context, listen: false)
@@ -163,13 +161,13 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Settings",
+          "settings",
           style: Theme.of(context).textTheme.headlineSmall,
-        ),
+        ).tr(),
         leading: widget.showButton
             ? IconButton(
                 onPressed: () {
-                  context.goNamed(DashboardScreen.name);
+                  NavigationHelper.pushNamed(context, DrawerNavigation.name);
                 },
                 icon: const Icon(Icons.arrow_back_sharp))
             : Container(),
