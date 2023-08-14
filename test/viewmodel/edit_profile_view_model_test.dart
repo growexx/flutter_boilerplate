@@ -18,5 +18,7 @@ void main() {
     model.emailC.text = "jaimin.modi@growexx.com";
     expect(model.emailC.text, "jaimin.modi@growexx.com");
     model.selectedImagePath = "";
+    model.phoneC.text = "9999990000";
+    expect(model.phoneC.text, "9999990000");
   });
 }

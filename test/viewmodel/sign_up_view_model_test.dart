@@ -22,5 +22,7 @@ void main() {
     model.confirmPasswordC.text = "Test@123";
     expect(model.confirmPasswordC.text, "Test@123");
     model.selectedImagePath = "";
+    model.phoneC.text = "9999990000";
+    expect(model.phoneC.text, "9999990000");
   });
 }

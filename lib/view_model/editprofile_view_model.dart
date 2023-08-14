@@ -11,6 +11,7 @@ class EditProfileViewModel extends ChangeNotifier {
   final TextEditingController firstNameC = TextEditingController();
   final TextEditingController lastNameC = TextEditingController();
   final TextEditingController emailC = TextEditingController();
+  final TextEditingController phoneC = TextEditingController();
 
   String? _selectedImagePath;
   String? get selectedImagePath=> _selectedImagePath;
@@ -22,7 +23,8 @@ class EditProfileViewModel extends ChangeNotifier {
   Future<bool> editProfile({
     required String firstName,
     required String lastName,
-    required String email, 
+    required String email,
+    required String phone,
     required BuildContext context,
   }) async {
     /// Implement Api Call Here & navigate to Login screen

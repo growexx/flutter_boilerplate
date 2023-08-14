@@ -39,19 +39,29 @@ fdart pub global activate flutter_gen
 * SplashScreen
 * ThemeModeSelector and Dark Theme
 * LocaleSelector and LocaleProvider
-* Google SignIn
-* Login
+* SignUp
+* Social SignIn with Google, Apple, Twitter, Instagram, Facebook
+* SignIn with Email & Password
+* SignIn with OTP
+* Forgot Password
 * Dashboard
+* User Profile & Edit Profile
+* Change Password
 * Go Router
 * Provider (State Management)
 * Encryption
 * Validation
 * Code Generation
 * User Notifications
+* Google Map
+* Security PIN
+* Settings
 * Logging
 * Dark Theme Support 
 * Multilingual Support
-
+* Push Notification
+* Chat
+* To-do UI
 
 ### SplashScreen:
 Splash Screen is the first page user see when application opens up, in this code a animated logo and app title added on the splash screen, you can add as much animation and do changes according to the UI.
@@ -62,11 +72,12 @@ The project contains the drk and light mode ThemeProvider is used to control the
 ### LocaleSelector and LocalProvider:
 The project using `easy_localization` for locale management, It contains a LocaleHelper file to manage the all the locales and fallback locale and LocalSelectorWidget help you select the locale.
 
-### GoogleSignin:
-Google signin is available for web android and ios.
-
-### AppleSignin:
-Apple signin is available for web android and ios.
+### SocialSignIn:
+Google signin is available for web, android and ios.
+Apple signin is available for web, android and ios.
+Twitter signin is available for android and ios.
+Facebook signin is available for android and ios.
+Instagram signin is available for android and ios.
 
 ### Libraries & Tools Used
 
@@ -82,7 +93,32 @@ Apple signin is available for web android and ios.
 * [Provider](https://pub.dev/packages/provider) (State Management)
 * [shared_preferences](https://pub.dev/packages/shared_preferences)
 * [sign_in_with_apple](https://pub.dev/packages/sign_in_with_apple)
-
+* [image_picker](https://pub.dev/packages/image_picker)
+* [image_picker_for_web](https://pub.dev/packages/image_picker_web#imagepickerweb)
+* [image_cropper](https://pub.dev/packages/image_cropper)
+* [nock](https://pub.dev/packages/nock)
+* [otp_timer_button](https://pub.dev/packages/otp_timer_button)
+* [mockito](https://pub.dev/packages/mockito)
+* [json_serializable](https://pub.dev/packages/json_serializable)
+* [flutter_lints](https://pub.dev/packages/flutter_lints)
+* [uuid](https://pub.dev/packages/uuid)
+* [intl](https://pub.dev/packages/intl)
+* [json_annotation](https://pub.dev/packages/json_annotation)
+* [hive_generator](https://pub.dev/packages/hive_generator)
+* [hive_flutter](https://pub.dev/packages/hive_flutter)
+* [hive](https://pub.dev/packages/hive)
+* [custom_pin_screen](https://pub.dev/packages/custom_pin_screen)
+* [cloud_firestore](https://pub.dev/packages/cloud_firestore)
+* [jiffy](https://pub.dev/packages?q=jiffy)
+* [flutter_stripe](https://pub.dev/packages/flutter_stripe)
+* [pin_code_text_field](https://pub.dev/packages/pin_code_text_field)
+* [pay](https://pub.dev/packages/pay)
+* [mocktail_image_network](https://pub.dev/packages/mocktail_image_network)
+* [network_image_mock](https://pub.dev/packages/network_image_mock)
+* [geocoding](https://pub.dev/packages/geocoding)
+* [geolocator](https://pub.dev/packages/geolocator)
+* [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+* [google_maps_flutter_web](https://pub.dev/packages/google_maps_flutter_web)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
@@ -315,6 +351,4 @@ Checkout [github](https://github.com/growexx/flutter_boilerplate)
 
 ## Conclusion
 
-This boilerplate will help you learn and keep with new updates of flutter, for any help and adding your own code, you can contact us. 
-
-
+This boilerplate will help you learn and keep with new updates of flutter, for any help and adding your own code, you can contact us.
