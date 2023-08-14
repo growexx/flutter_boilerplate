@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/view/screens/chat/recent_chats.dart';
+import 'package:flutter_boilerplate/view/screens/settings/settings_screen.dart';
 import 'package:flutter_boilerplate/view/screens/user_details_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +25,7 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
     UserDetailsScreen(
       showButton: false,
     ),
-    const Center(
-      child: Text(
-        'Settings Screen',
-        style: TextStyle(fontSize: 24),
-      ),
-    ),
+    SettingsPage(showButton: false,),
     ChangeNotifierProvider<ChatViewModel>(
       create: (_) => ChatViewModel(),
       child: const RecentChats(autoShowBackButton: false),

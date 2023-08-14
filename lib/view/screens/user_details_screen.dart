@@ -34,12 +34,10 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     // _emailController.text = widget.email;
     userRepository = Provider.of<UserRepository>(context, listen: false);
     setState(() {
-      _nameController.text = userRepository.currentUser!.firstName != null
-          ? userRepository.currentUser!.firstName!
-          : 'John';
-      _emailController.text = userRepository.currentUser!.email != null
-          ? userRepository.currentUser!.email!
-          : 'Doe';
+      _nameController.text =  userRepository.currentUser!.firstName
+          ?? 'John';
+      _emailController.text = userRepository.currentUser!.email 
+          ?? 'Doe';
     });
   }
 

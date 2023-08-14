@@ -7,6 +7,7 @@ import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:nock/nock.dart';
 import '../../util/common_initial_activity.dart';
 import '../../util/testing_material_app.dart';
@@ -37,8 +38,8 @@ void main() async {
   group("Drawer Navigation test", () {
     testWidgets('DrawerNavigation should show DashboardScreen by default',
         (WidgetTester tester) async {
-      await tester
-          .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path));
+      await mockNetworkImagesFor(() =>tester
+          .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path)));
       await tester.pumpAndSettle();
       // Expect to see the DashboardScreen content on the screen
       final ScaffoldState state =
