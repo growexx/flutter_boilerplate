@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/password_field.dart';
 import 'package:flutter_boilerplate/app_manager/enum/button_status.dart';
@@ -72,20 +71,20 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
           },
           imagePath: Assets.png.icGoogle.path
       ),
-      Option(
-          boolValue: !kIsWeb,
-          key: const Key("twitter"),
-          onTap: () {
-            widget.socialSignInViewModel
-                .signinWithTwitter()
-                .then((User? user) {
-              if (user != null) {
-                storeAndNavigate(user);
-              }
-            });
-          },
-          imagePath: Assets.png.icTwitter.path
-      ),
+      // Option(
+      //     boolValue: !kIsWeb,
+      //     key: const Key("twitter"),
+      //     onTap: () {
+      //       widget.socialSignInViewModel
+      //           .signinWithTwitter()
+      //           .then((User? user) {
+      //         if (user != null) {
+      //           storeAndNavigate(user);
+      //         }
+      //       });
+      //     },
+      //     imagePath: Assets.png.icTwitter.path
+      // ),
       Option(
 
           key: const Key("apple"),
@@ -159,7 +158,7 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
                       key: const Key("tf_password"),
                       controller: widget.viewModel.passwordC,
                       hintText: "enter_password".tr(),
-                      validator: ValidationHelper.passwordValidation,
+                      validator: ValidationHelper.passwordValidationSignIn,
                       onFieldSubmitted: (val) {
                         onPressSignIn(ctx);
                       },

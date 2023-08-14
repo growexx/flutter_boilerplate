@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_hel
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/components/text_field_spacer.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,8 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final SignUpViewModel viewModel = Provider.of<SignUpViewModel>(context,listen: false);
+    final SignUpViewModel viewModel =
+        Provider.of<SignUpViewModel>(context, listen: false);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -52,9 +53,10 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                         child: GestureDetector(
                           key: const Key("pick_image_gesture_detector"),
                           behavior: HitTestBehavior.translucent,
-                          onTap: (){
-                            showCustomImagePicker(context, onReceiveFilePath: (String? filePath) {
-                              if(filePath!=null) {
+                          onTap: () {
+                            showCustomImagePicker(context,
+                                onReceiveFilePath: (String? filePath) {
+                              if (filePath != null) {
                                 viewModel.selectedImagePath = filePath;
                               }
                             });
@@ -82,17 +84,22 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                                                 style:
                                                     theme.textTheme.titleSmall,
                                               ).tr()
-                                            : kIsWeb?CircleAvatar(
-                                          key: const Key(
-                                              "circle_avatar_picked_image_web"),
-                                          backgroundImage: NetworkImage(pickedImage),
-                                          radius: 200.0,
-                                        ):CircleAvatar(
-                                                key: const Key(
-                                                    "circle_avatar_picked_image"),
-                                                backgroundImage: FileImage(File(pickedImage)),
-                                                radius: 200.0,
-                                              );
+                                            : kIsWeb
+                                                ? CircleAvatar(
+                                                    key: const Key(
+                                                        "circle_avatar_picked_image_web"),
+                                                    backgroundImage:
+                                                        NetworkImage(
+                                                            pickedImage),
+                                                    radius: 200.0,
+                                                  )
+                                                : CircleAvatar(
+                                                    key: const Key(
+                                                        "circle_avatar_picked_image"),
+                                                    backgroundImage: FileImage(
+                                                        File(pickedImage)),
+                                                    radius: 200.0,
+                                                  );
                                       }),
                                 )),
                           ),
@@ -104,7 +111,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     ),
                     TextFormField(
                       key: const Key("tf_first_name"),
-                      controller: widget.viewModel.firstNameC,
+                      controller: viewModel.firstNameC,
                       decoration:
                           InputDecoration(hintText: "enter_first_name".tr()),
                       validator: ValidationHelper.nameValidation,
@@ -114,7 +121,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                        controller: widget.viewModel.lastNameC,
+                        controller: viewModel.lastNameC,
                         key: const Key("tf_last_name"),
                         decoration: InputDecoration(
                           hintText: "enter_last_name".tr(),
@@ -125,7 +132,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                         }),
                     const SizedBox(height: 20),
                     TextFormField(
-                        controller: widget.viewModel.emailC,
+                        controller: viewModel.emailC,
                         key: const Key("tf_email_address"),
                         decoration: InputDecoration(
                           hintText: "enter_email".tr(),
@@ -135,19 +142,19 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           onPressSignUp(ctx);
                         }),
                     const SizedBox(height: 20),
-                    PasswordField(
-                      key: const Key("tf_password"),
-                      controller: widget.viewModel.passwordC,
-                      hintText: "enter_password".tr(),
-                      validator: ValidationHelper.passwordValidation,
-                      onFieldSubmitted: (val) {
-                        onPressSignUp(ctx);
-                      },
+                    TextFieldSpacer(
+                      child: PasswordField(
+                        key: const Key("tf_password"),
+                        controller: viewModel.passwordC,
+                        hintText: "enter_password".tr(),
+                        onFieldSubmitted: (String? val) {
+                          onPressSignUp(ctx);
+                        },
+                      ),
                     ),
-                    const SizedBox(height: 20),
                     PasswordField(
                       key: const Key("tf_confirm_password"),
-                      controller: widget.viewModel.confirmPasswordC,
+                      controller: viewModel.confirmPasswordC,
                       hintText: "confirm_password".tr(),
                       validator: ValidationHelper.passwordValidation,
                       onFieldSubmitted: (val) {
@@ -209,5 +216,4 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
       showToast("fill_required_fields".tr());
     }
   }
-
 }

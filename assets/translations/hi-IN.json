@@ -13,6 +13,7 @@
   "or_capital": "या",
   "email": "ईमेल",
   "password": "पासवर्ड",
+  "password_hint": "कम से कम 8 अक्षर\nएक अपरकेस अक्षर\nएक छोटा अक्षर\nएक विशेष अक्षर( !, @, #, \\$, %, ^, &, *, _ )",
   "sign_in": "साइन इन",
   "enter_email": "ईमेल दर्ज करें",
   "enter_password": "पासवर्ड दर्ज करें",
@@ -31,7 +32,7 @@
   "enter_otp": "अपना ओटीपी कोड नंबर दर्ज करें",
   "verify": "सत्यापित करें",
   "did_not_receive_code": "क्या आपको कोई कोड नहीं मिला?",
-  "resend_new_code": "नया कोड पुनः भेजें",
+  "resend_new_code": "OTP पुनः भेजें",
   "change_password": "पासवर्ड बदलें",
   "forgot_password_description": "कृपया वह ईमेल पता दर्ज करें जिस पर आप अपना पासवर्ड रीसेट जानकारी भेजना चाहते हैं",
   "back_to_login": "लॉगिन पर वापस जाएं",
@@ -89,6 +90,7 @@
   "enable_location": "स्थान सक्षम करें",
   "enable_location_description": "कृपया इस कार्यक्षमता का उपयोग करने के लिए डिवाइस सेटिंग्स से जीपीएस सक्षम करें।",
   "close": "बंद करें",
+  "choose_image": "छवि चुनें",
   "validation":{
     "fill_required_fields": "आवश्यक फ़ील्ड भरें"
   },
@@ -97,6 +99,7 @@
     "top_tab_navigation": "टॉप बार नेविगेशन",
     "bottom_tab_navigation": "बॉटम टैब नेविगेशन"
   },
+  "delete": "हटाओ",
   "delete_task": "क्या आप कार्य हटाना चाहते हैं?",
   "google_maps":"गूगल नक़्शे"
 }

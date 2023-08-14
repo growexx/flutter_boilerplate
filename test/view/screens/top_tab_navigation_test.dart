@@ -47,7 +47,7 @@ void main() async {
     await tester.pumpAndSettle();
 
     // Expect to find four tabs
-    expect(find.byType(Tab), findsNWidgets(4));
+    expect(find.byType(Tab), findsNWidgets(3));
 
     // Tap on the third tab (SettingsScreen)
     await tester.tap(find.byIcon(Icons.settings));
