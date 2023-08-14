@@ -98,5 +98,9 @@
   },
   "delete": "Delete",
   "delete_task": "Do you want to delete the task?",
-  "google_maps": "Google Maps"
+  "google_maps": "Google Maps",
+  "settings": "Settings",
+  "appearance": "Appearance",
+  "messaging": "Messaging",
+  "profile": "Profile"
 }

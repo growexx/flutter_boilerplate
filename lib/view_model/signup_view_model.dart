@@ -8,6 +8,7 @@ class SignUpViewModel extends ChangeNotifier {
   final TextEditingController firstNameC = TextEditingController();
   final TextEditingController lastNameC = TextEditingController();
   final TextEditingController emailC = TextEditingController();
+  final TextEditingController phoneC = TextEditingController();
   final TextEditingController passwordC = TextEditingController();
   final TextEditingController confirmPasswordC = TextEditingController();
 
@@ -23,6 +24,7 @@ class SignUpViewModel extends ChangeNotifier {
     required String firstName,
     required String lastName,
     required String email,
+    required String phone,
     required String password,
     required BuildContext context,
   }) async {

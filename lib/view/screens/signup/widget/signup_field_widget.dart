@@ -142,6 +142,17 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           onPressSignUp(ctx);
                         }),
                     const SizedBox(height: 20),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      key: const Key("tf_mobile_number"),
+                      controller: widget.viewModel.phoneC,
+                      decoration:
+                          InputDecoration(hintText: 'mobile_number'.tr()),
+                      onFieldSubmitted: (val) {
+                        //
+                      },
+                    ),
+                    const SizedBox(height: 20),
                     TextFieldSpacer(
                       child: PasswordField(
                         key: const Key("tf_password"),
@@ -211,6 +222,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
           firstName: widget.viewModel.firstNameC.text.trim(),
           lastName: widget.viewModel.lastNameC.text.trim(),
           email: widget.viewModel.emailC.text.trim(),
+          phone: widget.viewModel.phoneC.text.trim(),
           password: widget.viewModel.passwordC.text.trim());
     } else {
       showToast("fill_required_fields".tr());
