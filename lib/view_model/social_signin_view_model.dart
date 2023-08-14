@@ -23,6 +23,7 @@ class SocialSignInViewModel extends ChangeNotifier {
           firstName: name[0],
           lastName: name[1],
           profileUrl: user.photoUrl,
+            email: user.email
         );
       } else {
           showToast("No User Found",);

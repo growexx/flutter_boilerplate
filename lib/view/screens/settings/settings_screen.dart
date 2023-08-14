@@ -46,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Welcome: ${user.firstName ?? ""}  ${user.lastName ?? ""}',
+                  'Welcome ${user.firstName ?? ""}  ${user.lastName ?? ""}',
                   style: const TextStyle(
                     fontSize: 18,
                   ),
@@ -55,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Text(
                   'Email: ${user.email ?? ""}',
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 ).tr(),
               ],
