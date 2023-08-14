@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_fi
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,8 @@ import 'google_map_widget_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<GoogleMapViewModel>(
-      as: #MockGoogleMapInnerViewModel, onMissingStub: OnMissingStub.returnDefault),
+      as: #MockGoogleMapInnerViewModel,
+      onMissingStub: OnMissingStub.returnDefault),
 ])
 void main() async {
   await commonInitialActivity();
@@ -44,6 +46,8 @@ void main() async {
           speedAccuracy: 0.0,
           isMocked: false,
           timestamp: DateTime.now()));
+      when(mockModel.kGooglePlex).thenReturn(
+          const CameraPosition(target: LatLng(23.033863, 72.585022)));
 
       await tester.pumpWidget(
         MultiProvider(
@@ -63,25 +67,24 @@ void main() async {
       expect(find.byKey(const Key("address_value")), findsOneWidget);
     });
 
-    testWidgets('Google Map Filed Widget Test - Android: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
+    testWidgets(
+        'Google Map Filed Widget Test - Android: On web displaying text for the right side portion and in mobile displaying map in that area',
+        (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      Widget widget =  testingMaterial(
-          initialLocation: GoogleMapScreen.path
-      );
+      Widget widget = testingMaterial(initialLocation: GoogleMapScreen.path);
       await tester.pumpWidget(widget);
       expect(find.byKey(const Key("text_map_functionality")), findsNothing);
       debugDefaultTargetPlatformOverride = null;
     });
 
-    testWidgets('Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area', (WidgetTester tester) async {
+    testWidgets(
+        'Google Map Filed Widget Test - iOS: On web displaying text for the right side portion and in mobile displaying map in that area',
+        (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-      Widget widget =  testingMaterial(
-          initialLocation: GoogleMapScreen.path
-      );
+      Widget widget = testingMaterial(initialLocation: GoogleMapScreen.path);
       await tester.pumpWidget(widget);
       expect(find.byKey(const Key("text_map_functionality")), findsNothing);
       debugDefaultTargetPlatformOverride = null;
     });
-
   });
 }
