@@ -61,10 +61,10 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
                 icon: Icon(Icons.person),
                 label: 'User Profile',
               ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.settings),
-              //   label: 'Settings',
-              // ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: 'Settings',
+              ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.chat),
                 label: 'Chats',

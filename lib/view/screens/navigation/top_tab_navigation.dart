@@ -39,7 +39,7 @@ class TopTabNavigation extends StatelessWidget {
                   child: Icon(Icons.dashboard),
                 ),
                 Tab(icon: Icon(Icons.person)),
-                // Tab(icon: Icon(Icons.settings)),
+                Tab(icon: Icon(Icons.settings)),
                 Tab(icon: Icon(Icons.chat)),
               ],
             ),
