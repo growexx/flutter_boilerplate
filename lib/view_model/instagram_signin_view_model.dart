@@ -22,8 +22,6 @@ class InstagramSigninViewModel extends ChangeNotifier {
 
   void getAuthorizationCode(String url) {
     authorizationCode = url.replaceAll('$redirectUri?code=', '');
-    print(
-        '----------------------------------------------------------------authCode $authorizationCode');
   }
 
   Future<bool> getTokenAndUserID() async {
@@ -35,8 +33,6 @@ class InstagramSigninViewModel extends ChangeNotifier {
       'code': authorizationCode,
       'grant_type': 'authorization_code'
     });
-    print(
-        '------------------------------------------response ${response.body}');
     accessToken = json.decode(response.body)['access_token'];
     userID = json.decode(response.body)['user_id'];
     return (accessToken != null && userID != null) ? true : false;
@@ -47,8 +43,6 @@ class InstagramSigninViewModel extends ChangeNotifier {
     final fields = userFields.join(',');
     final responseNode = await http.get(Uri.parse(
         'https://graph.instagram.com/$userID?fields=$fields&access_token=$accessToken'));
-    print(
-        '----------------------------------------------------final response${responseNode.body}');
     final username = json.decode(responseNode.body)['username'];
     final id = json.decode(responseNode.body)['id'];
     final User user = User(id: id, firstName: username, lastName: '');

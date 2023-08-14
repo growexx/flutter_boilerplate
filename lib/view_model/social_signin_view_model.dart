@@ -84,13 +84,4 @@ class SocialSignInViewModel extends ChangeNotifier {
     // }
     return null;
   }
-  Future<User?> signinWithInstagram() async {
-    try {
-     
-    } catch (e) {
-      showToast(e.toString(),);
-      rethrow;
-    }
-    return null;
-  }
 }

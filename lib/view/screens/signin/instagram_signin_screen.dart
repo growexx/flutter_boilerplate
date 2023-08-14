@@ -39,22 +39,8 @@ class InstagramSigninScreen extends StatelessWidget {
       ..setBackgroundColor(Colors.transparent)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {
-            print('Progressing $progress');
-          },
-          onPageStarted: (String url) {
-            print('page started $url');
-          },
-          onPageFinished: (String url) {
-            print('page finished $url');
-          },
-          onWebResourceError: (WebResourceError error) {
-            print('erorr ${error.description}');
-          },
           onNavigationRequest: (request) async {
             if (request.url.startsWith(viewModel.redirectUri)) {
-              print(
-                  '----------------------------------------------------${request.url}');
               viewModel.getAuthorizationCode(request.url);
               await viewModel.getTokenAndUserID().then((bool isDone) {
                 if (isDone) {
@@ -63,7 +49,6 @@ class InstagramSigninScreen extends StatelessWidget {
                       NavigationHelper.pushNamed(
                           context, NavigationScreen.name);
                     });
-                    print('${user.firstName} logged in!');
                   });
                 }
               });
