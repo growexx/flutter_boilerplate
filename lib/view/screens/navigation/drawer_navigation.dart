@@ -100,14 +100,14 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                   NavigationHelper.pushNamed(context, UserDetailsScreen.name);
                 },
               ),
-              ListTile(
-                key: const Key('settings-key'),
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                onTap: () {
-                  // Navigate to the settings screen or perform any action
-                },
-              ),
+              // ListTile(
+              //   key: const Key('settings-key'),
+              //   leading: const Icon(Icons.settings),
+              //   title: const Text('Settings'),
+              //   onTap: () {
+              //     // Navigate to the settings screen or perform any action
+              //   },
+              // ),
               const Divider(),
               ListTile(
                 key: const Key('navigation-screen-key'),
