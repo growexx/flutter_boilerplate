@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/component/alert_dialog/alert_dialog_view.dart';
 import 'package:flutter_boilerplate/models/todo_data.dart';
 import 'package:flutter_boilerplate/view/screens/todo/screen/todo_data_screen.dart';
 import 'package:flutter_boilerplate/view_model/hive_view_model.dart';
@@ -11,7 +13,9 @@ import '../../../../app_manager/component/bottom_sheet/functional_sheet.dart';
 
 class TodoListWidget extends StatelessWidget {
   const TodoListWidget({super.key, required this.data});
+
   final TodoData data;
+
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HiveModel>(context, listen: false);
@@ -52,15 +56,33 @@ class TodoListWidget extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () {
-                                CustomBottomSheet.open(context,
-                                    child: FunctionalSheet(
-                                        key: const Key("delete_task"),
-                                        message: "delete_task".tr(),
-                                        buttonName: "Delete",
-                                        onPressButton: () async {
-                                          viewModel.deleteListData(data.listId);
-                                        }));
-                                
+                                if (kIsWeb) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialogView(
+                                          key: const Key("delete_task"),
+                                          title: 'flutter_boilerplate'.tr(),
+                                          message: 'delete_task'.tr(),
+                                          popButtonTitle: 'cancel'.tr(),
+                                          successButtonTitle: 'delete'.tr(),
+                                          onPressFunction: () async {
+                                            viewModel
+                                                .deleteListData(data.listId);
+                                          });
+                                    },
+                                  );
+                                } else {
+                                  CustomBottomSheet.open(context,
+                                      child: FunctionalSheet(
+                                          key: const Key("delete_task"),
+                                          message: "delete_task".tr(),
+                                          buttonName: "delete".tr(),
+                                          onPressButton: () async {
+                                            viewModel
+                                                .deleteListData(data.listId);
+                                          }));
+                                }
                               },
                               icon: const Icon(Icons.delete_forever),
                             ),

@@ -87,6 +87,7 @@
   "enable_location": "Enable Location",
   "enable_location_description": "Please Enable GPS from device Settings to use this functionality.",
   "close": "Close",
+  "choose_image": "Choose Image",
   "validation": {
     "fill_required_fields": "Fill Required Fields"
   },
@@ -95,6 +96,7 @@
     "top_tab_navigation": "Top Bar Navigation",
     "bottom_tab_navigation": "Bottom Tab Navigation"
   },
+  "delete": "Delete",
   "delete_task": "Do you want to delete the task?",
   "google_maps": "Google Maps"
 }
