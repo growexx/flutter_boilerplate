@@ -257,6 +257,6 @@ List<RouteBase> routes = [
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const SettingsPage(),)
+        child: SettingsPage(),)
   ),
 ];

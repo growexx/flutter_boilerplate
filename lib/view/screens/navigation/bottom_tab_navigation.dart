@@ -25,7 +25,7 @@ class _BottomTabNavigationState extends State<BottomTabNavigation> {
     UserDetailsScreen(
       showButton: false,
     ),
-    const SettingsPage(),
+    SettingsPage(showButton: false,),
     ChangeNotifierProvider<ChatViewModel>(
       create: (_) => ChatViewModel(),
       child: const RecentChats(autoShowBackButton: false),

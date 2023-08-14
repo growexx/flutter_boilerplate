@@ -5,8 +5,9 @@ class CustomListTile extends StatelessWidget {
   final String title;
   final IconData icon;
   final Widget? trailing;
+  final VoidCallback onTap;
   const CustomListTile(
-      {Key? key, required this.title, required this.icon, this.trailing})
+      {Key? key, required this.title, required this.icon, this.trailing, required this.onTap})
       : super(key: key);
 
   @override
@@ -15,7 +16,7 @@ class CustomListTile extends StatelessWidget {
       title: Text(title),
       leading: Icon(icon),
       trailing: trailing,
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
