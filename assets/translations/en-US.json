@@ -102,5 +102,15 @@
   "settings": "Settings",
   "appearance": "Appearance",
   "messaging": "Messaging",
-  "profile": "Profile"
+  "profile": "Profile",
+  "apiStatus": {
+    "status400Error": "400 Bad Request, Please try again.",
+    "status401Error": "401 Unauthorised, Please check your credentials try again.",
+    "status404Error": "404 Not Found, Please try again.",
+    "status408Error": "408 Request Timeout, Please try again.",
+    "status500Error": "500 Internal Server Error occurred. Please try again.",
+    "status504Error": "504 Gateway Timeout. Please try again.",
+    "status505Error": "505 HTTP Version not supported. Please try again.",
+    "statusNullError": "Something went wrong. Trouble in getting response from server. Try after sometime."
+  }
 }
