@@ -7,11 +7,11 @@ class SelectionBox extends StatelessWidget {
   final IconData iconData;
 
   const SelectionBox({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.iconData,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -58,14 +58,29 @@ void main() async {
         final mockClient = MockClient((request) async {
           return http.Response(json.encode({"refreshToken": "token"}), 200);
         });
-
         final model = UserRepository();
-
         model.client = mockClient;
-
         await model.refreshToken();
-
         expect(model.currentUser?.token, isNull);
+      },
+    );
+
+    test(
+      "fetch user token info from api when status is 1",
+      () async {
+        final mockClient = MockClient((request) async {
+          return http.Response(
+              json.encode({
+                "refreshToken": "token",
+                "status": 1,
+                "data": {"token": "test-token"}
+              }),
+              200);
+        });
+        final model = UserRepository();
+        model.client = mockClient;
+        final result = await model.refreshToken();
+        expect(result, true);
       },
     );
 
