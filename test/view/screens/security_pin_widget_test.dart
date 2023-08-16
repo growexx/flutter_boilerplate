@@ -29,5 +29,25 @@ void main() async {
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
     });
+    testWidgets('Security Pin Widget for create pin',
+        (WidgetTester tester) async {
+      Widget widget = MultiProvider(
+          providers: [
+            ChangeNotifierProvider<SecurityPinViewModel>(
+              create: (_) => SecurityPinViewModel(),
+            ),
+          ],
+          child: const MaterialApp(
+            home: SecurityPinFieldWidget(),
+          ));
+      await tester.pumpWidget(widget);
+
+      final Finder pin = find.byKey(const Key("create_pin"));
+      expect(pin, findsOneWidget);
+      await tester.tap(pin, warnIfMissed: false);
+
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+    });
   });
 }
