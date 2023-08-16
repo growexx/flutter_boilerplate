@@ -34,6 +34,8 @@ class CustomImagePicker {
       uiSettings: [
         WebUiSettings(
           context: NavigationService.context!,
+            enableZoom: true,
+            enableResize: true,
         ),
       ],
     );

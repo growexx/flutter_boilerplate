@@ -19,6 +19,17 @@ class ApiResponse<T> {
   String toString() {
     return "Status : $status \n Message : $message \n Data : $data";
   }
+
+  static const statusOK=200;
+  static const statusBadRequest = 400;
+  static const statusUnAuthorised = 401;
+  static const statusNotFound=404;
+  static const statusRequestTimeOut=408;
+  static const statusInternalServer=500;
+  static const statusGatewayTimeOut=504;
+  static const statusVersionNotSupported=505;
+
 }
 
 enum Status { initial, loading, completed, error,empty}
+
