@@ -24,14 +24,21 @@ class EditProfileFieldWidget extends StatefulWidget {
 
 class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+  void initState() {
+    super.initState();
+    User user = Provider.of<UserRepository>(context, listen: false).getUser;
     final EditProfileViewModel viewModel =
         Provider.of<EditProfileViewModel>(context, listen: false);
-    User user = Provider.of<UserRepository>(context, listen: false).getUser;
-    viewModel.emailC.text = user.email ?? "";
-    viewModel.firstNameC.text = user.firstName ?? "";
-    viewModel.lastNameC.text = user.lastName ?? "";
+    setState(() {
+      viewModel.emailC.text = user.email ?? "";
+      viewModel.firstNameC.text = user.firstName ?? "";
+      viewModel.lastNameC.text = user.lastName ?? "";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -59,7 +66,7 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                             showCustomImagePicker(context,
                                 onReceiveFilePath: (String? filePath) {
                               if (filePath != null) {
-                                viewModel.selectedImagePath = filePath;
+                                widget.viewModel.selectedImagePath = filePath;
                               }
                             });
                           },
