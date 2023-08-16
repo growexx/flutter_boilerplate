@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_boilerplate/app_manager/api/api_constant.dart';
+import 'package:flutter_boilerplate/app_manager/api/api_response.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:http/http.dart' as http;
+
 // ignore: depend_on_referenced_packages
 import 'package:http_parser/http_parser.dart';
 import 'package:provider/provider.dart';
@@ -224,7 +227,7 @@ class ApiCall {
           break;
       }
 
-      if (response != null) {
+      if (response != null && response.statusCode == ApiResponse.statusOK) {
         var data = await _handleDecodeAndStorage(
           url: url,
           encodeData: response.body,
@@ -252,12 +255,55 @@ class ApiCall {
             }
           });
         }
-
         return data;
-      } else {
-        showToast("Null response",);
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusBadRequest) {
+        showToast(
+          'apiStatus'.tr(gender: "status400Error"),
+        );
         return ApiConstant.cancelResponse;
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusUnAuthorised) {
+        showToast(
+          'apiStatus'.tr(gender: "status401Error"),
+        );
+        return ApiConstant.cancelResponse;
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusNotFound) {
+        showToast(
+          'apiStatus'.tr(gender: "status404Error"),
+        );
+        return ApiConstant.cancelResponse;
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusRequestTimeOut) {
+        showToast(
+          'apiStatus'.tr(gender: "status408Error"),
+        );
+        return ApiConstant.cancelResponse;
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusInternalServer) {
+        showToast(
+          'apiStatus'.tr(gender: "status500Error"),
+        );
+        return ApiConstant.cancelResponse;
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusGatewayTimeOut) {
+        showToast(
+          'apiStatus'.tr(gender: "status504Error"),
+        );
+        return ApiConstant.cancelResponse;
+      } else if (response != null &&
+          response.statusCode == ApiResponse.statusVersionNotSupported) {
+        showToast(
+          'apiStatus'.tr(gender: "status505Error"),
+        );
+        return ApiConstant.cancelResponse;
+      } else {
+        showToast(
+          'apiStatus'.tr(gender: "statusNullError"),
+        );
       }
+      return ApiConstant.cancelResponse;
     } catch (e) {
       if (retryCount > 0) {
         await Future.delayed(const Duration(seconds: 1));
