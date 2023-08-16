@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_field_widget.dart';
-import 'package:flutter_boilerplate/view/screens/signin/widget/signin_web_page_filler_widget.dart';
+import 'package:flutter_boilerplate/view/widgets/welcome.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
         mobile: fieldPart,
         desktop: Row(
           children: [
-            const Expanded(flex: 3,child: SignInWebPageFillerWidget()),
+            const Expanded(child: WelcomeWidget()),
             SizedBox(
                 width: 440,
                 child: fieldPart),
