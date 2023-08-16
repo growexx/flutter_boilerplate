@@ -3,6 +3,7 @@ import 'package:flutter_boilerplate/view/screens/google_map/widget/google_map_wi
 import 'package:flutter_boilerplate/view_model/google_map_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,8 @@ void main() async {
           speedAccuracy: 0.0,
           isMocked: false,
           timestamp: DateTime.now()));
+      when(mockModel.kGooglePlex).thenReturn(
+          const CameraPosition(target: LatLng(23.033863, 72.585022)));
 
       await tester.pumpWidget(
         MultiProvider(

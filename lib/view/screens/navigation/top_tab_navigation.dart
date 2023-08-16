@@ -26,7 +26,7 @@ class TopTabNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return DefaultTabController(
-      length: 3, // Number of tabs
+      length: 4, // Number of tabs
       child: Scaffold(
           appBar: AppBar(
             title: Text("flutter_boilerplate",

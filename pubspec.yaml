@@ -88,6 +88,8 @@ dependencies:
   nock: ^1.2.2
   intl_phone_field: ^3.2.0
   otp_timer_button: ^1.1.0
+  webview_flutter: ^4.2.2
+  
 dev_dependencies:
   build_runner: ^2.4.6
   flutter_gen_runner:

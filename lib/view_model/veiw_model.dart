@@ -11,3 +11,4 @@ export './signup_view_model.dart';
 export './social_signin_view_model.dart';
 export './google_map_view_model.dart';
 export './hive_view_model.dart';
+export './instagram_signin_view_model.dart';

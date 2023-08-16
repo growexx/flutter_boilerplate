@@ -11,4 +11,6 @@ class Environment {
   static const String twitterApiKey = "TWITTER_API_KEY";
   static const String twitterApiSecretKey = "TWITTER_API_SECRET_KET";
   static const String firebaseRedirectURI = "FIREBASE_REDIRECT_URI";
+  static const String instagramAppID = "INSTAGRAM_APP_ID";
+  static const String instagramAppSecretKey = "INSTAGRAM_APP_SECRET_KEY";
 }
