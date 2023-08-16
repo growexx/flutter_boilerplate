@@ -4,9 +4,13 @@ import 'package:flutter_boilerplate/view_model/instagram_signin_view_model.dart'
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+// ignore: depend_on_referenced_packages
 import 'package:webview_flutter_platform_interface/src/platform_navigation_delegate.dart';
+// ignore: depend_on_referenced_packages
 import 'package:webview_flutter_platform_interface/src/platform_webview_controller.dart';
+// ignore: depend_on_referenced_packages
 import 'package:webview_flutter_platform_interface/src/platform_webview_widget.dart';
+// ignore: depend_on_referenced_packages
 import 'package:webview_flutter_platform_interface/src/types/load_request_params.dart';
 
 import '../../util/common_initial_activity.dart';
