@@ -29,4 +29,27 @@ void main() {
     expect(find.byType(Text), findsWidgets);
     expect(find.byType(IconButton), findsWidgets);
   });
+  testWidgets("User detail screen test", (widgetTester) async {
+    await mockNetworkImagesFor(() async {
+      await widgetTester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<UserRepository>.value(
+                value: UserRepository(
+                    currentUser: User(
+                        firstName: "John",
+                        email: "John@example.com",
+                        profileUrl: 'https://example.com'))),
+          ],
+          child: MaterialApp(
+            home: UserDetailsScreen(showButton: false),
+          ),
+        ),
+      );
+    });
+
+    expect(find.byType(Text), findsWidgets);
+    expect(find.byType(IconButton), findsOneWidget);
+    expect(find.byType(Container), findsWidgets);
+  });
 }
