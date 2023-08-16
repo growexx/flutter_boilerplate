@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
 import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart';
@@ -34,8 +35,11 @@ class _SecurityPinFieldWidgetState extends State<SecurityPinFieldWidget> {
                           key: const Key("verify_pin"),
                           onPressed: () {
                             screenLock(
-                                customizedButtonChild: const Icon(Icons.fingerprint),
-                                customizedButtonTap: () async => await localAuth(context),
+                                customizedButtonChild: !kIsWeb
+                                    ? const Icon(Icons.fingerprint)
+                                    : const SizedBox(height: 0, width: 0),
+                                customizedButtonTap: () async =>
+                                    await localAuth(context),
                                 title: const Text(
                                   "security_pin",
                                   style: TextStyle(color: Colors.white),
@@ -45,7 +49,8 @@ class _SecurityPinFieldWidgetState extends State<SecurityPinFieldWidget> {
                                   style: TextStyle(color: Colors.white),
                                 ).tr(),
                                 onUnlocked: () {
-                                  NavigationHelper.pushNamed(context, DashboardScreen.name);
+                                  NavigationHelper.pushNamed(
+                                      context, DashboardScreen.name);
                                 },
                                 context: context,
                                 correctString: "1234",
@@ -70,10 +75,11 @@ class _SecurityPinFieldWidgetState extends State<SecurityPinFieldWidget> {
       },
     );
   }
+
   Future<void> localAuth(BuildContext context) async {
     final localAuth = LocalAuthentication();
-    final didAuthenticate = await localAuth.authenticate(
-        localizedReason: 'Please authenticate');
+    final didAuthenticate =
+        await localAuth.authenticate(localizedReason: 'Please authenticate');
     if (didAuthenticate) {
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
