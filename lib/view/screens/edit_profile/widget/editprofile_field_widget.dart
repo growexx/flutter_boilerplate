@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
+import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:flutter/foundation.dart';
@@ -27,6 +28,10 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
     final theme = Theme.of(context);
     final EditProfileViewModel viewModel =
         Provider.of<EditProfileViewModel>(context, listen: false);
+    User user = Provider.of<UserRepository>(context, listen: false).getUser;
+    viewModel.emailC.text = user.email ?? "";
+    viewModel.firstNameC.text = user.firstName ?? "";
+    viewModel.lastNameC.text = user.lastName ?? "";
     return Center(
       child: SingleChildScrollView(
         child: Padding(
