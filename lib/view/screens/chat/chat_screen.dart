@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/models/chat_user.dart';
 import 'package:provider/provider.dart';
 
 import '../../../view_model/chat_view_model.dart';
@@ -12,6 +13,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    final scrollController = ScrollController();
     return Consumer<ChatViewModel>(
       builder: (context, chatViewModel, child) {
         return Scaffold(
@@ -22,6 +24,7 @@ class ChatScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
+                  controller: scrollController,
                   itemCount: chatViewModel.messageList
                       .length, // Replace this with the actual number of messages
                   itemBuilder: (context, index) {
@@ -35,7 +38,7 @@ class ChatScreen extends StatelessWidget {
                   },
                 ),
               ),
-              const MessageInputField(),
+              MessageInputField(scrollController: scrollController),
             ],
           ),
         );
@@ -58,18 +61,35 @@ class MessageBubble extends StatelessWidget {
         mainAxisAlignment:
             isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
+          if (!isMe)
+            CircleAvatar(
+              radius: 17.0,
+              backgroundImage: NetworkImage(ChatUser.avatarUrl),
+            ),
+          const Padding(padding: EdgeInsets.only(right: 3.0)),
           Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
             decoration: BoxDecoration(
               color: isMe ? Colors.blue : Colors.grey[300],
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.only(
+                topLeft: isMe ? const Radius.circular(12.0) : Radius.zero,
+                topRight: const Radius.circular(12.0),
+                bottomLeft: const Radius.circular(12.0),
+                bottomRight: isMe ? Radius.zero : const Radius.circular(12.0),
+              ),
             ),
             child: Text(
               message,
               style: TextStyle(color: isMe ? Colors.white : Colors.black),
             ),
           ),
+          const Padding(padding: EdgeInsets.only(right: 3.0)),
+          if (isMe)
+            CircleAvatar(
+              radius: 17.0,
+              backgroundImage: NetworkImage(ChatUser.avatarUrl),
+            )
         ],
       ),
     );
@@ -77,7 +97,8 @@ class MessageBubble extends StatelessWidget {
 }
 
 class MessageInputField extends StatelessWidget {
-  const MessageInputField({super.key});
+  final ScrollController scrollController;
+  const MessageInputField({super.key, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +112,17 @@ class MessageInputField extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  onTap: () async {
+                    await Future.delayed(const Duration(milliseconds: 500));
+                    scrollToLastElement();
+                  },
                   controller: messageTextController,
                   onSubmitted: (value) {
-                    chatViewModel.addChatToList(value);
-                    messageTextController.clear();
+                    if (value.isNotEmpty) {
+                      chatViewModel.addChatToList(value);
+                      messageTextController.clear();
+                      scrollToLastElement();
+                    }
                   },
                   decoration: InputDecoration(
                     hintText: 'Type your message...',
@@ -108,8 +136,11 @@ class MessageInputField extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () {
-                  chatViewModel.addChatToList(messageTextController.text);
-                  messageTextController.clear();
+                  if (messageTextController.text.isNotEmpty) {
+                    chatViewModel.addChatToList(messageTextController.text);
+                    messageTextController.clear();
+                    scrollToLastElement();
+                  }
                   // Handle send message logic here
                 },
               ),
@@ -118,5 +149,15 @@ class MessageInputField extends StatelessWidget {
         );
       },
     );
+  }
+
+  void scrollToLastElement() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
+    });
   }
 }
