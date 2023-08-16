@@ -5,7 +5,7 @@ class FbAuth {
 
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
 
-  Future<LoginResult?> login() async{
+ Future<LoginResult?> login() async{
     try {
       LoginResult? user =await _facebookAuth.login();
       return user;
@@ -21,5 +21,4 @@ class FbAuth {
       rethrow;
     }
   }
-
 }
