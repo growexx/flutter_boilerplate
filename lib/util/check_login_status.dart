@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
-import 'package:flutter_boilerplate/view/screens/login/signin_screen.dart';
-import 'package:flutter_boilerplate/view/screens/main_screen.dart';
+import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
+import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +14,6 @@ Future checkLoginStatus(
     Router.neglect(
         context,
         () => context
-            .goNamed(isLoggedIn ? MainScreen.name : SigninScreen.name));
+            .goNamed(isLoggedIn ? NavigationScreen.name : SignInScreen.name));
   });
 }

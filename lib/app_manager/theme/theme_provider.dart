@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_fiel
 import 'package:flutter_boilerplate/app_manager/theme/theme_components/text_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
-
   ThemeMode themeMode;
   ThemeProvider({
     this.themeMode=ThemeMode.system,
@@ -36,44 +34,42 @@ class ThemeProvider extends ChangeNotifier {
 
 
   static ThemeData lightTheme = ThemeData(
-    fontFamily: _fontFamily,
-    scaffoldBackgroundColor: _scaffoldBackgroundColor,
-    appBarTheme: _appBarTheme,
-    primaryColor: _primaryColor,
-    textTheme: _textTheme,
-    colorScheme: ColorScheme.light(
+      fontFamily: _fontFamily,
+      scaffoldBackgroundColor: _scaffoldBackgroundColor,
+      appBarTheme: _appBarTheme,
+      primaryColor: _primaryColor,
+      textTheme: CustomTextTheme.primaryLight,
+      textButtonTheme: CustomTextButtonTheme.primaryLight,
+      inputDecorationTheme: CustomTextFieldTheme.primaryLight,
+      listTileTheme: _listTileThemeData,
+      expansionTileTheme: _expansionTileThemeData,
+      tabBarTheme: _tabBarTheme,
+      dividerTheme: _dividerThemeData,
+      scrollbarTheme: _scrollbarTheme,
+      brightness: Brightness.light, colorScheme: ColorScheme.light(
       primary: AppColor.primary,
       secondary: AppColor.secondary,
       error: AppColor.error
-    ),
-    textButtonTheme: _textButtonTheme,
-    inputDecorationTheme: _inputDecorationTheme,
-    listTileTheme: _listTileThemeData,
-    expansionTileTheme: _expansionTileThemeData,
-    tabBarTheme: _tabBarTheme,
-    dividerTheme: _dividerThemeData,
-    scrollbarTheme: _scrollbarTheme,
-      brightness: Brightness.light
+  ).copyWith(background: Colors.white)
   );
 
   static ThemeData darkTheme = ThemeData(
-    fontFamily: _fontFamily,
-    appBarTheme: _appBarTheme,
-    primaryColor: _primaryColor,
-    textTheme: _textTheme,
-    colorScheme: ColorScheme.dark(
-      primary: AppColor.primary,
-      secondary: AppColor.secondary,
-        error: AppColor.error,
-    ),
-    textButtonTheme: _textButtonTheme,
-    inputDecorationTheme: _inputDecorationTheme,
-    listTileTheme: _listTileThemeData,
-    expansionTileTheme: _expansionTileThemeData,
-    tabBarTheme: _tabBarTheme,
-    dividerTheme: _dividerThemeData,
-    scrollbarTheme: _scrollbarTheme,
-    brightness: Brightness.dark
+      fontFamily: _fontFamily,
+      appBarTheme: _appBarTheme,
+      primaryColor: _primaryColor,
+      textTheme: CustomTextTheme.primaryDark,
+      textButtonTheme: CustomTextButtonTheme.primaryDark,
+      inputDecorationTheme: CustomTextFieldTheme.primaryDark,
+      listTileTheme: _listTileThemeData,
+      expansionTileTheme: _expansionTileThemeData,
+      tabBarTheme: _tabBarTheme,
+      dividerTheme: _dividerThemeData,
+      scrollbarTheme: _scrollbarTheme,
+      brightness: Brightness.dark, colorScheme: ColorScheme.dark(
+    primary: AppColor.primary,
+    secondary: AppColor.secondary,
+    error: AppColor.error,
+  ).copyWith(background: Colors.black)
   );
 
 
@@ -94,11 +90,6 @@ class ThemeProvider extends ChangeNotifier {
       )
   );
 
-  static const TextTheme _textTheme = CustomTextTheme.primary;
-
-  static final InputDecorationTheme _inputDecorationTheme = CustomTextFieldTheme.primary;
-
-  static final TextButtonThemeData _textButtonTheme = CustomTextButtonTheme.primary;
 
   static final ListTileThemeData _listTileThemeData = ListTileThemeData(
     dense: true,

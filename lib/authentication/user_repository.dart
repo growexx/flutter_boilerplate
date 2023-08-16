@@ -1,25 +1,42 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/api/api_call.dart';
+import 'package:flutter_boilerplate/app_manager/api/project_response.dart';
+import 'package:flutter_boilerplate/app_manager/component/alert_dialog/alert_dialog_view.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/component/bottom_sheet/functional_sheet.dart';
 import 'package:flutter_boilerplate/app_manager/constant/storage_constant.dart';
 import 'package:flutter_boilerplate/app_manager/helper/local_storage.dart';
+import 'package:flutter_boilerplate/app_manager/helper/navigation/navigation_helper.dart';
+import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
+import 'package:flutter_boilerplate/view/screens/change_password/change_password_screen.dart';
 import 'package:flutter_boilerplate/view/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class UserRepository extends ChangeNotifier {
+  http.Client client = http.Client();
   User? currentUser;
 
   UserRepository({
     this.currentUser,
   });
 
+  User get getUser => currentUser ?? User();
+
   bool get isLoggedIn => currentUser?.id != null;
+
+  static UserRepository of(BuildContext context) =>
+      Provider.of<UserRepository>(context, listen: false);
+
+  final ApiCall _apiCall = ApiCall();
 
   Future updateUserData(User? userData) async {
     try {
@@ -55,15 +72,36 @@ class UserRepository extends ChangeNotifier {
     }
   }
 
+  void changePassword(BuildContext context) {
+    NavigationHelper.pushNamed(context, ChangePasswordScreen.name);
+  }
+
   Future signOutUser(BuildContext context) async {
-    CustomBottomSheet.open(context,
-        child: FunctionalSheet(
-            key: const Key("sign_out"),
-            message: "Do you want to Sign Out?",
-            buttonName: "Sign Out",
-            onPressButton: () async {
-              directLogOut(context);
-            }));
+    if (kIsWeb) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialogView(
+              key: const Key("sign_out"),
+              title: 'flutter_boilerplate'.tr(),
+              message: 'sign-out-message'.tr(),
+              popButtonTitle: 'cancel'.tr(),
+              successButtonTitle: 'sign_out'.tr(),
+              onPressFunction: () async {
+                directLogOut(context);
+              });
+        },
+      );
+    } else {
+      CustomBottomSheet.open(context,
+          child: FunctionalSheet(
+              key: const Key("sign_out"),
+              message: "sign-out-message".tr(),
+              buttonName: "sign_out".tr(),
+              onPressButton: () async {
+                directLogOut(context);
+              }));
+    }
   }
 
   Future directLogOut(BuildContext context) async {
@@ -78,5 +116,35 @@ class UserRepository extends ChangeNotifier {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<bool?> refreshToken() async {
+    try {
+      var body = {
+        "refreshToken": getUser.refreshToken ?? "",
+      };
+      ProjectResponse data = ProjectResponse.fromJson(await _apiCall.call(
+        url: "auth/refresh-token",
+        client: client,
+        apiCallType: ApiCallType.post(body: body),
+      ));
+      if (data.status == 1) {
+        await updateToken(data.data["token"]);
+        return true;
+      } else {
+        directLogOut(NavigationService.context!);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+    return null;
+  }
+
+  Future updateToken(String token) async {
+    User newUserData = getUser;
+    newUserData.token = token;
+    updateUserData(newUserData);
   }
 }

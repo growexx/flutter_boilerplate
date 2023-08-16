@@ -12,6 +12,14 @@ void main() {
     // ignore: unnecessary_type_check
     expect(AppColor.secondary is Color, true);
     // ignore: unnecessary_type_check
+    expect(AppColor.white is Color, true);
+    // ignore: unnecessary_type_check
+    expect(AppColor.grey0 is Color, true);
+    // ignore: unnecessary_type_check
+    expect(AppColor.grey is Color, true);
+    // ignore: unnecessary_type_check
+    expect(AppColor.grey5 is Color, true);
+    // ignore: unnecessary_type_check
     expect(AppColor.scaffoldBackgroundColor is Color, true);
     // ignore: unnecessary_type_check
     expect(AppColor.grey1 is Color, true);
@@ -20,9 +28,17 @@ void main() {
     // ignore: unnecessary_type_check
     expect(AppColor.grey4 is Color, true);
     // ignore: unnecessary_type_check
+    expect(AppColor.grey6 is Color, true);
+    // ignore: unnecessary_type_check
+    expect(AppColor.grey7 is Color, true);
+    // ignore: unnecessary_type_check
+    expect(AppColor.grey8 is Color, true);
+    // ignore: unnecessary_type_check
     expect(AppColor.greyDark is Color, true);
     // ignore: unnecessary_type_check
     expect(AppColor.hintColor is Color, true);
+    // ignore: unnecessary_type_check
+    expect(AppColor.hintColorForDarkTheme is Color, true);
     // ignore: unnecessary_type_check
     expect(AppColor.error is Color, true);
     // ignore: unnecessary_type_check

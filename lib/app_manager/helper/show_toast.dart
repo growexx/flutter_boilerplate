@@ -1,16 +1,17 @@
-
 import 'package:flutter/foundation.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 
 void showToast(String msg) {
   try {
-    Fluttertoast.showToast(
-        msg: msg,
-    );
-  } catch(e) {
+      var snackBar = SnackBar(
+        content: Text(msg),
+      );
+      ScaffoldMessenger.of(NavigationService.context!).showSnackBar(snackBar);
+
+  } catch (e) {
     if (kDebugMode) {
       print(e);
     }
   }
 }
-

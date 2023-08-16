@@ -58,7 +58,7 @@ class FunctionalSheet extends StatelessWidget {
                   : Container(),
               Expanded(
                 child: TextButtonTheme(
-                  data: CustomTextButtonTheme.primary,
+                  data: CustomTextButtonTheme.primaryLight,
                   child: TextButton(
                     key: const Key("function"),
                     onPressed: () {

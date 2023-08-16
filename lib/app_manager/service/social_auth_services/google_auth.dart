@@ -10,7 +10,7 @@ class GoogleAuth {
 
    final GoogleSignIn _googleSignIn = GoogleSignIn(
    clientId: (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)?
-   null:dotenv.env[Environment.clientId],
+   null:dotenv.env[Environment.googleClientId],
   );
 
   GoogleSignIn get instance => _googleSignIn;

@@ -12,11 +12,54 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/bg_wallpaper.png
+  AssetGenImage get bgWallpaper =>
+      const AssetGenImage('assets/png/bg_wallpaper.png');
+
   /// File path: assets/png/error.png
   AssetGenImage get error => const AssetGenImage('assets/png/error.png');
 
+  /// File path: assets/png/ic_apple.png
+  AssetGenImage get icApple => const AssetGenImage('assets/png/ic_apple.png');
+
+  /// File path: assets/png/ic_facebook.png
+  AssetGenImage get icFacebook =>
+      const AssetGenImage('assets/png/ic_facebook.png');
+
+  /// File path: assets/png/ic_google.png
+  AssetGenImage get icGoogle => const AssetGenImage('assets/png/ic_google.png');
+
+  /// File path: assets/png/ic_instagram.png
+  AssetGenImage get icInstagram =>
+      const AssetGenImage('assets/png/ic_instagram.png');
+
+  /// File path: assets/png/ic_otp2.png
+  AssetGenImage get icOtp2 => const AssetGenImage('assets/png/ic_otp2.png');
+
+  /// File path: assets/png/ic_otp3.png
+  AssetGenImage get icOtp3 => const AssetGenImage('assets/png/ic_otp3.png');
+
+  /// File path: assets/png/ic_otp_image.png
+  AssetGenImage get icOtpImage =>
+      const AssetGenImage('assets/png/ic_otp_image.png');
+
+  /// File path: assets/png/ic_twitter.png
+  AssetGenImage get icTwitter =>
+      const AssetGenImage('assets/png/ic_twitter.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [error];
+  List<AssetGenImage> get values => [
+        bgWallpaper,
+        error,
+        icApple,
+        icFacebook,
+        icGoogle,
+        icInstagram,
+        icOtp2,
+        icOtp3,
+        icOtpImage,
+        icTwitter
+      ];
 }
 
 class $AssetsTranslationsGen {

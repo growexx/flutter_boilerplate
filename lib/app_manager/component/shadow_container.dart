@@ -1,0 +1,72 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/constant/app_constant.dart';
+import 'package:flutter_boilerplate/app_manager/theme/app_color.dart';
+class ShadowContainer extends StatelessWidget {
+
+  final Widget? child;
+  final Color? color;
+  final Color? gradientColor;
+  final EdgeInsets? padding;
+  final DecorationImage? decorationImage;
+  final double? height;
+  final double? width;
+  final BoxShape? shape;
+  final double? radius;
+  final double? blurRadius;
+
+
+  const ShadowContainer({super.key, this.child,
+    this.color,
+    this.gradientColor,
+    this.padding,
+    this.decorationImage,
+    this.height,
+    this.width,
+    this.shape,
+    this.radius,
+    this.blurRadius,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key:const Key("key_shadow_container"),
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        shape: shape??BoxShape.rectangle,
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.grey,
+            spreadRadius: 0.8,
+            blurRadius: blurRadius?? 2,
+            offset: const Offset(0, 0),
+          ),
+        ],
+        borderRadius:shape!=null? null:  BorderRadius.only(
+          bottomRight: Radius.circular(radius??3),
+          bottomLeft: Radius.circular(radius??3),
+
+        ),
+
+      ),
+      child: Container(
+          decoration:  BoxDecoration(
+            shape: shape??BoxShape.rectangle,
+            gradient: gradientColor==null?null:
+            AppConstant.getGradient(gradientColor),
+            image: decorationImage,
+            color: color??Colors.white,
+            borderRadius:shape!=null? null:  BorderRadius.only(
+              bottomRight: Radius.circular(radius??3),
+              bottomLeft: Radius.circular(radius??3),
+
+            ),
+          ),
+          child: Padding(
+            padding: padding??const EdgeInsets.all(8.0),
+            child: child,
+          )),
+    );
+  }
+}
