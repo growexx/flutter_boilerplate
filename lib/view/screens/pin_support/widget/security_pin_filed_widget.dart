@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate/view/screens/dashboard/dashboard_screen.dart
 import 'package:flutter_boilerplate/view_model/security_pin_view_model.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:provider/provider.dart';
+import 'package:local_auth/local_auth.dart';
 
 class SecurityPinFieldWidget extends StatefulWidget {
   const SecurityPinFieldWidget({super.key});
@@ -33,6 +34,8 @@ class _SecurityPinFieldWidgetState extends State<SecurityPinFieldWidget> {
                           key: const Key("verify_pin"),
                           onPressed: () {
                             screenLock(
+                                customizedButtonChild: const Icon(Icons.fingerprint),
+                                customizedButtonTap: () async => await localAuth(context),
                                 title: const Text(
                                   "security_pin",
                                   style: TextStyle(color: Colors.white),
@@ -66,5 +69,14 @@ class _SecurityPinFieldWidgetState extends State<SecurityPinFieldWidget> {
         );
       },
     );
+  }
+  Future<void> localAuth(BuildContext context) async {
+    final localAuth = LocalAuthentication();
+    final didAuthenticate = await localAuth.authenticate(
+        localizedReason: 'Please authenticate');
+    if (didAuthenticate) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+    }
   }
 }
