@@ -41,7 +41,8 @@ void main() {
       // Verify the initial state
       expect(find.text('Submit'), findsOneWidget);
       expect(find.byType(CircularIndicatorWhite), findsNothing);
-      expect(find.byType(Icon), findsOneWidget);
+      expect(find.byIcon(Icons.check), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.check));
     });
     group('LoaderButtonWithIcon', () {
       testWidgets('loader state', (WidgetTester tester) async {

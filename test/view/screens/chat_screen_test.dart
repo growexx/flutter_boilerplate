@@ -33,10 +33,19 @@ void main() {
     final messageInputField = find.byType(MessageInputField);
     expect(messageInputField, findsOneWidget);
 
+    await tester.tap(find.byKey(const Key('message-text-field')));
+    await tester.pumpAndSettle(const Duration(milliseconds: 500));
+
+    await tester.enterText(
+        find.byKey(const Key('message-text-field')), 'Test Message');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+
     // Find the send button
     final sendButton = find.byIcon(Icons.send);
     expect(sendButton, findsOneWidget);
 
+    await tester.enterText(
+        find.byKey(const Key('message-text-field')), 'Test Message');
     // Tap the send button
     await tester.tap(sendButton);
     await tester.pump();

@@ -13,10 +13,6 @@ import '../../util/common_initial_activity.dart';
 import '../../util/testing_material_app.dart';
 
 @GenerateNiceMocks([
-  MockSpec<UserRepository>(
-      as: #MockUserRepository, onMissingStub: OnMissingStub.returnDefault),
-])
-@GenerateNiceMocks([
   MockSpec<ThemeProvider>(
       as: #MockThemeProvider, onMissingStub: OnMissingStub.returnDefault),
 ])
@@ -25,6 +21,8 @@ import '../../util/testing_material_app.dart';
       as: #MockSigninViewModel, onMissingStub: OnMissingStub.returnDefault),
 ])
 class MockSocialSignInViewModel extends Mock implements SocialSignInViewModel {}
+
+class MockUserRepository extends Mock implements UserRepository {}
 
 void main() async {
   await commonInitialActivity();
@@ -38,7 +36,7 @@ void main() async {
   group("Drawer Navigation test", () {
     testWidgets('DrawerNavigation should show DashboardScreen by default',
         (WidgetTester tester) async {
-      await mockNetworkImagesFor(() =>tester
+      await mockNetworkImagesFor(() => tester
           .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path)));
       await tester.pumpAndSettle();
       // Expect to see the DashboardScreen content on the screen
@@ -46,9 +44,8 @@ void main() async {
           tester.state(find.byKey(const Key("scaffold-key")));
       state.openDrawer();
       await tester.pumpAndSettle();
-      // await tester.tap(find.byKey(const Key('settings-key')),
-      //     warnIfMissed: false);
-      // await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('settings-key')),
+          warnIfMissed: false);
       expect(find.text('Dashboard'), findsWidgets);
     });
 
@@ -65,7 +62,7 @@ void main() async {
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('navigation-screen-key')),
           warnIfMissed: false);
-      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('user-profile-key')));
     });
 
     testWidgets(

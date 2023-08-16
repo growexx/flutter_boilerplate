@@ -51,6 +51,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                       shouldRebuild: (prev, nex) => true,
                       selector: (buildContext, vm) => vm.currentUser,
                       builder: (context, User? currentUser, child) {
+                        print('-----------------------${currentUser?.id}');
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
