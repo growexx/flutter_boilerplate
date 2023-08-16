@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/theme/theme_provider.dart';
+import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/navigation/drawer_navigation.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
@@ -9,6 +10,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:nock/nock.dart';
+import 'package:provider/provider.dart';
 import '../../util/common_initial_activity.dart';
 import '../../util/testing_material_app.dart';
 
@@ -38,7 +40,7 @@ void main() async {
   group("Drawer Navigation test", () {
     testWidgets('DrawerNavigation should show DashboardScreen by default',
         (WidgetTester tester) async {
-      await mockNetworkImagesFor(() =>tester
+      await mockNetworkImagesFor(() => tester
           .pumpWidget(testingMaterial(initialLocation: DrawerNavigation.path)));
       await tester.pumpAndSettle();
       // Expect to see the DashboardScreen content on the screen
@@ -81,6 +83,24 @@ void main() async {
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('logout-key')),
           warnIfMissed: false);
+      await tester.pumpAndSettle();
+    });
+    testWidgets('DrawerNavigation user data loaded',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        child: ChangeNotifierProvider(
+          create: (context) =>
+              UserRepository(currentUser: User(id: "1", firstName: "meet", lastName:"patel" )),
+          builder: (context, child) => const MaterialApp(
+            home: DrawerNavigation(),
+          ),
+        ),
+      ));
+      await tester.pumpAndSettle();
+      final ScaffoldState state =
+          tester.state(find.byKey(const Key("scaffold-key")));
+      state.openDrawer();
       await tester.pumpAndSettle();
     });
   });
