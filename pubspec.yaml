@@ -67,6 +67,7 @@ dependencies:
   network_image_mock: ^2.1.1
   mocktail_image_network: ^0.3.1
   flutter_screen_lock: ^9.0.1
+  local_auth: ^2.1.6
 
   pay: ^1.1.1
   pin_code_text_field: ^1.8.0

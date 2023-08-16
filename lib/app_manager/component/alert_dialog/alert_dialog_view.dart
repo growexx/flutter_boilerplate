@@ -24,33 +24,35 @@ class AlertDialogView extends StatelessWidget {
       title: Text(title),
       content: Text(message),
       actions: <Widget>[
-        TextButtonTheme(
-          data: CustomTextButtonTheme.grey,
-          child: TextButton(
-            key: const Key("cancel"),
-            onPressed: () {
-              try {
-                context.pop();
-                // ignore: empty_catches
-              } catch (e) {}
-            },
-            child: Text(popButtonTitle),
+        if (popButtonTitle.isNotEmpty)
+          TextButtonTheme(
+            data: CustomTextButtonTheme.grey,
+            child: TextButton(
+              key: const Key("cancel"),
+              onPressed: () {
+                try {
+                  context.pop();
+                  // ignore: empty_catches
+                } catch (e) {}
+              },
+              child: Text(popButtonTitle),
+            ),
           ),
-        ),
-        TextButtonTheme(
-          data: CustomTextButtonTheme.primaryLight,
-          child: TextButton(
-            key: const Key("function"),
-            onPressed: () {
-              try {
-                context.pop();
-                onPressFunction();
-                // ignore: empty_catches
-              } catch (e) {}
-            },
-            child: Text(successButtonTitle),
-          ),
-        )
+        if (successButtonTitle.isNotEmpty)
+          TextButtonTheme(
+            data: CustomTextButtonTheme.primaryLight,
+            child: TextButton(
+              key: const Key("function"),
+              onPressed: () {
+                try {
+                  context.pop();
+                  onPressFunction();
+                  // ignore: empty_catches
+                } catch (e) {}
+              },
+              child: Text(successButtonTitle),
+            ),
+          )
       ],
     );
   }
