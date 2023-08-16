@@ -112,5 +112,12 @@
     "status504Error": "504 Gateway Timeout. Please try again.",
     "status505Error": "505 HTTP Version not supported. Please try again.",
     "statusNullError": "Something went wrong. Trouble in getting response from server. Try after sometime."
-  }
+  },
+  "notifications":"Notifications",
+  "security_status": "Security Status",
+  "calling":"Calling",
+  "social" : "Social",
+  "app_info": "App Info",
+  "help_feedback": "Help & Feedback",
+  "about": "About"
 }

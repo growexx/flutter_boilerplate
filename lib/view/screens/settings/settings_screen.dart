@@ -82,12 +82,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 setState(() {});
               }),
               CustomListTile(
-                title: "Notifications",
+                title: "notifications",
                 icon: Icons.notifications_none_rounded,
                 onTap: () {},
               ),
               CustomListTile(
-                title: "Security Status",
+                title: "security_status",
                 icon: CupertinoIcons.lock_shield,
                 onTap: () {},
               ),
@@ -113,17 +113,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               CustomListTile(
-                title: "Calling",
+                title: "calling",
                 icon: Icons.phone_outlined,
                 onTap: () {},
               ),
               CustomListTile(
-                title: "Social",
+                title: "social",
                 icon: Icons.contacts_outlined,
                 onTap: () {},
               ),
               CustomListTile(
-                title: "App Info",
+                title: "app_info",
                 icon: Icons.info,
                 onTap: () {},
               )
@@ -135,12 +135,12 @@ class _SettingsPageState extends State<SettingsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomListTile(
-                title: "Help & Feedback",
+                title: "help_feedback",
                 icon: Icons.help_outline_rounded,
                 onTap: () {},
               ),
               CustomListTile(
-                title: "About",
+                title: "about",
                 icon: Icons.info_outline_rounded,
                 onTap: () {},
               ),

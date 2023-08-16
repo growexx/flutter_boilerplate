@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
+import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:flutter/foundation.dart';
@@ -23,10 +24,21 @@ class EditProfileFieldWidget extends StatefulWidget {
 
 class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+  void initState() {
+    super.initState();
+    User user = Provider.of<UserRepository>(context, listen: false).getUser;
     final EditProfileViewModel viewModel =
         Provider.of<EditProfileViewModel>(context, listen: false);
+    setState(() {
+      viewModel.emailC.text = user.email ?? "";
+      viewModel.firstNameC.text = user.firstName ?? "";
+      viewModel.lastNameC.text = user.lastName ?? "";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Center(
       child: SingleChildScrollView(
         child: Padding(
@@ -54,7 +66,7 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                             showCustomImagePicker(context,
                                 onReceiveFilePath: (String? filePath) {
                               if (filePath != null) {
-                                viewModel.selectedImagePath = filePath;
+                                widget.viewModel.selectedImagePath = filePath;
                               }
                             });
                           },
