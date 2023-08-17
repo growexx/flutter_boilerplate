@@ -33,6 +33,11 @@ void main() async {
       expect(find.text("test"), findsOneWidget);
       expect(find.text("test data"), findsOneWidget);
       await tester.tap(find.byIcon(Icons.delete_forever));
+      await tester.pumpAndSettle();
+      expect(find.text("CANCEL"), findsOneWidget);
+      expect(find.text("DELETE"), findsOneWidget);
+      await tester.tap(find.byKey( const Key("function")));
+      await tester.pumpAndSettle();
     },
   );
   tearDownAll(() async {

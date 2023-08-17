@@ -112,6 +112,7 @@ class MessageInputField extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  key: const Key('message-text-field'),
                   onTap: () async {
                     await Future.delayed(const Duration(milliseconds: 500));
                     scrollToLastElement();

@@ -33,6 +33,55 @@ void main() async {
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
       //Change Password button Tap
+      final Finder changePasswordButton =
+          find.byKey(const Key("tb_change_password"));
+      await tester.tap(changePasswordButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets('change password screen test old and new password same',
+        (WidgetTester tester) async {
+      Widget widget =
+          testingMaterial(initialLocation: ChangePasswordScreen.path);
+      await tester.pumpWidget(widget);
+
+      await tester.enterText(
+          find.byKey(const Key("tf_old_password")), 'Test@123');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.enterText(
+          find.byKey(const Key("tf_new_password")), 'Test@123');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.enterText(
+          find.byKey(const Key("tf_confirm_new_password")), 'Test@123');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+
+      //Change Password button Tap
+      final Finder changePasswordButton =
+          find.byKey(const Key("tb_change_password"));
+      await tester.tap(changePasswordButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets(
+        'change password screen test password and confirm password not same',
+        (WidgetTester tester) async {
+      Widget widget =
+          testingMaterial(initialLocation: ChangePasswordScreen.path);
+      await tester.pumpWidget(widget);
+
+      await tester.enterText(
+          find.byKey(const Key("tf_old_password")), 'Test@123');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.enterText(
+          find.byKey(const Key("tf_new_password")), 'Test@1234');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.enterText(
+          find.byKey(const Key("tf_confirm_new_password")), 'Test@123');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+
+      //Change Password button Tap
       final Finder changePasswordButton = find.byKey(const Key("tb_change_password"));
       await tester.tap(changePasswordButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));

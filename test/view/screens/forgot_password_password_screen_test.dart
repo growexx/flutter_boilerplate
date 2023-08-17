@@ -24,6 +24,12 @@ void main() async {
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
 
+      await tester.enterText(
+          find.byKey(const Key("tf_email_address")), 'testgmail.com');
+      await tester.tap(resetLinkButton, warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+
       await tester.enterText(find.byKey(const Key("tf_email_address")), 'test@gmail.com');
       await tester.testTextInput.receiveAction(TextInputAction.done);
 

@@ -31,6 +31,7 @@ void main() async {
   testWidgets(
     "setting screen testing is done for tap",
     (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(1280 * 7, 720 * 7);
       await mockNetworkImagesFor(() => tester.pumpWidget(
           (ChangeNotifierProvider(
               create: (context) => UserRepository(), child: widget))));
@@ -42,7 +43,11 @@ void main() async {
       await tester.tap(find.byType(CustomListTile).at(4));
       await tester.tap(find.byType(CustomListTile).at(5));
       await tester.tap(find.byType(CustomListTile).at(6));
+      await tester.tap(find.byType(CustomListTile).at(7));
+      await tester.tap(find.byType(CustomListTile).at(8));
+      await tester.tap(find.byType(CustomListTile).at(9));
       await tester.tap(find.byType(IconButton).first);
+      addTearDown(tester.view.resetPhysicalSize);
     },
   );
 }

@@ -21,4 +21,13 @@ void main() {
       model.lastMessageForPeerUser();
     },
   );
+  test(
+    "addchat method tested",
+    () {
+      final model = ChatViewModel();
+      expect(model.messageList.length, 10);
+      model.addChatToList("Hello");
+      expect(model.messageList.length, 11);
+    },
+  );
 }

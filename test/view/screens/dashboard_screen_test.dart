@@ -19,7 +19,7 @@ void main() async {
     Widget widget = testingMaterial(initialLocation: DashboardScreen.path);
     await tester.pumpWidget(widget);
     await tester.pumpAndSettle();
-    
+
     expect(find.byKey(const Key("change_password")), findsOneWidget);
     expect(find.byKey(const Key("sign_out")), findsOneWidget);
     expect(find.byKey(const Key("payment")), findsOneWidget);
@@ -43,15 +43,19 @@ void main() async {
 
     expect(willPopCalled, false);
   });
-    testWidgets(
+  testWidgets(
     "buttons are pressed",
     (WidgetTester tester) async {
       Widget widget = testingMaterial(initialLocation: DashboardScreen.path);
       await tester.pumpWidget(widget);
       await tester.tap(find.byKey(const Key("payment")));
-       final dynamic widgetsAppState = tester.state(find.byType(WidgetsApp));
-    await widgetsAppState.didPopRoute();
+      final dynamic widgetsAppState = tester.state(find.byType(WidgetsApp));
+      await widgetsAppState.didPopRoute();
       await tester.tap(find.byKey(const Key("todo_screen")));
+      await widgetsAppState.didPopRoute();
+      await tester.tap(find.byKey(const Key('show_google_map')));
+      await widgetsAppState.didPopRoute();
+      await tester.tap(find.byKey(const Key('show_security_pin')));
     },
   );
 }

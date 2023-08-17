@@ -40,6 +40,9 @@ class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {
 
   @override
   String? get photoUrl => 'http://testimage.com';
+
+  @override
+  String get email => 'test@example.com';
 }
 
 class MockAppleAuth extends Mock implements AppleAuth {

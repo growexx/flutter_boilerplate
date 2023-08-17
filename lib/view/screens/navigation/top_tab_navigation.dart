@@ -16,8 +16,8 @@ class TopTabNavigation extends StatelessWidget {
       showButton: false,
     ),
     SettingsPage(showButton: false),
-    ChangeNotifierProvider<ChatViewModel>(
-      create: (_) => ChatViewModel(),
+    ChangeNotifierProvider<ChatViewModel>.value(
+      value: ChatViewModel(),
       child: const RecentChats(autoShowBackButton: false),
     ),
   ];

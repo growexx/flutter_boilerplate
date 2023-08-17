@@ -9,44 +9,14 @@ import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:provider/provider.dart';
 
-class MockUserRepository extends Mock implements UserRepository {
-  @override
-  User? get currentUser => User(id: '123');
-}
+class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
   testWidgets('RecentChats widget displays user list',
       (WidgetTester tester) async {
     final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
     final mockUserRepository = MockUserRepository();
-    await mockNetworkImagesFor(() async {
-      await tester.pumpWidget(
-      MaterialApp(
-            home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<ChatViewModel>.value(
-              value: chatViewModel,
-            ),
-            ChangeNotifierProvider<UserRepository>.value(
-              value: mockUserRepository,
-            ),
-          ],
-          child: const RecentChats(),
-        )),
-    );
-    });
-    
-
-    // Verify that the widget displays the list of users
-    expect(find.byType(Container), findsNWidgets(15)); // Number of sample users
-    expect(
-        find.byType(MessageTile), findsNWidgets(5)); // Number of message tiles
-  });
-
-  testWidgets('Tap on a user triggers recent chat click',
-      (WidgetTester tester) async {
-    final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
-    final mockUserRepository = MockUserRepository();
+    when(mockUserRepository.currentUser).thenReturn(User(id: 'user123'));
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         MaterialApp(
@@ -64,8 +34,66 @@ void main() {
       );
     });
 
+    // Verify that the widget displays the list of users
+    expect(find.byType(Container), findsNWidgets(15)); // Number of sample users
+    expect(
+        find.byType(MessageTile), findsNWidgets(5)); // Number of message tiles
+  });
+
+  testWidgets('RecentChats widget displays user list when last message is ours',
+      (WidgetTester tester) async {
+    final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
+    final mockUserRepository = MockUserRepository();
+    when(mockUserRepository.currentUser).thenReturn(User(id: 'user123'));
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(
+        MaterialApp(
+            home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider<ChatViewModel>.value(
+              value: chatViewModel,
+            ),
+            ChangeNotifierProvider<UserRepository>.value(
+              value: mockUserRepository,
+            ),
+          ],
+          child: const RecentChats(),
+        )),
+      );
+    });
+
+    // Verify that the widget displays the list of users
+    expect(find.byType(Container), findsNWidgets(15)); // Number of sample users
+    expect(
+        find.byType(MessageTile), findsNWidgets(5)); // Number of message tiles
+  });
+
+  testWidgets('Tap on a user triggers recent chat click',
+      (WidgetTester tester) async {
+    final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(
+        MaterialApp(
+            home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider<ChatViewModel>.value(
+              value: chatViewModel,
+            ),
+            ChangeNotifierProvider<UserRepository>.value(
+              value: UserRepository(
+                  currentUser: User(
+                      id: "1",
+                      firstName: "meet",
+                      lastName: "patel",
+                      profileUrl: 'http://abc.com')),
+            ),
+          ],
+          child: const RecentChats(),
+        )),
+      );
+    });
+
     // Tap on the first user's message tile
-    await tester.tap(find.byType(MessageTile).first);
-    await tester.pump();
+    await tester.tap(find.byKey(const Key('message-tile')).last);
   });
 }
