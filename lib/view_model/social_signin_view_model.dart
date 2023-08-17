@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/app_manager/helper/show_toast.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/apple_auth.dart';
-import 'package:flutter_boilerplate/app_manager/service/social_auth_services/facebook_auth.dart';
 import 'package:flutter_boilerplate/app_manager/service/social_auth_services/google_auth.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 // import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
