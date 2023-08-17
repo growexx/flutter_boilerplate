@@ -67,21 +67,25 @@ class MessageBubble extends StatelessWidget {
               backgroundImage: NetworkImage(ChatUser.avatarUrl),
             ),
           const Padding(padding: EdgeInsets.only(right: 3.0)),
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-            decoration: BoxDecoration(
-              color: isMe ? Colors.blue : Colors.grey[300],
-              borderRadius: BorderRadius.only(
-                topLeft: isMe ? const Radius.circular(12.0) : Radius.zero,
-                topRight: const Radius.circular(12.0),
-                bottomLeft: const Radius.circular(12.0),
-                bottomRight: isMe ? Radius.zero : const Radius.circular(12.0),
+          ConstrainedBox(
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * 0.7),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+              decoration: BoxDecoration(
+                color: isMe ? Colors.blue : Colors.grey[300],
+                borderRadius: BorderRadius.only(
+                  topLeft: isMe ? const Radius.circular(12.0) : Radius.zero,
+                  topRight: const Radius.circular(12.0),
+                  bottomLeft: const Radius.circular(12.0),
+                  bottomRight: isMe ? Radius.zero : const Radius.circular(12.0),
+                ),
               ),
-            ),
-            child: Text(
-              message,
-              style: TextStyle(color: isMe ? Colors.white : Colors.black),
+              child: Text(
+                message,
+                style: TextStyle(color: isMe ? Colors.white : Colors.black),
+              ),
             ),
           ),
           const Padding(padding: EdgeInsets.only(right: 3.0)),
