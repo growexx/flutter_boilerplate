@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
@@ -10,15 +9,27 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-class AddEditTodoScreen extends StatelessWidget {
+class AddEditTodoScreen extends StatefulWidget {
   static const String name = "add-edit-todo-data";
   static const String path = "/$name";
   const AddEditTodoScreen({super.key, this.data});
   final TodoData? data;
+
+  @override
+  State<AddEditTodoScreen> createState() => _AddEditTodoScreenState();
+}
+
+class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController dataController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    titleController.text = widget.data?.title ?? "";
+    dataController.text = widget.data?.data ?? "";
+  }
   @override
   Widget build(BuildContext context) {
-  final TextEditingController titleController = TextEditingController(text: data?.title ?? "" );
-  final TextEditingController dataController = TextEditingController(text: data?.data ?? "" );
     titleController.selection = TextSelection.fromPosition(
         TextPosition(offset: titleController.text.length));
 
@@ -36,7 +47,9 @@ class AddEditTodoScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.brown),
           ).tr(),
-          Text(data?.dateTime ?? DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
+          Text(
+              widget.data?.dateTime ??
+                  DateFormat.yMMMMd('en_US').add_jm().format(DateTime.now()),
               style: const TextStyle(fontSize: 16, color: Colors.brown)),
         ],
       ),
@@ -112,7 +125,7 @@ class AddEditTodoScreen extends StatelessWidget {
           onPressed: () {
             const uuid = Uuid();
             viewModel.saveData(TodoData(
-                listId: data?.listId ?? uuid.v4(),
+                listId: widget.data?.listId ?? uuid.v4(),
                 title: titleController.text.trim(),
                 data: dataController.text.trim(),
                 dateTime: DateFormat.yMMMMd('en_US').add_jm().format(
