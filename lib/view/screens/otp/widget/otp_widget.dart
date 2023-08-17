@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view_model/otp_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class OTPWidget extends StatefulWidget {
   final OTPViewModel viewModel;
@@ -78,7 +79,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                     child: Form(
                       child: Column(
                         children: [
-                          TextFormField(
+                          /*TextFormField(
                             keyboardType: TextInputType.number,
                             key: const Key("tf_mobile_number"),
                             controller: widget.viewModel.phoneC,
@@ -87,11 +88,13 @@ class _OTPWidgetState extends State<OTPWidget> {
                             onFieldSubmitted: (val) {
                               widget.viewModel.setIsValidNumber = true;
                             },
-                          ),
-                          /*IntlPhoneField(
+                          ),*/
+                          IntlPhoneField(
+                            key: const Key("tf_mobile_number"),
                             decoration: InputDecoration(
                               errorStyle: const TextStyle(color: Colors.red),
-                              labelText: 'mobile_number'.tr(),
+                              hintText: 'mobile_number'.tr(),
+                              hintStyle:  TextStyle(color: Colors.grey.withOpacity(0.7)),
                               floatingLabelStyle:
                                   TextStyle(color: theme.primaryColor),
                               border: const OutlineInputBorder(
@@ -106,7 +109,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                                 widget.viewModel.setIsValidNumber = false;
                               }
                             },
-                          ),*/
+                          ),
                           const SizedBox(
                             height: 22,
                           ),
