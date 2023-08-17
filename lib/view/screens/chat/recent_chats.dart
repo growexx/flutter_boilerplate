@@ -177,6 +177,7 @@ class _RecentChatsState extends State<RecentChats> {
                                     )),
                           Expanded(
                             child: InkWell(
+                              key: const Key('message-tile'),
                               onTap: () {
                                 chatViewModel.recentChatClickListener(context);
                               },

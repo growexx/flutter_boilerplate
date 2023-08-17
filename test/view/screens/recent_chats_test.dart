@@ -71,7 +71,6 @@ void main() {
   testWidgets('Tap on a user triggers recent chat click',
       (WidgetTester tester) async {
     final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
-    final mockUserRepository = MockUserRepository();
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         MaterialApp(
@@ -81,7 +80,12 @@ void main() {
               value: chatViewModel,
             ),
             ChangeNotifierProvider<UserRepository>.value(
-              value: mockUserRepository,
+              value: UserRepository(
+                  currentUser: User(
+                      id: "1",
+                      firstName: "meet",
+                      lastName: "patel",
+                      profileUrl: 'http://abc.com')),
             ),
           ],
           child: const RecentChats(),
@@ -90,7 +94,6 @@ void main() {
     });
 
     // Tap on the first user's message tile
-    await tester.tap(find.byType(MessageTile).first);
-    await tester.pump();
+    await tester.tap(find.byKey(const Key('message-tile')).last);
   });
 }

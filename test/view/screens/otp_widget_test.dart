@@ -47,6 +47,10 @@ void main() async {
 
       expect(find.byKey(const Key("send_otp")), findsOneWidget);
       expect(find.byKey(const Key("add_your_phone_number")), findsOneWidget);
+      await tester.enterText(
+          find.byKey(const Key("tf_mobile_number")), '9999900000');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.tap(find.byKey(const Key("send")));
     });
   });
 }

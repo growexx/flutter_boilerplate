@@ -55,6 +55,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     width: MediaQuery.of(context).size.width * 0.50,
                     child: TextButton(
+                      key: const Key('navigate-text-button'),
                       // shape: RoundedRectangleBorder(
                       //     borderRadius: BorderRadius.circular(18)),
                       // minWidth: 100,

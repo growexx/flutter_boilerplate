@@ -50,14 +50,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: const TextStyle(
                     fontSize: 18,
                   ),
-                ).tr(),
+                ),
                 const SizedBox(height: 5),
                 Text(
                   'Email: ${user.email ?? ""}',
                   style: const TextStyle(
                     fontSize: 16,
                   ),
-                ).tr(),
+                ),
               ],
             ),
           ),
