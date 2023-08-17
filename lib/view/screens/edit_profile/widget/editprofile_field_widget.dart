@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/app_manager/helper/validation_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view_model/editprofile_view_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app_manager/helper/camera_and_images/custom_image_picker_widget.dart';
@@ -138,7 +139,7 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                           onPressEditProfile(ctx);
                         }),
                     const SizedBox(height: 20),
-                    TextFormField(
+                    /*TextFormField(
                       keyboardType: TextInputType.number,
                       key: const Key("tf_mobile_number"),
                       controller: widget.viewModel.phoneC,
@@ -146,6 +147,27 @@ class _EditProfileFieldWidgetState extends State<EditProfileFieldWidget> {
                           InputDecoration(hintText: 'mobile_number'.tr()),
                       onFieldSubmitted: (val) {
                         //
+                      },
+                    ),*/
+                    IntlPhoneField(
+                      key: const Key("tf_mobile_number"),
+                      decoration: InputDecoration(
+                        errorStyle: const TextStyle(color: Colors.red),
+                        hintText: 'mobile_number'.tr(),
+                        hintStyle:  TextStyle(color: Colors.grey.withOpacity(0.7)),
+                        floatingLabelStyle:
+                        TextStyle(color: theme.primaryColor),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(),
+                        ),
+                      ),
+                      initialCountryCode: 'IN',
+                      onChanged: (phone) {
+                        if (phone.isValidNumber()) {
+                          widget.viewModel.setIsValidNumber = true;
+                        } else {
+                          widget.viewModel.setIsValidNumber = false;
+                        }
                       },
                     ),
                     const SizedBox(height: 20),
