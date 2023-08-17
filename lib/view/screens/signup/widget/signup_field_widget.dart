@@ -11,11 +11,13 @@ import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/components/text_field_spacer.dart';
 import 'package:flutter_boilerplate/view/screens/signin/signin_screen.dart';
 import 'package:flutter_boilerplate/view_model/signup_view_model.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 
 class SignUpFieldWidget extends StatefulWidget {
   final SignUpViewModel viewModel;
   final UserRepository userRepository;
+
 
   const SignUpFieldWidget(
       {super.key, required this.viewModel, required this.userRepository});
@@ -142,7 +144,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                           onPressSignUp(ctx);
                         }),
                     const SizedBox(height: 20),
-                    TextFormField(
+                    /*TextFormField(
                       keyboardType: TextInputType.number,
                       key: const Key("tf_mobile_number"),
                       controller: widget.viewModel.phoneC,
@@ -151,8 +153,7 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       onFieldSubmitted: (val) {
                         //
                       },
-                    ),
-                    const SizedBox(height: 20),
+                    ),*/
                     TextFieldSpacer(
                       child: PasswordField(
                         key: const Key("tf_password"),
@@ -170,6 +171,28 @@ class _SignUpFieldWidgetState extends State<SignUpFieldWidget> {
                       validator: ValidationHelper.passwordValidation,
                       onFieldSubmitted: (val) {
                         onPressSignUp(ctx);
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    IntlPhoneField(
+                      key: const Key("tf_mobile_number"),
+                      decoration: InputDecoration(
+                        errorStyle: const TextStyle(color: Colors.red),
+                        floatingLabelStyle:
+                        TextStyle(color: theme.primaryColor),
+                        hintText: 'mobile_number'.tr(),
+                        hintStyle:  TextStyle(color: Colors.grey.withOpacity(0.7)),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(),
+                        ),
+                      ),
+                      initialCountryCode: 'IN',
+                      onChanged: (phone) {
+                        if (phone.isValidNumber()) {
+                          widget.viewModel.setIsValidNumber = true;
+                        } else {
+                          widget.viewModel.setIsValidNumber = false;
+                        }
                       },
                     ),
                     const SizedBox(height: 20),

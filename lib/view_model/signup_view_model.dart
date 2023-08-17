@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 class SignUpViewModel extends ChangeNotifier {
 
-
+  var isValidNumber = false;
   final TextEditingController firstNameC = TextEditingController();
   final TextEditingController lastNameC = TextEditingController();
   final TextEditingController emailC = TextEditingController();
@@ -17,6 +17,10 @@ class SignUpViewModel extends ChangeNotifier {
   String? get selectedImagePath=> _selectedImagePath;
   set selectedImagePath(String? val) {
     _selectedImagePath = val;
+    notifyListeners();
+  }
+  set setIsValidNumber(bool value) {
+    isValidNumber = value;
     notifyListeners();
   }
 
