@@ -103,8 +103,8 @@ App or websites needs to be live for most of them to work.
 ### SigninWithEmailAndOTP:
 This project contains the UI design and implementation for both signin with email and signin with OTP, that can help you save time in redesigning the screens.
 <p align='center'>
-    <img src="github_assets/email_signin.png" width="400"/>
-    <img src="github_assets/otp_signin.png" width="400"/>
+    <img src="github_assets/email_signin.png" width="200"/>
+    <img src="github_assets/otp_signin.png" width="200"/>
 </p>
 
 ### StateManagement(Provider):
