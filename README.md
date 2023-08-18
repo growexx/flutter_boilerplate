@@ -78,10 +78,18 @@ Splash Screen is the first page user see when application opens up, in this code
 </p>
 
 ### ThemeModeSelector and Dark Theme:
-The project contains the drk and light mode ThemeProvider is used to control the theme of the project you can select `systme`, `light` or `dark` mode, You can control it by using ThemeModeSelector Widget that controls the ThemeProvider
+The project contains the drk and light mode ThemeProvider is used to control the theme of the project you can select `systme`, `light` or `dark` mode, You can control it by using ThemeModeSelector Widget that controls the ThemeProvider,
+We have created a controller to control theme
+<p align='center'>
+    <img src="github_assets/theme_and_locale.png" />
+</p>
 
 ### LocaleSelector and LocalProvider:
 The project using `easy_localization` for locale management, It contains a LocaleHelper file to manage the all the locales and fallback locale and LocalSelectorWidget help you select the locale.
+We have created a controller to control locale
+<p align='center'>
+    <img src="github_assets/theme_and_locale.png" />
+</p>
 
 ### SocialSignIn:
 Google signin is available for web, android and ios.
@@ -91,6 +99,21 @@ Facebook signin is available for android and ios.
 Instagram signin is available for android and ios.
 
 App or websites needs to be live for most of them to work.
+
+### SigninWithEmailAndOTP:
+This project contains the UI design and implementation for both signin with email and signin with OTP, that can help you save time in redesigning the screens.
+<p align='center'>
+    <img src="github_assets/email_signin.png" />
+    <img src="github_assets/otp_signin.png" />
+</p>
+
+### StateManagement(Provider):
+For StateManagement we have used provider package, you can use any other state management to the project is configured that way that you can easily change state management,
+provider gives you reactive programming that help reduce the process time and memory consumption.
+CheckOut provider here:
+```
+https://pub.dev/packages/provider
+```
 
 ### Libraries & Tools Used
 
