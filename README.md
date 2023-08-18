@@ -10,6 +10,14 @@ The Boilerplate contains the minimal implementation required to create a new lib
 
 ## How to Use
 
+**Step 0:**
+
+Initial step before cloning the boilerPlate and using it you need to install flutter in your system different system required different sdk and installation methods, to know more about this please visit below link:
+
+```
+https://docs.flutter.dev/get-started/install
+```
+
 **Step 1:**
 
 Download or clone this repo by using the link below:
@@ -65,6 +73,10 @@ fdart pub global activate flutter_gen
 
 ### SplashScreen:
 Splash Screen is the first page user see when application opens up, in this code a animated logo and app title added on the splash screen, you can add as much animation and do changes according to the UI.
+<p align='center'>
+    <img src="https://raw.githubusercontent.com/jonbhanson/flutter_native_splash/master/splash_demo.gif" />
+    <img src="https://raw.githubusercontent.com/jonbhanson/flutter_native_splash/master/splash_demo_dark.gif" />
+</p>
 
 ### ThemeModeSelector and Dark Theme:
 The project contains the drk and light mode ThemeProvider is used to control the theme of the project you can select `systme`, `light` or `dark` mode, You can control it by using ThemeModeSelector Widget that controls the ThemeProvider
@@ -78,6 +90,8 @@ Apple signin is available for web, android and ios.
 Twitter signin is available for android and ios.
 Facebook signin is available for android and ios.
 Instagram signin is available for android and ios.
+
+App or websites needs to be live for most of them to work.
 
 ### Libraries & Tools Used
 
