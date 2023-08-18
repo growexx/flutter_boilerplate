@@ -74,8 +74,7 @@ fdart pub global activate flutter_gen
 ### SplashScreen:
 Splash Screen is the first page user see when application opens up, in this code a animated logo and app title added on the splash screen, you can add as much animation and do changes according to the UI.
 <p align='center'>
-    <img src="https://raw.githubusercontent.com/jonbhanson/flutter_native_splash/master/splash_demo.gif" />
-    <img src="https://raw.githubusercontent.com/jonbhanson/flutter_native_splash/master/splash_demo_dark.gif" />
+    <img src="github_assets/splash_screen.png" />
 </p>
 
 ### ThemeModeSelector and Dark Theme:
