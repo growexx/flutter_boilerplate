@@ -26,18 +26,29 @@ void main() async {
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.enterText(find.byKey(const Key("tf_last_name")), 'Modi');
       await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.enterText(find.byKey(const Key("tf_email_address")), 'test@gmail.com');
+      await tester.enterText(
+          find.byKey(const Key("tf_email_address")), 'test@gmail.com');
       await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.enterText(find.byKey(const Key("tf_mobile_number")), '9999900000');
+      await tester.enterText(
+          find.byKey(const Key("tf_mobile_number")), '9999900000');
       await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.testTextInput.receiveAction(TextInputAction.done);
+      
 
       //Edit Profile button Tap
       final Finder editButton = find.byKey(const Key("tb_editprofile"));
       await tester.tap(editButton, warnIfMissed: false);
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
-      //expect(find.text("This is a mandatory field"),findsNWidgets(2));
     });
+
+    testWidgets(
+      "Edit Profile widget tests",
+      (WidgetTester tester) async {
+        Widget widget =
+            testingMaterial(initialLocation: EditProfileScreen.path);
+        await tester.pumpWidget(widget);
+        await tester.tap(find.byKey(const Key('pick_image_gesture_detector')));
+      },
+    );
   });
 }

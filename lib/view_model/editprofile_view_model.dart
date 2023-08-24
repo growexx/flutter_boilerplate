@@ -7,7 +7,7 @@ class EditProfileViewModel extends ChangeNotifier {
   EditProfileViewModel() {
     //checkIfUserIsLoggedIn();
   }
-
+  var isValidNumber = false;
   final TextEditingController firstNameC = TextEditingController();
   final TextEditingController lastNameC = TextEditingController();
   final TextEditingController emailC = TextEditingController();
@@ -17,6 +17,10 @@ class EditProfileViewModel extends ChangeNotifier {
   String? get selectedImagePath=> _selectedImagePath;
   set selectedImagePath(String? val) {
     _selectedImagePath = val;
+    notifyListeners();
+  }
+  set setIsValidNumber(bool value) {
+    isValidNumber = value;
     notifyListeners();
   }
 

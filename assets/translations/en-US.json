@@ -35,12 +35,15 @@
   "flutter_description2": "For users, Flutter makes beautiful apps come to life. For developers, Flutter lowers the bar to entry for building apps. It speeds app development and reduces the cost and complexity of app production across platforms. For designers, Flutter provides a canvas for high-end user experiences. Fast Company described Flutter as one of the top design ideas of the decade for its ability to turn concepts into production code without the compromises imposed by typical frameworks. It also acts as a productive prototyping tool, with CodePen support for sharing your ideas with others. For engineering managers and businesses, Flutter allows the unification of app developers into a single mobile, web, and desktop app team, building branded apps for multiple platforms out of a single codebase. Flutter speeds feature development and synchronizes release schedules across the entire customer base.",
   "welcome": "Welcome ",
   "sign_out": "Sign Out",
+  "create_security_pin": "Create Security PIN",
   "security_pin": "Security PIN",
   "verify_security_pin": "Verify Security PIN",
   "security_pin_description": "Set Your Security PIN",
   "your_4_digit_pin": "Your 4 digit PIN",
   "enter_security_pin": "Enter Your Security PIN",
   "save": "Save",
+  "okay": "Okay",
+  "security_pin_description_done": "Security PIN created successfully",
   "payment_screen": "Payment Screen",
   "payment": "Payment",
   "editprofile_screen": "Edit Profile Screen",
@@ -112,5 +115,12 @@
     "status504Error": "504 Gateway Timeout. Please try again.",
     "status505Error": "505 HTTP Version not supported. Please try again.",
     "statusNullError": "Something went wrong. Trouble in getting response from server. Try after sometime."
-  }
+  },
+  "notifications":"Notifications",
+  "security_status": "Security Status",
+  "calling":"Calling",
+  "social" : "Social",
+  "app_info": "App Info",
+  "help_feedback": "Help & Feedback",
+  "about": "About"
 }

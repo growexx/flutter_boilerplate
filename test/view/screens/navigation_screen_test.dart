@@ -14,7 +14,7 @@ void main() async {
     (WidgetTester tester) async {
       await tester.pumpWidget(widget);
       expect(find.byType(Text), findsWidgets);
+      await tester.tap(find.byKey(const Key('navigate-text-button')).first);
     },
   );
- 
 }

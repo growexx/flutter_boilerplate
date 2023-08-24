@@ -22,7 +22,6 @@ class UserDetailsScreen extends StatefulWidget {
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
-  final bool _isEditing = false;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   UserRepository userRepository = UserRepository();
@@ -49,17 +48,11 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: GestureDetector(
-              onTap: () {
-                // Implement image picker logic here to change the profile image
-                // This will be triggered when the user taps on the profile image
-              },
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(userRepository.currentUser!.profileUrl != null
-                    ? userRepository.currentUser!.profileUrl!
-                    : 'https://picsum.photos/200/300'),
-                radius: 50,
-              ),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(userRepository.currentUser!.profileUrl != null
+                  ? userRepository.currentUser!.profileUrl!
+                  : 'https://picsum.photos/200/300'),
+              radius: 50,
             ),
           ),
           const SizedBox(height: 16),
@@ -112,10 +105,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 icon: const Icon(Icons.edit),
                 onPressed: () {
                   NavigationHelper.pushNamed(context, EditProfileScreen.name);
-                  // Enable editing mode
-                  setState(() {
-                    _isEditing ? false : true;
-                  });
                 },
               ),
             ],
