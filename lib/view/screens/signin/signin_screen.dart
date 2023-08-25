@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app_manager/component/responsive/widget/responsive_helper.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/view/screens/signin/widget/signin_field_widget.dart';
+import 'package:flutter_boilerplate/view/widgets/screen_text_and_theme_controller.dart';
 import 'package:flutter_boilerplate/view/widgets/welcome.dart';
 import 'package:flutter_boilerplate/view_model/signin_view_model.dart';
 import 'package:flutter_boilerplate/view_model/social_signin_view_model.dart';
@@ -27,6 +28,13 @@ class _SignInScreenState extends State<SignInScreen> {
 
     Widget fieldPart = Column(
       children: [
+        ScreenTextAndThemeController(
+          onChange: (){
+            setState(() {
+
+            });
+          },
+        ),
         Expanded(
           child: SignInFieldWidget(
             viewModel: viewModel,
