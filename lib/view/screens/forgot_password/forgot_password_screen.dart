@@ -34,6 +34,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+          key: const Key("to_signin"),
             onPressed: () {
               context.goNamed(SignInScreen.name);
             },

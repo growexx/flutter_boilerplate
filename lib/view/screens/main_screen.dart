@@ -23,8 +23,8 @@ class _MainScreenState extends State<MainScreen> {
   
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
+    return PopScope(
+      onPopInvoked: (didPop) {
         CustomBottomSheet.open(context,
             child: FunctionalSheet(
                 message: "Do you want to exit the app?",
@@ -32,7 +32,6 @@ class _MainScreenState extends State<MainScreen> {
                 onPressButton: () async {
                   exit(0);
                 }));
-        return Future.value(true);
       },
       child: DefaultTabController(
         length: 4, // Number of tabs

@@ -197,5 +197,21 @@ void main() async {
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
     });
+
+
+
+    testWidgets('sign in api call',
+            (WidgetTester tester) async {
+          Widget widget = testingMaterial(initialLocation: SignInScreen.path);
+          await tester.pumpWidget(widget);
+
+          //Sign in button Tap
+          final Finder signInButton = find.byKey(const Key("tb_sign_in"));
+          await tester.tap(signInButton, warnIfMissed: false);
+          await tester.pumpAndSettle(const Duration(seconds: 2));
+          await tester.pumpAndSettle();
+        });
+
   });
+
 }

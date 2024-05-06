@@ -66,21 +66,4 @@ class SocialSignInViewModel extends ChangeNotifier {
     }
     return null;
   }
-
-  Future<User?> signinWithTwitter() async {
-    // try {
-    //   AuthResult? user = await _twitterAuth.login();
-    //   if(user!=null) {
-    //     return User(
-    //       id: (user.user?.id ?? "").toString(),
-    //       firstName: (user.user?.name ?? "").toString(),
-    //     );
-    //   }
-    //
-    // } catch (e) {
-    //   showToast(e.toString(),);
-    //   rethrow;
-    // }
-    return null;
-  }
 }

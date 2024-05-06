@@ -150,7 +150,9 @@ class _RecentChatsState extends State<RecentChats> {
                                   color: Colors.amber,
                                   borderRadius: BorderRadius.circular(100)),
                               child: tempUrl == ""
-                                  ? Image.network(ChatUser.avatarUrl)
+                                  ? Image.network(ChatUser.avatarUrl, errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                return const Text('Failed to load image');
+                              },)
                                   : Image.network(
                                       tempUrl.toString(),
                                       fit: BoxFit.fill,

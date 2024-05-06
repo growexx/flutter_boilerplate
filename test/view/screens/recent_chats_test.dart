@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:provider/provider.dart';
 
+import '../../util/testing_material_app.dart';
+
 class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
@@ -70,27 +72,16 @@ void main() {
 
   testWidgets('Tap on a user triggers recent chat click',
       (WidgetTester tester) async {
-    final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
     await mockNetworkImagesFor(() async {
-      await tester.pumpWidget(
-        MaterialApp(
-            home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<ChatViewModel>.value(
-              value: chatViewModel,
-            ),
-            ChangeNotifierProvider<UserRepository>.value(
-              value: UserRepository(
-                  currentUser: User(
-                      id: "1",
-                      firstName: "meet",
-                      lastName: "patel",
-                      profileUrl: 'http://abc.com')),
-            ),
-          ],
-          child: const RecentChats(),
-        )),
-      );
+      await tester.pumpWidget(testingMaterial(
+        initialLocation: RecentChats.path,
+        withUser: true,
+        user: User(
+            id: "1",
+            firstName: "meet",
+            lastName: "patel",
+            profileUrl: 'http://abc.com')
+      ));
     });
 
     // Tap on the first user's message tile

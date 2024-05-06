@@ -35,6 +35,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+          key: const Key("to_dashboard"),
             onPressed: () {
               context.goNamed(DashboardScreen.name);
             },

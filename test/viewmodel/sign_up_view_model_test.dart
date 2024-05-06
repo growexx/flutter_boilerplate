@@ -24,5 +24,8 @@ void main() {
     model.selectedImagePath = "";
     model.phoneC.text = "9999990000";
     expect(model.phoneC.text, "9999990000");
+
+    model.setIsValidNumber = true;
+    expect(model.isValidNumber, true);
   });
 }

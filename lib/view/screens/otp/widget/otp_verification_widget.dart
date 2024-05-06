@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app_manager/service/navigation_service.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
 import 'package:flutter_boilerplate/gen/assets.gen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation_screen.dart';
@@ -150,7 +151,7 @@ class _OTPWidgetState extends State<OTPVerificationWidget> {
                                         Status.verifiedSuccess) {
                                       if (!mounted) return;
                                       Router.neglect(
-                                          context,
+                                          NavigationService.context!,
                                           () => context
                                               .goNamed(NavigationScreen.name));
                                     }

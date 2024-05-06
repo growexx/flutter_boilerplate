@@ -34,10 +34,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
           value: BottomTabNavigation.name,
           extra: Colors.greenAccent.withOpacity(0.8)),
     ];
-    return WillPopScope(
-      onWillPop: () {
+    return PopScope(
+      onPopInvoked: (didPop) {
         showExitPopUp(context);
-        return Future.value(true);
       },
       child: Scaffold(
           body: Column(

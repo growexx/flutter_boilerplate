@@ -58,4 +58,14 @@ void main() async {
       await tester.tap(find.byKey(const Key('show_security_pin')));
     },
   );
+
+  testWidgets(
+    "to Navigation Screen",
+        (WidgetTester tester) async {
+      Widget widget = testingMaterial(initialLocation: DashboardScreen.path);
+      await tester.pumpWidget(widget);
+      await tester.tap(find.byType(IconButton).first);
+    },
+  );
+
 }

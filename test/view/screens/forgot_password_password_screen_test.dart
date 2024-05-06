@@ -43,5 +43,16 @@ void main() async {
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
     });
+
+
+    testWidgets('to signin', (WidgetTester tester) async {
+      Widget widget = testingMaterial(initialLocation: ForgotPasswordScreen.path);
+      await tester.pumpWidget(widget);
+
+      final Finder toSignIn = find.byKey(const Key('to_signin'));
+      await tester.tap(toSignIn);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
+    });
   });
 }
