@@ -86,6 +86,7 @@ void main() async {
 
       // Tap on the Chats tab
       await tester.tap(find.byIcon(Icons.chat));
+      await tester.pump(const Duration(seconds: 3));
       await tester.pumpAndSettle();
 
       // Expect to see the ChatScreen content on the screen

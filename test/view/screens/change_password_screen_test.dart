@@ -87,5 +87,21 @@ void main() async {
       await tester.pumpAndSettle(const Duration(seconds: 2));
       await tester.pumpAndSettle();
     });
+
+
+    testWidgets(
+        'to Dashboard',
+            (WidgetTester tester) async {
+          Widget widget =
+          testingMaterial(initialLocation: ChangePasswordScreen.path);
+          await tester.pumpWidget(widget);
+
+          final Finder toDashboard = find.byKey(const Key("to_dashboard"));
+          await tester.tap(toDashboard);
+          await tester.pumpAndSettle(const Duration(seconds: 2));
+          await tester.pumpAndSettle();
+
+        });
+
   });
 }

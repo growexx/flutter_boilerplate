@@ -20,10 +20,10 @@ class _GoogleMapFieldWidgetState extends State<GoogleMapFieldWidget> {
   @override
   void initState() {
     super.initState();
-    isLocationServiceEnabled(context).then((value) {
-      widget.viewModel.setLocationServiceStatus = value;
-      if (value) {
-        getCurrentPosition(context).then((value) {
+    isLocationServiceEnabled().then((value) {
+      widget.viewModel.setLocationServiceStatus = value??false;
+      if (value??false) {
+        getCurrentPosition().then((value) {
           widget.viewModel.setCurrentPosition = value;
         });
       }

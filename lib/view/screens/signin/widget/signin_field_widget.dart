@@ -69,20 +69,6 @@ class _SignInFieldWidgetState extends State<SignInFieldWidget> {
           },
           imagePath: Assets.png.icGoogle.path
       ),
-      // Option(
-      //     boolValue: !kIsWeb,
-      //     key: const Key("twitter"),
-      //     onTap: () {
-      //       widget.socialSignInViewModel
-      //           .signinWithTwitter()
-      //           .then((User? user) {
-      //         if (user != null) {
-      //           storeAndNavigate(user);
-      //         }
-      //       });
-      //     },
-      //     imagePath: Assets.png.icTwitter.path
-      // ),
       Option(
           key: const Key("apple"),
           onTap: () {

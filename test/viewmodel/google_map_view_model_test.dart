@@ -18,7 +18,7 @@ void main() {
         heading: 0.0,
         speedAccuracy: 0.0,
         isMocked: false,
-        timestamp: DateTime.parse('2023-08-03 03:04:05'));
+        timestamp: DateTime.parse('2023-08-03 03:04:05'), altitudeAccuracy: 2, headingAccuracy: 2);
     expect(
         model.currentPosition,
         Position(
@@ -31,7 +31,7 @@ void main() {
             heading: 0.0,
             speedAccuracy: 0.0,
             isMocked: false,
-            timestamp: DateTime.parse('2023-08-03 03:04:05')));
+            timestamp: DateTime.parse('2023-08-03 03:04:05'), altitudeAccuracy: 2, headingAccuracy: 2));
     model.setCurrentAddress = "address";
     expect(model.currentAddress, "address");
     model.setCurrentPosition = Position(
@@ -44,7 +44,7 @@ void main() {
         heading: 0.0,
         speedAccuracy: 0.0,
         isMocked: false,
-        timestamp: DateTime.parse('2023-08-03 03:04:05'));
+        timestamp: DateTime.parse('2023-08-03 03:04:05'), altitudeAccuracy: 2, headingAccuracy: 2);
     expect(
         model.currentPosition,
         Position(
@@ -57,7 +57,7 @@ void main() {
             heading: 0.0,
             speedAccuracy: 0.0,
             isMocked: false,
-            timestamp: DateTime.parse('2023-08-03 03:04:05')));
+            timestamp: DateTime.parse('2023-08-03 03:04:05'), altitudeAccuracy: 2, headingAccuracy: 2));
     model.setLocationServiceStatus = true;
     expect(model.isLocationServiceEnabled, true);
   });

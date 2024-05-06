@@ -4,16 +4,19 @@ import 'package:flutter_boilerplate/app_manager/helper/camera_and_images/custom_
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../util/common_initial_activity.dart';
+import '../../../util/testing_material_app.dart';
+
 class MockBuildContext extends Mock implements BuildContext {}
 
-void main() {
+void main() async{
+  await commonInitialActivity();
   testWidgets('showCustomImagePicker displays options correctly',
       (WidgetTester tester) async {
     mockOnReceiveFilePath(String? filePath) {}
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-          body: CustomImagePickerWidget(
-              onReceiveFilePath: mockOnReceiveFilePath, child: Container())),
+    await tester.pumpWidget(testingWidget(
+      child: CustomImagePickerWidget(
+          onReceiveFilePath: mockOnReceiveFilePath, child: Container()),
     ));
     expect(find.byType(InkWell), findsOneWidget);
     await tester.tap(find.byType(InkWell));

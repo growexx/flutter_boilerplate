@@ -32,8 +32,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final theme = Theme.of(context);
     final UserRepository userRepository =
         Provider.of<UserRepository>(context, listen: false);
-    return WillPopScope(
-      onWillPop: () {
+    return PopScope(
+      onPopInvoked: (didPop) {
 
         CustomBottomSheet.open(context,
             child: FunctionalSheet(
@@ -42,7 +42,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onPressButton: () async {
                   exit(0);
                 }));
-        return Future.value(true);
       },
       child: Scaffold(
         appBar: AppBar(

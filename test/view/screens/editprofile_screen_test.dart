@@ -50,5 +50,21 @@ void main() async {
         await tester.tap(find.byKey(const Key('pick_image_gesture_detector')));
       },
     );
+
+
+    testWidgets(
+      "to Dashboard",
+          (WidgetTester tester) async {
+        Widget widget =
+        testingMaterial(initialLocation: EditProfileScreen.path);
+        await tester.pumpWidget(widget);
+        await tester.tap(find.byType(IconButton));
+        await tester.pump(const Duration(seconds: 3));
+
+        final dynamic widgetsAppState = tester.state(find.byType(WidgetsApp));
+        await widgetsAppState.didPopRoute();
+        await tester.pump();
+      },
+    );
   });
 }
