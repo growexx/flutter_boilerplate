@@ -45,7 +45,10 @@ void main() async {
           heading: 0.0,
           speedAccuracy: 0.0,
           isMocked: false,
-          timestamp: DateTime.now()));
+        timestamp: DateTime.now(),
+        altitudeAccuracy: 0.0,
+        headingAccuracy: 0.0,
+      ));
       when(mockModel.kGooglePlex).thenReturn(
           const CameraPosition(target: LatLng(23.033863, 72.585022)));
 

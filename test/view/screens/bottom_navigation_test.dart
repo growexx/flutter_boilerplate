@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/authentication/user.dart';
 import 'package:flutter_boilerplate/authentication/user_repository.dart';
+import 'package:flutter_boilerplate/view/screens/chat/chat_screen.dart';
 import 'package:flutter_boilerplate/view/screens/navigation/bottom_tab_navigation.dart';
 import 'package:flutter_boilerplate/view_model/veiw_model.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:provider/provider.dart';
 
 import '../../util/common_initial_activity.dart';
+import '../../util/testing_material_app.dart';
 import 'bottom_navigation_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -65,31 +68,43 @@ void main() async {
 
     testWidgets('BottomTabNavigation should show ChatScreen when tapped',
         (WidgetTester tester) async {
-      MockUserRepository mockUserRepository = MockUserRepository();
-      when(mockUserRepository.currentUser).thenReturn(
-          User(email: 'email', firstName: 'firstName', profileUrl: ''));
-
       await mockNetworkImagesFor(() async {
+        MockUserRepository mockUserRepository = MockUserRepository();
+        when(mockUserRepository.currentUser).thenReturn(
+            User(email: 'email', firstName: 'firstName', profileUrl: ''));
+
         await tester.pumpWidget(
-          MultiProvider(
-            providers: [
-              ChangeNotifierProvider<UserRepository>.value(
-                  value: mockUserRepository),
-              ChangeNotifierProvider.value(value: ChatViewModel())
-            ],
-            child: const MaterialApp(
-              home: BottomTabNavigation(),
-            ),
-          ),
+          testingMaterial(
+              initialLocation: BottomTabNavigation.path,
+              routesData: [
+                GoRoute(
+                  path: BottomTabNavigation.path,
+                  builder: (context, state) => MultiProvider(
+                    providers: [
+                      ChangeNotifierProvider<UserRepository>.value(
+                          value: mockUserRepository),
+                      ChangeNotifierProvider.value(value: ChatViewModel())
+                    ],
+                    child: const MaterialApp(
+                      home: BottomTabNavigation(),
+                    ),
+                  ),
+                ),
+                GoRoute(
+                  path: ChatScreen.path,
+                  name: ChatScreen.name,
+                  builder: (context, state) => const ChatScreen(),
+                )
+              ]),
         );
+
+        // Tap on the Chats tab
+        await tester.tap(find.byIcon(Icons.chat));
+        await tester.pumpAndSettle();
+
+        // Expect to see the ChatScreen content on the screen
+        expect(find.text('Recent Chats'), findsOneWidget);
       });
-
-      // Tap on the Chats tab
-      await tester.tap(find.byIcon(Icons.chat));
-      await tester.pumpAndSettle();
-
-      // Expect to see the ChatScreen content on the screen
-      expect(find.text('Recent Chats'), findsOneWidget);
     });
   });
 }

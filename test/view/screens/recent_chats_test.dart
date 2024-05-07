@@ -5,9 +5,12 @@ import 'package:flutter_boilerplate/view/screens/components/message_tile.dart';
 import 'package:flutter_boilerplate/view/screens/screens.dart';
 import 'package:flutter_boilerplate/view_model/veiw_model.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:provider/provider.dart';
+
+import '../../util/testing_material_app.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
 
@@ -73,24 +76,35 @@ void main() {
     final chatViewModel = ChatViewModel(); // Mock or actual ViewModel
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
-        MaterialApp(
-            home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<ChatViewModel>.value(
-              value: chatViewModel,
+          testingMaterial(
+        initialLocation: RecentChats.path,
+        routesData: [
+          GoRoute(
+            path: RecentChats.path,
+            builder: (context, state) => MultiProvider(
+              providers: [
+                ChangeNotifierProvider<ChatViewModel>.value(
+                  value: chatViewModel,
+                ),
+                ChangeNotifierProvider<UserRepository>.value(
+                  value: UserRepository(
+                      currentUser: User(
+                          id: "1",
+                          firstName: "meet",
+                          lastName: "patel",
+                          profileUrl: 'http://abc.com')),
+                ),
+              ],
+              child: const RecentChats(),
             ),
-            ChangeNotifierProvider<UserRepository>.value(
-              value: UserRepository(
-                  currentUser: User(
-                      id: "1",
-                      firstName: "meet",
-                      lastName: "patel",
-                      profileUrl: 'http://abc.com')),
-            ),
-          ],
-          child: const RecentChats(),
-        )),
-      );
+          ),
+          GoRoute(
+            path: ChatScreen.path,
+            name: ChatScreen.name,
+            builder: (context, state) => const ChatScreen(),
+          ),
+        ],
+      ));
     });
 
     // Tap on the first user's message tile

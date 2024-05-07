@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+.vscode
 
 # IntelliJ related
 *.iml
@@ -50,7 +51,7 @@ app.*.map.json
 
 # ---- SonarQube
 .sonar/
-/.scannerwork/
+.scannerwork/
 
 /sonar-project.properties
 !/sonar-project.properties
